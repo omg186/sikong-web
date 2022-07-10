@@ -4,7 +4,11 @@ import { primaryColor } from './build/config/themeConfig'
 export default defineConfig({
   darkMode: 'class',
   attributify: true,
-  plugins: [createEnterPlugin()],
+  plugins: [
+    createEnterPlugin(),
+    require('windicss/plugin/forms'),
+    require('windicss/plugin/aspect-ratio'),
+  ],
   theme: {
     extend: {
       zIndex: {

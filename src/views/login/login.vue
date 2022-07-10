@@ -67,7 +67,9 @@ const activeIndex = computed(() => {
               :style="`--tx:${tabList[activeIndex].x}px`"
             ></div>
           </div>
-          <div class="login-form"></div>
+          <div class="login-form flex justify-center pt-[26px]">
+            <router-view></router-view>
+          </div>
         </div>
       </div>
       <!-- <div> -->
