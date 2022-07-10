@@ -56,7 +56,8 @@
     border-radius: 60px;
     border: 1px solid #c7f7e3;
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
       border: 1px solid #9aebc9;
       background: #ddfff0;
     }
