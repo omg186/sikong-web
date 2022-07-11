@@ -35,18 +35,20 @@
           </div>
         </div>
       </div>
-      <div class="pt-[10px]">
-        <button class="btn login">登录</button>
-      </div>
     </form>
+    <div class="pt-[34px]">
+      <button class="btn login" @click="onSubmit">登录</button>
+    </div>
     <div
-      class="flex justify-center text-[#E3E4E2] font-medium mt-[36px] hover:text-[#C3CAC6]"
+      class="flex justify-center text-[#E3E4E2] font-medium mt-[36px] hover:text-[#C3CAC6] active:text-[#83867E]"
     >
       <router-link to="/"> 忘记密码 </router-link>
     </div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+function onSubmit() {}
+</script>
 
 <style lang="less" scoped>
 .account-view {
@@ -56,10 +58,13 @@
     border-radius: 60px;
     border: 1px solid #c7f7e3;
     &:hover,
-    &:focus,
-    &:active {
-      border: 1px solid #9aebc9;
+    &:focus {
+      border-color: #9aebc9;
       background: #ddfff0;
+    }
+    &:active {
+      background: #c6fce4;
+      border-color: #75e4b5;
     }
   }
 }

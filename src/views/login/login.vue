@@ -41,7 +41,12 @@ const activeIndex = computed(() => {
           class="flex justify-between items-center pt-[34px] pr-[50px] pl-[42px]"
         >
           <img src="@/assets/images/logo.png" />
-          <router-link to="/" class="text-[#83867E] font-medium">
+          <router-link
+            to="/"
+            class="text-[#83867E] font-medium"
+            hover="text-[#2D3A2F]"
+            active="text-[#2D3A2F]"
+          >
             注册
           </router-link>
         </div>
