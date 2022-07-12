@@ -2,14 +2,14 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { basicRoutes } from './routes'
 
 // 白名单应该包含基本静态路由
-const WHITE_NAME_LIST: string[] = []
+export const WHITE_NAME_LIST: string[] = []
 const getRouteNames = (array: any[]) =>
   array.forEach(item => {
     WHITE_NAME_LIST.push(item.name)
     getRouteNames(item.children || [])
   })
 getRouteNames(basicRoutes)
-console.log(basicRoutes)
+console.log(basicRoutes, WHITE_NAME_LIST)
 // 工厂函数来创建router实例
 const router = createRouter({
   history: createWebHashHistory(),

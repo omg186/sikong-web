@@ -22,3 +22,12 @@ export const LoginRoute: AppRouteRecordRaw = {
     },
   ],
 }
+export const RegisterRoute: AppRouteRecordRaw = {
+  path: '/register',
+  name: 'register',
+  component: () => import('@/views/login/register.vue'),
+  meta: {
+    title: '注册',
+    ignoreAuth: true,
+  },
+}

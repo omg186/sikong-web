@@ -14,12 +14,13 @@ const LOGIN_PATH = PageEnum.BASE_LOGIN
 
 const ROOT_PATH = RootRoute.path
 
-const whitePathList: PageEnum[] = [LOGIN_PATH]
+const whitePathList: PageEnum[] = [LOGIN_PATH, PageEnum.BASE_LOGIN_MSG]
 
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreWithOut()
   const permissionStore = usePermissionStoreWithOut()
   router.beforeEach(async (to, from, next) => {
+    console.log(to, from)
     if (
       from.path === ROOT_PATH &&
       to.path === PageEnum.BASE_HOME &&

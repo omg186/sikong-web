@@ -42,7 +42,7 @@ const activeIndex = computed(() => {
         >
           <img src="@/assets/images/logo.png" />
           <router-link
-            to="/"
+            to="/register"
             class="text-[#83867E] font-medium"
             hover="text-[#2D3A2F]"
             active="text-[#2D3A2F]"

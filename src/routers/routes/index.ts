@@ -1,7 +1,7 @@
 import { PageEnum } from '@/enums/page-enum'
 import type { AppRouteModule, AppRouteRecordRaw } from '@/routers/types'
 import { PAGE_NOT_FOUND_ROUTE } from './basic'
-import { LoginRoute } from './login'
+import { LoginRoute, RegisterRoute } from './login'
 
 // import.meta.globEager() 直接引入所有的模块 Vite 独有的功能
 const modules = import.meta.globEager('./modules/**/*.ts')
@@ -29,6 +29,7 @@ export const RootRoute: AppRouteRecordRaw = {
 // 未经许可的基本路由
 export const basicRoutes = [
   LoginRoute,
+  RegisterRoute,
   RootRoute,
   // ...mainOutRoutes,
   // REDIRECT_ROUTE,
