@@ -55,9 +55,9 @@ export default [
     timeout: 200,
     method: 'post',
     response: ({ body }) => {
-      const { username, password } = body
+      const { account, password } = body
       const checkUser = createFakeUserList().find(
-        item => item.username === username && password === item.password
+        item => item.username === account && password === item.password
       )
       if (!checkUser) {
         return resultError('用户名密码错误，或者用户不存在')

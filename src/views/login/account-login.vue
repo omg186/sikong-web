@@ -103,7 +103,7 @@ const handleBlurAccount = e => {
   })
 }
 const { data, loading, run } = useRequest(() => {
-  return userStore.login({ username: form.account, password: form.password })
+  return userStore.login({ account: form.account, password: form.password })
 })
 function onSubmit(e) {
   e.preventDefault()

@@ -1,0 +1,42 @@
+.ant-form-item {
+    .ant-input-group-wrapper {
+
+        // 选择框
+        &.select {
+            border: 1px solid rgb(217, 217, 217);
+            position: relative;
+
+            &:hover,
+            &:active,
+            &:focus {
+                border: 1px solid #58edaa;
+            }
+
+            .ant-input-wrapper {
+                height: 100%;
+
+                .ant-input {
+                    height: 100%;
+                    padding-left: 25px;
+                    border: none;
+                }
+
+                .ant-input-group-addon {
+                    padding: 2px 30px 2px 0px;
+                    border: 0;
+                    background-color: transparent;
+                    transform: translateY(5px);
+                    // padding-right: 30px;
+                }
+            }
+
+            &.rounded-60 {
+                .ant-input {
+                    border-radius: 60px;
+                }
+            }
+        }
+
+
+    }
+}
