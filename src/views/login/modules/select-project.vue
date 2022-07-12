@@ -15,7 +15,7 @@ import { reactive, watch } from 'vue'
 import { Modal } from 'ant-design-vue'
 const props = withDefaults(
   defineProps<{
-    data: Array<{ id: number; name: string }>
+    data?: Array<{ id: number; name: string }>
     visible: boolean
   }>(),
   {}

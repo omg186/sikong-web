@@ -1,42 +1,62 @@
 .ant-form-item {
-    .ant-input-group-wrapper {
+    .ant-form-item-control-input-content {
+        display: flex;
+        align-items: center;
 
-        // 选择框
-        &.select {
-            border: 1px solid rgb(217, 217, 217);
-            position: relative;
+        .ant-input-group-wrapper {
 
-            &:hover,
-            &:active,
-            &:focus {
-                border: 1px solid #58edaa;
-            }
+            // 选择框
+            &.after {
+                border: 1px solid rgb(217, 217, 217);
+                position: relative;
 
-            .ant-input-wrapper {
-                height: 100%;
+                &:hover,
+                &:active,
+                &:focus {
+                    border: 1px solid #58edaa;
+                }
 
-                .ant-input {
+                .ant-input-wrapper {
                     height: 100%;
-                    padding-left: 25px;
-                    border: none;
+
+                    .ant-input {
+                        height: 100%;
+                        padding-left: 25px;
+                        border: none;
+                    }
+
+                    .ant-input-group-addon {
+                        padding: 2px 30px 2px 0px;
+                        border: 0;
+                        background-color: transparent;
+                        // padding-right: 30px;
+                    }
                 }
 
-                .ant-input-group-addon {
-                    padding: 2px 30px 2px 0px;
-                    border: 0;
-                    background-color: transparent;
-                    transform: translateY(5px);
-                    // padding-right: 30px;
+                &.rounded-60 {
+                    .ant-input {
+                        border-radius: 60px;
+                    }
+                }
+
+                &-text {
+                    .ant-input-wrapper {
+                        .ant-input-group-addon {
+                            transform: translateY(0);
+                        }
+                    }
+                }
+
+
+                &-icon {
+                    .ant-input-wrapper {
+                        .ant-input-group-addon {
+                            transform: translateY(5px);
+                        }
+                    }
                 }
             }
 
-            &.rounded-60 {
-                .ant-input {
-                    border-radius: 60px;
-                }
-            }
         }
-
-
     }
 }

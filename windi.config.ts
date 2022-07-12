@@ -24,6 +24,7 @@ export default defineConfig({
   theme: {
     extend: {
       fontSize: {
+        xs: '12px',
         sm: '14px',
         base: '16px',
       },
@@ -55,7 +56,7 @@ export default defineConfig({
     //     color: 'black',
     //   },
     // },
-    'btn-green': 'text-white bg-green-500 hover:bg-green-700',
+    'flex-center': 'flex justify-center',
   },
 })
 

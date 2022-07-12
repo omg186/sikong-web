@@ -33,20 +33,79 @@
               <Input
                 placeholder="请输入企业全称"
                 class="h-50px w-460px rounded-60 pl-25px"
+                v-model="formData.companyName"
               ></Input>
               <span class="ml-8px" s:text="size-24px red-600">*</span>
             </FormItem>
             <FormItem>
               <Input
                 placeholder="企业培训项目（可多选）"
-                class="select h-50px w-460px rounded-60"
+                class="after after-text h-50px w-460px rounded-60"
                 readonly
                 @click="data.isSelect = true"
+                v-model="formData.projectId"
               >
-                <template #addonAfter> <DownOutlined /> </template>
+                <template #addonAfter>
+                  <div>
+                    <img
+                      src="@/assets/images/down-icon.png"
+                      class="h-30px aspect-square"
+                    />
+                  </div>
+                </template>
               </Input>
+              <span class="ml-8px" s:text="size-24px red-600">*</span>
             </FormItem>
           </div>
+          <h3 s:text="[#1F311F] bold" class="ml-25px pt-10px">管理员信息</h3>
+          <div class="pt-27px">
+            <FormItem>
+              <Input
+                placeholder="请输入企业管理员姓名"
+                class="h-50px w-460px rounded-60 pl-25px"
+                v-model="formData.adminName"
+              ></Input>
+              <span class="ml-8px" s:text="size-24px red-600">*</span>
+            </FormItem>
+            <FormItem>
+              <Input
+                placeholder="请输入企业管理员手机"
+                class="h-50px w-460px rounded-60 pl-25px"
+                v-model="formData.adminPhone"
+              >
+              </Input>
+              <span class="ml-8px" s:text="size-24px red-600">*</span>
+            </FormItem>
+            <FormItem>
+              <Input
+                placeholder="请输入手机验证码"
+                class="after after-text h-50px w-460px rounded-60"
+                v-model="formData.adminPhone"
+              >
+                <template #addonAfter>
+                  <Button type="link" s:text="primary">获取验证码</Button>
+                </template>
+              </Input>
+              <span class="ml-8px" s:text="size-24px red-600">*</span>
+            </FormItem>
+          </div>
+          <Checkbox
+            v-model:checked="formData.checked"
+            class="flex-center pt-10px"
+          >
+            <p s:text="xs">
+              <span>我已阅读并同意</span>
+              <a s:text="primary">《司空用户服务协议》</a>和
+              <a s:text="primary">《司空隐私保护条款》</a>
+            </p>
+          </Checkbox>
+          <Button
+            type="default"
+            class="btn w-full mt-26px h-50px rounded-60"
+            disabled
+          >
+            注册
+          </Button>
         </Form>
       </div>
     </div>
@@ -55,7 +114,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Form, FormItem, Input, Select } from 'ant-design-vue'
+import { Form, FormItem, Input, Button, Checkbox } from 'ant-design-vue'
 import { DownOutlined } from '@ant-design/icons-vue'
 import SelectProject from './modules/select-project.vue'
 import { useRequest } from 'vue-request'
@@ -63,6 +122,14 @@ import { getCompanyProjectList } from '@/api/company'
 import { reactive, watchEffect } from 'vue'
 const data = reactive({
   isSelect: false,
+})
+const formData = reactive({
+  companyName: '',
+  projectId: [],
+  adminName: '',
+  adminPhone: '',
+  phoneCode: '',
+  checked: false,
 })
 const { data: projectData, loading } = useRequest(
   () => {
