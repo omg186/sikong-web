@@ -45,7 +45,9 @@
         </div>
       </div>
       <div class="pt-[30px]">
-        <Button class="btn-linear min-h-50px rounded-60px"> 登录 </Button>
+        <Button class="btn-linear min-h-50px rounded-60px" @click="onSubmit">
+          登录
+        </Button>
         <!-- <button class="btn login bg-gradient-hero" @click="onSubmit">
           登录
         </button> -->
@@ -64,11 +66,16 @@
 import Schema from 'async-validator'
 import { reactive } from 'vue'
 import { Button, FormItem, InputPassword } from 'ant-design-vue'
+import { useApiLogin } from './useLogin'
+import { useRequest } from 'vue-request'
+import { useUserStore } from '@/store/modules/user'
 // import { Button } from '@/components/Button'
 const modelControl = reactive({})
+
+const userStore = useUserStore()
 const form = reactive({
-  account: '',
-  password: '',
+  account: 'test',
+  password: '123456',
 })
 const rules = {
   account: {
@@ -95,6 +102,9 @@ const handleBlurAccount = e => {
     modelControl[prop] = null
   })
 }
+const { data, loading, run } = useRequest(() => {
+  return userStore.login({ username: form.account, password: form.password })
+})
 function onSubmit(e) {
   e.preventDefault()
   validator.validate(form, (errors, fields) => {
@@ -103,6 +113,9 @@ function onSubmit(e) {
         console.log(key.message)
       }
       return errors
+    } else {
+      run()
+      console.log(data)
     }
   })
 }

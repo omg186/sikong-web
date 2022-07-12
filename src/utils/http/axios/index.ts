@@ -21,7 +21,8 @@ import { getAppEnvConfig } from '@/utils/env'
 import { useMessage } from '@/hooks/web/use-message'
 import textMessages from '@/locales'
 import { useUserStoreWithOut } from '@/store/modules/user'
-import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
+import { useErrorLogStoreWithOut } from '@/store/modules/error-log'
+import { Recordable } from '/#/global'
 
 const globSetting = useGlobSetting()
 const urlPrefix = globSetting.urlPrefix
@@ -241,8 +242,8 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
       {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer
-        authenticationScheme: 'Bearer',
-        // authenticationScheme: '',
+        // authenticationScheme: 'Bearer',
+        authenticationScheme: '',
         timeout: 10 * 1000,
         // 基础接口地址
         // baseURL: globSetting.apiUrl,
@@ -290,7 +291,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
 const { VITE_GLOB_API_URL } = getAppEnvConfig()
 export const defHttp = createAxios({
   requestOptions: {
-    apiUrl: '/basic-api',
+    apiUrl: VITE_GLOB_API_URL,
     retryRequest: { isOpenRetry: false, count: 0, waitTime: 1000 },
   },
 })

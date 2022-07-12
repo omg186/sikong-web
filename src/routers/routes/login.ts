@@ -1,6 +1,6 @@
 import { AppRouteRecordRaw } from '@/routers/types'
 
-export const Login: AppRouteRecordRaw = {
+export const LoginRoute: AppRouteRecordRaw = {
   path: '/login',
   name: 'login',
   component: () => import('@/views/login/login.vue'),

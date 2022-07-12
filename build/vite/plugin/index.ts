@@ -8,7 +8,7 @@ import windiCSS from 'vite-plugin-windicss'
 import legacy from '@vitejs/plugin-legacy'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 // 使用 mkcert 为 vite https 开发服务提供证书支持
-// import VitePluginCertificate from 'vite-plugin-mkcert'
+import VitePluginCertificate from 'vite-plugin-mkcert'
 import { configMockPlugin } from './mock'
 import { ViteEnv } from '/#/global'
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -20,9 +20,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vueJsx(),
     // support name
     // vueSetupExtend(),
-    // VitePluginCertificate({
-    //   source: 'coding',
-    // }),
+    VitePluginCertificate({
+      source: 'coding',
+    }),
   ]
 
   // vite-plugin-mock

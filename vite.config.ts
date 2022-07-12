@@ -7,6 +7,7 @@ import { generateModifyVars } from './build/generate/generateModifyVars'
 import dayjs from 'dayjs'
 //@ts-ignore
 import pkg from './package.json'
+import { createProxy } from './build/vite/proxy'
 function pathResolve(dir: string) {
   return path.resolve(process.cwd(), '.', dir)
 }
@@ -45,6 +46,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           javascriptEnabled: true,
         },
       },
+    },
+    server: {
+      https: true,
+      // Listening on all local IPs
+      host: true,
+      port: VITE_PORT,
+      // Load proxy configuration from .env
+      proxy: createProxy(VITE_PROXY),
     },
     esbuild: {
       pure: VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],

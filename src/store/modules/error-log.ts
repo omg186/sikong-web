@@ -8,6 +8,7 @@ import { formatToDateTime } from '@/utils/dateUtil'
 
 import { ErrorTypeEnum } from '@/enums/exception-enum'
 import { Dayjs } from 'dayjs'
+import { Nullable } from '/#/global'
 
 export interface ErrorLogState {
   errorLogInfoList: Nullable<ErrorLogInfo[]>

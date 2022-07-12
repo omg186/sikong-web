@@ -14,6 +14,7 @@ import { RoleEnum } from '@/enums/role-enum'
 import { PageEnum } from '@/enums/page-enum'
 import textMessages from '@/locales'
 import { Nullable } from '/#/global'
+import { isArray } from '@/utils/is'
 
 interface UserState {
   userInfo: Nullable<UserInfo>
@@ -98,14 +99,13 @@ export const useUserStore = defineStore({
         this.setToken(token)
         return this.afterLoginAction(goHome)
       } catch (error) {
-        // console.log('/loginerr0r--------------------------------', error);
         return Promise.reject(error)
       }
     },
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null
       // get user info
-      const userInfo = await this.getUserInfoAction()
+      const userInfo: UserInfo = await this.getUserInfoAction()
 
       const sessionTimeout = this.sessionTimeout
       if (sessionTimeout) {
@@ -120,22 +120,22 @@ export const useUserStore = defineStore({
         //   router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw)
         //   permissionStore.setDynamicAddedRoute(true)
         // }
-        // goHome &&
-        //   (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME))
+        goHome &&
+          (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME))
       }
       return userInfo
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null
       const userInfo = await getUserInfo()
-      //   const { roles = [] } = userInfo
-      //   if (isArray(roles)) {
-      //     const roleList = roles.map(item => item.value) as RoleEnum[]
-      //     this.setRoleList(roleList)
-      //   } else {
-      //     userInfo.roles = []
-      //     this.setRoleList([])
-      //   }
+      const { roles = [] } = userInfo
+      if (isArray(roles)) {
+        const roleList = roles.map(item => item.value) as RoleEnum[]
+        this.setRoleList(roleList)
+      } else {
+        userInfo.roles = []
+        this.setRoleList([])
+      }
       this.setUserInfo(userInfo)
       return userInfo
     },

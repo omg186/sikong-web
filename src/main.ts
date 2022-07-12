@@ -12,9 +12,19 @@ import { setupStore } from './store'
 
 import { registerGlobComp } from '@/components/registerGlobComp'
 const app = createApp(App)
-
+// main.ts
+import { setGlobalOptions } from 'vue-request'
+import { setupRouterGuard } from './routers/guard'
+// ...
+setGlobalOptions({
+  manual: true,
+  // ...
+})
 app.use(router)
+
 setupStore(app)
+// 路由守卫
+setupRouterGuard(router)
 registerGlobComp(app)
 app.mount('#app')
 
