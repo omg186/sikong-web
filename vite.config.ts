@@ -3,9 +3,13 @@ import * as path from 'path'
 import type { UserConfig, ConfigEnv } from 'vite'
 import { createVitePlugins } from './build/vite/plugin/index'
 import { wrapperEnv } from './build/utils'
+import { generateModifyVars } from './build/generate/generateModifyVars'
 import dayjs from 'dayjs'
 //@ts-ignore
 import pkg from './package.json'
+function pathResolve(dir: string) {
+  return path.resolve(process.cwd(), '.', dir)
+}
 const { dependencies, devDependencies, name, version } = pkg
 const __APP_INFO__ = {
   pkg: { dependencies, devDependencies, name, version },
@@ -25,12 +29,19 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     plugins: createVitePlugins(viteEnv, isBuild),
     resolve: {
-      alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+      alias: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') },
+        {
+          find: /\/#\//,
+          replacement: pathResolve('types') + '/',
+        },
+      ],
     },
     css: {
       // postcss: {},
       preprocessorOptions: {
         less: {
+          modifyVars: generateModifyVars(),
           javascriptEnabled: true,
         },
       },

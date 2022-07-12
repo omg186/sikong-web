@@ -1,4 +1,4 @@
-import { PageEnum } from '@/enums/page_enum'
+import { PageEnum } from '@/enums/page-enum'
 import type { AppRouteRecordRaw } from '@/routers/types'
 import { Login } from './modules/login'
 

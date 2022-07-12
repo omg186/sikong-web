@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as dotenv from 'dotenv'
+import { Recordable, ViteEnv } from '/#/global'
 
 export function isDevFn(mode: string): boolean {
   return mode === 'development'

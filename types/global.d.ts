@@ -1,3 +1,4 @@
+import type { PropType as VuePropType } from 'vue'
 declare interface ViteEnv {
   VITE_PORT: number
   VITE_USE_MOCK: boolean
@@ -15,6 +16,8 @@ declare interface ViteEnv {
   VITE_GENERATE_UI: string
 }
 
+declare type PropType<T> = VuePropType<T>
+declare type Nullable<T> = T | null
 declare type Recordable<T = any> = Record<string, T>
 declare type ReadonlyRecordable<T = any> = {
   readonly [key: string]: T

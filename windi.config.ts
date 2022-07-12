@@ -1,11 +1,23 @@
 import { defineConfig } from 'vite-plugin-windicss'
 import { primaryColor } from './build/config/themeConfig'
 
+import plugin from 'windicss/plugin'
+import { createBtn } from './build/windi/button'
 export default defineConfig({
   darkMode: 'class',
+  prefixer: false, // 是否需要自动兼容平台浏览器（不需要）
+  prefix: '', // 类名样式前缀（防止样式污染）
+  preflight: true,
   attributify: true,
+  extract: {
+    // 扫描文件范围
+    include: ['src/**/*.{css,html,vue,tsx}'],
+    // 忽略扫描文件夹
+    exclude: ['node_modules', '.git', 'dist'],
+  },
   plugins: [
     createEnterPlugin(),
+    plugin(createBtn),
     require('windicss/plugin/forms'),
     require('windicss/plugin/aspect-ratio'),
   ],
@@ -26,6 +38,17 @@ export default defineConfig({
         '3xl': '1920px',
       },
     },
+  },
+  shortcuts: {
+    // btn: {
+    //   color: 'white',
+    //   '@apply': 'py-2 px-4 font-semi rounded-lg',
+    //   '&:hover': {
+    //     '@apply': 'bg-green-700',
+    //     color: 'black',
+    //   },
+    // },
+    'btn-green': 'text-white bg-green-500 hover:bg-green-700',
   },
 })
 

@@ -58,8 +58,8 @@ const activeIndex = computed(() => {
                   class="text-center"
                   :class="
                     activeIndex === index
-                      ? `active ${item.activeClass.join('')}`
-                      : 'text-[#83867E] font-medium'
+                      ? `active ${item.activeClass.join(' ')} `
+                      : ' text-[#83867E] font-medium'
                   "
                   :to="{ name: item.name }"
                 >
