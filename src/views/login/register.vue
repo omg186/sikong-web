@@ -3,7 +3,9 @@
     class="grid grid-cols-2 grid-cols-[644px,minmax(900px,auto)] min-h-500px h-full"
   >
     <!-- <div class="grid grid-cols-2 min-h-500px"> -->
-    <div class="bg-blue-500 aspect-1080/644"></div>
+    <div class="aspect-1080/644">
+      <img src="@/assets/images/person2.png" />
+    </div>
     <div class="bg-white pl-17px pr-50px">
       <p class="flex justify-between pt-41px">
         <img src="@/assets/images/logo2.png" />

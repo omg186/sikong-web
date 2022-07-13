@@ -53,8 +53,13 @@ import { Button, Input, FormItem, Form, Row } from 'ant-design-vue'
 import { useIntervalFn } from '@vueuse/core'
 import { message } from 'ant-design-vue'
 import { checkPhoneNumber } from '@/utils/antd/form'
+import { useRequest } from 'vue-request'
+
+import { useUserStore } from '@/store/modules/user'
+const userStore = useUserStore()
 const time = ref(0)
 const clickCount = ref(0)
+
 const { pause, resume } = useIntervalFn(
   () => {
     time.value--
@@ -82,8 +87,15 @@ const form = reactive({
   phoneNumber: '',
   verificationCode: '',
 })
+const { data, loading, run } = useRequest(() => {
+  return userStore.login({
+    account: 'test',
+    password: form.verificationCode,
+  })
+})
 const onFinish = (values: any) => {
   console.log('Success:', values)
+  run()
 }
 
 const onFinishFailed = (errorInfo: any) => {

@@ -15,12 +15,12 @@
         :key="index"
         s:text="sm [#83867E]"
         class="w-110px h-40px flex-center items-center cursor-pointer"
-        s:border="1px rounded-8px"
+        s:border="1px rounded-8px dashed"
         @click="onSelect(item)"
         :class="
           data.selected.has(item.id)
-            ? 'border-[#C7F7E3] border-dashed !text-primary'
-            : 'border-[#DBDFDD] border-solid'
+            ? 'border-[#C7F7E3] !text-primary'
+            : 'border-[#DBDFDD] '
         "
       >
         <img
