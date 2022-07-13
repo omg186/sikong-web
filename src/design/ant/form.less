@@ -59,4 +59,19 @@
 
         }
     }
+
+    &.ant-form-item-with-help {
+        .ant-form-item-explain {
+            font-size: 14px;
+            padding-left: 21px;
+        }
+    }
+
+    &.ant-form-item-has-error {
+        :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+            border-color: inherit;
+            box-shadow: none;
+            outline: none;
+        }
+    }
 }

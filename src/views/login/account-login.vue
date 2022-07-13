@@ -1,33 +1,26 @@
 <template>
   <div class="account-view">
-    <form class="flex flex-col gap-y-[10px]">
-      <div class="form-group">
-        <input
+    <Form class="flex flex-col gap-y-[10px]" @keyup.enter="onSubmit">
+      <FormItem class="form-group" v-bind="validateInfos.account">
+        <Input
           type="text"
           class="input"
           placeholder="请输入账号"
           autocomplete="off"
           name="account"
-          @blur="handleBlurAccount"
-          v-model="form.account"
+          v-model:value="form.account"
         />
-        <div class="feedback">
-          {{ modelControl['account'] }}
-        </div>
-      </div>
-      <div class="form-group">
-        <input
+      </FormItem>
+      <FormItem class="form-group" v-bind="validateInfos.password">
+        <Input
           type="password"
           class="input"
           autocomplete="off"
           placeholder="请输入密码"
           name="password"
-          v-model="form.password"
+          v-model:value="form.password"
         />
-        <div class="feedback">
-          {{ modelControl['password'] }}
-        </div>
-      </div>
+      </FormItem>
       <div>
         <div
           class="valid-input input flex items-center cursor-pointer min-h-[50px] rounded-[60px]"
@@ -45,14 +38,18 @@
         </div>
       </div>
       <div class="pt-[30px]">
-        <Button class="btn-linear min-h-50px rounded-60px" @click="onSubmit">
+        <Button
+          class="btn-linear min-h-50px rounded-60px"
+          @click="onSubmit"
+          :loading="loading"
+        >
           登录
         </Button>
         <!-- <button class="btn login bg-gradient-hero" @click="onSubmit">
           登录
         </button> -->
       </div>
-    </form>
+    </Form>
     <div
       class="flex justify-center text-[#E3E4E2] font-medium mt-[36px] hover:text-[#C3CAC6] active:text-[#83867E]"
     >
@@ -64,60 +61,49 @@
 </template>
 <script lang="ts" setup>
 import Schema from 'async-validator'
-import { reactive } from 'vue'
-import { Button, FormItem, InputPassword } from 'ant-design-vue'
+import { reactive, toRaw } from 'vue'
+import { Button, Form, FormItem, InputPassword, Input } from 'ant-design-vue'
 import { useApiLogin } from './useLogin'
 import { useRequest } from 'vue-request'
 import { useUserStore } from '@/store/modules/user'
 // import { Button } from '@/components/Button'
 const modelControl = reactive({})
 
+const useForm = Form.useForm
 const userStore = useUserStore()
 const form = reactive({
   account: 'test',
   password: '123456',
 })
-const rules = {
-  account: {
-    required: true,
-    message: '请输入账号',
-  },
-  password: {
-    required: true,
-    message: '请输入密码',
-  },
-}
-const validator = new Schema(rules)
-const handleBlurAccount = e => {
-  const prop = e.target.attributes.name.value
-  if (!prop) {
-    return false
-  }
-  validator.validate({ account: form.account }, (errors, fields) => {
-    if (errors && fields.account) {
-      console.log(fields.account[0].message)
-      modelControl[prop] = fields[prop][0].message
-      return errors
-    }
-    modelControl[prop] = null
-  })
-}
+const rules = reactive({
+  account: [
+    {
+      required: true,
+      message: '请输入账号',
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: '请输入密码',
+    },
+  ],
+})
+const { resetFields, validate, validateInfos } = useForm(form, rules, {
+  onValidate: (...args) => console.log(...args),
+})
 const { data, loading, run } = useRequest(() => {
   return userStore.login({ account: form.account, password: form.password })
 })
-function onSubmit(e) {
-  e.preventDefault()
-  validator.validate(form, (errors, fields) => {
-    if (errors) {
-      for (let key of errors) {
-        console.log(key.message)
-      }
-      return errors
-    } else {
+function onSubmit() {
+  validate()
+    .then(() => {
       run()
-      console.log(data)
-    }
-  })
+      console.log(toRaw(form))
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
 </script>
 
