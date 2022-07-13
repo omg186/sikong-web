@@ -33,7 +33,7 @@
           <template #suffix>
             <span
               class="text-[#2FE095] text-center cursor-pointer"
-              @click="start(60)"
+              @click="start(60, form.phoneNumber)"
               >{{
                 !time ? (!clickCount ? '获取验证码' : '再次获取') : time + 's'
               }}
@@ -56,33 +56,10 @@ import { checkPhoneNumber } from '@/utils/antd/form'
 import { useRequest } from 'vue-request'
 
 import { useUserStore } from '@/store/modules/user'
+import { regPhone } from '@/utils/reg'
+import { useDownInterval } from './useLogin'
 const userStore = useUserStore()
-const time = ref(0)
-const clickCount = ref(0)
-
-const { pause, resume } = useIntervalFn(
-  () => {
-    time.value--
-    if (time.value <= 0) {
-      pause()
-    }
-  },
-  1000,
-  { immediate: false }
-)
-const start = (num: number) => {
-  let negPhone = /^1[3456789]\d{9}$/
-  if (form.phoneNumber && negPhone.test(form.phoneNumber)) {
-    clickCount.value = clickCount.value + 1
-    // 赋值
-    time.value = num
-    // 调用
-    resume()
-  } else {
-    message.warning('请输入正确的手机号！')
-  }
-}
-
+const { start, time, clickCount } = useDownInterval()
 const form = reactive({
   phoneNumber: '',
   verificationCode: '',

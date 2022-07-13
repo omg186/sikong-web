@@ -87,7 +87,11 @@
                 v-model:value="formData.phoneCode"
               >
                 <template #suffix>
-                  <a type="link" s:text="primary" @click="startDown(60)">
+                  <a
+                    type="link"
+                    s:text="primary"
+                    @click="start(60, formData.adminPhone)"
+                  >
                     {{
                       !time
                         ? !clickCount
@@ -149,24 +153,14 @@ import { getCompanyProjectList } from '@/api/company'
 import { computed, reactive, ref, toRaw, watchEffect } from 'vue'
 import { toArray } from 'lodash-es'
 import Schema from 'async-validator'
-import { SelectItem } from './useLogin'
+import { SelectItem, useDownInterval } from './useLogin'
 import { useIntervalFn } from '@vueuse/core'
 import { useRouter } from 'vue-router'
-
-const time = ref(0)
-const clickCount = ref(0)
+import { checkPhoneNumber } from '@/utils/antd/form'
 const useForm = Form.useForm
 const router = useRouter()
-const { pause, resume } = useIntervalFn(
-  () => {
-    time.value--
-    if (time.value <= 0) {
-      pause()
-    }
-  },
-  1000,
-  { immediate: false }
-)
+const { start, time, clickCount } = useDownInterval()
+
 const data = reactive({
   isSelect: false,
   isDisabled: false,
@@ -185,7 +179,13 @@ const formRules = reactive({
   companyName: [{ required: true, message: '请输入企业全称' }],
   projectName: [{ required: true, message: '请选择企业培训项目' }],
   adminName: [{ required: true, message: '请输入企业管理员姓名' }],
-  adminPhone: [{ required: true, message: '请输入企业管理员手机' }],
+  adminPhone: [
+    {
+      required: true,
+      message: '请输入企业管理员手机',
+    },
+    { validator: checkPhoneNumber, target: 'change' },
+  ],
   phoneCode: [{ required: true, message: '请输入手机验证码' }],
   checked: [
     {
@@ -247,19 +247,6 @@ const { data: projectData, loading } = useRequest(
 watchEffect(() => {
   console.log(projectData.value)
 })
-const startDown = (num: number) => {
-  let negPhone = /^1[3456789]\d{9}$/
-  if (formData.adminPhone && negPhone.test(formData.adminPhone)) {
-    clickCount.value = clickCount.value + 1
-    // 赋值
-    time.value = num
-    // 调用
-    resume()
-  } else {
-    message.warning('请输入正确的手机号！')
-    // message.loading('Action in progress..', 0)
-  }
-}
 function onSelectProject(selected: Map<number, SelectItem>) {
   // console.log(selected, toArray(selected.values()), toArray(selected.keys()))
   const arr = toArray(selected.values())
