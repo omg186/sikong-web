@@ -1,0 +1,32 @@
+{
+  "cSpell.words": [
+    "allowcustomscopes",
+    "antd",
+    "attributify",
+    "brotli",
+    "commitlint",
+    "cssnext",
+    "esbuild",
+    "esno",
+    "iconify",
+    "INTLIFY",
+    "mkcert",
+    "mockjs",
+    "njsproj",
+    "ntvs",
+    "picocolors",
+    "pinia",
+    "pnpm",
+    "postcss",
+    "sikong",
+    "tinycolor",
+    "unocss",
+    "unref",
+    "Vite",
+    "vueuse",
+    "windicss"
+  ],
+  "editor.formatOnSave": true,
+  "less.lint.unknownAtRules": "ignore",
+  "css.lint.unknownAtRules": "ignore"
+}
