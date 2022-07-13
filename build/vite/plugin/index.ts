@@ -11,6 +11,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import VitePluginCertificate from 'vite-plugin-mkcert'
 import { configMockPlugin } from './mock'
 import { ViteEnv } from '/#/global'
+import { configHtmlPlugin } from './html'
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK } = viteEnv
   const vitePlugins: (PluginOption | PluginOption[])[] = [
@@ -25,6 +26,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     }),
   ]
 
+  // vite-plugin-html
+  vitePlugins.push(configHtmlPlugin(viteEnv, isBuild))
   // vite-plugin-mock
   VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))
 

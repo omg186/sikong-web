@@ -17,10 +17,10 @@ const createOptions = (storage: Storage, options: Options = {}): Options => {
 
 export const WebStorage = create(createOptions(sessionStorage))
 
-export function createStorage(
+export const createStorage = (
   storage: Storage = sessionStorage,
   options: Options = {}
-) {
+) => {
   return create(createOptions(storage, options))
 }
 

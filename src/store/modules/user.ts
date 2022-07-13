@@ -59,8 +59,10 @@ export const useUserStore = defineStore({
   },
   actions: {
     setToken(info: string | undefined) {
+      console.log(info, 'setToken')
       this.token = info ? info : '' // for null or undefined value
       setAuthCache(TOKEN_KEY, info)
+      console.log(TOKEN_KEY, 'setToken before')
     },
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList
@@ -93,6 +95,7 @@ export const useUserStore = defineStore({
         const { goHome = true, mode, ...loginParams } = params
 
         const data = await loginApi(loginParams, mode)
+        console.log(data, 'login-data-')
         const { token } = data
 
         // save token
@@ -104,6 +107,7 @@ export const useUserStore = defineStore({
     },
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null
+      console.log('getUserInfo')
       // get user info
       const userInfo: UserInfo = await this.getUserInfoAction()
 

@@ -1,8 +1,9 @@
 import { Persistent, BasicKeys } from '@/utils/cache/persistent'
 import { CacheTypeEnum, TOKEN_KEY } from '@/enums/cache-enum'
+import projectSetting from '@/settings/projectSetting'
 
-// const { permissionCacheType } = projectSetting
-const isLocal = 1
+const { permissionCacheType } = projectSetting
+const isLocal = permissionCacheType === CacheTypeEnum.LOCAL
 
 export function getToken() {
   return getAuthCache(TOKEN_KEY)

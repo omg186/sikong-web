@@ -17,6 +17,7 @@ import {
 import { DEFAULT_CACHE_TIME } from '@/settings/encryption-setting'
 import { toRaw } from 'vue'
 import { pick, omit } from 'lodash-es'
+import { Nullable } from '/#/global'
 
 interface BasicStore {
   [TOKEN_KEY]: string | number | null | undefined
@@ -59,12 +60,12 @@ export class Persistent {
     immediate = false
   ): void {
     localMemory.set(key, toRaw(value))
-    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache)
+    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache())
   }
 
   static removeLocal(key: LocalKeys, immediate = false): void {
     localMemory.remove(key)
-    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache)
+    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache())
   }
 
   static clearLocal(immediate = false): void {
@@ -82,12 +83,12 @@ export class Persistent {
     immediate = false
   ): void {
     sessionMemory.set(key, toRaw(value))
-    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache)
+    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache())
   }
 
   static removeSession(key: SessionKeys, immediate = false): void {
     sessionMemory.remove(key)
-    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache)
+    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache())
   }
   static clearSession(immediate = false): void {
     sessionMemory.clear()
@@ -108,7 +109,7 @@ window.addEventListener('beforeunload', function () {
   // TOKEN_KEY 在登录或注销时已经写入到storage了，此处为了解决同时打开多个窗口时token不同步的问题
   // LOCK_INFO_KEY 在锁屏和解锁时写入，此处也不应修改
   ls.set(APP_LOCAL_CACHE_KEY, {
-    ...omit(localMemory.getCache, LOCK_INFO_KEY),
+    ...omit(localMemory.getCache(), LOCK_INFO_KEY),
     ...pick(ls.get(APP_LOCAL_CACHE_KEY), [
       TOKEN_KEY,
       USER_INFO_KEY,
@@ -116,7 +117,7 @@ window.addEventListener('beforeunload', function () {
     ]),
   })
   ss.set(APP_SESSION_CACHE_KEY, {
-    ...omit(sessionMemory.getCache, LOCK_INFO_KEY),
+    ...omit(sessionMemory.getCache(), LOCK_INFO_KEY),
     ...pick(ss.get(APP_SESSION_CACHE_KEY), [
       TOKEN_KEY,
       USER_INFO_KEY,

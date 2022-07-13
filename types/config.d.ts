@@ -1,3 +1,5 @@
+import { CacheTypeEnum } from '@/enums/cache-enum'
+
 export type LocaleType = 'zh_CN' | 'en' | 'ru' | 'ja' | 'ko'
 
 export interface MenuSetting {
@@ -32,7 +34,7 @@ export interface MultiTabsSetting {
 }
 
 export interface HeaderSetting {
-  bgColor: string
+  // bgColor: string
   fixed: boolean
   show: boolean
   //   theme: ThemeEnum
@@ -70,7 +72,7 @@ export interface TransitionSetting {
 
 export interface ProjectConfig {
   // Storage location of permission related information
-  //   permissionCacheType: CacheTypeEnum
+  permissionCacheType: CacheTypeEnum
   // Whether to show the configuration button
   showSettingButton: boolean
   // Whether to show the theme switch button

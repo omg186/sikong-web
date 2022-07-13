@@ -1,4 +1,5 @@
 import { encrypt, decrypt } from 'crypto-js/aes'
+import CryptoJS from 'crypto-js'
 import { parse } from 'crypto-js/enc-utf8'
 import pkcs7 from 'crypto-js/pad-pkcs7'
 import ECB from 'crypto-js/mode-ecb'
@@ -25,20 +26,25 @@ export class AesEncryption {
     }
   }
 
-  getOptions() {
+  private getOptions() {
     return {
-      mode: ECB,
-      padding: pkcs7,
+      mode: CryptoJS.mode.ECB,
+      padding: CryptoJS.pad.Pkcs7,
       iv: this.iv,
     }
   }
 
   encryptByAES(cipherText: string) {
-    return encrypt(cipherText, this.key, this.getOptions).toString()
+    console.log(cipherText, this.key, '11111111111')
+    return CryptoJS.AES.encrypt(
+      cipherText,
+      this.key,
+      this.getOptions()
+    ).toString()
   }
 
   decryptByAES(cipherText: string) {
-    return decrypt(cipherText, this.key, this.getOptions).toString(UTF8)
+    return decrypt(cipherText, this.key, this.getOptions()).toString(UTF8)
   }
 }
 
