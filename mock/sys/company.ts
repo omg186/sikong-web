@@ -8,7 +8,7 @@ const demoList = (count = 20) => {
   for (let index = 0; index < count; index++) {
     result.list.push({
       name: `@first`,
-      id: `${index + 1}`,
+      id: index + 1,
     })
   }
   return result.list

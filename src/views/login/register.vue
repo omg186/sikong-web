@@ -26,31 +26,30 @@
         >
           如果您的企业已经购买司空，请直接联系管理员为您开通账号！
         </div>
-        <Form>
+        <Form @submit="onSubmit">
           <h3 s:text="[#1F311F] bold" class="ml-25px">企业信息</h3>
           <div class="pt-27px">
-            <FormItem>
+            <FormItem v-bind="validateInfos.companyName">
               <Input
                 placeholder="请输入企业全称"
+                name="companyName"
                 class="h-50px w-460px rounded-60 pl-25px"
-                v-model="formData.companyName"
+                v-model:value="formData.companyName"
               ></Input>
               <span class="ml-8px" s:text="size-24px red-600">*</span>
             </FormItem>
-            <FormItem>
+            <FormItem v-bind="validateInfos.projectId">
               <Input
                 placeholder="企业培训项目（可多选）"
                 class="after after-text h-50px w-460px rounded-60"
                 readonly
+                name="projectName"
                 @click="data.isSelect = true"
-                v-model="formData.projectId"
+                v-model:value="formData.projectName"
               >
-                <template #addonAfter>
-                  <div>
-                    <img
-                      src="@/assets/images/down-icon.png"
-                      class="h-30px aspect-square"
-                    />
+                <template #suffix>
+                  <div class="h-30px w-30px aspect-square">
+                    <img src="@/assets/images/down-icon.png" />
                   </div>
                 </template>
               </Input>
@@ -59,78 +58,184 @@
           </div>
           <h3 s:text="[#1F311F] bold" class="ml-25px pt-10px">管理员信息</h3>
           <div class="pt-27px">
-            <FormItem>
+            <FormItem v-bind="validateInfos.adminName">
               <Input
                 placeholder="请输入企业管理员姓名"
                 class="h-50px w-460px rounded-60 pl-25px"
-                v-model="formData.adminName"
+                name="adminName"
+                v-model:value="formData.adminName"
               ></Input>
               <span class="ml-8px" s:text="size-24px red-600">*</span>
             </FormItem>
-            <FormItem>
+            <FormItem v-bind="validateInfos.adminPhone">
               <Input
                 placeholder="请输入企业管理员手机"
+                name="adminPhone"
                 class="h-50px w-460px rounded-60 pl-25px"
-                v-model="formData.adminPhone"
+                v-model:value="formData.adminPhone"
               >
               </Input>
               <span class="ml-8px" s:text="size-24px red-600">*</span>
             </FormItem>
-            <FormItem>
+            <FormItem v-bind="validateInfos.phoneCode">
               <Input
                 placeholder="请输入手机验证码"
+                name="phoneCode"
                 class="after after-text h-50px w-460px rounded-60"
-                v-model="formData.adminPhone"
+                v-model:value="formData.phoneCode"
               >
-                <template #addonAfter>
-                  <Button type="link" s:text="primary">获取验证码</Button>
+                <template #suffix>
+                  <a type="link" s:text="primary" @click="startDown(60)">
+                    {{
+                      !time
+                        ? !clickCount
+                          ? '获取验证码'
+                          : '再次获取'
+                        : time + 's'
+                    }}
+                  </a>
                 </template>
               </Input>
               <span class="ml-8px" s:text="size-24px red-600">*</span>
             </FormItem>
           </div>
-          <Checkbox
-            v-model:checked="formData.checked"
-            class="flex-center pt-10px"
-          >
-            <p s:text="xs">
-              <span>我已阅读并同意</span>
-              <a s:text="primary">《司空用户服务协议》</a>和
-              <a s:text="primary">《司空隐私保护条款》</a>
-            </p>
-          </Checkbox>
+          <FormItem v-bind="validateInfos.checked" noStyle>
+            <Checkbox
+              v-model:checked="formData.checked"
+              class="flex-center pt-10px w-full"
+            >
+              <p s:text="xs">
+                <span>我已阅读并同意</span>
+                <a s:text="primary">《司空用户服务协议》</a>和
+                <a s:text="primary">《司空隐私保护条款》</a>
+              </p>
+            </Checkbox>
+          </FormItem>
           <Button
             type="default"
-            class="btn w-full mt-26px h-50px rounded-60"
-            disabled
+            class="btn w-full h-50px mt-26px btn-linear rounded-60"
+            :disabled="data.isDisabled"
+            @click="onSubmit"
           >
             注册
           </Button>
         </Form>
       </div>
     </div>
-    <SelectProject :data="projectData" v-model:visible="data.isSelect" />
+    <SelectProject
+      v-if="data.isSelect"
+      :data="projectData"
+      @onOk="onSelectProject"
+      :selected="formData.projectSelect"
+      v-model:visible="data.isSelect"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Form, FormItem, Input, Button, Checkbox } from 'ant-design-vue'
-import { DownOutlined } from '@ant-design/icons-vue'
+import {
+  Form,
+  FormItem,
+  Input,
+  Button,
+  Checkbox,
+  message,
+} from 'ant-design-vue'
 import SelectProject from './modules/select-project.vue'
 import { useRequest } from 'vue-request'
 import { getCompanyProjectList } from '@/api/company'
-import { reactive, watchEffect } from 'vue'
+import { computed, reactive, ref, toRaw, watchEffect } from 'vue'
+import { toArray } from 'lodash-es'
+import Schema from 'async-validator'
+import { SelectItem } from './useLogin'
+import { useIntervalFn } from '@vueuse/core'
+import { useRouter } from 'vue-router'
+
+const time = ref(0)
+const clickCount = ref(0)
+const useForm = Form.useForm
+const router = useRouter()
+const { pause, resume } = useIntervalFn(
+  () => {
+    time.value--
+    if (time.value <= 0) {
+      pause()
+    }
+  },
+  1000,
+  { immediate: false }
+)
 const data = reactive({
   isSelect: false,
+  isDisabled: false,
 })
 const formData = reactive({
   companyName: '',
   projectId: [],
+  projectSelect: [],
+  projectName: '',
   adminName: '',
   adminPhone: '',
   phoneCode: '',
   checked: false,
 })
+const formRules = reactive({
+  companyName: [{ required: true, message: '请输入企业全称' }],
+  projectName: [{ required: true, message: '请选择企业培训项目' }],
+  adminName: [{ required: true, message: '请输入企业管理员姓名' }],
+  adminPhone: [{ required: true, message: '请输入企业管理员手机' }],
+  phoneCode: [{ required: true, message: '请输入手机验证码' }],
+  checked: [
+    {
+      required: true,
+      message: '请同意司空用户服务协议',
+      validator: (_rule: any, value: number) => {
+        if (value) {
+          return Promise.resolve()
+        }
+        return Promise.reject('请同意司空用户服务协议')
+      },
+    },
+  ],
+})
+//@ts-ignore
+const validator = new Schema(formRules)
+const { resetFields, validate, validateInfos, mergeValidateInfo } = useForm(
+  formData,
+  formRules,
+  {
+    onValidate: (...args) => {
+      console.log(...args)
+    },
+  }
+)
+watchEffect(() => {
+  const form = formData
+  validator.validate(form, (errors, fields) => {
+    if (errors) {
+      console.log(errors, fields)
+      data.isDisabled = true
+    } else {
+      data.isDisabled = false
+    }
+    // validation passed
+  })
+})
+function onSubmit() {
+  validate()
+    .then(() => {
+      console.log(toRaw(formData))
+      // 注册成功
+      const hide = message.success('注册成功,正在前往登录', 0)
+      setTimeout(() => {
+        hide()
+        router.push('/login')
+      }, 2000)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
 const { data: projectData, loading } = useRequest(
   () => {
     return getCompanyProjectList()
@@ -140,4 +245,25 @@ const { data: projectData, loading } = useRequest(
 watchEffect(() => {
   console.log(projectData.value)
 })
+const startDown = (num: number) => {
+  let negPhone = /^1[3456789]\d{9}$/
+  if (formData.adminPhone && negPhone.test(formData.adminPhone)) {
+    clickCount.value = clickCount.value + 1
+    // 赋值
+    time.value = num
+    // 调用
+    resume()
+  } else {
+    message.warning('请输入正确的手机号！')
+    // message.loading('Action in progress..', 0)
+  }
+}
+function onSelectProject(selected: Map<number, SelectItem>) {
+  // console.log(selected, toArray(selected.values()), toArray(selected.keys()))
+  const arr = toArray(selected.values())
+  formData.projectId = toArray(selected.keys())
+  formData.projectSelect = arr.map(p => p)
+  formData.projectName = arr.map(p => p.name).join(',')
+  data.isSelect = false
+}
 </script>
