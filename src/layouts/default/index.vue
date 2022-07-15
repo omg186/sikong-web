@@ -5,13 +5,13 @@
         <div class="bg-green-300 w-[40px] h-40px rounded-60"></div>
       </div>
       <div class="pt-[10px]">
-        <div class="w-[40px] h-[40px] absolute">
+        <div class="w-[40px] relative">
           <div
-            class="user-circle relative top-[9.45px] left-[28px] w-[9.45px] h-[9.45px] aspect-square flex justify-center items-center rounded-full"
+            class="user-circle absolute left-[30px] w-[9.45px] h-[9.45px] aspect-square flex justify-center items-center rounded-full"
             data-v-169b77f9=""
           >
             <div
-              class="bg-[#17ef88] top-[9.45px] left-[28px] h-[5.45px] aspect-square rounded-full"
+              class="bg-[#17ef88] h-[5.45px] aspect-square rounded-full"
               data-v-169b77f9=""
             ></div>
           </div>
@@ -50,14 +50,11 @@ const collapsed = ref<boolean>(true)
     box-shadow: 0px 2px 15px 1px rgba(50, 57, 65, 0.16);
     opacity: 1;
     border: 2px solid rgba(47, 224, 149, 0.3);
-    // &:hover {
-    //   box-shadow: 0px 2px 15px 1px rgba(50, 57, 65, 0.16);
-    //   opacity: 1;
-    //   border: 2px solid rgba(47, 224, 149, 0.5);
-    //   // .user-circle {
-    //   //   background: #000;
-    //   // }
-    // }
+    &:hover {
+      box-shadow: 0px 2px 15px 1px rgba(50, 57, 65, 0.16);
+      opacity: 1;
+      border: 2px solid rgba(47, 224, 149, 0.5);
+    }
     &:hover + .user-circle {
       background: red;
     }
