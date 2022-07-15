@@ -1,23 +1,54 @@
 // button reset
+/* 按钮点击光晕去除 */
+button[ant-click-animating-without-extra-node]:after {
+  border: 0 none;
+  opacity: 0;
+  animation: none 0 ease 0 1 normal;
+}
+
 .btn {
   &.ant-btn {
 
     &.btn-linear {
-      @apply w-full font-bold text-white box-content p-0;
+      @apply w-full font-bold text-white box-border p-0 relative text-base;
       background: linear-gradient(90deg, #02fd7c 0%, #3bd89c 100%);
       box-shadow: 0px 8px 10px 1px rgba(5, 251, 126, 0.2);
-      border: 4px solid #fff;
+      border: none;
+      z-index: 2;
+      transform-style: preserve-3d;
+
+      // &:before,
+      &:before {
+        content: '';
+        transform: translateZ(-1px);
+        opacity: 0;
+        left: -4px;
+        top: -4px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        box-sizing: content-box;
+        border-style: solid;
+        border-width: 4px;
+        border-radius: 60px;
+        border-color: #ddfff0;
+      }
+
 
       &:hover,
       &:focus {
         background: linear-gradient(90deg, #2dfc91 0%, #4ae4a9 100%);
-        border: 4px solid #ddfff0;
-        color: #fff;
+
+        &:before {
+          opacity: 1;
+        }
       }
 
       &:active {
-        background: linear-gradient(90deg, #02fd7c 0%, #3bd89c 100%);
-        border: 4px solid #fff;
+        &:before {
+          opacity: 0;
+        }
       }
 
       &[disabled] {
@@ -26,6 +57,7 @@
         color: #fff;
         border: 4px solid transparent;
       }
+
     }
 
     outline: none;
@@ -320,4 +352,6 @@
       }
     }
   }
+
+
 }

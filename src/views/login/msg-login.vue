@@ -41,7 +41,10 @@
           </template>
         </Input>
       </FormItem>
-      <Button class="btn-linear min-h-50px rounded-60px" html-type="submit">
+      <Button
+        class="submit btn-linear min-h-50px rounded-60px"
+        html-type="submit"
+      >
         登录
       </Button>
     </Form>
@@ -124,6 +127,11 @@ const onFinishFailed = (errorInfo: any) => {
     span {
       cursor: pointer;
       line-height: 50px;
+    }
+  }
+  .submit {
+    &:active {
+      background: linear-gradient(90deg, #00d05e 0%, #25cda9 100%);
     }
   }
 }
