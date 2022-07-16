@@ -34,7 +34,7 @@ const activeIndex = computed(() => {
     class="login-layout bg-[#D5FFED] h-screen flex justify-center items-center min-h-[676px] min-w-[1200px]"
   >
     <div
-      class="w-[1200px] h-[676px] overflow-hidden bg-white rounded-60 grid grid-cols-2 grid-cols-[574px,626px]"
+      class="w-[1200px] h-[676px] overflow-hidden bg-white rounded-30px grid grid-cols-2 grid-cols-[574px,626px]"
     >
       <div>
         <div
