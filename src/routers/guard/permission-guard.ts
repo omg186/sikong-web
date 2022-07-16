@@ -35,7 +35,10 @@ export function createPermissionGuard(router: Router) {
 
     // Whitelist can be directly entered
     if (whitePathList.includes(to.path as PageEnum)) {
-      if (to.path === LOGIN_PATH && token) {
+      if (
+        (to.path === LOGIN_PATH || to.path === PageEnum.BASE_LOGIN_MSG) &&
+        token
+      ) {
         const isSessionTimeout = userStore.getSessionTimeout
         try {
           await userStore.afterLoginAction()

@@ -2,8 +2,7 @@ import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import { RoleEnum } from '@/enums/role-enum'
 import { defineComponent } from 'vue'
 import { Recordable } from '/#/global'
-// import { RoleEnum } from '../enums/role_enum'
-// import {  } from "@/app";
+
 export type Component<T = any> =
   | ReturnType<typeof defineComponent>
   | (() => Promise<typeof import('*.vue')>)

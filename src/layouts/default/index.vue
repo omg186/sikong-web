@@ -19,7 +19,30 @@
         </div>
       </div>
     </div>
-    <div class="w-[200px] mr-[1px] bg-[#FCFCFC]"></div>
+    <div class="w-[200px] mr-[1px] bg-[#FCFCFC]">
+      <div class="flex justify-center flex-col items-center pt-22px">
+        <h3 s:text="size-24px #1F311F bold">企业管理</h3>
+        <ul class="flex flex-col gap-10px ml-11px mr-9px mt-37px">
+          <li
+            class="w-180px h-46px flex-center items-center bg-[#E5FFF2] rounded-sm cursor-pointer"
+            s:text="sm primary"
+          >
+            <i class="block w-10px h-10px rounded-full mr-10px bg-primary"> </i>
+            企业信息
+          </li>
+          <li
+            class="w-180px h-46px flex-center items-center cursor-pointer"
+            s:text="sm"
+          >
+            <i
+              class="block w-10px h-10px rounded-full mr-10px"
+              s:border="[2px] solid [#A5A8B4]"
+            ></i
+            >组织架构
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="h-full w-full bg-[#F3F3F3]">
       <div class="h-[66px] bg-white"></div>
       <div class="p-[20px] w-full h-[1014px]">

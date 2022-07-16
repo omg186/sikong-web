@@ -31,6 +31,7 @@ export default defineConfig({
       },
       borderRadius: {
         60: '60px',
+        sm: '8px',
       },
       zIndex: {
         '-1': '-1',

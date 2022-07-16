@@ -65,7 +65,6 @@ export const createStorage = ({
           ? new Date().getTime() + expire * 1000
           : null,
       })
-      console.log(stringData, value, '---stringData')
       const stringifyValue = this.hasEncrypt
         ? this.encryption.encryptByAES(stringData)
         : stringData
