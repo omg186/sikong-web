@@ -4,7 +4,7 @@
       <div class="sider-user h-[59px] divide-y-2">
         <div class="bg-green-300 w-[40px] h-40px rounded-60"></div>
       </div>
-      <div class="pt-[10px]">
+      <div class="user pt-[10px] mb-[77px]">
         <div class="w-[40px] relative">
           <div
             class="user-circle absolute left-[30px] w-[9.45px] h-[9.45px] aspect-square flex justify-center items-center rounded-full"
@@ -15,7 +15,21 @@
               data-v-169b77f9=""
             ></div>
           </div>
-          <img src="../../assets/images/user.jpeg" alt="" class="user-img" />
+          <img
+            src="../../assets/images/sider/user.jpeg"
+            alt=""
+            class="user-img"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <div v-for="(item, index) of 4" :key="index" class="h-[66px]">
+          <router-link
+            to=""
+            class="menu-icon w-[46px] h-[46px] p-[10px] flex justify-center cursor-pointer"
+          >
+            <img :src="getAssetsImages(index)" alt="" />
+          </router-link>
         </div>
       </div>
     </div>
@@ -53,12 +67,17 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { func } from 'vue-types'
 const selectedKeys = ref<string[]>(['1'])
 const collapsed = ref<boolean>(true)
+const getAssetsImages = name => {
+  return new URL('../../assets/images/sider/' + name + '.png', import.meta.url)
+    .href //本地文件路径
+}
 </script>
 <style lang="less" scoped>
 .sider {
-  background-image: url('../../assets/images/bg-sider.png');
+  background-image: url('../../assets/images/sider/bg-sider.png');
   background-repeat: no-repeat;
   background-position: 50% 80%;
   padding: 22px 17px 25px;
@@ -66,25 +85,35 @@ const collapsed = ref<boolean>(true)
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   .user-circle {
-    background: #165542;
+    background: rgba(47, 224, 149, 0.3);
   }
-  .user-img {
-    @apply rounded-1/2 border-2;
-    box-shadow: 0px 2px 15px 1px rgba(50, 57, 65, 0.16);
-    opacity: 1;
-    border: 2px solid rgba(47, 224, 149, 0.3);
-    &:hover {
+  .user {
+    .user-img {
+      @apply rounded-1/2 border-2;
       box-shadow: 0px 2px 15px 1px rgba(50, 57, 65, 0.16);
       opacity: 1;
+      border: 2px solid rgba(47, 224, 149, 0.3);
+    }
+    &:hover .user-img {
       border: 2px solid rgba(47, 224, 149, 0.5);
     }
-    &:hover + .user-circle {
-      background: red;
+    &:hover .user-circle {
+      background: rgba(47, 224, 149, 0.5);
     }
-    &:active {
-      box-shadow: 0px 2px 15px 1px rgba(50, 57, 65, 0.16);
-      opacity: 1;
+    &:active .user-img {
       border: 2px solid rgba(47, 224, 149, 0.1);
+    }
+  }
+  .menu-icon {
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+    }
+    &:active,
+    :focus {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
     }
   }
 }
