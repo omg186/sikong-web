@@ -47,7 +47,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         },
       },
     },
-    // build:{},
     server: {
       https: true,
       // Listening on all local IPs
@@ -67,7 +66,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     build: {
       target: 'es2015',
-      cssTarget: 'chrome80',
+      // cssTarget: 'chrome80',
       outDir: 'dist',
       // minify: 'terser',
       /**
