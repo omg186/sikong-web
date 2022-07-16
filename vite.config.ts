@@ -47,6 +47,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         },
       },
     },
+    // build:{},
     server: {
       https: true,
       // Listening on all local IPs

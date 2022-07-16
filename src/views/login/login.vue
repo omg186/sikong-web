@@ -84,7 +84,7 @@ const activeIndex = computed(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .login-layout {
   .login-form-title {
     .active-line {

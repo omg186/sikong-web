@@ -10,6 +10,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // 使用 mkcert 为 vite https 开发服务提供证书支持
 import VitePluginCertificate from 'vite-plugin-mkcert'
 import { configMockPlugin } from './mock'
+import legacyPlugin from '@vitejs/plugin-legacy'
 import { ViteEnv } from '/#/global'
 import { configHtmlPlugin } from './html'
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -21,6 +22,10 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vueJsx(),
     // support name
     // vueSetupExtend(),
+    legacyPlugin({
+      targets: ['ie >= 11'],
+      additionalLegacyPolyfills: ['regenerator-runtime/runtime'], // 面向IE11时需要此插件
+    }),
     VitePluginCertificate({
       source: 'coding',
     }),

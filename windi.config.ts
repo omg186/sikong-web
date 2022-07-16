@@ -5,6 +5,7 @@ import plugin from 'windicss/plugin'
 import { createBtn } from './build/windi/button'
 export default defineConfig({
   darkMode: 'class',
+  transformCSS: 'pre',
   prefixer: false, // 是否需要自动兼容平台浏览器（不需要）
   prefix: '', // 类名样式前缀（防止样式污染）
   preflight: true,

@@ -82,7 +82,7 @@ const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo)
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .account-view {
   width: 344px;
 
