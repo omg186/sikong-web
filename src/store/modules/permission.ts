@@ -29,6 +29,7 @@ import { AppRouteRecordRaw, Menu } from '@/routers/types'
 import { asyncRoutes } from '@/routers/routes'
 import { transformRouteToMenu } from '@/routers/helper/menuHelper'
 import { flatMultiLevelRoutes } from '@/routers/helper/routeHelper'
+import router from '@/routers'
 
 interface PermissionState {
   // Permission code list
@@ -71,6 +72,15 @@ export const usePermissionStore = defineStore({
     },
     getBackMenuList(): Menu[] {
       return this.backMenuList
+    },
+    getByPathFrontMenuList(): Menu {
+      const route = router.currentRoute.value
+      // route.path
+      const menus = this.frontMenuList.find(item =>
+        route.path.includes(item.path)
+      )
+      console.log(menus)
+      return menus
     },
     getFrontMenuList(): Menu[] {
       return this.frontMenuList

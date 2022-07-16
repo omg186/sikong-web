@@ -15,6 +15,7 @@ const app = createApp(App)
 // main.ts
 import { setGlobalOptions } from 'vue-request'
 import { setupRouterGuard } from './routers/guard'
+// import '@/assets/iconfont.js'
 // ...
 setGlobalOptions({
   manual: true,

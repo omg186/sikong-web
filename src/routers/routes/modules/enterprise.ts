@@ -8,11 +8,10 @@ export const Task: AppRouteRecordRaw = {
   component: LAYOUT, // () => import('@/views/task/task.vue'),
   meta: {
     title: '企业管理',
-    roles: [RoleEnum.SUPER, RoleEnum.TEST],
   },
   children: [
     {
-      path: '',
+      path: 'info',
       name: 'enterprise-info',
       component: () => import('@/views/enterprise/info.vue'),
       meta: {

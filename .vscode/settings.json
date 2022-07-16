@@ -21,6 +21,7 @@
     "sider",
     "sikong",
     "tinycolor",
+    "tuichu",
     "unocss",
     "unref",
     "Vite",
@@ -31,5 +32,8 @@
   "less.lint.unknownAtRules": "ignore",
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
 }

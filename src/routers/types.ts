@@ -29,7 +29,7 @@ export interface Menu {
   name: string
 
   icon?: string
-
+  iconActive?: string
   path: string
 
   // path contains param, auto assignment.

@@ -1,18 +1,21 @@
 <template>
-  <div class="p-0 m-auto flex h-[1080px] bg-[#F4F4F4]">
-    <div class="sider w-[80px] h-full bg-[#0C191D]">
-      <div class="sider-user h-[59px] divide-y-2">
+  <div
+    class="p-0 m-auto grid grid-cols-[80px,200px,auto] min-h-screen bg-[#F4F4F4]"
+  >
+    <div
+      class="sider grid grid-rows-[50px,minmax(40px,10%),auto,auto] bg-[#0C191D] relative"
+    >
+      <!-- grid-cols-[200px,repeat(auto-fill,minmax(15%,100px)),300px]] -->
+      <div class="sider-user divide-y-2 flex-center">
         <div class="bg-green-300 w-[40px] h-40px rounded-60"></div>
       </div>
-      <div class="user pt-[10px] mb-[77px]">
+      <div class="user pt-[10px] flex-center">
         <div class="w-[40px] relative">
           <div
             class="user-circle absolute left-[30px] w-[9.45px] h-[9.45px] aspect-square flex justify-center items-center rounded-full"
-            data-v-169b77f9=""
           >
             <div
               class="bg-[#17ef88] h-[5.45px] aspect-square rounded-full"
-              data-v-169b77f9=""
             ></div>
           </div>
           <img
@@ -22,64 +25,67 @@
           />
         </div>
       </div>
-      <div class="flex flex-col">
-        <div v-for="(item, index) of 4" :key="index" class="h-[66px]">
-          <router-link
-            to=""
-            class="menu-icon w-[46px] h-[46px] p-[10px] flex justify-center cursor-pointer"
-          >
-            <img :src="getAssetsImages(index)" alt="" />
-          </router-link>
+      <div class="flex-center">
+        <div class="flex flex-col gap-20px">
+          <div v-for="(item, index) of leftMenus" :key="index">
+            <router-link
+              :to="item.path"
+              :title="item.name"
+              v-slot="{ isActive, href, navigate }"
+              class="menu-icon w-[46px] h-[46px] p-[10px] flex justify-center cursor-pointer"
+            >
+              <img v-if="!isActive" :src="getAssetsImages(item.icon)" alt="" />
+              <img v-else :src="getAssetsImages(item.iconActive)" alt="" />
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end flex-col items-center gap-30px pt-10px">
+        <img
+          src="../../assets/images/sider/bg-sider.png"
+          class="aspect-3.1/15.8"
+        />
+        <div
+          class="w-46px h-46px rounded-16px flex-center items-center cursor-pointer fill-white"
+          s:hover="bg-[#061011]"
+          s:active="bg-[#061011] fill-primary"
+          @click="loginOut"
+        >
+          <svg width="18px" height="100%" class="svg-symbol">
+            <use xlink:href="#icon-tuichu" />
+          </svg>
         </div>
       </div>
     </div>
-    <div class="w-[200px] mr-[1px] bg-[#FCFCFC]">
-      <div class="flex justify-center flex-col items-center pt-22px">
-        <h3 s:text="size-24px #1F311F bold">企业管理</h3>
-        <ul class="flex flex-col gap-10px ml-11px mr-9px mt-37px">
-          <li
-            class="w-180px h-46px flex-center items-center bg-[#E5FFF2] rounded-sm cursor-pointer"
-            s:text="sm primary"
-          >
-            <i class="block w-10px h-10px rounded-full mr-10px bg-primary"> </i>
-            企业信息
-          </li>
-          <li
-            class="w-180px h-46px flex-center items-center cursor-pointer"
-            s:text="sm"
-          >
-            <i
-              class="block w-10px h-10px rounded-full mr-10px"
-              s:border="[2px] solid [#A5A8B4]"
-            ></i
-            >组织架构
-          </li>
-        </ul>
-      </div>
+    <div class="mr-[1px] bg-[#FCFCFC]">
+      <Menus />
     </div>
-    <div class="h-full w-full bg-[#F3F3F3]">
+    <div class="bg-[#F3F3F3] flex flex-col">
       <div class="h-[66px] bg-white"></div>
-      <div class="p-[20px] w-full h-[1014px]">
-        <div class="bg-white w-full h-[974px]"></div>
+      <div class="p-[20px] w-full box-border flex-1 bg-blue-300">
+        <div class="bg-white w-full"></div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { func } from 'vue-types'
-const selectedKeys = ref<string[]>(['1'])
-const collapsed = ref<boolean>(true)
+import { useUserStore } from '@/store/modules/user'
+import Menus from './menu/index.vue'
+import { leftMenus } from '@/settings/menuSetting'
+const userStore = useUserStore()
+function loginOut() {
+  userStore.logout(true)
+}
+
 const getAssetsImages = name => {
-  return new URL('../../assets/images/sider/' + name + '.png', import.meta.url)
-    .href //本地文件路径
+  return new URL('../../assets/images/' + name, import.meta.url).href //本地文件路径
 }
 </script>
 <style lang="less" scoped>
 .sider {
-  background-image: url('../../assets/images/sider/bg-sider.png');
-  background-repeat: no-repeat;
-  background-position: 50% 80%;
+  // background-image: url('../../assets/images/sider/bg-sider.png');
+  // background-repeat: no-repeat;
+  // background-position: 50% 80%;
   padding: 22px 17px 25px;
   .sider-user {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -114,6 +120,16 @@ const getAssetsImages = name => {
       background: rgba(255, 255, 255, 0.1);
       box-shadow: inset 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
       border-radius: 16px;
+    }
+    &.router-link-active {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      @apply relative;
+      &::before {
+        @apply absolute block w-2px h-12px left-0px top-1/2 translate-y-[-50%] transform bg-primary;
+        content: '';
+      }
     }
   }
 }

@@ -15,6 +15,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   // 应该添加到路由的初始路由列表。
   routes: basicRoutes as unknown as RouteRecordRaw[],
+  // strict: true,
 })
 
 export default router

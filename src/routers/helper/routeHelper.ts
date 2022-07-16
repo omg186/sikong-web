@@ -8,12 +8,12 @@ import { LAYOUT, EXCEPTION_COMPONENT, getParentLayout } from '../constant'
 import { AppRouteRecordRaw, AppRouteModule } from '../types'
 
 export type LayoutMapKey = 'LAYOUT'
-const IFRAME = () => import('@/views/sys/iframe/FrameBlank.vue')
+// const IFRAME = () => import('@/views/sys/iframe/FrameBlank.vue')
 
 const LayoutMap = new Map<string, () => Promise<typeof import('*.vue')>>()
 
 LayoutMap.set('LAYOUT', LAYOUT)
-LayoutMap.set('IFRAME', IFRAME)
+// LayoutMap.set('IFRAME', IFRAME)
 
 let dynamicViewsModules: Record<string, () => Promise<Recordable>>
 
@@ -23,9 +23,9 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
     dynamicViewsModules || import.meta.glob('../../views/**/*.{vue,tsx}')
   if (!routes) return
   routes.forEach(item => {
-    if (!item.component && item.meta?.frameSrc) {
-      item.component = 'IFRAME'
-    }
+    // if (!item.component && item.meta?.frameSrc) {
+    //   item.component = 'IFRAME'
+    // }
     const { component, name } = item
     const { children } = item
     if (component) {
