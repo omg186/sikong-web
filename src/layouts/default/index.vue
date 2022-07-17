@@ -140,6 +140,8 @@ const getAssetsImages = name => {
 }
 .ly-content {
   border-radius: 10px;
+  overflow: hidden;
+  overflow-y: auto;
   box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 6%);
 }
 </style>

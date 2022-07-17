@@ -142,11 +142,8 @@ export const useMultipleTabStore = defineStore({
       // Existing pages, do not add tabs repeatedly
       const tabHasExits = this.tabList.some((tab, index) => {
         updateIndex = index
-        console.log(index, 'fullPath:', tab.fullPath, 'path:', tab.path)
-        console.log(index, 'fullPath:', fullPath, 'path:', path)
         return (tab.fullPath || tab.path) === (fullPath || path)
       })
-      console.log(tabHasExits, 'tabHasExits')
       // If the tab already exists, perform the update operation
       if (tabHasExits) {
         const curTab = toRaw(this.tabList)[updateIndex]
