@@ -8,7 +8,7 @@ export const Task: AppRouteRecordRaw = {
   component: LAYOUT,
   redirect: '/task/info',
   meta: {
-    title: '首页',
+    title: '任务',
   },
   children: [
     {

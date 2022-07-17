@@ -8,6 +8,7 @@ import { createPermissionGuard } from './permission-guard'
 import { createStateGuard } from './stateGuard'
 
 import nProgress from 'nprogress'
+import { setRouteChange } from '@/logics/mitt/routeChange'
 export function setupRouterGuard(router: Router) {
   createPageLoadingGuard(router)
   createPageGuard(router)
@@ -25,7 +26,7 @@ function createPageGuard(router: Router) {
     // The page has already been loaded, it will be faster to open it again, you don’t need to do loading and other processing
     to.meta.loaded = !!loadedPageMap.get(to.path)
     // Notify routing changes
-    // setRouteChange(to)
+    setRouteChange(to)
 
     return true
   })
