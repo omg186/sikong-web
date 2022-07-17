@@ -24,7 +24,7 @@ import { primaryColor } from '../../build/config/themeConfig'
 const setting: ProjectConfig = {
   // Whether to show the configuration button
   showSettingButton: true,
-
+  permissionMode: PermissionModeEnum.ROUTE_MAPPING,
   // Whether to show the theme switch button
   showDarkModeToggle: true,
 
@@ -146,7 +146,7 @@ const setting: ProjectConfig = {
     //  Whether to open the page switching animation
     // The disabled state will also disable pageLoading
     enable: true,
-
+    basicTransition: RouterTransitionEnum.FADE,
     // Route basic switching animation
     // basicTransition: RouterTransitionEnum.FADE_SIDE,
 

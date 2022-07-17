@@ -2,17 +2,18 @@ import { RoleEnum } from '@/enums/role-enum'
 import { LAYOUT } from '@/routers/constant'
 import { AppRouteRecordRaw } from '@/routers/types'
 
-export const Task: AppRouteRecordRaw = {
+export const Enterprise: AppRouteRecordRaw = {
   path: '/enterprise',
-  name: 'enterprise',
-  component: LAYOUT, // () => import('@/views/task/task.vue'),
+  name: 'Enterprise',
+  component: LAYOUT,
+  redirect: '/enterprise/info',
   meta: {
     title: '企业管理',
   },
   children: [
     {
       path: 'info',
-      name: 'enterprise-info',
+      name: 'EnterpriseInfo',
       component: () => import('@/views/enterprise/info.vue'),
       meta: {
         title: '企业信息',
@@ -20,7 +21,7 @@ export const Task: AppRouteRecordRaw = {
     },
     {
       path: 'org',
-      name: 'enterprise-org',
+      name: 'EnterpriseOrg',
       component: () => import('@/views/enterprise/org.vue'),
       meta: {
         title: '组织架构',
@@ -29,4 +30,4 @@ export const Task: AppRouteRecordRaw = {
   ],
 }
 
-export default Task
+export default Enterprise

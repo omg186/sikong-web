@@ -1,3 +1,3 @@
 <template>
-  <div>企业信息</div>
+  <div>企业信息1</div>
 </template>

@@ -30,6 +30,8 @@ import { asyncRoutes } from '@/routers/routes'
 import { transformRouteToMenu } from '@/routers/helper/menuHelper'
 import { flatMultiLevelRoutes } from '@/routers/helper/routeHelper'
 import router from '@/routers'
+import { useAppStoreWithOut } from './app'
+import projectSetting from '@/settings/projectSetting'
 
 interface PermissionState {
   // Permission code list
@@ -129,25 +131,22 @@ export const usePermissionStore = defineStore({
     async buildRoutesAction(): Promise<AppRouteRecordRaw[]> {
       //   const { t } = useI18n()
       const userStore = useUserStore()
-      //   const appStore = useAppStoreWithOut()
+      const appStore = useAppStoreWithOut()
 
       let routes: AppRouteRecordRaw[] = []
       const roleList = toRaw(userStore.getRoleList) || []
-      // const { permissionMode = projectSetting.permissionMode } =
-      //   appStore.getProjectConfig
-      const permissionMode = PermissionModeEnum.ROUTE_MAPPING
+      const { permissionMode = projectSetting.permissionMode } =
+        appStore.getProjectConfig
       // 路由过滤器 在 函数filter 作为回调传入遍历使用
       const routeFilter = (route: AppRouteRecordRaw) => {
         const { meta } = route
-        console.log(meta, route, '---router---meta')
+        // console.log(meta, route, '---router---meta')
         // 抽出角色
         const { roles } = meta || {}
         if (!roles) return true
         // 进行角色权限判断
         return roleList.some(role => roles.includes(role))
       }
-
-      console.log(roleList, '---roleList')
       const routeRemoveIgnoreFilter = (route: AppRouteRecordRaw) => {
         const { meta } = route
         // ignoreRoute 为true 则路由仅用于菜单生成，不会在实际的路由表中出现
@@ -188,18 +187,18 @@ export const usePermissionStore = defineStore({
         }
         return
       }
-      console.log(permissionMode, asyncRoutes, '---permissionMode')
+      // console.log(permissionMode, asyncRoutes, '---permissionMode')
       switch (permissionMode) {
         // 角色权限
-        // case PermissionModeEnum.ROLE:
-        //   // 对非一级路由进行过滤
-        //   routes = filter(asyncRoutes, routeFilter)
-        //   // 对一级路由根据角色权限过滤
-        //   routes = routes.filter(routeFilter)
-        //   // Convert multi-level routing to level 2 routing
-        //   // 将多级路由转换为 2 级路由
-        //   //   routes = flatMultiLevelRoutes(routes)
-        //   break
+        case PermissionModeEnum.ROLE:
+          // 对非一级路由进行过滤
+          routes = filter(asyncRoutes, routeFilter)
+          // 对一级路由根据角色权限过滤
+          routes = routes.filter(routeFilter)
+          // Convert multi-level routing to level 2 routing
+          // 将多级路由转换为 2 级路由
+          routes = flatMultiLevelRoutes(routes)
+          break
 
         // 路由映射， 默认进入该case
         case PermissionModeEnum.ROUTE_MAPPING:

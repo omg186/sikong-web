@@ -1,3 +1,4 @@
+import { PermissionModeEnum, RouterTransitionEnum } from '@/enums/app-enum'
 import { CacheTypeEnum } from '@/enums/cache-enum'
 
 export type LocaleType = 'zh_CN' | 'en' | 'ru' | 'ja' | 'ko'
@@ -69,6 +70,16 @@ export interface TransitionSetting {
   // Whether to open the top progress bar
   openNProgress: boolean
 }
+export interface TransitionSetting {
+  //  Whether to open the page switching animation
+  enable: boolean
+  // Route basic switching animation
+  basicTransition: RouterTransitionEnum
+  // Whether to open page switching loading
+  openPageLoading: boolean
+  // Whether to open the top progress bar
+  openNProgress: boolean
+}
 
 export interface ProjectConfig {
   // Storage location of permission related information
@@ -80,7 +91,7 @@ export interface ProjectConfig {
   // Configure where the button is displayed
   //   settingButtonPosition: SettingButtonPositionEnum
   // Permission mode
-  //   permissionMode: PermissionModeEnum
+  permissionMode: PermissionModeEnum
   // Session timeout processing
   //   sessionTimeoutProcessing: SessionTimeoutProcessingEnum
   // Website gray mode, open for possible mourning dates

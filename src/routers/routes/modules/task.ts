@@ -4,20 +4,19 @@ import { AppRouteRecordRaw } from '@/routers/types'
 
 export const Task: AppRouteRecordRaw = {
   path: '/task',
-  name: 'task',
-  component: LAYOUT, // () => import('@/views/task/task.vue'),
+  name: 'Task',
+  component: LAYOUT,
+  redirect: '/task/info',
   meta: {
     title: '首页',
-    roles: [RoleEnum.SUPER, RoleEnum.TEST],
   },
   children: [
     {
-      path: '',
-      name: 'task',
+      path: 'info',
+      name: 'TaskInfo',
       component: () => import('@/views/task/task.vue'),
       meta: {
         title: '任务列表',
-        roles: [RoleEnum.SUPER, RoleEnum.TEST],
       },
     },
   ],

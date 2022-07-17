@@ -61,9 +61,13 @@
       <Menus />
     </div>
     <div class="bg-[#F3F3F3] flex flex-col">
-      <div class="h-[66px] bg-white"></div>
-      <div class="p-[20px] w-full box-border flex-1 bg-blue-300">
-        <div class="bg-white w-full"></div>
+      <div class="h-[66px] bg-white">
+        <TabsView />
+      </div>
+      <div class="p-[20px] w-full box-border flex-1">
+        <div class="ly-content bg-white w-full h-full">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
   </div>
@@ -71,6 +75,7 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/store/modules/user'
 import Menus from './menu/index.vue'
+import TabsView from './tabs/index.vue'
 import { leftMenus } from '@/settings/menuSetting'
 const userStore = useUserStore()
 function loginOut() {
@@ -132,5 +137,9 @@ const getAssetsImages = name => {
       }
     }
   }
+}
+.ly-content {
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 6%);
 }
 </style>
