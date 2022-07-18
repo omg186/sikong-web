@@ -30,16 +30,8 @@
               v-slot="{ isActive, href, navigate }"
               class="menu-icon w-[46px] h-[46px] p-[10px] flex justify-center cursor-pointer"
             >
-              <img
-                v-if="!isActive"
-                :src="`/src/assets/images/${item.icon}`"
-                alt=""
-              />
-              <img
-                v-else
-                :src="`/src/assets/images/${item.iconActive}`"
-                alt=""
-              />
+              <img v-if="!isActive" :src="getAssetsImages(item.icon)" alt="" />
+              <img v-else :src="getAssetsImages(item.iconActive)" alt="" />
             </router-link>
           </div>
         </div>
@@ -81,13 +73,14 @@ import { useUserStore } from '@/store/modules/user'
 import Menus from './menu/index.vue'
 import TabsView from './tabs/index.vue'
 import { leftMenus } from '@/settings/menuSetting'
+import { getAssetsFile } from '@/utils'
 const userStore = useUserStore()
 function loginOut() {
   userStore.logout(true)
 }
 
 const getAssetsImages = name => {
-  return new URL('@/assets/images/' + name, import.meta.url).href //本地文件路径
+  return getAssetsFile(name)
 }
 </script>
 <style lang="less" scoped>

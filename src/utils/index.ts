@@ -102,3 +102,8 @@ export const withInstall = <T>(component: T, alias?: string) => {
   }
   return component as T & Plugin
 }
+
+// 获取assets静态资源
+export const getAssetsFile = function (url: string) {
+  return new URL(`../assets/images/${url}`, import.meta.url).href
+}

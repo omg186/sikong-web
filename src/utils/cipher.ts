@@ -35,7 +35,7 @@ export class AesEncryption {
   }
 
   encryptByAES(cipherText: string) {
-    console.log(cipherText, this.key, '11111111111')
+    // console.log(cipherText, this.key, '11111111111')
     return CryptoJS.AES.encrypt(
       cipherText,
       this.key,
