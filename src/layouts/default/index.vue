@@ -18,11 +18,7 @@
               class="bg-[#17ef88] h-[5.45px] aspect-square rounded-full"
             ></div>
           </div>
-          <img
-            src="../../assets/images/sider/user.jpeg"
-            alt=""
-            class="user-img"
-          />
+          <img src="@/assets/images/sider/user.jpeg" alt="" class="user-img" />
         </div>
       </div>
       <div class="flex-center">
@@ -34,8 +30,16 @@
               v-slot="{ isActive, href, navigate }"
               class="menu-icon w-[46px] h-[46px] p-[10px] flex justify-center cursor-pointer"
             >
-              <img v-if="!isActive" :src="getAssetsImages(item.icon)" alt="" />
-              <img v-else :src="getAssetsImages(item.iconActive)" alt="" />
+              <img
+                v-if="!isActive"
+                :src="`/src/assets/images/${item.icon}`"
+                alt=""
+              />
+              <img
+                v-else
+                :src="`/src/assets/images/${item.iconActive}`"
+                alt=""
+              />
             </router-link>
           </div>
         </div>
@@ -83,7 +87,7 @@ function loginOut() {
 }
 
 const getAssetsImages = name => {
-  return new URL('../../assets/images/' + name, import.meta.url).href //本地文件路径
+  return new URL('@/assets/images/' + name, import.meta.url).href //本地文件路径
 }
 </script>
 <style lang="less" scoped>

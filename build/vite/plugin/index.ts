@@ -13,8 +13,7 @@ import { configMockPlugin } from './mock'
 import { ViteEnv } from '/#/global'
 import { configHtmlPlugin } from './html'
 
-import path from 'path'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { configSvgIconsPlugin } from './svgSprite'
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK, VITE_LEGACY } = viteEnv
@@ -23,6 +22,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vue(),
     // have to
     vueJsx(),
+    vueSetupExtend(),
     // legacy({
     //   // targets: ['chrome 52'],
     //   // additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
@@ -65,7 +65,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(windiCSS())
   // vitePlugins.push(Unocss())
   if (isBuild) {
-    vitePlugins.push(legacy())
+    // vitePlugins.push(legacy())
   }
   return vitePlugins
 }
