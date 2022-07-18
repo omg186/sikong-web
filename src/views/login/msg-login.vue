@@ -1,6 +1,7 @@
 <template>
   <div class="account-view">
     <Form
+      class="sikong-form"
       :model="form"
       name="basic"
       autocomplete="off"
@@ -88,19 +89,16 @@ const onFinishFailed = (errorInfo: any) => {
 
   .valid-input {
     --bc: #dbdfdd;
-    --caret-color: #62a1ff;
     @apply box-border w-full outline-none;
     width: 322px;
     border-radius: 60px;
     height: 50px;
-    border: 1px solid var(--bc);
     font-size: 14px;
     font-weight: 400;
     color: #2d3a2f;
 
     .input {
       --bc: #dbdfdd;
-      --caret-color: #62a1ff;
       @apply box-border w-full outline-none;
       height: 46px;
       padding: 15px 20px;
@@ -113,9 +111,9 @@ const onFinishFailed = (errorInfo: any) => {
       &:focus,
       &:hover,
       &:active {
-        caret-color: var(--caret-color);
         border-color: var(--bc);
         font-size: 14px;
+        box-shadow: none !important;
       }
 
       ::placeholder {

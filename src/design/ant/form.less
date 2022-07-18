@@ -1,77 +1,111 @@
-.ant-form-item {
-    .ant-form-item-control-input-content {
-        display: flex;
-        align-items: center;
+.sikong-form {
+    .ant-form-item {
+        .ant-form-item-control-input-content {
+            display: flex;
+            align-items: center;
 
-        .ant-input-group-wrapper {
+            .ant-input-group-wrapper {
 
-            // 选择框
-            &.after {
-                border: 1px solid rgb(217, 217, 217);
-                position: relative;
+                // 选择框
+                &.after {
+                    border: 1px solid rgb(217, 217, 217);
+                    position: relative;
 
-                &:hover,
-                &:active,
-                &:focus {
-                    border: 1px solid #58edaa;
-                }
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        border: 1px solid #58edaa;
+                    }
 
-                .ant-input-wrapper {
-                    height: 100%;
-
-                    .ant-input {
+                    .ant-input-wrapper {
                         height: 100%;
-                        padding-left: 25px;
-                        border: none;
-                    }
 
-                    .ant-input-group-addon {
-                        padding: 2px 30px 2px 0px;
-                        border: 0;
-                        background-color: transparent;
-                        // padding-right: 30px;
-                    }
-                }
+                        .ant-input {
+                            height: 100%;
+                            padding-left: 25px;
+                            border: none;
+                        }
 
-                &.rounded-60 {
-                    .ant-input {
-                        border-radius: 60px;
-                    }
-                }
-
-                &-text {
-                    .ant-input-wrapper {
                         .ant-input-group-addon {
-                            transform: translateY(0);
+                            padding: 2px 30px 2px 0px;
+                            border: 0;
+                            background-color: transparent;
+                            // padding-right: 30px;
+                        }
+                    }
+
+                    &.rounded-60 {
+                        .ant-input {
+                            border-radius: 60px;
+                        }
+                    }
+
+                    &-text {
+                        .ant-input-wrapper {
+                            .ant-input-group-addon {
+                                transform: translateY(0);
+                            }
+                        }
+                    }
+
+
+                    &-icon {
+                        .ant-input-wrapper {
+                            .ant-input-group-addon {
+                                transform: translateY(5px);
+                            }
                         }
                     }
                 }
 
+            }
+        }
 
-                &-icon {
-                    .ant-input-wrapper {
-                        .ant-input-group-addon {
-                            transform: translateY(5px);
-                        }
-                    }
-                }
+        &.ant-form-item-with-help {
+            .ant-form-item-explain {
+                font-size: 14px;
+                padding-left: 21px;
+            }
+        }
+
+        &.ant-form-item-has-error {
+            :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+                border-color: inherit;
+                box-shadow: none;
+                outline: none;
+            }
+        }
+
+        .ant-input-affix-wrapper {
+            border-color: inherit;
+            box-shadow: none !important;
+            outline: none !important;
+
+            :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+                border-color: inherit;
+                box-shadow: none;
+                outline: none;
             }
 
+            &:hover {
+                border-color: #dbdfdd !important;
+            }
+        }
+
+        .ant-input-affix-wrapper-focused {
+            box-shadow: none !important;
         }
     }
 
-    &.ant-form-item-with-help {
-        .ant-form-item-explain {
-            font-size: 14px;
-            padding-left: 21px;
-        }
+    input:focus {
+        outline: none;
     }
+}
 
-    &.ant-form-item-has-error {
-        :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
-            border-color: inherit;
-            box-shadow: none;
-            outline: none;
+.sikong-form2 {
+    .ant-select {
+        .ant-select-selector {
+            border-radius: 8px;
         }
     }
 }

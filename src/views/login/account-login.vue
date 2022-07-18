@@ -1,6 +1,9 @@
 <template>
   <div class="account-view">
-    <Form class="flex flex-col gap-y-[10px]" @keyup.enter="onSubmit">
+    <Form
+      class="sikong-form flex flex-col gap-y-[10px]"
+      @keyup.enter="onSubmit"
+    >
       <FormItem class="form-group" v-bind="validateInfos.account">
         <Input
           type="text"

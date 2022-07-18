@@ -28,7 +28,7 @@
         >
           如果您的企业已经购买司空，请直接联系管理员为您开通账号！
         </div>
-        <Form @submit="onSubmit">
+        <Form @submit="onSubmit" class="sikong-form">
           <h3 s:text="[#1F311F] bold" class="ml-25px">企业信息</h3>
           <div class="pt-27px">
             <FormItem v-bind="validateInfos.companyName">

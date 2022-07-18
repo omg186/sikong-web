@@ -24,7 +24,7 @@
             <template #content>
               <div class="cursor-pointer">
                 <p class="text-gray-300 cursor-not-allowed">添加员工</p>
-                <p>添加部门</p>
+                <p @click="isModalDept = true">添加部门</p>
               </div>
             </template>
             <img
@@ -39,13 +39,28 @@
       </div>
       <div class="h-full"></div>
     </div>
+    <Modal
+      v-model:visible="isModalDept"
+      title="添加部门"
+      width="459px"
+      :footer="null"
+    >
+      <AddDept @on-cancel="isModalDept = false" @on-ok="onDeptOk" />
+    </Modal>
   </div>
 </template>
 <script lang="ts" setup>
-import { Avatar, Input, Popover } from 'ant-design-vue'
+import { Avatar, Input, Popover, Modal } from 'ant-design-vue'
 import { useUserStore } from '@/store/modules/user'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import Tree from './modules/tree.vue'
+import AddDept from './modules/add-dept.vue'
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.getUserInfo)
+const isModalDept = ref(true)
+
+function onDeptOk(value, isContinue) {
+  console.log(value)
+  isModalDept.value = isContinue
+}
 </script>
