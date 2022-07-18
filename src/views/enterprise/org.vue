@@ -125,21 +125,21 @@
                   <div
                     class="fill-[#C2C5CD] cursor-pointer stroke-[#C2C5CD]"
                     s:hover="fill-[#525A64] stroke-[#525A64]"
-                    @click="onDeptEdit(record.id)"
+                    @click="onTransfer(record.id)"
                   >
                     <SvgIcon class="w-[18px] h-18px" name="tiao"></SvgIcon>
                   </div>
                   <div
                     class="fill-[#C2C5CD] stroke-[#C2C5CD] cursor-pointer"
                     s:hover="fill-[#525A64] stroke-[#525A64]"
-                    @click="onDeptDel()"
+                    @click="onDisable(record.id)"
                   >
                     <SvgIcon class="w-[18px] h-18px" name="jinyong1"></SvgIcon>
                   </div>
                   <div
                     class="fill-[#C2C5CD] stroke-[#C2C5CD] cursor-pointer"
                     s:hover="fill-[#525A64] stroke-[#525A64]"
-                    @click="onDeptDel()"
+                    @click="onLeave(record.id)"
                   >
                     <SvgIcon class="w-[18px] h-18px" name="lizhi2"></SvgIcon>
                   </div>
@@ -164,7 +164,7 @@
       />
     </Modal>
     <Modal title="删除部门" v-model:visible="isModalDeptDel" :footer="null">
-      <h3 s:text="black md">确定要删除部门-“中海店”吗？</h3>
+      <h3 s:text="black md" class="pt-2opx">确定要删除部门-“中海店”吗？</h3>
       <div s:text="[#F3AB51] xs" class="pt-10px">
         当前“中海店”部门中，有 7 个员工账户和 1 个相关校区，删除操作会将
         相关员工账户转移到“北京白河狸科技公司”下，是否依然执行此操作？
@@ -187,6 +187,88 @@
         </Button>
       </div>
     </Modal>
+    <Modal title="员工调岗" v-model:visible="isModalTransfer" :footer="null">
+      <h3 s:text="black md" class="pt-2opx">将员工"都林(大熊)"调岗到</h3>
+      <Form class="sikong-form2 pt-18px">
+        <FormItem v-bind="validateInfos.deptCode">
+          <Select
+            v-model:value="transferForm.deptCode"
+            class="rounded-8px"
+            placeholder="请选择岗位"
+          >
+            <SelectOption value="技术部">技术部</SelectOption>
+            <SelectOption value="产品部">产品部</SelectOption>
+          </Select>
+        </FormItem>
+        <div class="flex gap-10px pt-30px">
+          <Button
+            class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
+            s:border="1px solid [#C7F7E3]"
+            @click="isModalTransfer = false"
+          >
+            取消
+          </Button>
+          <Button
+            class="rounded-40px h-40px w-90px bg-primary text-white"
+            s:border="1px solid [#C7F7E3]"
+            type="primary"
+            @click="onTransferSubmit"
+          >
+            保存
+          </Button>
+        </div>
+      </Form>
+    </Modal>
+    <!-- 账户禁用 -->
+    <Modal title="账户员工禁用" v-model:visible="isModalDisable" :footer="null">
+      <h3 s:text="black md" class="pt-2opx">
+        确定要禁用“李海(大鱼)”的账户吗？
+      </h3>
+      <div s:text="[#F3AB51] xs" class="pt-10px">
+        禁用“李海(大鱼)”的账户，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续禁用该账户吗？
+      </div>
+      <div class="flex gap-10px pt-40px">
+        <Button
+          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
+          s:border="1px solid [#C7F7E3]"
+          @click="isModalDisable = false"
+        >
+          取消
+        </Button>
+        <Button
+          class="rounded-40px h-40px w-90px bg-primary text-white"
+          s:border="1px solid [#C7F7E3]"
+          type="primary"
+          @click="onDisableSubmit"
+        >
+          确定
+        </Button>
+      </div>
+    </Modal>
+    <!-- 离职 -->
+    <Modal title="账户员工离职" v-model:visible="isModalLeave" :footer="null">
+      <h3 s:text="black md " class="pt-2opx">确定要离职“李海(大鱼)”吗？</h3>
+      <div s:text="[#F3AB51] xs" class="pt-10px">
+        离职“李海(大鱼)”，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续离职该账户吗？
+      </div>
+      <div class="flex gap-10px pt-40px">
+        <Button
+          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
+          s:border="1px solid [#C7F7E3]"
+          @click="isModalLeave = false"
+        >
+          取消
+        </Button>
+        <Button
+          class="rounded-40px h-40px w-90px bg-primary text-white"
+          s:border="1px solid [#C7F7E3]"
+          type="primary"
+          @click="onLeaveSubmit"
+        >
+          确定
+        </Button>
+      </div>
+    </Modal>
   </div>
 </template>
 <script lang="ts" setup>
@@ -198,6 +280,10 @@ import {
   Button,
   Table,
   TableColumnsType,
+  Form,
+  FormItem,
+  Select,
+  SelectOption,
 } from 'ant-design-vue'
 import { useUserStore } from '@/store/modules/user'
 import { computed, reactive, ref } from 'vue'
@@ -210,8 +296,54 @@ const userInfo = computed(() => userStore.getUserInfo)
 const isModalDept = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
+const isModalTransfer = ref(false)
 const deptCode = ref('')
+// 账户禁用
+const isModalDisable = ref(false)
+// 账户禁用click
+const onDisable = (id: number) => {
+  console.log('禁用')
+  isModalDisable.value = true
+}
+// 账户禁用submit
+const onDisableSubmit = () => {
+  console.log('禁用账户')
+  isModalDisable.value = false
+}
+// 账户离职
+const isModalLeave = ref(false)
+// 账户离职click
+const onLeave = (id: number) => {
+  console.log('离职')
+  isModalLeave.value = true
+}
+// 账户离职submit
+const onLeaveSubmit = () => {
+  console.log('离职账户')
+  isModalLeave.value = false
+}
 const deptModalTitle = ref<'修改部门' | '添加部门'>('添加部门')
+// 调岗form
+const transferForm = reactive({
+  deptCode: '',
+})
+// 调岗rules
+const transferRules = ref({
+  deptCode: [
+    {
+      required: true,
+      message: '请选择岗位',
+    },
+  ],
+})
+// 调岗useForm
+const { validate, validateInfos } = Form.useForm(transferForm, transferRules)
+// 调岗onSubmit
+const onTransferSubmit = () => {
+  validate().then(() => {
+    console.log('调岗成功')
+  })
+}
 const data = reactive({
   dataSource: [
     {
@@ -303,6 +435,11 @@ const columns = ref<TableColumnsType>([
     fixed: 'right',
   },
 ])
+// 员工调岗click
+const onTransfer = (id: number) => {
+  isModalTransfer.value = true
+}
+
 function onDeptAdd(value: string) {
   console.log(value)
   isDeptEdit.value = false
