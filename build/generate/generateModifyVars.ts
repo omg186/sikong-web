@@ -32,11 +32,12 @@ export function generateModifyVars(dark = false) {
     'warning-color': '#EFBD47', //   Warning color
     //'border-color-base': '#EEEEEE',
     'font-size-base': '16px', //  Main font size
-    'border-radius-base': '2px', //  Component/float fillet
+    'border-radius-base': '8px', //  Component/float fillet
     '@border-color-base': '#DBDFDD',
     'link-color': 'rgba(131, 134, 126, 1)', //   Link color
     'app-content-background': '#fafafa', //   Link color
-    '@font-size-base': '14px',//主字号
+    '@font-size-base': '14px', //主字号
+    '@input-height-base': '36px',
     // '@line-height-base': '40px',//行高
   }
 }

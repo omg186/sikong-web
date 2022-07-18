@@ -39,5 +39,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[svg]": {
     "editor.defaultFormatter": "jock.svg"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
   }
 }
