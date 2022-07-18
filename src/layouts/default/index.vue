@@ -61,9 +61,12 @@
         <TabsView />
       </div>
       <div class="p-[20px] w-full box-border flex-1">
+        <!-- <UseElementSize v-slot="{ width, height }"> -->
+        <!-- {{ width }} {{ height }} -->
         <div class="ly-content bg-white w-full h-full">
           <router-view></router-view>
         </div>
+        <!-- </UseElementSize> -->
       </div>
     </div>
   </div>
@@ -74,6 +77,7 @@ import Menus from './menu/index.vue'
 import TabsView from './tabs/index.vue'
 import { leftMenus } from '@/settings/menuSetting'
 import { getAssetsFile } from '@/utils'
+import { UseElementSize } from '@vueuse/components'
 const userStore = useUserStore()
 function loginOut() {
   userStore.logout(true)
@@ -139,6 +143,7 @@ const getAssetsImages = name => {
   border-radius: 10px;
   overflow: hidden;
   overflow-y: auto;
+  height: calc(100vh - 66px - 50px);
   box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 6%);
 }
 </style>
