@@ -1,4 +1,4 @@
-import { resultSuccess } from 'mock/_util'
+import { resultSuccess } from '../_util'
 import { MockMethod } from 'vite-plugin-mock'
 import { Recordable } from '/#/global'
 
