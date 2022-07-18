@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="14.771228790283203" height="17.3717041015625" viewBox="0 0 14.771228790283203 17.3717041015625">
+    <g style="mix-blend-mode:passthrough">
+        <g>
+            <g style="mix-blend-mode:passthrough">
+                <rect x="0.000244140625" y="4.7000732421875" width="14" height="2" rx="1" fill-opacity="1" />
+            </g>
+            <g style="mix-blend-mode:passthrough">
+                <rect x="14.770751953125" y="12.671630859375" width="14" height="2" rx="1"
+                    transform="matrix(-1,0,0,-1,29.54150390625,25.34326171875)" fill-opacity="1" />
+            </g>
+            <g style="mix-blend-mode:passthrough">
+                <rect x="9.1142578125" y="0" width="8" height="2" rx="1"
+                    transform="matrix(0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,2.6695044180960394,-6.4447533944039606)"
+                    fill-opacity="1" />
+            </g>
+            <g style="mix-blend-mode:passthrough">
+                <rect x="5.65673828125" y="17.3717041015625" width="8" height="2" rx="1"
+                    transform="matrix(-0.7071067690849304,-0.7071067690849304,0.7071067690849304,-0.7071067690849304,-2.6269933498915634,33.65527159193152)"
+                    fill-opacity="1" />
+            </g>
+        </g>
+    </g>
+</svg>

@@ -10,9 +10,11 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // 使用 mkcert 为 vite https 开发服务提供证书支持
 import VitePluginCertificate from 'vite-plugin-mkcert'
 import { configMockPlugin } from './mock'
-import legacyPlugin from '@vitejs/plugin-legacy'
 import { ViteEnv } from '/#/global'
 import { configHtmlPlugin } from './html'
+
+import path from 'path'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK } = viteEnv
   const vitePlugins: (PluginOption | PluginOption[])[] = [
@@ -20,6 +22,25 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vue(),
     // have to
     vueJsx(),
+    //svg
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+      // 指定symbolId格式
+      symbolId: 'icon-[dir]-[name]',
+
+      /**
+       * 自定义插入位置
+       * @default: body-last
+       */
+      inject: 'body-first',
+
+      /**
+       * custom dom id
+       * @default: __svg__icons__dom__
+       */
+      customDomId: '__svg__icons__dom__',
+    }),
     // support name
     // vueSetupExtend(),
     legacy({

@@ -79,6 +79,7 @@
     "vite": "^2.9.9",
     "vite-plugin-mkcert": "^1.7.2",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^0.34.7",
     "windicss": "^3.5.6"
   },

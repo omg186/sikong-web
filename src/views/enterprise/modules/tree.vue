@@ -8,7 +8,7 @@
     > -->
     <!-- <tree-item :tree-data="treeData" /> -->
     <!-- </ul> -->
-    <Tree :default-expanded-keys="['0-0-0']" :tree-data="treeData">
+    <Tree :tree-data="treeData">
       <template #icon>
         <img
           src="@/assets/images/file-icon.png"
@@ -24,28 +24,18 @@
                 dataRef.type === OrgTreeTypeEnum.BM
               "
             >
-              <img
-                v-if="selected"
-                src="@/assets/images/file-open-icon.png"
-                class="h-18px w-22px"
-              />
-              <img
-                v-else
-                src="@/assets/images/file-icon.png"
-                class="h-18px w-22px"
-              />
+              <div :class="selected ? 'fill-primary' : 'fill-[#9299A7]'">
+                <svg width="22px" height="18px" class="svg-symbol">
+                  <use xlink:href="#icon-wenjianjia-dangqian" />
+                </svg>
+              </div>
             </template>
             <template v-else-if="dataRef.type === OrgTreeTypeEnum.XZ">
-              <img
-                v-if="selected"
-                src="@/assets/images/xu-selected-icon.png"
-                class="w-9px h-6px"
-              />
-              <img
-                v-else
-                src="@/assets/images/xu-icon.png"
-                class="w-9px h-6px"
-              />
+              <div :class="selected ? 'fill-primary' : 'fill-[#A5A8B4]'">
+                <svg width="9px" height="6px" class="svg-symbol">
+                  <use xlink:href="#icon-zubiao-moren" />
+                </svg>
+              </div>
             </template>
           </div>
 
@@ -55,11 +45,26 @@
             src="@/assets/images/more-icon.png"
             class="more h-4px w-16px absolute right-10px opacity-0"
           />
-          <img
-            v-else
-            src="@/assets/images/more-selected-icon.png"
-            class="more h-4px w-16px absolute right-10px"
-          />
+          <Popover placement="bottom" v-else>
+            <template #title> </template>
+            <template #content>
+              <div class="cursor-pointer">
+                <p @click="emits('onEdit', dataRef.value)">编辑部门</p>
+                <p @click="emits('onAdd', dataRef.value)">添加子部门</p>
+                <p @click="emits('onDel', dataRef.value)">删除部门</p>
+              </div>
+            </template>
+            <div class="absolute right-10px" @click.stop="">
+              <div
+                class="w-24px h-24px flex-center items-center"
+                :class="selected ? 'fill-primary' : 'fill-[#9299A7]'"
+              >
+                <svg width="16px" height="4px" class="svg-symbol">
+                  <use xlink:href="#icon-gengduo" />
+                </svg>
+              </div>
+            </div>
+          </Popover>
         </div>
       </template>
       <template #switcherIcon="{ dataRef, expanded, selected }">
@@ -91,62 +96,15 @@ import {
   FrownOutlined,
   FrownFilled,
 } from '@ant-design/icons-vue'
-import { defineComponent, ref } from 'vue'
 import { OrgTreeTypeEnum } from '@/enums'
-import type { TreeProps } from 'ant-design-vue'
-import { Tree } from 'ant-design-vue'
+import { Tree, Popover } from 'ant-design-vue'
 import { useRequest } from 'vue-request'
 import { getOrgTreeApi } from '@/api/org'
-import TreeItem from './tree-item.vue'
-const treeData2 = ref<TreeProps['treeData']>([
-  {
-    title: 'parent 1',
-    key: '0-0',
-    children: [
-      {
-        title: 'parent 1-0',
-        key: '0-0-0',
-        children: [
-          { title: 'leaf', key: '0-0-0-0' },
-          {
-            key: '0-0-0-1',
-          },
-          { title: 'leaf', key: '0-0-0-2' },
-        ],
-      },
-      {
-        title: 'parent 1-1',
-        key: '0-0-1',
-        children: [{ title: 'leaf', key: '0-0-1-0' }],
-      },
-      {
-        title: 'parent 1-2',
-        key: '0-0-2',
-        children: [
-          { title: 'leaf 1', key: '0-0-2-0' },
-          {
-            title: 'leaf 2',
-            key: '0-0-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'parent 2',
-    key: '0-1',
-    children: [
-      {
-        title: 'parent 2-0',
-        key: '0-1-0',
-        children: [
-          { title: 'leaf', key: '0-1-0-0' },
-          { title: 'leaf', key: '0-1-0-1' },
-        ],
-      },
-    ],
-  },
-])
+const emits = defineEmits<{
+  (event: 'onEdit', key: string): void
+  (event: 'onAdd', key: string): void
+  (event: 'onDel', key: string): void
+}>()
 const { data: treeData } = useRequest(
   () => {
     return getOrgTreeApi()

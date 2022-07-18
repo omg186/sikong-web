@@ -60,6 +60,15 @@ button[ant-click-animating-without-extra-node]:after {
 
     }
 
+    &.cancel {
+      @apply rounded-40px bg-[#F7FEFB] text-primary;
+      border: 1px solid #C7F7E3;
+
+      &:hover {
+        background: #FFFFFF;
+        box-shadow: 0px 2px 10px 1px rgba(5, 251, 126, 0.2);
+      }
+    }
 
     outline: none;
 
@@ -82,7 +91,8 @@ button[ant-click-animating-without-extra-node]:after {
       &:hover,
       &:focus {
         color: @white;
-        background-color: @button-primary-hover-color;
+        background: #14DC87;
+        box-shadow: 0px 2px 10px 1px rgba(5, 251, 126, 0.2);
       }
     }
 

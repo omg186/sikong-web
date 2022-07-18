@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="22"
+    height="18" viewBox="0 0 22 18">
+    <g>
+        <g style="opacity:0.30000001192092896;mix-blend-mode:passthrough">
+            <path
+                d="M6,15C6,16.104599999999998,6.895431,17,8,17L18,17C19.104599999999998,17,20,16.104599999999998,20,15L20,3C20,1.8954309999999999,19.104599999999998,1,18,1L8,1C6.895431,1,6,1.8954309999999999,6,3L6,15Z"
+                fill="currentColor" fill-opacity="1" />
+        </g>
+        <g style="mix-blend-mode:passthrough">
+            <path
+                d="M2,18C0.895508,18,0,17.1046,0,16L0,2C0,0.895416,0.895508,0,2,0L10.0586,0C10.9194,0,11.6836,0.550873,11.9558,1.36755L12.5,3L20,3C21.1045,3,22,3.89542,22,5L22,16C22,17.1046,21.1045,18,20,18L2,18Z"
+                fill-rule="evenodd" fill="currentColor" fill-opacity="1" />
+        </g>
+    </g>
+</svg>

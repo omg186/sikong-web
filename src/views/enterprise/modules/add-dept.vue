@@ -19,14 +19,9 @@
       </Select>
     </FormItem>
     <div class="flex gap-10px pt-30px">
+      <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
       <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="onCancel"
-      >
-        取消
-      </Button>
-      <Button
+        v-if="!props.isEdit"
         class="rounded-40px h-40px w-137px bg-primary text-white"
         s:border="1px solid [#C7F7E3]"
         type="primary"
@@ -55,8 +50,19 @@ import {
   SelectOption,
   Button,
 } from 'ant-design-vue'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { DeptFormData } from './interface'
+const props = defineProps({
+  isEdit: {
+    type: Boolean,
+    default: false,
+  },
+  code: {
+    type: String,
+    default: '',
+  },
+})
+
 const emits = defineEmits<{
   (event: 'onCancel'): void
   (event: 'onOk', value: DeptFormData, isContinue: boolean): void
@@ -73,6 +79,16 @@ const rules = ref({
   deptCode: [{ required: true, message: '请选择所属部门' }],
 })
 const { resetFields, validate, validateInfos } = Form.useForm(formData, rules)
+watchEffect(() => {
+  if (props.code && props.isEdit) {
+    formData.value = {
+      deptName: 'edit',
+      deptCode: '',
+    }
+  } else {
+    resetFields()
+  }
+})
 function onCancel() {
   resetFields()
   emits('onCancel')

@@ -40,13 +40,6 @@ const demoTreeList = keyword => {
     lev: `${1}`,
     children,
   })
-  result.list.push({
-    title: `北京白狐狸科技2`,
-    type: 'GS',
-    value: `${2}`,
-    lev: `${1}`,
-    children,
-  })
   //   }
   return result.list
 }

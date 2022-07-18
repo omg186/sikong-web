@@ -7,6 +7,7 @@ import 'virtual:windi-components.css'
 import 'virtual:windi-utilities.css'
 import 'virtual:windi-devtools'
 
+import 'virtual:svg-icons-register' //这一句必须要加上
 import router from './routers'
 import { setupStore } from './store'
 
