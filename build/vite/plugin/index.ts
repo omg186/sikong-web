@@ -15,64 +15,49 @@ import { configHtmlPlugin } from './html'
 
 import path from 'path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { configSvgIconsPlugin } from './svgSprite'
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  const { VITE_USE_MOCK } = viteEnv
+  const { VITE_USE_MOCK, VITE_LEGACY } = viteEnv
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     // have to
     vue(),
     // have to
     vueJsx(),
-    //svg
-    createSvgIconsPlugin({
-      // 指定需要缓存的图标文件夹
-      iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
-      // 指定symbolId格式
-      symbolId: 'icon-[dir]-[name]',
-
-      /**
-       * 自定义插入位置
-       * @default: body-last
-       */
-      inject: 'body-first',
-
-      /**
-       * custom dom id
-       * @default: __svg__icons__dom__
-       */
-      customDomId: '__svg__icons__dom__',
-    }),
-    // support name
-    // vueSetupExtend(),
-    legacy({
-      targets: ['chrome 52'],
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-      renderLegacyChunks: true,
-      polyfills: [
-        'es.symbol',
-        'es.array.filter',
-        'es.promise',
-        'es.promise.finally',
-        'es/map',
-        'es/set',
-        'es.array.for-each',
-        'es.object.define-properties',
-        'es.object.define-property',
-        'es.object.get-own-property-descriptor',
-        'es.object.get-own-property-descriptors',
-        'es.object.keys',
-        'es.object.to-string',
-        'web.dom-collections.for-each',
-        'esnext.global-this',
-        'esnext.string.match-all',
-      ],
-    }),
+    // legacy({
+    //   // targets: ['chrome 52'],
+    //   // additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+    //   // renderLegacyChunks: true,
+    //   // polyfills: [
+    //   //   'es.symbol',
+    //   //   'es.array.filter',
+    //   //   'es.promise',
+    //   //   'es.promise.finally',
+    //   //   'es/map',
+    //   //   'es/set',
+    //   //   'es.array.for-each',
+    //   //   'es.object.define-properties',
+    //   //   'es.object.define-property',
+    //   //   'es.object.get-own-property-descriptor',
+    //   //   'es.object.get-own-property-descriptors',
+    //   //   'es.object.keys',
+    //   //   'es.object.to-string',
+    //   //   'web.dom-collections.for-each',
+    //   //   'esnext.global-this',
+    //   //   'esnext.string.match-all',
+    //   // ],
+    // }),
     VitePluginCertificate({
       source: 'coding',
     }),
   ]
 
+  // @vitejs/plugin-legacy
+  VITE_LEGACY && isBuild && vitePlugins.push(legacy())
   // vite-plugin-html
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild))
+
+  // vite-plugin-svg-icons
+  vitePlugins.push(configSvgIconsPlugin(isBuild))
   // vite-plugin-mock
   VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))
 
