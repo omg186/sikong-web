@@ -1,6 +1,8 @@
 <template>
   <div class="enterprise-org flex flex-col h-full">
-    <div class="h-100px w-full flex items-center gap-20px px-20px bg-black">
+    <div
+      class="h-100px w-full flex-shrink-0 flex items-center gap-20px px-20px bg-black"
+    >
       <Avatar
         style="background-color: #87d068"
         class="w-58px h-58px"
