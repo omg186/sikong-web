@@ -39,7 +39,7 @@
               <div v-if="imageUrl" class="avatar relative w-full h-full">
                 <img
                   class="avatar-edit absolute top-[-1px] right-[-1px]"
-                  src="../../assets/images/avatar-edit.png"
+                  src="@/assets/images/avatar-edit.png"
                 />
                 <div class="flex h-full justify-center items-center">
                   <img :src="imageUrl" alt="avatar" />
