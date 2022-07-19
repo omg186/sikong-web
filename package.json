@@ -27,6 +27,7 @@
     "@vueuse/core": "^8.9.1",
     "ant-design-vue": "^3.2.10",
     "async-validator": "^4.2.5",
+    "china-division": "^2.5.0",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.3",
     "esno": "^0.16.3",

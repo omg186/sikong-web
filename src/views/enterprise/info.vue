@@ -1,5 +1,13 @@
 <template>
-  <Form class="pt-[35px] ml-[40px] w-full h-full" layout="vertical">
+  <Form
+    class="pt-[35px] ml-[40px] w-full h-full"
+    layout="vertical"
+    ref="formRef"
+    :model="formState"
+    :rules="validateRules"
+    @finish="onFinish"
+    @finish-failed="onFinishFailed"
+  >
     <!-- <Upload
         v-model:file-list="formState.fileList"
         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -24,6 +32,7 @@
               list-type="picture-card"
               class="avatar-uploader"
               :show-upload-list="false"
+              :before-upload="beforeUpload"
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               @change="handleChange"
             >
@@ -49,9 +58,13 @@
         </FormItem>
       </Col>
       <Col :span="24">
-        <FormItem label="企业主体全称" :wrapper-col="{ span: 12 }">
+        <FormItem
+          label="企业主体全称"
+          name="businessEntity"
+          :wrapper-col="{ span: 12 }"
+        >
           <Input
-            v-model:value="formData.businessEntity"
+            v-model:value="formState.businessEntity"
             placeholder="请输入企业主体全称"
           />
         </FormItem>
@@ -59,29 +72,36 @@
 
       <Col :span="24">
         <FormItem label="企业账户全称">
-          <span>{{ formData.account }}</span>
+          <span>{{ formState.account }}</span>
         </FormItem>
       </Col>
       <Col :span="24">
         <FormItem label="账户创建时间">
-          <span>{{ formData.createTime }}</span>
+          <span>{{ formState.createTime }}</span>
         </FormItem>
       </Col>
     </row>
     <Col :span="24">
-      <FormItem label="企业简称" :wrapper-col="{ span: 12 }">
+      <FormItem
+        label="企业主体简称"
+        name="business"
+        :wrapper-col="{ span: 12 }"
+      >
         <Input
-          v-model:value="formData.businessEntity"
-          placeholder="请输入企业主体全称"
+          v-model:value="formState.business"
+          placeholder="请输入企业主体简称"
         />
       </FormItem>
     </Col>
     <Col>
-      <FormItem label="培训项目(可多选)" :wrapper-col="{ span: 12 }">
+      <FormItem
+        label="培训项目(可多选)"
+        name="projectName"
+        :wrapper-col="{ span: 12 }"
+      >
         <Select
-          v-model:value="formData.projectName"
+          v-model:value="formState.projectName"
           mode="multiple"
-          readonly
           :options="pxData.map(pro => ({ value: pro }))"
           class="select-icon w-[184px]"
           placeholder="请选择培训项目"
@@ -89,9 +109,12 @@
           <template #suffixIcon>
             <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
           </template>
+          <!-- <template #suffixIcon
+            ><smile-outlined class="ant-select-suffix"
+          /></template> -->
         </Select>
         <!-- <Input
-          v-model:value="formData.projectName"
+          v-model:value="formState.projectName"
           placeholder="请输入企业主体全称"
           readonly
           @click="data.isSelect = true"
@@ -106,9 +129,11 @@
     <FormItem label="企业详细地址" :wrapper-col="{ span: 12 }">
       <Space :size="20">
         <Select
-          v-model:value="formData.province"
+          v-model:value="formState.province"
           style="width: 184px"
-          :options="provinceData.map(pro => ({ value: pro }))"
+          :options="
+            provinceData.map(pro => ({ value: pro.code, label: pro.name }))
+          "
           class="select-icon"
           placeholder="请选择省份"
         >
@@ -117,20 +142,22 @@
           </template>
         </Select>
         <Select
-          v-model:value="formData.district"
+          v-model:value="formState.citys"
           style="width: 184px"
-          :options="districtData.map(pro => ({ value: pro }))"
+          :options="cityData.map(pro => ({ value: pro.code, label: pro.name }))"
           class="select-icon w-[184px]"
-          placeholder="请选择省份"
+          placeholder="请选择市"
         >
           <template #suffixIcon>
             <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
           </template>
         </Select>
         <Select
-          v-model:value="formData.city"
+          v-model:value="formState.areas"
           style="width: 184px"
-          :options="cityData.map(pro => ({ value: pro }))"
+          :options="
+            areasData.map(pro => ({ value: pro.code, label: pro.name }))
+          "
           class="select-icon w-[184px]"
           placeholder="请选择区"
         >
@@ -142,8 +169,8 @@
     </FormItem>
     <FormItem label="" :wrapper-col="{ span: 12 }">
       <Space :size="20">
-        <Select
-          v-model:value="formData.street"
+        <!-- <Select
+          v-model:value="formState.street"
           style="width: 184px"
           :options="streetData.map(pro => ({ value: pro }))"
           class="select-icon"
@@ -152,25 +179,23 @@
           <template #suffixIcon>
             <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
           </template>
-        </Select>
+        </Select> -->
         <Input
-          v-model:value="formData.address"
+          v-model:value="formState.address"
           placeholder="请输入详细地址，门牌号"
-          readonly
           style="width: 387px"
-          @click="data.isSelect = true"
         ></Input>
       </Space>
     </FormItem>
     <FormItem label="企业电话" :wrapper-col="{ span: 12 }">
       <Input
-        v-model:value="formData.cellPhone"
+        v-model:value="formState.cellPhone"
         placeholder="请输入企业服务热线"
       />
     </FormItem>
     <FormItem label="企业官网" :wrapper-col="{ span: 12 }">
       <Input
-        v-model:value="formData.officialWebsite"
+        v-model:value="formState.officialWebsite"
         placeholder="请输入企业官网"
       />
     </FormItem>
@@ -180,7 +205,10 @@
           <Button class="rounded-40 h-[40px] w-[90px]" type="primary" ghost
             >取消</Button
           >
-          <Button class="rounded-40 h-[40px] w-[140px]" type="primary"
+          <Button
+            html-type="submit"
+            class="rounded-40 h-[40px] w-[140px]"
+            type="primary"
             >下一步 组织架构</Button
           >
         </Space>
@@ -190,17 +218,17 @@
       v-if="data.isSelect"
       :data="projectData"
       @onOk="onSelectProject"
-      :selected="formData.projectSelect"
+      :selected="formState.projectSelect"
       v-model:visible="data.isSelect"
     />
   </Form>
 </template>
 <script lang="ts" setup>
-import { computed, reactive, ref, watchEffect } from 'vue'
+import { computed, reactive, ref, watchEffect, onMounted, watch } from 'vue'
 import type { UnwrapRef } from 'vue'
 import { toArray } from 'lodash-es'
 import SelectProject from '../login/modules/select-project.vue'
-// import { provinces, cities, areas } from 'china-division'
+import { SmileOutlined } from '@ant-design/icons-vue'
 import {
   Form,
   FormItem,
@@ -220,9 +248,13 @@ import { getCompanyProjectList } from '@/api/company'
 import { useRequest } from 'vue-request'
 import { SelectItem, useDownInterval } from '../login/useLogin'
 import SvgIcon from '../../components/SvgIcon.vue'
-// import cascaderOptions, { DivisionUtil } from '@pansy/china-division'
-// const divisionUtil = new DivisionUtil(cascaderOptions)
-// const provinces = divisionUtil.getProvinces()
+import provinceData from 'china-division/dist/provinces.json'
+import cities from 'china-division/dist/cities.json'
+import areas from 'china-division/dist/areas.json'
+console.log(provinceData)
+onMounted(() => {
+  console.log('Component is mounted!')
+})
 const data = reactive({
   isSelect: false,
   isDisabled: false,
@@ -231,27 +263,38 @@ const imageUrl = ref<string>('')
 const fileList = ref([])
 // console.log(provinces)
 // const infoForm = Form.useForm
-const formData = reactive({
+const formState = reactive({
   account: '北京腾讯少儿体能馆',
-  businessEntity: '白河狸科技',
+  business: '',
+  businessEntity: '',
   imageUrl: '',
   fileList: [],
   createTime: '2022/3/17 11:29',
   projectName: [],
   projectId: [],
   projectSelect: [],
-  province: '',
-  district: '',
-  city: '',
-  street: '',
+  province: null,
+  citys: null,
+  areas: null,
+  street: null,
   cellPhone: '',
   officialWebsite: 'www.whitebeave.net.cn',
   address: '',
 })
-const provinceData = ['北京', '江苏']
-const districtData = ['昌平', '朝阳']
-const cityData = []
-const streetData = []
+const validateRules = reactive({
+  businessEntity: [{ required: true, message: '请输入企业主体全称' }],
+  business: [{ required: true, message: '请输入企业主体简称' }],
+  projectName: [{ required: true, message: '请选择培训项目' }],
+})
+
+const cityData = computed(() => {
+  return cities.filter(x => x.provinceCode === formState.province)
+})
+const areasData = computed(() => {
+  return areas.filter(
+    x => x.cityCode === formState.citys && x.provinceCode === formState.province
+  )
+})
 const pxData = ['培训1', '培训2']
 const beforeUpload = (file: UploadProps['fileList'][number]) => {
   const isJpgOrPng =
@@ -296,16 +339,38 @@ const { data: projectData } = useRequest(
   },
   { manual: false }
 )
+watch([() => formState.province], ([v1], [oldName]) => {
+  //注意:此时的第一个参数是一个数组
+  //组合监听,监听对象中的所有属性
+  console.log('1111' + v1)
+  if (v1) {
+    formState.citys = null
+    formState.areas = null
+  }
+})
 watchEffect(() => {
-  console.log(projectData.value)
+  // if (formState.province) {
+  //   // formState.citys = null
+  //   formState.areas = null
+  // }
+  if (formState.citys) {
+    formState.areas = null
+    console.log(formState.province)
+  }
 })
 function onSelectProject(selected: Map<number, SelectItem>) {
   // console.log(selected, toArray(selected.values()), toArray(selected.keys()))
   const arr = toArray(selected.values())
-  formData.projectId = toArray(selected.keys())
-  formData.projectSelect = arr.map(p => p)
-  formData.projectName = arr.map(p => p.name).join(',')
+  formState.projectId = toArray(selected.keys())
+  formState.projectSelect = arr.map(p => p)
+  formState.projectName = arr.map(p => p.name).join(',')
   data.isSelect = false
+}
+const onFinishFailed = (errorInfo: any) => {
+  console.log('Failed:', errorInfo)
+}
+const onFinish = (values: any) => {
+  console.log('Success:', values, formState)
 }
 </script>
 <style lang="less" scoped>
