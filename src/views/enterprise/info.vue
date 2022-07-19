@@ -169,17 +169,19 @@
     </FormItem>
     <FormItem label="" :wrapper-col="{ span: 12 }">
       <Space :size="20">
-        <!-- <Select
+        <Select
           v-model:value="formState.street"
           style="width: 184px"
-          :options="streetData.map(pro => ({ value: pro }))"
+          :options="
+            streetsData.map(pro => ({ value: pro.code, label: pro.name }))
+          "
           class="select-icon"
           placeholder="请选择街道"
         >
           <template #suffixIcon>
             <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
           </template>
-        </Select> -->
+        </Select>
         <Input
           v-model:value="formState.address"
           placeholder="请输入详细地址，门牌号"
@@ -251,7 +253,7 @@ import SvgIcon from '../../components/SvgIcon.vue'
 import provinceData from 'china-division/dist/provinces.json'
 import cities from 'china-division/dist/cities.json'
 import areas from 'china-division/dist/areas.json'
-console.log(provinceData)
+import streets from 'china-division/dist/streets.json'
 onMounted(() => {
   console.log('Component is mounted!')
 })
@@ -293,6 +295,14 @@ const cityData = computed(() => {
 const areasData = computed(() => {
   return areas.filter(
     x => x.cityCode === formState.citys && x.provinceCode === formState.province
+  )
+})
+const streetsData = computed(() => {
+  return streets.filter(
+    x =>
+      x.areaCode === formState.areas &&
+      x.cityCode === formState.citys &&
+      x.provinceCode === formState.province
   )
 })
 const pxData = ['培训1', '培训2']
@@ -340,22 +350,21 @@ const { data: projectData } = useRequest(
   { manual: false }
 )
 watch([() => formState.province], ([v1], [oldName]) => {
-  //注意:此时的第一个参数是一个数组
-  //组合监听,监听对象中的所有属性
-  console.log('1111' + v1)
   if (v1) {
     formState.citys = null
+    formState.street = null
     formState.areas = null
   }
 })
+watch([() => formState.areas], ([v1], [oldName]) => {
+  if (v1) {
+    formState.street = null
+  }
+})
 watchEffect(() => {
-  // if (formState.province) {
-  //   // formState.citys = null
-  //   formState.areas = null
-  // }
   if (formState.citys) {
     formState.areas = null
-    console.log(formState.province)
+    formState.street = null
   }
 })
 function onSelectProject(selected: Map<number, SelectItem>) {
