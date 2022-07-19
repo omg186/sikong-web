@@ -67,7 +67,11 @@
                   编辑部门信息
                 </span>
               </div>
-              <Button type="primary" class="h-40px rounded-60">
+              <Button
+                type="primary"
+                class="h-40px rounded-60"
+                @click="isModalStaff = true"
+              >
                 <i class="s-icon add2-icon mr-5px"></i>
                 添加员工
               </Button>
@@ -271,6 +275,7 @@
         </Button>
       </div>
     </Modal>
+    <AddStaff :visible="isModalStaff" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -292,6 +297,7 @@ import { computed, reactive, ref } from 'vue'
 import Tree from './modules/tree.vue'
 import AddDept from './modules/add-dept.vue'
 import SvgIcon from '../../components/SvgIcon.vue'
+import AddStaff from './modules/add-staff.vue'
 // import Table from './modules/table.vue'
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.getUserInfo)
@@ -299,6 +305,7 @@ const isModalDept = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
+const isModalStaff = ref(false)
 const deptCode = ref('')
 // 账户禁用
 const isModalDisable = ref(false)

@@ -126,7 +126,7 @@
         ></Input> -->
       </FormItem>
     </Col>
-    <FormItem label="企业详细地址" :wrapper-col="{ span: 12 }">
+    <FormItem label="企业详细地址" name="province" :wrapper-col="{ span: 12 }">
       <Space :size="20">
         <Select
           v-model:value="formState.province"
@@ -167,7 +167,7 @@
         </Select>
       </Space>
     </FormItem>
-    <FormItem label="" :wrapper-col="{ span: 12 }">
+    <FormItem label="" name="street" :wrapper-col="{ span: 12 }">
       <Space :size="20">
         <Select
           v-model:value="formState.street"
@@ -254,9 +254,6 @@ import provinceData from 'china-division/dist/provinces.json'
 import cities from 'china-division/dist/cities.json'
 import areas from 'china-division/dist/areas.json'
 import streets from 'china-division/dist/streets.json'
-onMounted(() => {
-  console.log('Component is mounted!')
-})
 const data = reactive({
   isSelect: false,
   isDisabled: false,
@@ -287,6 +284,8 @@ const validateRules = reactive({
   businessEntity: [{ required: true, message: '请输入企业主体全称' }],
   business: [{ required: true, message: '请输入企业主体简称' }],
   projectName: [{ required: true, message: '请选择培训项目' }],
+  street: [{ required: true, message: '请选择地址' }],
+  province: [{ required: true, message: '请选择地址' }],
 })
 
 const cityData = computed(() => {
