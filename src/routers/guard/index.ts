@@ -15,6 +15,7 @@ export function setupRouterGuard(router: Router) {
   createPermissionGuard(router)
   createParamMenuGuard(router)
   createStateGuard(router)
+  createProgressGuard(router)
 }
 /**
  * Hooks for handling page state
@@ -24,7 +25,7 @@ function createPageGuard(router: Router) {
 
   router.beforeEach(async to => {
     // The page has already been loaded, it will be faster to open it again, you don’t need to do loading and other processing
-    to.meta.loaded = !!loadedPageMap.get(to.path)
+    // to.meta.loaded = !!loadedPageMap.get(to.path)
     // Notify routing changes
     setRouteChange(to)
 
@@ -62,7 +63,7 @@ function createPageLoadingGuard(router: Router) {
       // The timer simulates the loading time to prevent flashing too fast,
       setTimeout(() => {
         appStore.setPageLoading(false)
-      }, 220)
+      }, 500)
     }
     return true
   })

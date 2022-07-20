@@ -34,7 +34,8 @@ export const useAppStore = defineStore({
   state: (): AppState => ({
     darkMode: undefined,
     pageLoading: false,
-    projectConfig: { permissionMode: PermissionModeEnum.ROUTE_MAPPING },
+
+    projectConfig: Persistent.getLocal(PROJ_CFG_KEY),
     beforeMiniInfo: {},
   }),
   getters: {

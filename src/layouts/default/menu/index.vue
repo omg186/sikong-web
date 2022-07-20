@@ -19,11 +19,20 @@
   </div>
 </template>
 <script setup lang="ts">
+import { listenerRouteChange } from '@/logics/mitt/routeChange'
+import { REDIRECT_NAME } from '@/routers/constant'
 import { usePermissionStore } from '@/store/modules/permission'
-import { computed } from 'vue'
-
+import { computed, ref, unref } from 'vue'
+const currentActiveMenu = ref('')
 const permission = usePermissionStore()
 const menus = computed(() => permission.getByPathFrontMenuList)
+listenerRouteChange(route => {
+  if (route.name === REDIRECT_NAME) return
+  currentActiveMenu.value = route.meta?.currentActiveMenu as string
+
+  if (unref(currentActiveMenu)) {
+  }
+})
 </script>
 
 <style lang="less" scoped>

@@ -1,4 +1,3 @@
-import { RoleEnum } from '@/enums/role-enum'
 import { LAYOUT } from '@/routers/constant'
 import { AppRouteRecordRaw } from '@/routers/types'
 
@@ -22,10 +21,25 @@ export const Enterprise: AppRouteRecordRaw = {
     {
       path: 'org',
       name: 'EnterpriseOrg',
-      component: () => import('@/views/enterprise/org.vue'),
+      component: () => import('@/views/enterprise/index.vue'),
+      redirect: '/enterprise/org/list',
       meta: {
         title: '组织架构',
+        ignoreTransition: true,
       },
+      children: [
+        {
+          path: 'list',
+          name: 'EnterpriseOrgList',
+          component: () => import('@/views/enterprise/org.vue'),
+          meta: {
+            title: '组织架构',
+            hideTab: true,
+            currentActiveMenu: '/enterprise/org',
+            ignoreTransition: true,
+          },
+        },
+      ],
     },
   ],
 }

@@ -1,32 +1,5 @@
 <template>
   <div :class="getWrapClass">
-    <!-- <Tabs
-      type="editable-card"
-      size="large"
-      :animated="false"
-      :hideAdd="true"
-      :tabBarGutter="3"
-      :activeKey="activeKeyRef"
-      @change="handleChange"
-      @edit="handleEdit"
-    >
-      <template
-        v-for="item in getTabsState"
-        :key="item.query ? item.fullPath : item.path"
-      >
-        <TabPane :closable="!(item && item.meta && item.meta.affix)">
-          <template #tab>
-            {{ item.meta.title }}
-          </template>
-        </TabPane>
-      </template> -->
-
-    <!-- <template #rightExtra v-if="getShowRedo || getShowQuick">
-        <TabRedo v-if="getShowRedo" />
-        <TabContent isExtra :tabItem="$route" v-if="getShowQuick" />
-        <FoldButton v-if="getShowFold" />
-      </template> -->
-    <!-- </Tabs> -->
     <div class="flex items-center h-66px">
       <div class="flex divide-x-2">
         <div
@@ -115,13 +88,16 @@ export default defineComponent({
       }
 
       const { path, fullPath, meta = {} } = route
-      const { currentActiveMenu, hideTab } = meta as RouteMeta
+      const { currentActiveMenu, hideTab, ignoreTab } = meta as RouteMeta
       const isHide = !hideTab ? null : currentActiveMenu
       const p = isHide || fullPath || path
+
+      if (ignoreTab) {
+        return
+      }
       if (activeKeyRef.value !== p) {
         activeKeyRef.value = p as string
       }
-
       if (isHide) {
         const findParentRoute = router
           .getRoutes()

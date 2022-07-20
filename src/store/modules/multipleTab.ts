@@ -182,7 +182,7 @@ export const useMultipleTabStore = defineStore({
     },
 
     async closeTab(tab: RouteLocationNormalized, router: Router) {
-      debugger
+      // debugger
       const close = (route: RouteLocationNormalized) => {
         const { fullPath, meta: { affix } = {} } = route
         if (affix) {
@@ -228,7 +228,7 @@ export const useMultipleTabStore = defineStore({
 
     // Close according to key
     async closeTabByKey(key: string, router: Router) {
-      debugger
+      // debugger
       const index = this.tabList.findIndex(
         item => (item.fullPath || item.path) === key
       )

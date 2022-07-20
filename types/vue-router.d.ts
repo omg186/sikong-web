@@ -24,6 +24,7 @@ declare module 'vue-router' {
     frameSrc?: string
     // current page transition
     transitionName?: string
+    ignoreTransition?: boolean
     // Whether the route has been dynamically added
     hideBreadcrumb?: boolean
     // Hide submenu
@@ -36,6 +37,7 @@ declare module 'vue-router' {
     currentActiveMenu?: string
     // Never show in tab
     hideTab?: boolean
+    ignoreTab?: boolean
     // Never show in menu
     hideMenu?: boolean
     isLink?: boolean

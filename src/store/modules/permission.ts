@@ -222,7 +222,7 @@ export const usePermissionStore = defineStore({
 
           // Convert multi-level routing to level 2 routing
           // 将多级路由转换为 2 级路由
-          routes = flatMultiLevelRoutes(routes)
+          // routes = flatMultiLevelRoutes(routes)
           break
 
         //  If you are sure that you do not need to do background dynamic permissions, please comment the entire judgment below

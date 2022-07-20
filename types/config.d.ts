@@ -35,7 +35,7 @@ export interface MultiTabsSetting {
 }
 
 export interface HeaderSetting {
-  // bgColor: string
+  bgColor: string
   fixed: boolean
   show: boolean
   //   theme: ThemeEnum
@@ -60,16 +60,6 @@ export interface LocaleSetting {
   availableLocales: LocaleType[]
 }
 
-export interface TransitionSetting {
-  //  Whether to open the page switching animation
-  enable: boolean
-  // Route basic switching animation
-  //   basicTransition: RouterTransitionEnum
-  // Whether to open page switching loading
-  openPageLoading: boolean
-  // Whether to open the top progress bar
-  openNProgress: boolean
-}
 export interface TransitionSetting {
   //  Whether to open the page switching animation
   enable: boolean

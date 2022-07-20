@@ -8,24 +8,10 @@
     @finish="onFinish"
     @finish-failed="onFinishFailed"
   >
-    <!-- <Upload
-        v-model:file-list="formState.fileList"
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        list-type="picture-card"
-        @preview="handlePreview"
-        class="relative"
-      >
-        <div v-if="formState.fileList.length < 1">
-          <plus-outlined style="color: #dbdfdd" />
-        </div>
-        <template #removeIcon
-          ><edit-outlined style="position: absolute; top: -45px; right: -20px"
-        /></template>
-      </Upload> -->
     <row>
       <Col :span="24">
         <FormItem label="企业LOGO">
-          <div class="felx flex-col">
+          <div class="flex flex-col">
             <Upload
               v-model:file-list="fileList"
               name="avatar"
@@ -109,21 +95,7 @@
           <template #suffixIcon>
             <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
           </template>
-          <!-- <template #suffixIcon
-            ><smile-outlined class="ant-select-suffix"
-          /></template> -->
         </Select>
-        <!-- <Input
-          v-model:value="formState.projectName"
-          placeholder="请输入企业主体全称"
-          readonly
-          @click="data.isSelect = true"
-        >
-          <template #suffix>
-            <div class="h-30px w-30px aspect-square">
-              <img src="@/assets/images/down-icon.png" />
-            </div> </template
-        ></Input> -->
       </FormItem>
     </Col>
     <FormItem label="企业详细地址" name="province" :wrapper-col="{ span: 12 }">

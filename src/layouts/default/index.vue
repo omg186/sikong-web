@@ -63,9 +63,21 @@
       <div class="p-[20px] w-full box-border flex-1">
         <!-- <UseElementSize v-slot="{ width, height }"> -->
         <!-- {{ width }} {{ height }} -->
+        <!-- <Spin
+          size="large"
+          :spinning="getPageLoading && getOpenPageLoading"
+          :delay="400"
+        > -->
         <div class="ly-content bg-white w-full h-full">
-          <router-view></router-view>
+          <!-- <KeepRouterView /> -->
+          <template v-if="route.meta?.ignoreTransition">
+            <RouterView> </RouterView>
+          </template>
+          <template v-else>
+            <KeepRouterView />
+          </template>
         </div>
+        <!-- </Spin> -->
         <!-- </UseElementSize> -->
       </div>
     </div>
@@ -77,8 +89,15 @@ import Menus from './menu/index.vue'
 import TabsView from './tabs/index.vue'
 import { leftMenus } from '@/settings/menuSetting'
 import { getAssetsFile } from '@/utils'
-import { UseElementSize } from '@vueuse/components'
+import KeepRouterView from '@/components/KeepRouterView.vue'
+import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
+import { useRootSetting } from '@/hooks/setting/useRootSetting'
+import { Spin } from 'ant-design-vue'
+import { useRoute } from 'vue-router'
 const userStore = useUserStore()
+const route = useRoute()
+const { getPageLoading } = useRootSetting()
+const { getOpenPageLoading } = useTransitionSetting()
 function loginOut() {
   userStore.logout(true)
 }

@@ -64,7 +64,7 @@ const setting: ProjectConfig = {
   // Header configuration
   headerSetting: {
     // header bg color
-    // bgColor: '', // HEADER_PRESET_BG_COLOR_LIST[0],
+    bgColor: '', // HEADER_PRESET_BG_COLOR_LIST[0],
     // Fixed at the top
     fixed: true,
     // Whether to show top
@@ -152,10 +152,10 @@ const setting: ProjectConfig = {
 
     // Whether to open page switching loading
     // Only open when enable=true
-    openPageLoading: true,
+    openPageLoading: false,
 
     // Whether to open the top progress bar
-    openNProgress: false,
+    openNProgress: true,
   },
 
   // Whether to enable KeepAlive cache is best to close during development, otherwise the cache needs to be cleared every time

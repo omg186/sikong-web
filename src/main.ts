@@ -16,6 +16,7 @@ const app = createApp(App)
 // main.ts
 import { setGlobalOptions } from 'vue-request'
 import { setupRouterGuard } from './routers/guard'
+import { initAppConfigStore } from './logics/initAppConfig'
 // import '@/assets/iconfont.js'
 // ...
 setGlobalOptions({
@@ -25,6 +26,9 @@ setGlobalOptions({
 app.use(router)
 
 setupStore(app)
+
+// 初始化内部系统配置
+initAppConfigStore()
 // 路由守卫
 setupRouterGuard(router)
 registerGlobComp(app)
