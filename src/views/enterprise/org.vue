@@ -2,7 +2,9 @@
   <div class="h-full flex-1 px-20px">
     <div class="org-modules-table w-full">
       <div class="w-full flex justify-between pt-32px pb-20px items-center">
-        <div s:text="black " class="font-bold">中海店（共3/5人）</div>
+        <div s:text="black " class="font-bold">
+          {{ routeQuery?.title }}（共3/5人）
+        </div>
         <div s:text="[#A9ACA4] xs" class="flex items-center gap-30px">
           <span>上级部门：北京白河狸科技</span>
           <span>部门负责人：张艳玲</span>
@@ -42,9 +44,16 @@
               :src="userInfo.avatar"
             >
             </Avatar>
-            <span>
+            <RouterLink
+              :to="{
+                name: 'EnterpriseOrgPersonDetail',
+                params: { id: record.key },
+                query: getRouteQueryFull(),
+              }"
+              class="cursor-pointer"
+            >
               {{ record.name }}
-            </span>
+            </RouterLink>
             <span
               v-if="record.isAdmin"
               class="admin-tag w-50px h-20px ml-16px px-7px rounded-20px text-xs text-white"
@@ -238,11 +247,13 @@ import {
   SelectOption,
 } from 'ant-design-vue'
 import { useUserStore } from '@/store/modules/user'
-import { computed, reactive, ref } from 'vue'
-import Tree from './modules/tree.vue'
+import { computed, reactive, ref, watchEffect } from 'vue'
 import AddDept from './modules/add-dept.vue'
 import SvgIcon from '../../components/SvgIcon.vue'
 import AddStaff from './modules/add-staff.vue'
+import { useRoute } from 'vue-router'
+import { GetTreeParams } from '@/api/model/org-model'
+import { useRouteQueryObject } from '@/hooks/web/use-page'
 // import Table from './modules/table.vue'
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.getUserInfo)
@@ -252,6 +263,17 @@ const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
 const isModalStaff = ref(false)
 const deptCode = ref('')
+const { routeQuery, getRouteQueryFull } =
+  useRouteQueryObject<GetTreeParams>('org')
+// const routeData = computed(() => routeQuery as unknown as GetTreeParams)
+watchEffect(() => {
+  // if(route.params.id){
+  // userStore.getUserInfo(route.params.id)
+  // // }
+  // const query = route.query.org
+  // console.log(query)
+  console.log('org---routeQuery', routeQuery)
+})
 // 账户禁用
 const isModalDisable = ref(false)
 // 账户禁用click

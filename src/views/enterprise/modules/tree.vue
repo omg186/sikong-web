@@ -7,6 +7,7 @@
         v-model:selectedKeys="selectedKeys"
         defaultExpandAll
         v-if="treeData?.length"
+        :field-names="fieldNames"
       >
         <template #icon>
           <img
@@ -91,20 +92,29 @@
 </template>
 <script lang="ts" setup>
 import { OrgTreeTypeEnum } from '@/enums'
-import { Tree, Popover, Spin } from 'ant-design-vue'
+import { Tree, Popover, Spin, TreeProps } from 'ant-design-vue'
 import { useRequest } from 'vue-request'
 import { getOrgTreeApi } from '@/api/org'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, unref, watchEffect } from 'vue'
 import { GetTreeParams } from '@/api/model/org-model'
+import { useRoute, useRouter } from 'vue-router'
 const emits = defineEmits<{
   (event: 'onEdit', key: string): void
   (event: 'onAdd', key: string): void
   (event: 'onDel', key: string): void
   (event: 'onClick', value: GetTreeParams): void
 }>()
+const fieldNames: TreeProps['fieldNames'] = {
+  children: 'children',
+  title: 'title',
+  key: 'value',
+}
+const route = useRoute()
 // selectedKeys: string[]
-const selectedKeys = ref(['0-0-0'])
+const selectedKeys = ref([])
 const selectedNode = ref<GetTreeParams>()
+
+const routeData = computed(() => route.query?.org as unknown as GetTreeParams)
 const {
   data: treeData,
   run,
@@ -112,8 +122,16 @@ const {
 } = useRequest(() => {
   return getOrgTreeApi()
 })
+watchEffect(() => {
+  const r = unref(routeData)
+  console.log('r', r)
+  if (!unref(selectedKeys).length && r) {
+    selectedKeys.value = [r.value]
+  }
+})
 onMounted(() => {
   console.log('Tree mounted')
+  // selectedKeys.value = route.query?.org ? [route.query.id] : ['0-0-0']
   run()
 })
 function onActiveChange(selectedKeys: string[], { selected, selectedNodes }) {

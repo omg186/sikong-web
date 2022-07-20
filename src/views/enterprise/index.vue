@@ -53,8 +53,8 @@
         </div>
       </div>
       <div class="h-full flex-1 px-20px">
-        <RouterView> </RouterView>
-        <!-- <KeepRouterView></KeepRouterView> -->
+        <!-- <KeepRouterView :data="{}"></KeepRouterView> -->
+        <router-view></router-view>
       </div>
     </div>
     <Modal
@@ -194,7 +194,7 @@ import {
   SelectOption,
 } from 'ant-design-vue'
 import { useUserStore } from '@/store/modules/user'
-import { computed, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import Tree from './modules/tree.vue'
 import AddDept from './modules/add-dept.vue'
 import SvgIcon from '../../components/SvgIcon.vue'
@@ -208,6 +208,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.getUserInfo)
+const routerData = ref()
 const isModalDept = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
@@ -252,13 +253,15 @@ const transferRules = ref({
     },
   ],
 })
+
 // 点击 onTree
 const onTree = (value: GetTreeParams) => {
   console.log('点击树', value)
+  routerData.value = value
   router.replace({
     name: 'EnterpriseOrgList',
     query: {
-      org: encodeURIComponent(JSON.stringify(value)),
+      org: value as any,
     },
   })
 }

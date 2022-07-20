@@ -1,5 +1,5 @@
 <template>
-  <RouterView>
+  <RouterView :data="data">
     <template #default="{ Component, route }">
       <transition
         :name="
@@ -15,9 +15,9 @@
         appear
       >
         <keep-alive v-if="openCache" :include="getCaches">
-          <component :is="Component" :key="route.fullPath + key" />
+          <component :is="Component" />
         </keep-alive>
-        <component v-else :is="Component" :key="route.fullPath + key" />
+        <component v-else :is="Component" />
       </transition>
     </template>
   </RouterView>
@@ -41,7 +41,7 @@ import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'KeepRouterView',
-  props: { key: { type: String, default: 'key' } },
+  props: { key: { type: String, default: 'key' }, data: {} },
   //   components: { FrameLayout },
   setup() {
     const route = useRoute()

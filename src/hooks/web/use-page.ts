@@ -1,7 +1,7 @@
-import type { RouteLocationRaw, Router } from 'vue-router'
+import { RouteLocationRaw, Router, useRoute } from 'vue-router'
 
 import { PageEnum } from '@/enums/page-enum'
-import { unref } from 'vue'
+import { computed, unref } from 'vue'
 
 import { useRouter } from 'vue-router'
 import { REDIRECT_NAME } from '@/routers/constant'
@@ -52,4 +52,20 @@ export const useRedo = (_router?: Router) => {
     })
   }
   return redo
+}
+/**
+ * 获取路由path
+ * @param key : key of query
+ * @returns
+ */
+export function useRouteQueryObject<T>(key: string) {
+  const route = useRoute()
+  const routeData = computed(() => {
+    const query = route.query?.[key] || {}
+    return query as unknown as T
+  })
+  function getRouteQueryFull() {
+    return route.query
+  }
+  return { routeQuery: routeData, getRouteQueryFull }
 }

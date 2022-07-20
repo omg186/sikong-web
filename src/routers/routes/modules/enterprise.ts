@@ -39,6 +39,17 @@ export const Enterprise: AppRouteRecordRaw = {
             ignoreTransition: true,
           },
         },
+        {
+          path: 'person-detail/:id',
+          name: 'EnterpriseOrgPersonDetail',
+          component: () => import('@/views/enterprise/person-detail.vue'),
+          meta: {
+            title: '组织架构',
+            hideTab: true,
+            currentActiveMenu: '/enterprise/org',
+            ignoreTransition: true,
+          },
+        },
       ],
     },
   ],
