@@ -8,6 +8,20 @@
     @finish="onFinish"
     @finish-failed="onFinishFailed"
   >
+    <!-- <Upload
+        v-model:file-list="formState.fileList"
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        list-type="picture-card"
+        @preview="handlePreview"
+        class="relative"
+      >
+        <div v-if="formState.fileList.length < 1">
+          <plus-outlined style="color: #dbdfdd" />
+        </div>
+        <template #removeIcon
+          ><edit-outlined style="position: absolute; top: -45px; right: -20px"
+        /></template>
+      </Upload> -->
     <row>
       <Col :span="24">
         <FormItem label="企业LOGO">
@@ -98,69 +112,106 @@
         </Select>
       </FormItem>
     </Col>
-    <FormItem label="企业详细地址" name="province" :wrapper-col="{ span: 12 }">
-      <Space :size="20">
-        <Select
-          v-model:value="formState.province"
-          style="width: 184px"
-          :options="
-            provinceData.map(pro => ({ value: pro.code, label: pro.name }))
-          "
-          class="select-icon"
-          placeholder="请选择省份"
+
+    <Row :gutter="30">
+      <Col :span="4">
+        <FormItem label="企业详细地址" name="province">
+          <Select
+            v-model:value="formState.province"
+            style="width: 184px"
+            :options="
+              provinceData.map(pro => ({ value: pro.code, label: pro.name }))
+            "
+            class="select-icon"
+            placeholder="请选择省份"
+          >
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
+          </Select>
+        </FormItem>
+      </Col>
+
+      <Col :span="4">
+        <FormItem
+          label=""
+          name="citys"
+          :label-col="{ span: 10 }"
+          :wrapper-col="{ span: 10 }"
         >
-          <template #suffixIcon>
-            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
-          </template>
-        </Select>
-        <Select
-          v-model:value="formState.citys"
-          style="width: 184px"
-          :options="cityData.map(pro => ({ value: pro.code, label: pro.name }))"
-          class="select-icon w-[184px]"
-          placeholder="请选择市"
-        >
-          <template #suffixIcon>
-            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
-          </template>
-        </Select>
-        <Select
-          v-model:value="formState.areas"
-          style="width: 184px"
-          :options="
-            areasData.map(pro => ({ value: pro.code, label: pro.name }))
-          "
-          class="select-icon w-[184px]"
-          placeholder="请选择区"
-        >
-          <template #suffixIcon>
-            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
-          </template>
-        </Select>
-      </Space>
-    </FormItem>
-    <FormItem label="" name="street" :wrapper-col="{ span: 12 }">
-      <Space :size="20">
-        <Select
-          v-model:value="formState.street"
-          style="width: 184px"
-          :options="
-            streetsData.map(pro => ({ value: pro.code, label: pro.name }))
-          "
-          class="select-icon"
-          placeholder="请选择街道"
-        >
-          <template #suffixIcon>
-            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
-          </template>
-        </Select>
-        <Input
-          v-model:value="formState.address"
-          placeholder="请输入详细地址，门牌号"
-          style="width: 387px"
-        ></Input>
-      </Space>
-    </FormItem>
+          <Select
+            v-model:value="formState.citys"
+            style="width: 184px"
+            :options="
+              cityData.map(pro => ({ value: pro.code, label: pro.name }))
+            "
+            class="select-icon w-[184px] mt-[30px]"
+            placeholder="请选择市"
+          >
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
+          </Select> </FormItem
+      ></Col>
+      <Col :span="4">
+        <FormItem name="areas">
+          <Select
+            v-model:value="formState.areas"
+            style="width: 184px"
+            :options="
+              areasData.map(pro => ({ value: pro.code, label: pro.name }))
+            "
+            class="select-icon w-[184px] mt-[30px]"
+            placeholder="请选择区"
+          >
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
+          </Select>
+        </FormItem>
+      </Col>
+    </Row>
+
+    <Row :gutter="30">
+      <Col :span="4">
+        <FormItem label="" name="street">
+          <Select
+            v-model:value="formState.street"
+            style="width: 184px"
+            :options="
+              streetsData.map(pro => ({ value: pro.code, label: pro.name }))
+            "
+            class="select-icon"
+            placeholder="请选择街道"
+          >
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
+          </Select>
+        </FormItem>
+      </Col>
+      <Col :span="8">
+        <FormItem name="address">
+          <Input
+            v-model:value="formState.address"
+            placeholder="请输入详细地址，门牌号"
+            style="width: 387px"
+          ></Input>
+        </FormItem>
+      </Col>
+    </Row>
     <FormItem label="企业电话" :wrapper-col="{ span: 12 }">
       <Input
         v-model:value="formState.cellPhone"
@@ -199,10 +250,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, reactive, ref, watchEffect, onMounted, watch } from 'vue'
-import type { UnwrapRef } from 'vue'
 import { toArray } from 'lodash-es'
-import SelectProject from '../login/modules/select-project.vue'
-import { SmileOutlined } from '@ant-design/icons-vue'
 import {
   Form,
   FormItem,
@@ -221,7 +269,7 @@ import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue'
 import { getCompanyProjectList } from '@/api/company'
 import { useRequest } from 'vue-request'
 import { SelectItem, useDownInterval } from '../login/useLogin'
-import SvgIcon from '../../components/SvgIcon.vue'
+import SvgIcon from '@/components/SvgIcon.vue'
 import provinceData from 'china-division/dist/provinces.json'
 import cities from 'china-division/dist/cities.json'
 import areas from 'china-division/dist/areas.json'
@@ -232,8 +280,6 @@ const data = reactive({
 })
 const imageUrl = ref<string>('')
 const fileList = ref([])
-// console.log(provinces)
-// const infoForm = Form.useForm
 const formState = reactive({
   account: '北京腾讯少儿体能馆',
   business: '',
@@ -256,8 +302,11 @@ const validateRules = reactive({
   businessEntity: [{ required: true, message: '请输入企业主体全称' }],
   business: [{ required: true, message: '请输入企业主体简称' }],
   projectName: [{ required: true, message: '请选择培训项目' }],
-  street: [{ required: true, message: '请选择地址' }],
-  province: [{ required: true, message: '请选择地址' }],
+  street: [{ required: true, message: '请选择街道' }],
+  province: [{ required: true, message: '请选择省' }],
+  citys: [{ required: true, message: '请选择市' }],
+  address: [{ required: true, message: '请输入地址' }],
+  areas: [{ required: true, message: '请选择区' }],
 })
 
 const cityData = computed(() => {

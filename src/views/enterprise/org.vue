@@ -24,7 +24,7 @@
           <Button
             type="primary"
             class="h-40px rounded-60"
-            @click="isModalStaff = true"
+            @click="onAddStaff({})"
           >
             <i class="s-icon add2-icon mr-5px"></i>
             添加员工
@@ -228,7 +228,7 @@
       </Button>
     </div>
   </Modal>
-  <AddStaff :visible="isModalStaff" />
+  <AddStaff ref="addStaff" :footer="null" />
 </template>
 <script lang="ts" setup>
 import {
@@ -246,6 +246,7 @@ import {
 } from 'ant-design-vue'
 import { useUserStore } from '@/store/modules/user'
 import { computed, reactive, ref, watchEffect } from 'vue'
+import { getCurrentInstance } from '@vue/runtime-core'
 import AddDept from './modules/add-dept.vue'
 import SvgIcon from '../../components/SvgIcon.vue'
 import AddStaff from './modules/add-staff.vue'
@@ -261,6 +262,7 @@ const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
 const isModalStaff = ref(false)
 const deptCode = ref('')
+const { ctx } = getCurrentInstance() as any
 const { routeQuery, getRouteQueryFull } =
   useRouteQueryObject<GetTreeParams>('org')
 // const routeData = computed(() => routeQuery as unknown as GetTreeParams)
@@ -433,6 +435,9 @@ function onDeptDel() {
 function onDeptOk(value, isContinue) {
   console.log(value)
   isModalDept.value = isContinue
+}
+function onAddStaff(record) {
+  ctx.$refs.addStaff.show(record)
 }
 </script>
 
