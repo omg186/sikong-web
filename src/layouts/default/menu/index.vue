@@ -9,7 +9,7 @@
         >
           <i
             class="block w-10px h-10px rounded-full mr-10px"
-            s:border="[2px] solid [#A5A8B4]"
+            s:border="2px solid [#A5A8B4]"
           >
           </i>
           {{ menu.name }}
