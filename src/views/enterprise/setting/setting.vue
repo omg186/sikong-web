@@ -8,7 +8,7 @@
         <div class="mt-20px h-60px flex items-center justify-between">
           <Input
             class="w-200px box-border h-46px rounded-60 fill-gray-400 stroke-[#A5A8B4] hover:fill-primary active:fill-primary focus:fill-primary focus-within:fill-primary"
-            placeholder="搜索员工或部门"
+            placeholder="校区、场地、教室"
           >
             <template #prefix>
               <SvgIcon class="w-[28px] h-28px" name="search"></SvgIcon>
@@ -18,8 +18,8 @@
             <template #title> </template>
             <template #content>
               <div class="cursor-pointer">
-                <p class="text-gray-300 cursor-not-allowed">添加员工</p>
-                <p @click="isModalDept = true">添加部门</p>
+                <p class="text-gray-300 cursor-not-allowed">添加校区</p>
+                <p @click="isModalRoot = true">添加教室/场地</p>
               </div>
             </template>
             <div
@@ -46,15 +46,15 @@
       </div>
     </div>
     <Modal
-      v-model:visible="isModalDept"
-      :title="deptModalTitle"
-      width="459px"
+      v-model:visible="isModalRoot"
+      :title="roomModalTitle"
+      width="800px"
       :footer="null"
     >
-      <AddDept
+      <AddRoom
         :is-edit="isDeptEdit"
         :code="deptCode"
-        @on-cancel="isModalDept = false"
+        @on-cancel="isModalRoot = false"
         @on-ok="onDeptOk"
       />
     </Modal>
@@ -184,10 +184,9 @@ import {
 import { useUserStore } from '@/store/modules/user'
 import { computed, onMounted, reactive, ref } from 'vue'
 import Tree from './modules/tree.vue'
-import AddDept from './modules/add-dept.vue'
-import SvgIcon from '../../components/SvgIcon.vue'
-import AddStaff from './modules/add-staff.vue'
-import KeepRouterView from '@/components/KeepRouterView.vue'
+import AddRoom from './modules/add-room.vue'
+import SvgIcon from '@/components/SvgIcon.vue'
+// import AddStaff from './modules/add-staff.vue'
 import { GetTreeParams } from '@/api/model/org-model'
 // import Table from './modules/table.vue'
 // useRouter
@@ -196,7 +195,7 @@ import Header from '@/components/Header/Header.vue'
 
 const router = useRouter()
 const routerData = ref()
-const isModalDept = ref(false)
+const isModalRoot = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
@@ -226,7 +225,9 @@ const onLeaveSubmit = () => {
   console.log('离职账户')
   isModalLeave.value = false
 }
-const deptModalTitle = ref<'修改部门' | '添加部门'>('添加部门')
+const roomModalTitle = ref<'修改新教室/场地' | '添加新教室/场地'>(
+  '添加新教室/场地'
+)
 // 调岗form
 const transferForm = reactive({
   deptCode: '',
@@ -246,7 +247,7 @@ const onTree = (value: GetTreeParams) => {
   console.log('点击树', value)
   routerData.value = value
   router.replace({
-    name: 'EnterpriseOrgList',
+    name: 'EnterpriseSettingList',
     query: {
       org: value as any,
     },
@@ -268,22 +269,22 @@ const onTransfer = (id: number) => {
 function onDeptAdd(value: string) {
   console.log(value)
   isDeptEdit.value = false
-  isModalDept.value = true
-  deptModalTitle.value = '添加部门'
+  isModalRoot.value = true
+  roomModalTitle.value = '添加新教室/场地'
 }
 function onDeptEdit(value: string) {
   console.log(value)
   deptCode.value = value
   isDeptEdit.value = true
-  isModalDept.value = true
-  deptModalTitle.value = '修改部门'
+  isModalRoot.value = true
+  roomModalTitle.value = '修改新教室/场地'
 }
 function onDeptDel() {
   isModalDeptDel.value = true
 }
 function onDeptOk(value, isContinue) {
   console.log(value)
-  isModalDept.value = isContinue
+  isModalRoot.value = isContinue
 }
 </script>
 

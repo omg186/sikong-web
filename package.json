@@ -29,7 +29,7 @@
     "async-validator": "^4.2.5",
     "china-division": "^2.5.0",
     "crypto-js": "^4.1.1",
-    "dayjs": "^1.11.3",
+    "dayjs": "^1.11.4",
     "esno": "^0.16.3",
     "fs-extra": "^10.1.0",
     "less": "^4.1.3",

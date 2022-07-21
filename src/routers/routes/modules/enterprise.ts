@@ -52,6 +52,28 @@ export const Enterprise: AppRouteRecordRaw = {
         },
       ],
     },
+    {
+      path: 'setting',
+      name: 'EnterpriseSetting',
+      component: () => import('@/views/enterprise/setting/setting.vue'),
+      redirect: '/enterprise/setting/list',
+      meta: {
+        title: '场馆设置',
+        ignoreTransition: true,
+      },
+      children: [
+        {
+          path: 'list',
+          name: 'EnterpriseSettingList',
+          component: () => import('@/views/enterprise/setting/list.vue'),
+          meta: {
+            title: '场馆设置',
+            hideTab: true,
+            currentActiveMenu: '/enterprise/setting',
+          },
+        },
+      ],
+    },
   ],
 }
 

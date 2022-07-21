@@ -7,9 +7,9 @@ enum Api {
 /**
  * @description: getOrgTree
  */
-export function getOrgTreeApi() {
+export function getOrgTreeApi(keyword?: string) {
   return defHttp.get<GetTreeParams[]>(
-    { url: Api.getTree },
+    { url: Api.getTree, params: { keyword } },
     { errorMessageMode: 'none' }
   )
 }

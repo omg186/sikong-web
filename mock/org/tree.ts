@@ -6,8 +6,26 @@ const demoTreeList = keyword => {
   const result = {
     list: [] as Recordable[],
   }
-  //   for (let index = 0; index < 5; index++) {
   const children: Recordable[] = []
+  if (keyword) {
+    for (let i = 0; i < 10; i++) {
+      children.push({
+        title: `@first`,
+        type: 'BM',
+        value: `${1}-${i + 1}`,
+        lev: `${2}`,
+      })
+    }
+    result.list.push({
+      title: `北京白狐狸科技`,
+      type: 'GS',
+      value: `${1}`,
+      lev: `${1}`,
+      children,
+    })
+    return result.list
+  }
+  //   for (let index = 0; index < 5; index++) {
   children.push({
     title: `技术部`,
     type: 'BM',

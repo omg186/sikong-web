@@ -63,6 +63,11 @@ export default defineConfig({
     //   },
     // },
     'flex-center': 'flex justify-center',
+    'flex-reverse-end': {
+      '.ant-form-item-required': {
+        '@apply': 'flex flex-row-reverse justify-end',
+      },
+    },
   },
 })
 
