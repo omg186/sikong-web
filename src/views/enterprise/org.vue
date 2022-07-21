@@ -1,6 +1,6 @@
 <template>
   <div class="h-full flex-1 px-20px">
-    <div class="org-modules-table w-full">
+    <div class="org-modules-table w-full" v-if="routeQuery.title">
       <div class="w-full flex justify-between pt-32px pb-20px items-center">
         <div s:text="black " class="font-bold">
           {{ routeQuery?.title }}（共3/5人）
@@ -38,12 +38,10 @@
       >
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'name'">
-            <Avatar
-              style="background-color: #87d068"
-              class="w-30px h-30px mr-14px"
-              :src="userInfo.avatar"
-            >
-            </Avatar>
+            <img
+              src="@/assets/images/avatar-girl.png"
+              class="inline-block w-30px h-30px mr-14px"
+            />
             <RouterLink
               :to="{
                 name: 'EnterpriseOrgPersonDetail',
