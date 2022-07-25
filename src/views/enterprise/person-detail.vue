@@ -111,6 +111,7 @@
         class="rounded-40px h-40px w-90px bg-primary text-white"
         s:border="1px solid [#C7F7E3]"
         type="primary"
+        @click="onAddStaff({})"
       >
         编辑
       </Button>
@@ -185,6 +186,8 @@
         </Button>
       </div>
     </Modal>
+    <!-- 修改员工 -->
+    <AddStaff ref="addStaff" :footer="null" />
   </div>
 </template>
 
@@ -195,9 +198,11 @@ import SvgIcon from '../../components/SvgIcon.vue'
 // antd-vue
 import { Checkbox, Modal, Form, FormItem, Input } from 'ant-design-vue'
 
+import AddStaff from './modules/add-staff.vue'
 //checkPhoneNumber
 import { checkPhoneNumber } from '@/utils/antd/form'
-import { ref } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
+const { ctx } = getCurrentInstance() as any
 const { routeQuery } = useRouteQueryObject('org')
 const router = useRouter()
 const isModalReset = ref(false)
@@ -221,5 +226,8 @@ const onModifyAccount = values => {
 // 返回页面
 const back = () => {
   router.back()
+}
+function onAddStaff(record) {
+  ctx.$refs.addStaff.show(record)
 }
 </script>
