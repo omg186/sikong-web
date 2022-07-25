@@ -49,6 +49,7 @@ export function pagination<T = any>(
   array: T[]
 ): T[] {
   const offset = (pageNo - 1) * Number(pageSize)
+  console.log('array', array.length, offset)
   const ret =
     offset + Number(pageSize) >= array.length
       ? array.slice(offset, array.length)

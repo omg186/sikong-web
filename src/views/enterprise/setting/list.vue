@@ -33,30 +33,35 @@
       </div>
       <Table
         class="sikong-table"
-        :dataSource="data.dataSource"
+        :dataSource="listData"
         :columns="columns"
+        :pagination="pagination"
+        :loading="loading"
+        @change="handleTableChange"
       >
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'name'">
-            <img
-              src="@/assets/images/avatar-girl.png"
-              class="inline-block w-30px h-30px mr-14px"
-            />
-            <RouterLink
-              :to="{
-                name: 'EnterpriseOrgPersonDetail',
-                params: { id: record.key },
-                query: getRouteQueryFull(),
-              }"
-              class="cursor-pointer"
-            >
-              {{ record.name }}
-            </RouterLink>
-            <span
-              v-if="record.isAdmin"
-              class="admin-tag w-50px h-20px ml-16px px-7px rounded-20px text-xs text-white"
-              >管理员
-            </span>
+            <div class="text-center">
+              <img
+                src="@/assets/images/avatar-girl.png"
+                class="inline-block w-30px h-30px mr-14px"
+              />
+              <RouterLink
+                :to="{
+                  name: 'EnterpriseOrgPersonDetail',
+                  params: { id: record.key },
+                  query: getRouteQueryFull(),
+                }"
+                class="cursor-pointer"
+              >
+                {{ record.name }}
+              </RouterLink>
+              <span
+                v-if="record.isAdmin"
+                class="admin-tag w-50px h-20px ml-16px px-7px rounded-20px text-xs text-white"
+                >管理员
+              </span>
+            </div>
           </template>
           <template v-if="column.key === 'status'">
             <div class="flex items-center justify-center">
@@ -232,9 +237,6 @@
 </template>
 <script lang="ts" setup>
 import {
-  Avatar,
-  Input,
-  Popover,
   Modal,
   Button,
   Table,
@@ -243,34 +245,93 @@ import {
   FormItem,
   Select,
   SelectOption,
+  TableProps,
 } from 'ant-design-vue'
 import { useUserStore } from '@/store/modules/user'
-import { computed, reactive, ref, watchEffect } from 'vue'
-// import AddDept from './modules/add-dept.vue'
+import {
+  computed,
+  onMounted,
+  reactive,
+  ref,
+  unref,
+  watch,
+  watchEffect,
+} from 'vue'
 import SvgIcon from '@/components/SvgIcon.vue'
-// import AddStaff from './modules/add-staff.vue'
-import { useRoute } from 'vue-router'
 import { GetTreeParams } from '@/api/model/org-model'
 import { useRouteQueryObject } from '@/hooks/web/use-page'
+import { usePagination } from 'vue-request'
+import { getDemoListApi } from '@/api/select'
 // import Table from './modules/table.vue'
 const userStore = useUserStore()
-const userInfo = computed(() => userStore.getUserInfo)
 const isModalDept = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
 const isModalStaff = ref(false)
 const deptCode = ref('')
+const {
+  data: dataSource,
+  run,
+  loading,
+  current,
+  pageSize,
+} = usePagination(
+  params => {
+    return getDemoListApi({ ...params })
+  },
+  {
+    defaultParams: [
+      {
+        page: 1,
+        pageSize: 5,
+      },
+    ],
+    pagination: {
+      currentKey: 'page',
+      pageSizeKey: 'pageSize',
+    },
+  }
+)
+const listData = computed(() => dataSource.value?.items || [])
+const pagination = computed(() => ({
+  total: dataSource.value?.total || 0,
+  current: current.value,
+  pageSize: pageSize.value,
+}))
+const handleTableChange: TableProps['onChange'] = (
+  pag: { pageSize: number; current: number }
+  // 其它参数
+  // filters: any,
+  // sorter: any
+) => {
+  run({
+    pageSize: pag.pageSize!,
+    page: pag?.current,
+    // 其他参数
+    // sortField: sorter.field,
+    // sortOrder: sorter.order,
+    // ...filters,
+  })
+}
 const { routeQuery, getRouteQueryFull } =
   useRouteQueryObject<GetTreeParams>('org')
-// const routeData = computed(() => routeQuery as unknown as GetTreeParams)
+watch(
+  () => routeQuery.value,
+  () => {
+    run()
+  }
+)
 watchEffect(() => {
-  // if(route.params.id){
-  // userStore.getUserInfo(route.params.id)
-  // // }
-  // const query = route.query.org
-  // console.log(query)
-  console.log('org---routeQuery', routeQuery)
+  // const params = unref(routeQuery)
+  // if (routeQuery.value.title) {
+  //   run()
+  // }
+  // console.log('org---routeQuery', routeQuery)
+})
+onMounted(() => {
+  const params = unref(routeQuery)
+  if (params.title) run()
 })
 // 账户禁用
 const isModalDisable = ref(false)
@@ -376,21 +437,21 @@ const columns = ref<TableColumnsType>([
   },
   {
     title: '职务',
-    dataIndex: 'job',
+    dataIndex: 'name1',
     key: 'job',
     align: 'center',
     width: 150,
   },
   {
     title: '部门',
-    dataIndex: 'dept',
+    dataIndex: 'name1',
     key: 'dept',
     align: 'center',
     width: 200,
   },
   {
     title: '账号',
-    dataIndex: 'account',
+    dataIndex: 'name3',
     key: 'account',
     align: 'center',
     width: 200,

@@ -5,13 +5,14 @@
 
 import { ConfigProvider } from 'ant-design-vue'
 import { useTitle } from './hooks/web/use-title'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
 useTitle()
 </script>
 
 <template>
   <!-- <img alt="Vue logo" src="@/assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite1" /> -->
-  <ConfigProvider :autoInsertSpaceInButton="false">
+  <ConfigProvider :autoInsertSpaceInButton="false" :locale="zhCN">
     <RouterView></RouterView>
   </ConfigProvider>
 </template>

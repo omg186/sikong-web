@@ -49,9 +49,9 @@
               <template #title> </template>
               <template #content>
                 <div class="cursor-pointer">
-                  <p @click="emits('onEdit', dataRef.value)">编辑部门</p>
-                  <p @click="emits('onAdd', dataRef.value)">添加子部门</p>
-                  <p @click="emits('onDel', dataRef.value)">删除部门</p>
+                  <p @click="emits('onEdit', dataRef.value)">编辑校区</p>
+                  <p @click="emits('onAdd', dataRef.value)">添加教室/场地</p>
+                  <p @click="emits('onDel', dataRef.value)">删除校区</p>
                 </div>
               </template>
               <div class="absolute right-10px" @click.stop="">
@@ -88,16 +88,33 @@
         </template>
       </Tree>
     </div>
+    <Modal
+      v-model:visible="isModalRoot"
+      title="添加教室/场地"
+      width="800px"
+      :footer="null"
+    >
+      <AddRoom
+        :is-edit="false"
+        :code="rootCode"
+        @on-cancel="isModalRoot = false"
+        @on-ok="onRootOk"
+      />
+    </Modal>
   </Spin>
 </template>
 <script lang="ts" setup>
 import { OrgTreeTypeEnum } from '@/enums'
-import { Tree, Popover, Spin, TreeProps } from 'ant-design-vue'
+import { Tree, Popover, Spin, TreeProps, Modal } from 'ant-design-vue'
 import { useRequest } from 'vue-request'
 import { getOrgTreeApi } from '@/api/org'
 import { computed, onMounted, ref, unref, watchEffect } from 'vue'
 import { GetTreeParams } from '@/api/model/org-model'
 import { useRoute, useRouter } from 'vue-router'
+
+import AddRoom from './add-room.vue'
+const isModalRoot = ref(false)
+const rootCode = ref('')
 const emits = defineEmits<{
   (event: 'onEdit', key: string): void
   (event: 'onAdd', key: string): void
@@ -138,6 +155,10 @@ function onActiveChange(selectedKeys: string[], { selected, selectedNodes }) {
   console.log(selectedKeys)
   selectedNode.value = selectedNodes[0]
   emits('onClick', selectedNodes[0])
+}
+// onRootOk
+function onRootOk() {
+  console.log('onRootOk')
 }
 </script>
 

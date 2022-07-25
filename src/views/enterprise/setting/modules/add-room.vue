@@ -49,48 +49,151 @@
           class="flex-reverse-end"
         >
           <Input
+            name="roomName"
             placeholder="请输入场地名称"
             v-model:value="formData.roomName"
             class="rounded-8px"
-          ></Input> </FormItem
-      ></Col>
+          ></Input>
+        </FormItem>
+      </Col>
       <!-- 所属校区 -->
 
       <Col :span="12">
         <FormItem
-          v-bind="validateInfos.schoolName"
+          v-bind="validateInfos.schoolId"
           label="所属校区"
           class="flex-reverse-end"
         >
           <Select
             v-model:value="formData.schoolId"
             placeholder="请选择所属校区"
+            name="schoolId"
             showSearch
           >
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
             <SelectOption v-for="item in schoolList" :value="item.id">
               {{ item.name }}
             </SelectOption>
           </Select>
         </FormItem>
       </Col>
-      <FormItem v-bind="validateInfos.deptCode">
-        <Select placeholder="请选择所属部门" class="rounded-8px">
-          <SelectOption value="技术部">技术部</SelectOption>
-          <SelectOption value="产品部">产品部</SelectOption>
-        </Select>
-      </FormItem>
+      <!-- 室内外场地 -->
+      <Col :span="12">
+        <FormItem
+          v-bind="validateInfos.roomType"
+          label="室内外场地"
+          class="flex-reverse-end"
+        >
+          <RadioGroup
+            v-model:value="formData.roomType"
+            placeholder="请选择室内外场地"
+            name="roomType"
+            :options="roomTypeOptions"
+            class="check-style"
+          >
+          </RadioGroup>
+        </FormItem>
+      </Col>
+      <!-- 场地面积 -->
+      <Col :span="12">
+        <FormItem
+          v-bind="validateInfos.area"
+          label="场地面积(㎡)"
+          class="flex-reverse-end"
+        >
+          <Input
+            name="area"
+            placeholder="请输入场地面积(㎡)"
+            v-model:value="formData.area"
+            class="rounded-8px"
+          ></Input>
+        </FormItem>
+      </Col>
+      <!-- 有无立柱 -->
+      <Col :span="12">
+        <FormItem
+          v-bind="validateInfos.isPillar"
+          label="有无立柱"
+          class="flex-reverse-end"
+        >
+          <Select
+            v-model:value="formData.isPillar"
+            placeholder="请选择有无立柱"
+            name="isPillar"
+            showSearch
+          >
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
+            <SelectOption v-for="item in pillarList" :value="item.id">
+              {{ item.name }}
+            </SelectOption>
+          </Select>
+        </FormItem>
+      </Col>
+      <!-- 场地层高 -->
+      <Col :span="12">
+        <FormItem
+          v-bind="validateInfos.floorHeight"
+          label="场地层高(m)"
+          class="flex-reverse-end"
+        >
+          <Input
+            name="floorHeight"
+            placeholder="请输入场地层高(m)"
+            v-model:value="formData.floorHeight"
+            class="rounded-8px"
+          ></Input>
+        </FormItem>
+      </Col>
+      <!-- 场地备注 -->
+      <Col :span="24">
+        <FormItem
+          v-bind="validateInfos.remark"
+          label="场地备注"
+          class="flex-reverse-end"
+        >
+          <Textarea
+            name="remark"
+            placeholder="请输入场地备注"
+            v-model:value="formData.remark"
+            class="rounded-8px"
+          ></Textarea>
+        </FormItem>
+      </Col>
+      <!-- 教师/场地经营日历 -->
+      <Col :span="24">
+        <FormItem
+          v-bind="validateInfos.isCalendar"
+          label="教师/场地经营日历"
+          class="flex-reverse-end"
+        >
+          <p class="text-[#F3AB51] pb-10px pt-10px">
+            如果教室/场地经营时间与校区一致，请选择"使用校区经营日历",若教室/场地经营时间与校区不一致，
+            请选择"设置独立经营日历"
+          </p>
+          <RadioGroup
+            v-model:value="formData.isCalendar"
+            placeholder="教室/场地经营日历"
+            name="isCalendar"
+            :options="calendarTypeOptions"
+            class="check-style"
+          >
+          </RadioGroup>
+        </FormItem>
+      </Col>
     </Row>
     <div class="flex gap-10px pt-30px">
       <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
-      <Button
-        v-if="!props.isEdit"
-        class="rounded-40px h-40px w-137px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit(true)"
-      >
-        保持并继续添加
-      </Button>
+
       <Button
         class="rounded-40px h-40px w-90px bg-primary text-white"
         s:border="1px solid [#C7F7E3]"
@@ -110,6 +213,8 @@ import {
   Input,
   Select,
   SelectOption,
+  RadioGroup,
+  Textarea,
   Button,
   Upload,
   UploadProps,
@@ -124,6 +229,14 @@ import { ref, watchEffect } from 'vue'
 import { RoomDto } from './interface'
 import { useRequest } from 'vue-request'
 import { getOptionsListApi } from '@/api/select'
+const roomTypeOptions = [
+  { label: '室内场地', value: 1 },
+  { label: '室外场地', value: 2 },
+]
+const calendarTypeOptions = [
+  { label: '使用校区经营日历', value: 1 },
+  { label: '使用独立经营日历', value: 2 },
+]
 const props = defineProps({
   isEdit: {
     type: Boolean,
@@ -139,17 +252,42 @@ const emits = defineEmits<{
   (event: 'onCancel'): void
   (event: 'onOk', value: RoomDto, isContinue: boolean): void
 }>()
-const formData = ref<RoomDto>({})
+const formData = ref<RoomDto>({
+  roomName: '',
+  schoolId: undefined,
+  roomType: undefined,
+  area: undefined,
+  isPillar: undefined,
+  floorHeight: undefined,
+  isCalendar: undefined,
+})
 const loadingFile = ref<boolean>(false)
 const imageUrl = ref<string>('')
 const rules = ref({
   roomName: [{ required: true, message: '请输入教室/场地名称' }],
-  deptCode: [{ required: true, message: '请选择所属部门' }],
+  schoolId: [{ required: true, message: '请选择所属校区' }],
+  roomType: [{ required: true, message: '请选择室内外场地' }],
+  // 场地面积
+  area: [{ required: true, message: '请输入场地面积(㎡)' }],
+  // 有无立柱
+  isPillar: [{ required: true, message: '请选择有无立柱' }],
+  // 场地层高
+  floorHeight: [{ required: true, message: '请输入场地层高(m)' }],
+  // 教师/场地经营日历
+  isCalendar: [{ required: true, message: '请选择教师/场地经营日历' }],
 })
 const { data: schoolList } = useRequest(
   () => {
     return getOptionsListApi({
       keyword: '学校',
+    })
+  },
+  { manual: false }
+)
+const { data: pillarList } = useRequest(
+  () => {
+    return getOptionsListApi({
+      keyword: '立柱',
     })
   },
   { manual: false }
@@ -171,9 +309,11 @@ function onOk(isContinue: boolean) {
   resetFields()
 }
 function onSubmit(isContinue: boolean) {
+  console.log('onSubmit')
   validate()
     .then(() => {
-      onOk(isContinue)
+      console.log('formData.value', formData.value)
+      // onOk(isContinue)
     })
     .catch(err => {
       console.log(err)

@@ -14,7 +14,7 @@
               <SvgIcon class="w-[28px] h-28px" name="search"></SvgIcon>
             </template>
           </Input>
-          <Popover placement="bottom" trigger="click">
+          <Popover placement="bottom" trigger="hover">
             <template #title> </template>
             <template #content>
               <div class="cursor-pointer">

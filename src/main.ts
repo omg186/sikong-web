@@ -17,6 +17,10 @@ const app = createApp(App)
 import { setGlobalOptions } from 'vue-request'
 import { setupRouterGuard } from './routers/guard'
 import { initAppConfigStore } from './logics/initAppConfig'
+
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import dayjs from 'dayjs'
+dayjs.locale(zhCN.locale)
 // import '@/assets/iconfont.js'
 // ...
 setGlobalOptions({
