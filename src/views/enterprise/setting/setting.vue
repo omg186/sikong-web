@@ -163,7 +163,6 @@
         </Button>
       </div>
     </Modal>
-    <AddStaff :visible="isModalStaff" />
   </div>
 </template>
 <script lang="ts" setup>

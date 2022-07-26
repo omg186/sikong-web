@@ -368,15 +368,7 @@ function onDeptEdit(value: string) {
   console.log(value)
   deptCode.value = value
   isDeptEdit.value = true
-  isModalDept.value = true
   deptModalTitle.value = '修改部门'
-}
-function onDeptDel() {
-  isModalDeptDel.value = true
-}
-function onDeptOk(value, isContinue) {
-  console.log(value)
-  isModalDept.value = isContinue
 }
 const onCarouselChange = (current: number) => {
   // console.log(current)
