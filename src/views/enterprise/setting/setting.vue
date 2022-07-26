@@ -47,15 +47,14 @@
     </div>
     <Modal
       v-model:visible="isModalRoot"
-      :title="roomModalTitle"
+      title="添加教师/场地"
       width="800px"
       :footer="null"
     >
       <AddRoom
-        :is-edit="isDeptEdit"
-        :code="deptCode"
+        :is-edit="false"
         @on-cancel="isModalRoot = false"
-        @on-ok="onDeptOk"
+        @on-ok="onRootOk"
       />
     </Modal>
     <Modal title="删除部门" v-model:visible="isModalDeptDel" :footer="null">
@@ -282,7 +281,7 @@ function onDeptEdit(value: string) {
 function onDeptDel() {
   isModalDeptDel.value = true
 }
-function onDeptOk(value, isContinue) {
+function onRootOk(value, isContinue) {
   console.log(value)
   isModalRoot.value = isContinue
 }

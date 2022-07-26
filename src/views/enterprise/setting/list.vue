@@ -1,14 +1,12 @@
 <template>
   <div class="h-full flex-1 px-20px">
-    <div class="org-modules-table w-full" v-if="routeQuery.title">
+    <div class="enterprise-setting-table w-full" v-if="routeQuery.title">
       <div class="w-full flex justify-between pt-32px pb-20px items-center">
         <div s:text="black " class="font-bold">
-          {{ routeQuery?.title }}（共3/5人）
+          {{ routeQuery?.title }}（4教师/场地）
         </div>
         <div s:text="[#A9ACA4] xs" class="flex items-center gap-30px">
-          <span>上级部门：北京白河狸科技</span>
-          <span>部门负责人：张艳玲</span>
-          <span>部门创建时间：2022年7月14日 17:32</span>
+          <span>创建时间：2022年7月14日 17:32</span>
           <div
             class="flex fill-primary cursor-pointer text-primary"
             s:hover="text-[#14DC87] underline-[#14DC87]"
@@ -18,19 +16,87 @@
             <span
               class="underline-current underline underline-2px underline-offset-2"
             >
-              编辑部门信息
+              编辑校区信息
             </span>
           </div>
           <Button
             type="primary"
             class="h-40px rounded-60"
-            @click="isModalStaff = true"
+            @click="isModalRoot = true"
           >
             <i class="s-icon add2-icon mr-5px"></i>
-            添加员工
+            添加场地
           </Button>
         </div>
       </div>
+      <div>
+        <h3>校区照片</h3>
+        <div class="flex">
+          <Carousel
+            ref="refCarousel"
+            :after-change="onCarouselChange"
+            :dots="false"
+            autoplay
+          >
+            <div class="!align-top">
+              <div class="flex gap-15px">
+                <div class="w-172px h-98px rounded-8px bg-blue-300"></div>
+                <div class="w-172px h-98px rounded-8px bg-blue-500"></div>
+                <div class="w-172px h-98px rounded-8px bg-blue-700"></div>
+              </div>
+            </div>
+            <div class="!align-top">
+              <div class="flex gap-15px">
+                <div class="w-172px h-98px rounded-8px bg-red-300"></div>
+                <div class="w-172px h-98px rounded-8px bg-red-500"></div>
+                <div class="w-172px h-98px rounded-8px bg-red-700"></div>
+              </div>
+            </div>
+            <div class="!align-top">
+              <div class="flex gap-15px">
+                <div class="w-172px h-98px rounded-8px bg-orange-300"></div>
+                <div class="w-172px h-98px rounded-8px bg-orange-500"></div>
+                <div class="w-172px h-98px rounded-8px bg-orange-700"></div>
+              </div>
+            </div>
+          </Carousel>
+          <div
+            class="w-30px h-98px rounded-8px flex flex-col gap-4px items-center justify-center cursor-pointer ml-15px hover:bg-[#F9F9F9]"
+          >
+            <span
+              class="w-4px h-4px bg-[#A5A8B4] rounded-full"
+              @click="goToCarouse(0)"
+            ></span>
+            <span
+              class="w-4px h-4px bg-[#A5A8B4] rounded-full"
+              @click="goToCarouse(1)"
+            ></span>
+            <span
+              class="w-4px h-4px bg-[#A5A8B4] rounded-full"
+              @click="goToCarouse(2)"
+            ></span>
+          </div>
+          <div
+            class="grid grid-cols-2 grid-cols-[minmax(15%,1fr),auto] gap-x-80px pl-30px text-xs"
+          >
+            <div>
+              <h4 s:text="[#1F311F]">校区详细地址</h4>
+              <p s:text="[#A9ACA4]">
+                北京市 朝阳区 小红门街道成寿寺路136号院3号楼B座底商2-A
+              </p>
+            </div>
+            <div>
+              <h4 s:text="[#1F311F]">部门负责人</h4>
+              <p s:text="[#A9ACA4]">张艳玲</p>
+            </div>
+            <div>
+              <h4 s:text="[#1F311F]">校区所属部门</h4>
+              <p s:text="[#A9ACA4]">北京白河狸科技 中海店</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="mb-30px">朝阳校区的教室/场地(4/4)</h3>
       <Table
         class="sikong-table"
         :dataSource="listData"
@@ -38,10 +104,11 @@
         :pagination="pagination"
         :loading="loading"
         @change="handleTableChange"
+        :scroll="{ y: 500 }"
       >
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'name'">
-            <div class="text-center">
+            <div>
               <img
                 src="@/assets/images/avatar-girl.png"
                 class="inline-block w-30px h-30px mr-14px"
@@ -63,177 +130,41 @@
               </span>
             </div>
           </template>
-          <template v-if="column.key === 'status'">
-            <div class="flex items-center justify-center">
-              <span v-if="record.status === '正常'" class="text-green-500">
-                正常
-              </span>
-              <span
-                v-else-if="record.status === '禁用'"
-                class="flex items-center fill-[#F3AB51] stroke-[#F3AB51] text-[#F3AB51]"
-              >
-                <SvgIcon
-                  name="jinyong1"
-                  class="w-18px h-18px mr-10px"
-                ></SvgIcon>
-                禁用
-              </span>
-              <span
-                v-else-if="record.status === '离职'"
-                class="flex items-center fill-[#F4274E] text-[#F4274E]"
-              >
-                <SvgIcon name="lizhi2" class="w-18px h-18px mr-10px"></SvgIcon>
-                <span>离职</span>
-              </span>
-            </div>
-          </template>
           <template v-if="column.key === 'option'">
             <div class="flex items-center justify-center gap-20px">
               <div
-                class="fill-[#C2C5CD] cursor-pointer stroke-[#C2C5CD]"
-                s:hover="fill-[#525A64] stroke-[#525A64]"
+                class="fill-[#A5A8B4] cursor-pointer"
+                s:hover="fill-[#525A64]"
                 @click="onTransfer(record.id)"
               >
-                <SvgIcon class="w-[18px] h-18px" name="tiao"></SvgIcon>
+                <SvgIcon class="w-[15px] h-15px" name="modify1"></SvgIcon>
               </div>
               <div
-                class="fill-[#C2C5CD] stroke-[#C2C5CD] cursor-pointer"
-                s:hover="fill-[#525A64] stroke-[#525A64]"
+                class="fill-[#C2C5CD] cursor-pointer"
+                s:hover="fill-[#525A64] "
                 @click="onDisable(record.id)"
               >
-                <SvgIcon class="w-[18px] h-18px" name="jinyong1"></SvgIcon>
-              </div>
-              <div
-                class="fill-[#C2C5CD] stroke-[#C2C5CD] cursor-pointer"
-                s:hover="fill-[#525A64] stroke-[#525A64]"
-                @click="onLeave(record.id)"
-              >
-                <SvgIcon class="w-[18px] h-18px" name="lizhi2"></SvgIcon>
+                <SvgIcon class="w-[18px] h-18px" name="del"></SvgIcon>
               </div>
             </div>
           </template>
         </template>
       </Table>
+      <h3 class="my-30px">朝阳校区经营日历</h3>
     </div>
+    <Modal
+      v-model:visible="isModalRoot"
+      title="添加教师/场地"
+      width="800px"
+      :footer="null"
+    >
+      <AddRoom
+        :is-edit="false"
+        @on-cancel="isModalRoot = false"
+        @on-ok="onRootOk"
+      />
+    </Modal>
   </div>
-  <Modal
-    v-model:visible="isModalDept"
-    :title="deptModalTitle"
-    width="459px"
-    :footer="null"
-  >
-    <AddDept
-      :is-edit="isDeptEdit"
-      :code="deptCode"
-      @on-cancel="isModalDept = false"
-      @on-ok="onDeptOk"
-    />
-  </Modal>
-  <Modal title="删除部门" v-model:visible="isModalDeptDel" :footer="null">
-    <h3 s:text="black md" class="pt-2opx">确定要删除部门-“中海店”吗？</h3>
-    <div s:text="[#F3AB51] xs" class="pt-10px">
-      当前“中海店”部门中，有 7 个员工账户和 1 个相关校区，删除操作会将
-      相关员工账户转移到“北京白河狸科技公司”下，是否依然执行此操作？
-    </div>
-    <div class="flex gap-10px pt-30px">
-      <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="isModalDeptDel = false"
-      >
-        取消
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="isModalDeptDel = false"
-      >
-        保存
-      </Button>
-    </div>
-  </Modal>
-  <Modal title="员工调岗" v-model:visible="isModalTransfer" :footer="null">
-    <h3 s:text="black md" class="pt-2opx">将员工"都林(大熊)"调岗到</h3>
-    <Form class="sikong-form2 pt-18px">
-      <FormItem v-bind="validateInfos.deptCode">
-        <Select
-          v-model:value="transferForm.deptCode"
-          class="rounded-8px"
-          placeholder="请选择岗位"
-        >
-          <SelectOption value="技术部">技术部</SelectOption>
-          <SelectOption value="产品部">产品部</SelectOption>
-        </Select>
-      </FormItem>
-      <div class="flex gap-10px pt-30px">
-        <Button
-          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-          s:border="1px solid [#C7F7E3]"
-          @click="isModalTransfer = false"
-        >
-          取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="onTransferSubmit"
-        >
-          保存
-        </Button>
-      </div>
-    </Form>
-  </Modal>
-  <!-- 账户禁用 -->
-  <Modal title="账户员工禁用" v-model:visible="isModalDisable" :footer="null">
-    <h3 s:text="black md" class="pt-2opx">确定要禁用“李海(大鱼)”的账户吗？</h3>
-    <div s:text="[#F3AB51] xs" class="pt-10px">
-      禁用“李海(大鱼)”的账户，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续禁用该账户吗？
-    </div>
-    <div class="flex gap-10px pt-40px">
-      <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="isModalDisable = false"
-      >
-        取消
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onDisableSubmit"
-      >
-        确定
-      </Button>
-    </div>
-  </Modal>
-  <!-- 离职 -->
-  <Modal title="账户员工离职" v-model:visible="isModalLeave" :footer="null">
-    <h3 s:text="black md " class="pt-2opx">确定要离职“李海(大鱼)”吗？</h3>
-    <div s:text="[#F3AB51] xs" class="pt-10px">
-      离职“李海(大鱼)”，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续离职该账户吗？
-    </div>
-    <div class="flex gap-10px pt-40px">
-      <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="isModalLeave = false"
-      >
-        取消
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onLeaveSubmit"
-      >
-        确定
-      </Button>
-    </div>
-  </Modal>
-  <AddStaff :visible="isModalStaff" />
 </template>
 <script lang="ts" setup>
 import {
@@ -242,34 +173,25 @@ import {
   Table,
   TableColumnsType,
   Form,
-  FormItem,
-  Select,
-  SelectOption,
+  Carousel,
   TableProps,
 } from 'ant-design-vue'
-import { useUserStore } from '@/store/modules/user'
-import {
-  computed,
-  onMounted,
-  reactive,
-  ref,
-  unref,
-  watch,
-  watchEffect,
-} from 'vue'
+import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { GetTreeParams } from '@/api/model/org-model'
 import { useRouteQueryObject } from '@/hooks/web/use-page'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
-// import Table from './modules/table.vue'
-const userStore = useUserStore()
+import AddRoom from './modules/add-room.vue'
+import { CarouselRef } from 'ant-design-vue/lib/carousel'
+
 const isModalDept = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
-const isModalStaff = ref(false)
 const deptCode = ref('')
+const isModalRoot = ref(false)
+const refCarousel = ref<CarouselRef>()
 const {
   data: dataSource,
   run,
@@ -298,6 +220,8 @@ const pagination = computed(() => ({
   total: dataSource.value?.total || 0,
   current: current.value,
   pageSize: pageSize.value,
+  showQuickJumper: true,
+  showSizeChanger: false,
 }))
 const handleTableChange: TableProps['onChange'] = (
   pag: { pageSize: number; current: number }
@@ -322,13 +246,6 @@ watch(
     run()
   }
 )
-watchEffect(() => {
-  // const params = unref(routeQuery)
-  // if (routeQuery.value.title) {
-  //   run()
-  // }
-  // console.log('org---routeQuery', routeQuery)
-})
 onMounted(() => {
   const params = unref(routeQuery)
   if (params.title) run()
@@ -379,87 +296,47 @@ const onTransferSubmit = () => {
     console.log('调岗成功')
   })
 }
-const data = reactive({
-  dataSource: [
-    {
-      key: '1',
-      name: '张玲燕(猫猫)',
-      job: '产品总监',
-      dept: '前端创新组',
-      account: '13924156728',
-      status: '正常',
-      isAdmin: true,
-    },
-    {
-      key: '2',
-      name: '张玲燕(猫猫)',
-      job: '产品总监',
-      dept: '前端创新组',
-      account: '13924156728',
-      status: '正常',
-      isAdmin: true,
-    },
-    {
-      key: '3',
-      name: '张玲燕(猫猫)',
-      job: '产品总监',
-      dept: '前端创新组',
-      account: '13924156728',
-      status: '正常',
-      isAdmin: false,
-    },
-    {
-      key: '4',
-      name: '张玲燕(猫猫)',
-      job: '产品总监',
-      dept: '前端创新组',
-      account: '13924156728',
-      status: '离职',
-      isAdmin: false,
-    },
-    {
-      key: '5',
-      name: '张玲燕(猫猫)',
-      job: '产品总监',
-      dept: '前端创新组',
-      account: '13924156728',
-      status: '禁用',
-      isAdmin: false,
-    },
-  ],
-})
 const columns = ref<TableColumnsType>([
   {
-    title: '姓名(昵称)',
+    title: '场地/教室名称',
     dataIndex: 'name',
+    align: 'left',
     key: 'name',
-    width: 240,
   },
   {
-    title: '职务',
+    title: '室内外',
     dataIndex: 'name1',
     key: 'job',
     align: 'center',
-    width: 150,
   },
   {
-    title: '部门',
+    title: '面积(㎡)',
     dataIndex: 'name1',
     key: 'dept',
     align: 'center',
-    width: 200,
   },
   {
-    title: '账号',
+    title: '层高(m)',
     dataIndex: 'name3',
     key: 'account',
     align: 'center',
-    width: 200,
   },
   {
-    title: '账号状态',
-    dataIndex: 'status',
-    key: 'status',
+    title: '有无柱(根)',
+    dataIndex: 'name4',
+    key: 'account',
+    align: 'center',
+  },
+  {
+    title: '运营日历',
+    dataIndex: 'name5',
+    key: 'name5',
+    align: 'center',
+  },
+  {
+    title: '说明',
+    dataIndex: 'name5',
+    key: 'name5',
     align: 'center',
   },
   {
@@ -470,6 +347,9 @@ const columns = ref<TableColumnsType>([
     fixed: 'right',
   },
 ])
+function onRootOk() {
+  isModalRoot.value = false
+}
 // 员工调岗click
 const onTransfer = (id: number) => {
   isModalTransfer.value = true
@@ -495,14 +375,28 @@ function onDeptOk(value, isContinue) {
   console.log(value)
   isModalDept.value = isContinue
 }
+const onCarouselChange = (current: number) => {
+  console.log(current)
+}
+function goToCarouse(index: number) {
+  refCarousel.value?.goTo(index)
+}
 </script>
 
-<style lang="less" scoped>
-.enterprise-org {
-  .org-modules-table {
-    .admin-tag {
-      background: linear-gradient(270deg, #ced5e2 0%, #9299a7 100%);
-    }
+<style lang="less">
+.enterprise-setting-table {
+  .ant-carousel {
+    width: 548px;
+    text-align: center;
+    height: 106px;
+    padding: 5px;
+    margin-bottom: 26px;
+    line-height: 160px;
+    overflow: hidden;
+  }
+
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
   }
 }
 </style>
