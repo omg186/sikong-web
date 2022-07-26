@@ -111,7 +111,7 @@
         class="rounded-40px h-40px w-90px bg-primary text-white"
         s:border="1px solid [#C7F7E3]"
         type="primary"
-        @click="onAddStaff({})"
+        @click="onAddStaff({ realName: '张玲燕（猫猫）' })"
       >
         编辑
       </Button>

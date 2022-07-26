@@ -22,7 +22,7 @@
           <Button
             type="primary"
             class="h-40px rounded-60"
-            @click="isModalRoot = true"
+            @click="onRoom(false, 0)"
           >
             <i class="s-icon add2-icon mr-5px"></i>
             添加场地
@@ -135,7 +135,7 @@
               <div
                 class="fill-[#A5A8B4] cursor-pointer"
                 s:hover="fill-[#525A64]"
-                @click="onTransfer(record.id)"
+                @click="onRoom(true, record.id)"
               >
                 <SvgIcon class="w-[15px] h-15px" name="modify1"></SvgIcon>
               </div>
@@ -154,12 +154,12 @@
     </div>
     <Modal
       v-model:visible="isModalRoot"
-      title="添加教师/场地"
+      :title="isRootEdit ? '编辑教室/场地' : '添加教室/场地'"
       width="800px"
       :footer="null"
     >
       <AddRoom
-        :is-edit="false"
+        :is-edit="isRootEdit"
         @on-cancel="isModalRoot = false"
         @on-ok="onRootOk"
       />
@@ -185,12 +185,13 @@ import { getDemoListApi } from '@/api/select'
 import AddRoom from './modules/add-room.vue'
 import { CarouselRef } from 'ant-design-vue/lib/carousel'
 
-const isModalDept = ref(false)
-const isModalDeptDel = ref(false)
+const isCampusEdit = ref(false)
+const isModalCampus = ref(false)
+const campusModalTitle = ref('添加新校区')
 const isDeptEdit = ref(false)
-const isModalTransfer = ref(false)
 const deptCode = ref('')
 const isModalRoot = ref(false)
+const isRootEdit = ref(false)
 const refCarousel = ref<CarouselRef>()
 const {
   data: dataSource,
@@ -350,16 +351,16 @@ const columns = ref<TableColumnsType>([
 function onRootOk() {
   isModalRoot.value = false
 }
-// 员工调岗click
-const onTransfer = (id: number) => {
-  isModalTransfer.value = true
+// 添加/修改场地click
+const onRoom = (isEdit: boolean, id: number) => {
+  isModalRoot.value = true
+  isRootEdit.value = isEdit
 }
 
-function onDeptAdd(value: string) {
-  console.log(value)
-  isDeptEdit.value = false
-  isModalDept.value = true
-  deptModalTitle.value = '添加部门'
+function onCampus(value: string) {
+  isCampusEdit.value = false
+  isModalCampus.value = true
+  campusModalTitle.value = '添加部门'
 }
 function onDeptEdit(value: string) {
   console.log(value)
