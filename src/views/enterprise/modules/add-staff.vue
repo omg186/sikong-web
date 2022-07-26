@@ -63,7 +63,8 @@
             </div>
           </div>
           <span class="text-xs text-[#F3AB51] font-400"
-            >推荐尺寸800*800px，大小不超过5M，jpg、jpeg、png格式均可</span
+            >如果不使用自定义头像，系统将默认使用系统头像自定义头像的推荐尺寸为800*800px，大小不能超过5M，
+            jpg、jpeg、png格式均可。</span
           >
         </div>
       </FormItem>
@@ -72,13 +73,22 @@
         <Select
           v-model:value="formState.departName"
           :options="[{ value: '部门1' }, { value: '部门2' }]"
-          class="select-icon w-[590px]"
+          class="select-checkbox w-[590px] absolute top-[-5px]"
           placeholder="请选择部门"
         >
           <template #suffixIcon>
-            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
+            <SvgIcon
+              name="down"
+              class="w-[12px] h-full fill-[#A5A8B4]"
+            ></SvgIcon>
+            <div class="divide-border mr-100px ml-10px"></div>
           </template>
         </Select>
+        <Checkbox
+          v-model:value="formState.Leader"
+          class="pl-10px relative left-8/10 bottom-[5px] text-[#C1C2BE]"
+          >部门Leader</Checkbox
+        >
       </FormItem>
       <Row :gutter="20">
         <Col :span="12">
@@ -102,18 +112,28 @@
       <Row :gutter="20">
         <Col :span="12">
           <FormItem label="性别" name="sex">
-            <Input
+            <Select
               v-model:value="formState.sex"
-              placeholder="请输入性别"
-            ></Input>
+              :options="[{ value: '男' }, { value: '女' }]"
+              class="select-icon"
+              placeholder="请选择性别"
+            >
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-[12px] h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
+            </Select>
           </FormItem>
         </Col>
         <Col :span="12">
-          <FormItem label="生日" name="nickName">
-            <Input
-              v-model:value="formState.nickName"
+          <FormItem label="生日" name="birthday">
+            <DatePicker
+              v-model:value="formState.birthday"
               placeholder="请输入员工生日"
-            ></Input>
+              class="w-full"
+            />
           </FormItem>
         </Col>
       </Row>
@@ -129,10 +149,19 @@
         </Col>
         <Col :span="12">
           <FormItem label="员工角色" name="roleJob">
-            <Input
+            <Select
               v-model:value="formState.roleJob"
-              placeholder="请输入员工角色"
-            ></Input>
+              :options="[{ value: '角色1' }, { value: '角色2' }]"
+              class="select-icon"
+              placeholder="请选择员工角色"
+            >
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-[12px] h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
+            </Select>
           </FormItem>
         </Col>
       </Row>
@@ -147,7 +176,7 @@
           </FormItem>
         </Col>
         <Col :span="12">
-          <FormItem label="密码">
+          <FormItem label="密码" name="passWord">
             <Input
               v-model:value="formState.passWord"
               placeholder="请输入密码"
@@ -321,6 +350,8 @@ import {
   Button,
   Space,
   FormInstance,
+  Checkbox,
+  DatePicker,
 } from 'ant-design-vue'
 const confirmLoading = ref<boolean>(false)
 const imageUrl = ref<string>('')
@@ -338,12 +369,13 @@ const formState = reactive({
   imageUrl: '',
   fileList: [],
   departName: null,
+  Leader: false,
   realName: null,
   nickName: '',
   sex: '',
   birthday: '',
   job: '',
-  roleJob: '',
+  roleJob: null,
   account: '',
   passWord: '',
   phoneNum: '',
@@ -365,6 +397,7 @@ const validateRules = reactive({
   roleJob: [{ required: true, message: '请选择职位角色' }],
   account: [{ required: true, message: '请输入员工账号' }],
   phoneNum: [{ required: true, message: '请输入手机号' }],
+  passWord: [{ required: true, message: '请输入密码' }],
   email: [{ required: true, message: '请输入邮箱' }],
   street: [{ required: true, message: '请选择街道' }],
   province: [{ required: true, message: '请选择省' }],

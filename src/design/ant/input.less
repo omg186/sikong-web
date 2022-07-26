@@ -35,7 +35,25 @@
 
 .select-icon {
   &.ant-select-open {
-    .ant-select-arrow {
+    .ant-select-arrow svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.select-checkbox {
+  .divide-border {
+    height: 20px;
+    border-left: 1px solid #EAEFEC;
+  }
+
+  .ant-select-arrow {
+    width: 25%;
+    @apply flex justify-center items-center;
+  }
+
+  &.ant-select-open {
+    .ant-select-arrow svg {
       transform: rotate(180deg);
     }
   }
