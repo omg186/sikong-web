@@ -2,19 +2,19 @@
   <Form class="sikong-form2 add-room-view ant-row" layout="vertical">
     <Row :gutter="[20, 0]">
       <Col :span="24">
-        <FormItem label="企业LOGO" :colon="false">
+        <FormItem label="教室/场地照片" :colon="false">
           <div class="flex flex-col">
             <Upload
               v-model:file-list="formData.fileList"
               name="avatar"
-              list-type="picture-card"
-              class="avatar-uploader w-172px h-98px"
-              :show-upload-list="false"
+              list-type="picture"
+              class="avatar-uploader"
+              :show-upload-list="true"
               :before-upload="beforeUpload"
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               @change="handleChange"
             >
-              <div v-if="imageUrl" class="avatar relative w-full h-full">
+              <!-- <div v-if="imageUrl" class="avatar relative w-full h-full">
                 <img
                   class="avatar-edit absolute top-[-1px] right-[-1px]"
                   src="@/assets/images/avatar-edit.png"
@@ -22,8 +22,41 @@
                 <div class="flex h-full justify-center items-center">
                   <img :src="imageUrl" alt="avatar" />
                 </div>
+              </div> -->
+
+              <div class="ant-upload ant-upload-select file-inline w-[172px]">
+                <span tabindex="0" class="ant-upload" role="button"
+                  ><input type="file" style="display: none" />
+                  <div class="">
+                    <loading-outlined
+                      v-if="loadingFile"
+                      style="font-size: 32px"
+                    ></loading-outlined>
+                    <plus-outlined
+                      v-else
+                      style="color: #d8d8d8; font-size: 32px"
+                    ></plus-outlined></div
+                ></span>
               </div>
-              <div v-else class="">
+              <template #itemRender="{ file, actions }">
+                <div class="avatar relative w-[80px] h-[46px]">
+                  <img
+                    class="avatar-edit absolute top-[-1px] right-[-1px] cursor-pointer"
+                    src="@/assets/images/avatar-edit.png"
+                    @click="actions.remove"
+                  />
+                  <div
+                    class="flex w-full h-full justify-center items-center w-[80px] h-[46px]"
+                  >
+                    <img
+                      :src="file.thumbUrl"
+                      alt="avatar"
+                      class="w-[80px] h-[46px] border-1 border-[#DBDFDD] border-dashed rounded-8px"
+                    />
+                  </div>
+                </div>
+              </template>
+              <!-- <div class="">
                 <loading-outlined
                   v-if="loadingFile"
                   style="font-size: 32px"
@@ -32,8 +65,11 @@
                   v-else
                   style="color: #d8d8d8; font-size: 32px"
                 ></plus-outlined>
-                <div class="ant-upload-text"></div>
-              </div>
+              </div> -->
+              <!-- <Button>
+                <upload-outlined></upload-outlined>
+                上传
+              </Button> -->
             </Upload>
             <span class="text-xs text-[#F3AB51] font-400 pt-17px"
               >推荐尺寸800*800px，大小不超过5M，jpg、jpeg、png格式均可</span
@@ -242,10 +278,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  code: {
-    type: String,
-    default: '',
-  },
 })
 
 const emits = defineEmits<{
@@ -262,7 +294,7 @@ const formData = ref<RoomDto>({
   isCalendar: undefined,
 })
 const loadingFile = ref<boolean>(false)
-const imageUrl = ref<string>('')
+const imageUrl = ref('')
 const rules = ref({
   roomName: [{ required: true, message: '请输入教室/场地名称' }],
   schoolId: [{ required: true, message: '请选择所属校区' }],
@@ -294,8 +326,10 @@ const { data: pillarList } = useRequest(
 )
 const { resetFields, validate, validateInfos } = Form.useForm(formData, rules)
 watchEffect(() => {
-  if (props.code && props.isEdit) {
-    formData.value = {}
+  if (props.isEdit) {
+    formData.value = {
+      roomName: '教师',
+    }
   } else {
     resetFields()
   }
@@ -349,6 +383,7 @@ const handleChange = (info: UploadChangeParam) => {
     getBase64(info.file.originFileObj, (base64Url: string) => {
       imageUrl.value = base64Url
       loadingFile.value = false
+      // console.log(formData.fileList.url)
     })
   }
   if (info.file.status === 'error') {
@@ -360,10 +395,58 @@ const handleChange = (info: UploadChangeParam) => {
 
 <style lang="less">
 .add-room-view {
+  // .ant-upload-list-picture-card-container {
+  //   @apply w-172px h-98px;
+  //   .ant-upload-list-item {
+  //     @apply p-0;
+  //   }
+  // }
+  // .avatar-uploader .ant-upload-list-item {
+  //   .ant-upload-select-picture-card {
+  //     @apply w-172px h-98px;
+  //   }
+  // }
   .avatar-uploader {
-    .ant-upload-select-picture-card {
-      @apply w-172px h-98px;
+    .ant-upload-list-picture {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 10px;
     }
+    .ant-upload-list::after {
+      display: none;
+    }
+    .ant-upload-list::before {
+      display: none;
+    }
+    @apply flex;
+    .file-inline {
+      height: 104px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      text-align: center;
+      vertical-align: top;
+      background-color: #fafafa;
+      border: 1px dashed #dbdfdd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.3s;
+      width: 172px;
+      > .ant-upload {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+      }
+    }
+    .ant-upload-list-item {
+      float: left;
+      width: 200px;
+      margin-right: 8px;
+    }
+  }
+  .avatar-uploader [class*='-upload-list-rtl'] :deep(.ant-upload-list-item) {
+    float: right;
   }
 }
 </style>

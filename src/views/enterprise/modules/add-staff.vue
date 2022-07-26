@@ -19,7 +19,9 @@
         <div class="felx flex-col">
           <div class="flex mb-[17px]">
             <div>
-              <div class="text-[#1F311F] h-[30px]">自定义头像</div>
+              <div v-show="!isEdit" class="text-[#1F311F] h-[30px]">
+                自定义头像
+              </div>
               <Upload
                 v-model:file-list="fileList"
                 name="avatar"
@@ -46,7 +48,7 @@
                 </div>
               </Upload>
             </div>
-            <div>
+            <div v-if="!isEdit">
               <div class="pl-[30px] text-[#1F311F] h-[30px]">系统头像</div>
               <div class="flex">
                 <div
@@ -58,6 +60,25 @@
                   class="w-[104px] h-[104px] ml-[20px] cursor-pointer border-1 border-gray-400 border-dashed"
                 >
                   <img src="../../../assets/images/avatar-girl.png" alt="" />
+                </div>
+              </div>
+            </div>
+            <div v-else>
+              <div class="flex">
+                <div class="flex flex-col ml-18px">
+                  <img
+                    src="@/assets/images/avatar-girl.png"
+                    alt=""
+                    class="w-[58px] cursor-pointer mb-10px border-1 border-[#DBDFDD] border-solid rounded-8px"
+                  />
+                  <img
+                    src="@/assets/images/avatar-girl.png"
+                    alt=""
+                    class="w-[30px] cursor-pointer border-1 border-[#DBDFDD] border-solid rounded-8px"
+                  />
+                </div>
+                <div class="w-[104px] h-[104px] ml-[30px] cursor-pointer">
+                  <img src="@/assets/images/avatar-boy.png" alt="" />
                 </div>
               </div>
             </div>
@@ -353,26 +374,36 @@ import {
   Checkbox,
   DatePicker,
 } from 'ant-design-vue'
+import { nextTick } from 'vue'
 const confirmLoading = ref<boolean>(false)
 const imageUrl = ref<string>('')
+const isEdit = ref<boolean>(false)
 const fileList = ref([])
 let visible = ref<boolean>(false)
 const formRef = ref<FormInstance>()
 const show = record => {
-  // formRef.value.resetFields()//重置
+  // formRef.value.resetFields() //重置
+  if (Object.keys(record).length > 0) {
+    isEdit.value = true
+  } else {
+    isEdit.value = false
+  }
+  nextTick(() => {
+    formState.value = record
+  })
   visible.value = true
 }
 defineExpose({
   show,
 })
-const formState = reactive({
+const formState = ref({
   imageUrl: '',
   fileList: [],
   departName: null,
   Leader: false,
   realName: null,
   nickName: '',
-  sex: '',
+  sex: null,
   birthday: '',
   job: '',
   roleJob: null,
@@ -406,19 +437,21 @@ const validateRules = reactive({
   areas: [{ required: true, message: '请选择区' }],
 })
 const cityData = computed(() => {
-  return cities.filter(x => x.provinceCode === formState.province)
+  return cities.filter(x => x.provinceCode === formState.value.province)
 })
 const areasData = computed(() => {
   return areas.filter(
-    x => x.cityCode === formState.citys && x.provinceCode === formState.province
+    x =>
+      x.cityCode === formState.value.citys &&
+      x.provinceCode === formState.value.province
   )
 })
 const streetsData = computed(() => {
   return streets.filter(
     x =>
-      x.areaCode === formState.areas &&
-      x.cityCode === formState.citys &&
-      x.provinceCode === formState.province
+      x.areaCode === formState.value.areas &&
+      x.cityCode === formState.value.citys &&
+      x.provinceCode === formState.value.province
   )
 })
 const beforeUpload = (file: UploadProps['fileList'][number]) => {
@@ -467,7 +500,7 @@ const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo)
 }
 const onFinish = (values: any) => {
-  visible = false
+  visible.value = false
   console.log('Success:', values, formState)
 }
 </script>
