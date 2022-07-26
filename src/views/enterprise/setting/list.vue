@@ -40,23 +40,23 @@
           >
             <div class="!align-top">
               <div class="flex gap-15px">
-                <div class="w-172px h-98px rounded-8px bg-blue-300"></div>
-                <div class="w-172px h-98px rounded-8px bg-blue-500"></div>
-                <div class="w-172px h-98px rounded-8px bg-blue-700"></div>
+                <div class="w-172px h-98px rounded-8px bg-blue-300">1</div>
+                <div class="w-172px h-98px rounded-8px bg-blue-500">1</div>
+                <div class="w-172px h-98px rounded-8px bg-blue-700">1</div>
               </div>
             </div>
             <div class="!align-top">
               <div class="flex gap-15px">
-                <div class="w-172px h-98px rounded-8px bg-red-300"></div>
-                <div class="w-172px h-98px rounded-8px bg-red-500"></div>
-                <div class="w-172px h-98px rounded-8px bg-red-700"></div>
+                <div class="w-172px h-98px rounded-8px bg-red-300">2</div>
+                <div class="w-172px h-98px rounded-8px bg-red-500">2</div>
+                <div class="w-172px h-98px rounded-8px bg-red-700">2</div>
               </div>
             </div>
             <div class="!align-top">
               <div class="flex gap-15px">
-                <div class="w-172px h-98px rounded-8px bg-orange-300"></div>
-                <div class="w-172px h-98px rounded-8px bg-orange-500"></div>
-                <div class="w-172px h-98px rounded-8px bg-orange-700"></div>
+                <div class="w-172px h-98px rounded-8px bg-orange-300">3</div>
+                <div class="w-172px h-98px rounded-8px bg-orange-500">3</div>
+                <div class="w-172px h-98px rounded-8px bg-orange-700">3</div>
               </div>
             </div>
           </Carousel>
@@ -151,6 +151,7 @@
         </template>
       </Table>
       <h3 class="my-30px">朝阳校区经营日历</h3>
+      <Calendar></Calendar>
     </div>
     <Modal
       v-model:visible="isModalRoot"
@@ -184,6 +185,7 @@ import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import AddRoom from './modules/add-room.vue'
 import { CarouselRef } from 'ant-design-vue/lib/carousel'
+import Calendar from '@/components/Calendar/index.vue'
 
 const isModalDept = ref(false)
 const isModalDeptDel = ref(false)
@@ -376,7 +378,7 @@ function onDeptOk(value, isContinue) {
   isModalDept.value = isContinue
 }
 const onCarouselChange = (current: number) => {
-  console.log(current)
+  // console.log(current)
 }
 function goToCarouse(index: number) {
   refCarousel.value?.goTo(index)

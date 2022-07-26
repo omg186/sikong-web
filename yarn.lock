@@ -4095,6 +4095,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+lunar-typescript@^1.2.22:
+  version "1.2.22"
+  resolved "https://registry.npmmirror.com/lunar-typescript/-/lunar-typescript-1.2.22.tgz#4a99bdb8776a7b0b23bd09ad92ad8429dd82faf1"
+  integrity sha512-q5+6AWz5MbUojRTJpqPPmiiREG43n/pjuhJ5KX39IhFvzvqVAWjteSTiUcS0jMo32RQsK5/QD1peHjarY2n2FA==
+
 magic-string@^0.25.7:
   version "0.25.9"
   resolved "https://registry.npmjs.org/magic-string/-/magic-string-0.25.9.tgz"
