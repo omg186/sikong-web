@@ -48,6 +48,9 @@ export default defineConfig({
         '2xl': '1600px',
         '3xl': '1920px',
       },
+      fontFamily: {
+        din: 'D-DIN-Bold, D-DIN',
+      },
       background: theme => ({
         1: 'linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%)',
       }),

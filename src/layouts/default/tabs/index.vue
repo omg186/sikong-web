@@ -3,7 +3,7 @@
     <div class="flex items-center h-66px">
       <div class="flex divide-x-2">
         <div
-          class="tab-item w-166px flex-center items-center cursor-pointer"
+          class="tab-item flex-center min-w-166px px-50px items-center cursor-pointer"
           :class="activeKeyRef === (item.fullPath || item.path) ? 'active' : ''"
           v-for="item in getTabsState"
           :key="item.query ? item.fullPath : item.path"

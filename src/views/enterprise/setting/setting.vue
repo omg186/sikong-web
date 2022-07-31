@@ -1,7 +1,7 @@
 <template>
   <div class="enterprise-org flex flex-col h-full">
     <Header></Header>
-    <div class="flex flex-1 h-full">
+    <div class="flex flex-1">
       <div
         class="h-full w-280px flex-shrink-0 px-20px border-r border-r-light-900"
       >

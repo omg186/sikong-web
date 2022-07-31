@@ -20,8 +20,8 @@ export const leftMenus: Menu[] = [
     iconActive: 'sider/2-active.png',
   },
   {
-    name: '企业管理',
-    path: '/task',
+    name: '测评管理',
+    path: '/evaluation',
     icon: 'sider/3.png',
     iconActive: 'sider/3-active.png',
   },

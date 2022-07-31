@@ -1,43 +1,27 @@
 <template>
-  <div class="calendar-component-view">
+  <div class="calendar-component-body w-480px box-border">
     <div
-      class="calendar-component-body w-480px box-border"
-      s:border="1px solid [#C3CAC6]"
+      class="calendar-component-weeks grid grid-cols-7 gap-10px text-center px-10px"
     >
-      <!-- weeks -->
-      <!-- {{ current.format('YYYY-MM-DD') }} -->
       <div
-        class="calendar-component-weeks grid grid-cols-7 gap-10px text-center px-10px"
+        class="calendar-component-weeks-item py-18px text-sm"
+        s:text="[#1F311F]"
+        v-for="(week, index) in weeks"
       >
-        <div
-          class="calendar-component-weeks-item py-18px text-sm"
-          s:text="[#1F311F]"
-          v-for="(week, index) in weeks"
-        >
-          <span class="calendar-component-weeks-item-text">{{ week }}</span>
-        </div>
+        <span class="calendar-component-weeks-item-text">{{ week }}</span>
       </div>
-      <!-- 这个月 -->
-      <div
-        class="calendar-component-days grid grid-cols-7 gap-10px text-center px-10px pb-10px"
-      >
-        <div
-          v-for="day in days"
-          :key="day.date"
-          class="calendar-component-days-item w-58px h-58px flex flex-col justify-center items-center gap-y-10px text-[20px] cursor-pointer"
-          :class="{
-            'calendar-component-days-item-saturday': day.isSaturday,
-            'calendar-component-days-item-sunday': day.isSunday,
-            'calendar-component-days-item-current-month': day.isCurrentMonth,
-          }"
-        >
-          <span>{{ dayjs(day.date).format('D') }}</span>
-          <span v-if="day.festivals" s:text="[#C8C8C8]" class="text-xs">
-            {{ day.festivals.join(',') }}
-          </span>
-          <span v-else s:text="[#C8C8C8]" class="text-xs">{{ day.lunar }}</span>
-        </div>
-      </div>
+    </div>
+    <!-- 这个月 -->
+    <div
+      class="calendar-component-days grid grid-cols-7 gap-10px text-center px-10px pb-10px"
+    >
+      <CalendarDayItem
+        v-for="day in days"
+        :key="day.date"
+        :day="day"
+        :is-to-day="day.date === today"
+        @day-click="onDayClick"
+      ></CalendarDayItem>
     </div>
   </div>
 </template>
@@ -45,13 +29,37 @@
 <script lang="ts" setup>
 import dayjs, { Dayjs } from 'dayjs'
 import pluginWeekDay from 'dayjs/plugin/weekday'
-import { computed, reactive, ref, unref } from 'vue'
+import { computed, PropType, reactive, ref, unref } from 'vue'
 import { getLunarFestivals, solarToLunar } from '@/utils'
-import { ICalendarProps } from './interface'
+import {
+  CalendarProps,
+  ICalendarAdjustProps,
+  ICalendarProps,
+} from './interface'
+import CalendarDayItem from './DayItem.vue'
+const params = CalendarProps()
 dayjs.extend(pluginWeekDay)
+const props = defineProps({
+  selectDate: {
+    type: String as PropType<string>,
+    default: '',
+  },
+  // 被调整的日期
+  adjustData: {
+    type: Object as PropType<ICalendarAdjustProps>,
+    default: () => [],
+  },
+})
+const emits = defineEmits([
+  'update:select-date',
+  'select-change',
+  'next-month',
+  'prev-month',
+])
+defineExpose({ onNextMonth, onPrevMonth })
 const weeks = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
-const value = ref('2022-07-01')
-const current = computed(() => dayjs(value.value || new Date()))
+// const selectDate = ref('2022-07-01')
+const current = computed(() => dayjs(props.selectDate || new Date()))
 
 // 获取这个月几天
 const numberOfDaysInMonth = computed(() => current.value.daysInMonth())
@@ -104,11 +112,18 @@ const previousMonthDays = computed(() => {
   })
 })
 function setDto(dayjs: Dayjs, isCurrentMonth: boolean = false) {
+  const dayStr = dayjs.format('YYYY-M-D')
   return {
-    date: dayjs.format('YYYY-MM-DD'),
+    date: dayStr,
     lunar: solarToLunar(dayjs, 'D'),
     festivals: getLunarFestivals(dayjs),
     isCurrentMonth: isCurrentMonth,
+    // 调整说明
+    adjustDesc: props.adjustData.get(dayStr),
+    // 被调整日期
+    adjustData: props.adjustData.get(dayStr),
+    //是否选择
+    isSelected: props.selectDate === dayStr,
     // 是否是周日
     isSunday: dayjs.weekday() === 0,
     // 是否是周六
@@ -122,25 +137,22 @@ const days = computed(() => {
     ...nextMonthDays.value,
   ]
 })
+const today = computed(() => {
+  return dayjs().format('YYYY-M-D')
+})
+function onDayClick(day: ICalendarProps) {
+  console.log('onDayClick')
+  emits('update:select-date', day.date)
+  emits('select-change', day)
+}
+function onNextMonth() {
+  console.log('onNextMonth')
+  emits('next-month')
+}
+function onPrevMonth() {
+  console.log('onPrevMonth')
+  emits('prev-month')
+}
 </script>
 
-<style lang="less" scoped>
-.calendar-component-view {
-  .calendar-component-body {
-    .calendar-component-days {
-      &-item {
-        color: #83867e;
-        &-sunday,
-        &-saturday {
-          background: rgba(237, 239, 237, 0.5);
-          border-radius: 16px 16px 16px 16px;
-          opacity: 1;
-        }
-        &-current-month {
-          color: #1f311f;
-        }
-      }
-    }
-  }
-}
-</style>
+<style lang="less" scoped></style>
