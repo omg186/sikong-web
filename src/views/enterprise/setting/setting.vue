@@ -18,7 +18,13 @@
             <template #title> </template>
             <template #content>
               <div class="cursor-pointer">
-                <p class="text-gray-300 cursor-not-allowed">添加校区</p>
+                <!-- <p
+                  class="text-gray-300 cursor-not-allowed"
+                  @click="isModalCampus = true"
+                >
+                  添加校区
+                </p> -->
+                <p @click="isModalCampus = true">添加校区</p>
                 <p @click="isModalRoot = true">添加教室/场地</p>
               </div>
             </template>
@@ -34,7 +40,7 @@
         <div class="pt-33px pl-10px">
           <Tree
             @on-add="onDeptAdd"
-            @on-edit="onDeptEdit"
+            @on-edit="onCampusEdit"
             @on-del="onDeptDel"
             @on-click="onTree"
           />
@@ -55,6 +61,18 @@
         :is-edit="false"
         @on-cancel="isModalRoot = false"
         @on-ok="onRootOk"
+      />
+    </Modal>
+    <Modal
+      v-model:visible="isModalCampus"
+      :title="isCampusEdit ? '编辑校区' : '添加校区'"
+      width="800px"
+      :footer="null"
+    >
+      <AddCampus
+        :is-edit="isCampusEdit"
+        @on-cancel="isModalCampus = false"
+        @on-ok="onCampusOk"
       />
     </Modal>
     <Modal title="删除部门" v-model:visible="isModalDeptDel" :footer="null">
@@ -190,10 +208,13 @@ import { GetTreeParams } from '@/api/model/org-model'
 // useRouter
 import { useRouter } from 'vue-router'
 import Header from '@/components/Header/Header.vue'
+import AddCampus from './modules/add-campus.vue'
 
 const router = useRouter()
 const routerData = ref()
 const isModalRoot = ref(false)
+const isModalCampus = ref(false)
+const isCampusEdit = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
@@ -270,12 +291,11 @@ function onDeptAdd(value: string) {
   isModalRoot.value = true
   roomModalTitle.value = '添加新教室/场地'
 }
-function onDeptEdit(value: string) {
+function onCampusEdit(value: string) {
   console.log(value)
   deptCode.value = value
-  isDeptEdit.value = true
-  isModalRoot.value = true
-  roomModalTitle.value = '修改新教室/场地'
+  isCampusEdit.value = true
+  isModalCampus.value = true
 }
 function onDeptDel() {
   isModalDeptDel.value = true
@@ -283,6 +303,10 @@ function onDeptDel() {
 function onRootOk(value, isContinue) {
   console.log(value)
   isModalRoot.value = isContinue
+}
+function onCampusOk(value, isContinue) {
+  console.log(value)
+  isModalCampus.value = isContinue
 }
 </script>
 
