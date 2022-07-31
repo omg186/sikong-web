@@ -5,7 +5,7 @@
       <li s:text="sm" v-for="(menu, index) in menus?.children" :key="index">
         <router-link
           :to="menu.path"
-          class="menu-item w-180px h-46px flex-center items-center rounded-sm cursor-pointer text-[##2D3A2F]"
+          class="menu-item min-w-180px h-46px flex items-center pl-25px rounded-sm cursor-pointer text-[##2D3A2F]"
         >
           <i
             class="block w-10px h-10px rounded-full mr-10px"

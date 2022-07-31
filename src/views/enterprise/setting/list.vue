@@ -151,7 +151,7 @@
         </template>
       </Table>
       <h3 class="my-30px">朝阳校区经营日历</h3>
-      <Calendar></Calendar>
+      <div class="flex pb-32px"><CalendarShow></CalendarShow></div>
     </div>
     <Modal
       v-model:visible="isModalRoot"
@@ -185,7 +185,7 @@ import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import AddRoom from './modules/add-room.vue'
 import { CarouselRef } from 'ant-design-vue/lib/carousel'
-import Calendar from '@/components/Calendar/index.vue'
+import CalendarShow from '@/components/Calendar/CalendarShow.vue'
 
 const isCampusEdit = ref(false)
 const isModalCampus = ref(false)
@@ -382,6 +382,7 @@ function goToCarouse(index: number) {
 .enterprise-setting-table {
   .ant-carousel {
     width: 548px;
+    flex-shrink: 0;
     text-align: center;
     height: 106px;
     padding: 5px;

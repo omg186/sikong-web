@@ -57,7 +57,7 @@ export function transformRouteToMenu(
   cloneRouteModList.forEach(item => {
     if (
       routerMapping &&
-      item.meta.hideChildrenInMenu &&
+      item?.meta?.hideChildrenInMenu &&
       typeof item.redirect === 'string'
     ) {
       item.path = item.redirect
