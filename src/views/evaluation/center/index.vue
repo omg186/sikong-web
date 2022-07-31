@@ -17,7 +17,11 @@
           <template v-if="column.key === 'name'">
             <div>
               <span>{{ record.name }}</span>
-              <span class="text-primary font-bold">（幼儿版） </span>
+              <span
+                class="text-primary font-bold cursor-pointer"
+                @click="isDrawerDetail = true"
+                >（幼儿版）
+              </span>
             </div>
           </template>
           <template v-if="column.key === 'project'">
@@ -55,14 +59,41 @@
         </template>
       </Table>
     </div>
+    <Drawer
+      v-model:visible="isDrawerDetail"
+      class="custom-class"
+      width="1024px"
+      :closable="false"
+      title="国民体质测定标准测评（幼儿版）"
+      placement="right"
+    >
+      <Tabs v-model:activeKey="activeKey">
+        <TabPane key="1" tab="测评基本信息"></TabPane>
+        <TabPane key="2" tab="测评记录单"></TabPane>
+        <TabPane key="3" tab="测评报告样式">
+          <Report></Report>
+        </TabPane>
+      </Tabs>
+    </Drawer>
   </div>
 </template>
 <script lang="ts" setup>
-import { Table, TableColumnsType, Form, TableProps } from 'ant-design-vue'
+import {
+  Table,
+  TableColumnsType,
+  Form,
+  TableProps,
+  Drawer,
+  Tabs,
+  TabPane,
+} from 'ant-design-vue'
 import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
+import Report from './modules/report.vue'
 
+const isDrawerDetail = ref(false)
+const activeKey = ref('3')
 const {
   data: dataSource,
   run,
