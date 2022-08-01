@@ -37,8 +37,9 @@ export interface ICalendarProps {
   isSelected: boolean
 }
 export interface Adjust {
+  key?: string
   type?: string
-  date: string[][]
+  date?: string[][]
   remark: string
 }
 export type ICalendarAdjustProps = Map<string, Adjust>

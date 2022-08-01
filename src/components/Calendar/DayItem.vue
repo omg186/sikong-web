@@ -15,6 +15,10 @@ export default defineComponent({
       emit('day-click', props.day)
     }
     const pre = 'calendar-component-days-item'
+    const isAdjustDesc = computed(() => {
+      const day = props.day
+      return day.adjustDesc?.type && day.adjustDesc?.remark != ''
+    })
     const classes = computed(() => {
       const day = props.day
       const isToDay = props.isToDay
@@ -25,14 +29,14 @@ export default defineComponent({
         [`${pre}--sunday`]: day.isSunday,
         [`${pre}-current-month`]: day.isCurrentMonth,
         [`${pre}-active`]: day.isSelected,
-        [`${pre}-adjust`]: !!(day.adjustData || day.adjustDesc),
+        [`${pre}-adjust`]: !!(day.adjustData?.type || day.adjustData?.type),
         [`${pre}-to-day`]: isToDay,
       }
     })
     const TooltipView = (children: JSX.Element) => {
       const { day } = props
       const { adjustDesc } = day
-      if (adjustDesc) {
+      if (isAdjustDesc.value) {
         return (
           <div>
             <Popover
@@ -41,7 +45,7 @@ export default defineComponent({
               getPopupContainer={(triggerNode: HTMLElement) => triggerNode}
               content={
                 <div class="w-160px box-content p-15px text-xs">
-                  {adjustDesc.date.map(p => (
+                  {adjustDesc?.date?.map(p => (
                     <p class="font-medium">
                       {p.map(date => dayjs(date).format('hh:mma')).join('-')}
                     </p>
@@ -61,10 +65,10 @@ export default defineComponent({
       const { day } = props
       const html = TooltipView(
         <div class={classes.value} onClick={() => onDayClick()}>
-          {day.adjustDesc && (
+          {day.adjustDesc && day.adjustDesc.type && (
             <span class="w-5px h-5px absolute left-8px top-10px bg-[#FFCD27] rounded-full"></span>
           )}
-          {day.adjustData && (
+          {day.adjustData && day.adjustData.type && (
             <span class="w-5px h-5px absolute left-8px top-16px bg-[#B5A0FF] rounded-full"></span>
           )}
           <span>{dayjs(day.date).format('D')}</span>

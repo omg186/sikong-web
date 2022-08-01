@@ -165,6 +165,39 @@
         @on-ok="onRootOk"
       />
     </Modal>
+    <!-- 删除校区 -->
+    <Modal
+      v-model:visible="isModalDel"
+      :title="'删除校区'"
+      width="400px"
+      :footer="null"
+    >
+      <h3 s:text="black md" class="pt-2opx">
+        确定要删除校区-“白河狸朝阳校区”吗？
+      </h3>
+      <div s:text="[#F3AB51] xs" class="pt-10px">
+        当前“白河狸少儿体能俱乐部朝阳校区”中，有多个未完成的预约和课程，
+        删除操作会将相关预约和课程转移到“北京白河狸科技公司”下，是否依
+        然执行此操作？
+      </div>
+      <div class="flex gap-10px pt-30px">
+        <Button
+          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
+          s:border="1px solid [#C7F7E3]"
+          @click="isModalDel = false"
+        >
+          取消
+        </Button>
+        <Button
+          class="rounded-40px h-40px w-90px bg-primary text-white"
+          s:border="1px solid [#C7F7E3]"
+          type="primary"
+          @click="isModalDel = false"
+        >
+          保存
+        </Button>
+      </div>
+    </Modal>
   </div>
 </template>
 <script lang="ts" setup>
@@ -194,6 +227,7 @@ const isDeptEdit = ref(false)
 const deptCode = ref('')
 const isModalRoot = ref(false)
 const isRootEdit = ref(false)
+const isModalDel = ref(false)
 const refCarousel = ref<CarouselRef>()
 const {
   data: dataSource,
@@ -258,7 +292,7 @@ const isModalDisable = ref(false)
 // 账户禁用click
 const onDisable = (id: number) => {
   console.log('禁用')
-  isModalDisable.value = true
+  isModalDel.value = true
 }
 // 账户禁用submit
 const onDisableSubmit = () => {
