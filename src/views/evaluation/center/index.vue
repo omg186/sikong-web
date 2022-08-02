@@ -108,7 +108,7 @@ const {
     defaultParams: [
       {
         page: 1,
-        pageSize: 10,
+        pageSize: 5,
       },
     ],
     pagination: {
