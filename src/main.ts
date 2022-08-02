@@ -18,6 +18,8 @@ import { setGlobalOptions } from 'vue-request'
 import { setupRouterGuard } from './routers/guard'
 import { initAppConfigStore } from './logics/initAppConfig'
 
+import echarts from './utils/echarts'
+
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import dayjs from 'dayjs'
 dayjs.locale(zhCN.locale)
@@ -26,6 +28,7 @@ setGlobalOptions({
   manual: true,
   // ...
 })
+app.config.globalProperties.$echarts = echarts
 app.use(router)
 
 setupStore(app)

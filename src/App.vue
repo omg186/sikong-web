@@ -6,6 +6,9 @@
 import { ConfigProvider } from 'ant-design-vue'
 import { useTitle } from './hooks/web/use-title'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import * as echarts from 'echarts'
+import { provide } from 'vue'
+provide('echarts', echarts)
 useTitle()
 </script>
 
