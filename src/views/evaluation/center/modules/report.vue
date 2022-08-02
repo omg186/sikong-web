@@ -161,7 +161,7 @@
 </template>
 <script lang="ts" setup>
 import { Avatar } from 'ant-design-vue'
-import RadarChart from './RadarChart.vue'
+import RadarChart from './radar-chart.vue'
 </script>
 <style lang="less">
 #main {

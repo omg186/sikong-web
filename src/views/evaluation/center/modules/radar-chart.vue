@@ -8,7 +8,6 @@ import * as echarts from 'echarts'
 const myChart = ref<HTMLElement>() //也可以用const myChart = ref<any>();
 const myCharts = ref<any>()
 export default defineComponent({
-  name: 'RadarChart',
   setup() {
     const myChart = ref<HTMLElement>() //也可以用const myChart = ref<any>();
     const myCharts = ref<any>()
