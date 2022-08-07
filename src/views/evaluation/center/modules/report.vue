@@ -16,10 +16,10 @@
         <span class="ml-200px text-xs">测试时间：2022.3.25</span>
       </div>
       <div
-        class="text-center w-full h-118px rounded-20px bg-light-50 mt-10px p-10px"
+        class="text-center w-full h-118px rounded-16px bg-light-50 mt-10px p-10px"
       >
         <div
-          class="text-left h-97px rounded-15px bg-[#F6F7FB] text-[#2D3A2F] px-20px py-12px text-xs leading-21px"
+          class="text-left h-97px rounded-16px bg-[#F6F7FB] text-[#2D3A2F] px-20px py-12px text-xs leading-21px"
         >
           按照测试者现年龄阶段的国家体制健康标准，分数<span
             class="text-[#2EE094] font-medium text-xl"
@@ -32,11 +32,11 @@
           跳绳、坐位体前屈、跑步 等权重和技术较高的项目。
         </div>
       </div>
-      <div class="h-570px w-full rounded-20px bg-light-50 mt-10px p-10px flex">
-        <RadarChart class="w-440px"></RadarChart>
-        <div class="ml-96px">
+      <div class="h-570px w-full rounded-16px bg-light-50 mt-10px p-10px flex">
+        <RadarChart class="w-500px"></RadarChart>
+        <div class="ml-56px">
           <div
-            class="w-352px h-310px r-shadow rounded-20px pt-40px relative pl-32px"
+            class="w-352px h-310px r-shadow rounded-16px pt-40px relative pl-32px"
           >
             <div
               class="w-218px h-51px absolute top-[-16px] left-[67px] text-[#1F311F] font-500 bg-title flex items-center justify-center"
@@ -124,7 +124,7 @@
             </div>
           </div>
           <div
-            class="w-352px h-201px r-shadow rounded-20px pt-40px relative pl-32px mt-14px"
+            class="w-352px h-201px r-shadow rounded-16px pt-40px relative pl-32px mt-14px"
             style="box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.05)"
           >
             <div
@@ -133,7 +133,7 @@
               体制健康成绩等级对照表
             </div>
             <div
-              class="w-300px h-142px rounded-20px border-1 border-[#F8F8F8] flex p-15px leading-[22px] text-xs"
+              class="w-300px h-142px rounded-16px border-1 border-[#F8F8F8] flex p-15px leading-[22px] text-xs"
             >
               <div class="text-center r-border">
                 <div class="text-[#1F311F] font-bold w-126px text-sm">
@@ -156,12 +156,28 @@
           </div>
         </div>
       </div>
+      <div
+        class="h-full w-full rounded-16px bg-light-50 mt-10px py-25px px-21px"
+      >
+        <h1 class="text-[18px] text-[#1F311F]">身体素质单项发展分析</h1>
+        <div
+          class="w-full h-full grid grid-cols-3 grid-cols-[294px,294px] gap-30px"
+        >
+          <div class="border-[#C1F6DF] border-3 h-490px rounded-16px">
+            <GaugeChart></GaugeChart>
+          </div>
+          <div class="border-[#E8E5FF] border-3 h-490px rounded-16px"></div>
+          <div class="border-[#E8E5FF] border-3 h-490px rounded-16px"></div>
+          <div class="border-[#C1F6DF] border-3 h-490px rounded-16px"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { Avatar } from 'ant-design-vue'
 import RadarChart from './radar-chart.vue'
+import GaugeChart from './gauge-chart.vue'
 </script>
 <style lang="less">
 #main {
@@ -170,7 +186,7 @@ import RadarChart from './radar-chart.vue'
   // max-height: 500px;
 }
 .r-body {
-  @apply h-859px w-full;
+  @apply h-full w-full;
   background: url('@/assets/images/evaluation/ligthning.png') no-repeat top
       right,
     linear-gradient(to right, #3bd89c, #02fd7c);
