@@ -160,15 +160,14 @@
         class="h-full w-full rounded-16px bg-light-50 mt-10px py-25px px-21px"
       >
         <h1 class="text-[18px] text-[#1F311F]">身体素质单项发展分析</h1>
-        <div
-          class="w-full h-full grid grid-cols-3 grid-cols-[294px,294px] gap-30px"
-        >
-          <div class="border-[#C1F6DF] border-3 h-490px rounded-16px">
-            <GaugeChart></GaugeChart>
+        <div class="w-full h-full grid grid-cols-3 gap-30px">
+          <div v-for="(item, index) in physicalQuality">
+            <!-- <div class="border-[#C1F6DF] border-3 h-490px rounded-16px"> -->
+            <GaugeChart :charts-list="item"></GaugeChart>
           </div>
+          <!-- <div class="border-[#E8E5FF] border-3 h-490px rounded-16px"></div>
           <div class="border-[#E8E5FF] border-3 h-490px rounded-16px"></div>
-          <div class="border-[#E8E5FF] border-3 h-490px rounded-16px"></div>
-          <div class="border-[#C1F6DF] border-3 h-490px rounded-16px"></div>
+          <div class="border-[#C1F6DF] border-3 h-490px rounded-16px"></div> -->
         </div>
       </div>
     </div>
@@ -178,6 +177,49 @@
 import { Avatar } from 'ant-design-vue'
 import RadarChart from './radar-chart.vue'
 import GaugeChart from './gauge-chart.vue'
+import { ref } from 'vue'
+const physicalQuality = ref([
+  {
+    title: '身高标准体重',
+    value: '18.1kg(偏瘦)',
+    unit: '公斤',
+    processColor: '#2EE094',
+    score: '3',
+    lastValue: '18.9kg',
+    lastScore: '5',
+    upTrend: false,
+  },
+  {
+    title: '身高',
+    value: '117.3cm',
+    unit: '厘米',
+    processColor: '#AFA8FF',
+    score: '4',
+    lastValue: '103cm',
+    lastScore: '2',
+    upTrend: true,
+  },
+  {
+    title: '双脚连续跳',
+    value: '117.3cm',
+    unit: '厘米',
+    processColor: '#AFA8FF',
+    score: '4',
+    lastValue: '103cm',
+    lastScore: '2',
+    upTrend: true,
+  },
+  {
+    title: '走平衡木',
+    value: '8.6s',
+    unit: '秒',
+    processColor: '#F3AB51',
+    score: '2',
+    lastValue: '5.9s',
+    lastScore: '3',
+    upTrend: false, //上升
+  },
+])
 </script>
 <style lang="less">
 #main {
