@@ -2,6 +2,11 @@
   <div class="r-body pb-20px">
     <div class="h-874px r-bg relative">
       <img
+        src="@/assets/images/evaluation/good.png"
+        class="absolute right-36"
+        alt=""
+      />
+      <img
         class="absolute right-0 top-[-26px]"
         src="@/assets/images/evaluation/hechong.png"
         alt=""
