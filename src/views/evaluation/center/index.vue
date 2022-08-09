@@ -62,7 +62,7 @@
     <Drawer
       v-model:visible="isDrawerDetail"
       class="custom-class"
-      width="1024px"
+      width="1064px"
       :closable="false"
       title="国民体质测定标准测评（幼儿版）"
       placement="right"
