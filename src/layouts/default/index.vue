@@ -56,7 +56,7 @@
     <div class="mr-[1px] bg-[#FCFCFC]">
       <Menus />
     </div>
-    <div class="bg-[#F3F3F3] flex flex-col">
+    <div class="bg-[#F3F3F3] flex flex-col overflow-y-auto">
       <div class="h-[66px] bg-white">
         <TabsView />
       </div>
