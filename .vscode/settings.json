@@ -6,6 +6,7 @@
     "brotli",
     "commitlint",
     "cssnext",
+    "echarts",
     "esbuild",
     "esno",
     "iconify",

@@ -1,6 +1,6 @@
 import { loadEnv } from 'vite'
 import * as path from 'path'
-import type { UserConfig, ConfigEnv } from 'vite'
+import type { UserConfig, ConfigEnv } from 'vitest/config'
 import { createVitePlugins } from './build/vite/plugin/index'
 import { wrapperEnv } from './build/utils'
 import { generateModifyVars } from './build/generate/generateModifyVars'
@@ -28,6 +28,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   const isBuild = command === 'build'
   return {
+    test: {
+      globals: true,
+      environment: 'jsdom',
+    },
+    // @ts-ignore
     plugins: createVitePlugins(viteEnv, isBuild),
     resolve: {
       alias: [
@@ -80,7 +85,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       //   },
       // },
       // Turning off brotliSize display can slightly reduce packaging time
-      brotliSize: false,
+      // brotliSize: false,
       chunkSizeWarningLimit: 2000,
     },
     optimizeDeps: {
