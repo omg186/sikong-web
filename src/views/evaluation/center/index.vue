@@ -68,7 +68,9 @@
       placement="right"
     >
       <Tabs v-model:activeKey="activeKey">
-        <TabPane key="1" tab="测评基本信息"></TabPane>
+        <TabPane key="1" tab="测评基本信息">
+          <Base></Base>
+        </TabPane>
         <TabPane key="2" tab="测评记录单"></TabPane>
         <TabPane key="3" tab="测评报告样式">
           <Report></Report>
@@ -91,9 +93,10 @@ import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import Report from './modules/report.vue'
+import Base from './modules/base.vue'
 
 const isDrawerDetail = ref(false)
-const activeKey = ref('3')
+const activeKey = ref('1')
 const {
   data: dataSource,
   run,

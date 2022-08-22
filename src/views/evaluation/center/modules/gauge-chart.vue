@@ -231,7 +231,6 @@ export default defineComponent({
               valueAnimation: true,
               // color: 'auto',
               formatter: function (value) {
-                console.log(value)
                 return '{value|' + value + '}{unit|分}'
               },
               rich: {
