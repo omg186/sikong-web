@@ -20,6 +20,7 @@ const demoList = (() => {
       key: `${index}`,
       email: '@email',
       account: '@email',
+      gender: '@integer(1, 2)',
       beginTime: '@datetime',
       endTime: '@datetime',
       address: '@city()',
@@ -44,6 +45,8 @@ const demoList = (() => {
       time: `@time('HH:mm')`,
       'no|100000-10000000': 100000,
       'status|1': ['正常', '禁用', '离职'],
+      'status1|1': [1, 2, 3],
+      'color|1': ['#F4274E', '#FFD13C', '#2FE095'],
     })
   }
   return result

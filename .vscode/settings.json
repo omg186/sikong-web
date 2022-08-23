@@ -6,6 +6,7 @@
     "brotli",
     "commitlint",
     "cssnext",
+    "datetime",
     "echarts",
     "esbuild",
     "esno",
