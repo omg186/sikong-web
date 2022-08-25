@@ -30,9 +30,21 @@
           </div>
           <div class="flex fill-[#A5A8B4]">
             <!-- SVG -->
-            <SvgIcon name="search" class="w-18px h-25px" />
-            <SvgIcon name="search" class="w-18px h-25px" />
-            <SvgIcon name="search" class="w-18px h-25px" />
+            <SvgIcon
+              name="add-test"
+              class="w-28px h-28px stroke-[#A5A8B4] cursor-pointer"
+              s:hover="fill-[#363B39] stroke-[#363B39]"
+            />
+            <SvgIcon
+              name="switch"
+              class="w-28px h-28px cursor-pointer"
+              s:hover="fill-[#363B39]"
+            />
+            <SvgIcon
+              name="client"
+              class="w-28px h-28px cursor-pointer"
+              s:hover="fill-[#363B39]"
+            />
           </div>
           <div class="flex flex-col gap-5px text-xs">
             <span>
@@ -55,21 +67,23 @@
       </div>
       <div class="grid grid-cols-[36px,36px] gap-10px fill-[#A5A8B4]">
         <span
-          class="flex items-center justify-center h-36px rounded-10px"
+          class="flex items-center justify-center h-36px rounded-10px cursor-pointer"
+          s:hover="fill-primary"
           s:border="1px solid [#DBDFDD]"
         >
           <SvgIcon
             name="down"
-            class="w-18px h-18px transform rotate-90"
+            class="w-10px h-6px transform rotate-90"
           ></SvgIcon>
         </span>
         <span
-          class="flex items-center justify-center h-36px rounded-10px"
+          class="flex items-center justify-center h-36px rounded-10px cursor-pointer"
+          s:hover="fill-primary"
           s:border="1px solid [#DBDFDD]"
         >
           <SvgIcon
             name="down"
-            class="w-18px h-18px transform rotate-270"
+            class="w-10px h-6px transform rotate-270"
           ></SvgIcon>
         </span>
       </div>
@@ -77,7 +91,7 @@
     <div class="px-30px pt-10px">
       <Tabs v-model:activeKey="activeKey">
         <TabPane key="1" tab="学员资料"><Information></Information></TabPane>
-        <TabPane key="2" tab="沟通&动态">2</TabPane>
+        <TabPane key="2" tab="沟通&动态"><Communicate /></TabPane>
         <TabPane key="3" tab="测评&报告">3</TabPane>
         <template #rightExtra>
           <Button type="primary" size="large" class="rounded-60"
@@ -100,6 +114,7 @@ import SvgIcon from '@/components/SvgIcon.vue'
 import { Tabs, TabPane, Button } from 'ant-design-vue'
 import { ref } from 'vue'
 import Information from './Information.vue'
+import Communicate from './communicate.vue'
 const activeKey = ref('1')
 </script>
 <style lang="scss">

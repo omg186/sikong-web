@@ -228,7 +228,7 @@
       </Button>
     </div>
   </Modal>
-  <AddStaff ref="addStaff" :footer="null" />
+  <AddStaff ref="addStaffRef" :footer="null" />
 </template>
 <script lang="ts" setup>
 import {
@@ -262,7 +262,8 @@ const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
 const isModalStaff = ref(false)
 const deptCode = ref('')
-const { ctx } = getCurrentInstance() as any
+// const { ctx } = getCurrentInstance() as any
+const addStaffRef = ref(null)
 const { routeQuery, getRouteQueryFull } =
   useRouteQueryObject<GetTreeParams>('org')
 // const routeData = computed(() => routeQuery as unknown as GetTreeParams)
@@ -437,7 +438,9 @@ function onDeptOk(value, isContinue) {
   isModalDept.value = isContinue
 }
 function onAddStaff(record) {
-  ctx.$refs.addStaff.show(record)
+  console.log('record', record)
+  addStaffRef.value.show(record)
+  // isModalStaff.value = true
 }
 </script>
 

@@ -28,33 +28,17 @@
 
       <TextItem title="锻炼的目标" contents="" />
       <div class="flex gap-10px">
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          增强身体素质
-        </span>
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          建立自信心
-        </span>
+        <!-- 增强身体素质 -->
+        <Tag contents="增强身体素质" />
+        <!-- 建立自信心 -->
+        <Tag contents="建立自信心" />
       </div>
       <TextItem title="性格特征" contents="" />
       <div class="flex gap-10px">
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          依赖型
-        </span>
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          表现型
-        </span>
+        <!-- 依赖型 -->
+        <Tag contents="依赖型" />
+        <!-- 表现型 -->
+        <Tag contents="表现型" />
       </div>
       <TextItem title="当前的运动强度" contents="" />
       <div class="grid grid-cols-3 gap-32px">
@@ -149,37 +133,16 @@
 
       <TextItem title="有无喜欢的运动项目" contents="" />
       <div class="flex gap-10px">
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          网球
-        </span>
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          游泳
-        </span>
+        <!-- 网球 -->
+        <Tag contents="网球" />
+        <!-- 游泳 -->
+        <Tag contents="游泳" />
+        <!-- Tag 徒步 -->
+        <Tag contents="徒步" />
 
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          徒步
-        </span>
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          登山
-        </span>
-        <span
-          class="py-10px px-15px bg-[#F4F4F4] rounded-sm"
-          s:text="xs center"
-        >
-          骑车
-        </span>
+        <!-- 登山 -->
+        <Tag contents="登山" />
+        <Tag contents="骑车" />
       </div>
 
       <TextItem title="父母运动习惯" contents="无" />
@@ -196,4 +159,5 @@
 </template>
 <script lang="ts" setup>
 import TextItem from '@/components/TextItem.vue'
+import Tag from '@/components/Tag.vue'
 </script>
