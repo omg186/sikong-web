@@ -1,7 +1,10 @@
 <template>
-  <div class="p-30px pt-0px" s:border="1px solid [#E8E8E8] rounded-10px">
+  <div
+    class="p-30px pt-0px mb-30px"
+    s:border="1px solid [#E8E8E8] rounded-10px"
+  >
     <div class="grid grid-rows-1 gap-y-10px">
-      <p class="text-sm pt-10px">学员基本信息</p>
+      <p class="text-sm pt-20px">学员基本信息</p>
       <div class="flex gap-x-60px">
         <TextItem title="姓名" contents="李睿曦" />
         <TextItem title="昵称" contents="Ricky" />

@@ -94,12 +94,31 @@
         <TabPane key="2" tab="沟通&动态"><Communicate /></TabPane>
         <TabPane key="3" tab="测评&报告">3</TabPane>
         <template #rightExtra>
-          <Button type="primary" size="large" class="rounded-60"
-            >修改
+          <Button
+            type="primary"
+            size="large"
+            class="rounded-60 flex items-center"
+            v-if="activeKey === '1'"
+          >
+            修改
             <template #icon>
               <SvgIcon
                 name="modify1"
                 class="inline-block w-18px h-12px fill-white mr-5px"
+              ></SvgIcon>
+            </template>
+          </Button>
+          <Button
+            type="primary"
+            size="large"
+            class="rounded-60 flex items-center"
+            v-else-if="activeKey === '2'"
+          >
+            添加跟进记录
+            <template #icon>
+              <SvgIcon
+                name="add"
+                class="inline-block w-24px h-24px fill-white mr-5px"
               ></SvgIcon>
             </template>
           </Button>
