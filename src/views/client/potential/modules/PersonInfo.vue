@@ -114,7 +114,7 @@ import SvgIcon from '@/components/SvgIcon.vue'
 import { Tabs, TabPane, Button } from 'ant-design-vue'
 import { ref } from 'vue'
 import Information from './Information.vue'
-import Communicate from './communicate.vue'
+import Communicate from './Communicate.vue'
 const activeKey = ref('1')
 </script>
 <style lang="scss">
