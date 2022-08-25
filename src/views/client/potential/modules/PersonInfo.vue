@@ -141,7 +141,11 @@
       </Tabs>
     </div>
     <!-- 添加更进记录 -->
-    <Modal :visible="visibleRecording" title="添加跟进记录" :footer="null">
+    <Modal
+      v-model:visible="visibleRecording"
+      title="添加跟进记录"
+      :footer="null"
+    >
       <AddRecording
         @onCancel="visibleRecording = false"
         @onSubmit="visibleRecording = false"

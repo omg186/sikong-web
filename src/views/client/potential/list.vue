@@ -76,7 +76,11 @@
             </template>
           </Input>
         </transition-group>
-        <Button type="primary" class="h-40px rounded-40 text-white">
+        <Button
+          type="primary"
+          class="h-40px rounded-40 text-white"
+          @click="visibleAddClient = true"
+        >
           <template #icon>
             <SvgIcon
               class="w-18px h-18px inline-block fill-white"
@@ -126,7 +130,7 @@
       </Table>
     </div>
     <Drawer
-      :visible="visibleClient"
+      v-model:visible="visibleClient"
       width="940px"
       size="large"
       :headerStyle="{ display: 'none' }"
@@ -134,6 +138,18 @@
     >
       <PersonInfo></PersonInfo>
     </Drawer>
+    <!-- 新建意向客户 -->
+    <Modal
+      v-model:visible="visibleAddClient"
+      width="660px"
+      title="新建意向客户"
+      :footer="null"
+    >
+      <AddClient
+        @on-cancel="visibleAddClient = false"
+        @on-submit="visibleAddClient = false"
+      ></AddClient>
+    </Modal>
   </div>
 </template>
 
@@ -151,14 +167,17 @@ import {
   TablePaginationConfig,
   Drawer,
   Input,
+  Modal,
 } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import { computed, ref } from 'vue'
 import PersonInfo from './modules/PersonInfo.vue'
+import AddClient from './modules/AddClient.vue'
 const visibleClient = ref(false)
 const visibleInput = ref(false)
+const visibleAddClient = ref(false)
 const pagination = computed(
   () =>
     ({
