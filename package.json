@@ -27,6 +27,7 @@
     "@ant-design/icons-vue": "^6.1.0",
     "@types/sortablejs": "^1.13.0",
     "@vueuse/core": "^8.9.1",
+    "animate.css": "^4.1.1",
     "ant-design-vue": "^3.2.10",
     "async-validator": "^4.2.5",
     "china-division": "^2.5.0",

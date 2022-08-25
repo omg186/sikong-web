@@ -50,10 +50,32 @@
       </div>
       <div class="flex items-center gap-27px">
         <!-- 搜索按钮 -->
-        <SvgIcon
-          class="w-24px h-36px fill-[#A5A8B4] cursor-pointer"
-          name="search"
-        ></SvgIcon>
+
+        <transition-group
+          name="search-transition"
+          enter-active-class="animate__fadeInRight"
+          leave-active-class="animate__fadeOutLeft"
+        >
+          <SvgIcon
+            key="1"
+            class="w-18px h-20px fill-[#A5A8B4] cursor-pointer"
+            name="search"
+            v-if="!visibleInput"
+            @mouseenter="visibleInput = true"
+          >
+          </SvgIcon>
+          <Input
+            key="2"
+            v-if="visibleInput"
+            class="w-200px box-border h-40px rounded-60 fill-gray-400 stroke-[#A5A8B4] hover:fill-primary active:fill-primary focus:fill-primary focus-within:fill-primary"
+            placeholder="客户姓名/昵称/电话"
+            @blur="visibleInput = false"
+          >
+            <template #prefix>
+              <SvgIcon class="w-18px h-20px" name="search"></SvgIcon>
+            </template>
+          </Input>
+        </transition-group>
         <Button type="primary" class="h-40px rounded-40 text-white">
           <template #icon>
             <SvgIcon
@@ -77,7 +99,10 @@
       >
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'name'">
-            <div class="flex gap-10px items-center">
+            <div
+              class="flex gap-10px items-center cursor-pointer"
+              @click="onClient"
+            >
               <span
                 class="w-30px h-30px shadow-light-500 rounded-40 overflow-hidden"
                 s:border="2 solid warm-gray-50"
@@ -100,6 +125,14 @@
         </template>
       </Table>
     </div>
+    <Drawer
+      :visible="visibleClient"
+      size="large"
+      :headerStyle="{ display: 'none' }"
+      :body-style="{ padding: 0 }"
+    >
+      <PersonInfo></PersonInfo>
+    </Drawer>
   </div>
 </template>
 
@@ -115,11 +148,16 @@ import {
   TableProps,
   Table,
   TablePaginationConfig,
+  Drawer,
+  Input,
 } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import { computed, ref } from 'vue'
+import PersonInfo from './modules/PersonInfo.vue'
+const visibleClient = ref(false)
+const visibleInput = ref(false)
 const pagination = computed(
   () =>
     ({
@@ -240,4 +278,7 @@ const columns = ref<TableColumnsType>([
     fixed: 'right',
   },
 ])
+function onClient() {
+  visibleClient.value = true
+}
 </script>

@@ -1,0 +1,146 @@
+<template>
+  <div class="potential-person-info">
+    <div
+      class="flex justify-between pl-30px pr-20px py-30px bg-[#FBFCFB]"
+      s:border="b solid light-500"
+    >
+      <div class="grid grid-cols-[80px,auto] gap-20px">
+        <div class="grid grid-rows-[80px,auto] gap-5px">
+          <!-- 头像 -->
+          <div
+            class="avatar-wrapper w-68px h-68px flex justify-center items-center"
+          >
+            <img
+              class="z-10 w-60px h-60px relative rounded-full"
+              src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
+              alt=""
+            />
+          </div>
+          <!-- 意向客户 -->
+          <div
+            class="px-11px py-4px max-h-24px bg-[#FFFADF] text-[#F3AB51] text-center text-xs rounded-60"
+          >
+            意向客户
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-x-37px gap-y-15px">
+          <div class="flex flex-col gap-5px">
+            <span class="text-lg">李睿曦(Ricky)</span>
+            <span>男 5岁11个月</span>
+          </div>
+          <div class="flex fill-[#A5A8B4]">
+            <!-- SVG -->
+            <SvgIcon name="search" class="w-18px h-25px" />
+            <SvgIcon name="search" class="w-18px h-25px" />
+            <SvgIcon name="search" class="w-18px h-25px" />
+          </div>
+          <div class="flex flex-col gap-5px text-xs">
+            <span>
+              创建时间
+              <span class="text-[#9E9E9E]">:2022.3.5 10:18</span>
+            </span>
+            <span>渠道来源<span class="text-[#9E9E9E]">:主动上门</span> </span>
+          </div>
+          <div class="flex flex-col gap-5px text-xs">
+            <span>
+              联系人
+              <span class="text-[#9E9E9E]">:包女士（母亲）</span>
+            </span>
+            <span>
+              顾问
+              <span class="text-[#9E9E9E]">:张艳玲（猫猫） </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-[36px,36px] gap-10px fill-[#A5A8B4]">
+        <span
+          class="flex items-center justify-center h-36px rounded-10px"
+          s:border="1px solid [#DBDFDD]"
+        >
+          <SvgIcon
+            name="down"
+            class="w-18px h-18px transform rotate-90"
+          ></SvgIcon>
+        </span>
+        <span
+          class="flex items-center justify-center h-36px rounded-10px"
+          s:border="1px solid [#DBDFDD]"
+        >
+          <SvgIcon
+            name="down"
+            class="w-18px h-18px transform rotate-270"
+          ></SvgIcon>
+        </span>
+      </div>
+    </div>
+    <div class="px-30px pt-10px">
+      <Tabs v-model:activeKey="activeKey">
+        <TabPane key="1" tab="学员资料"><Information></Information></TabPane>
+        <TabPane key="2" tab="沟通&动态">2</TabPane>
+        <TabPane key="3" tab="测评&报告">3</TabPane>
+        <template #rightExtra>
+          <Button type="primary" size="large" class="rounded-60"
+            >修改
+            <template #icon>
+              <SvgIcon
+                name="modify1"
+                class="inline-block w-18px h-12px fill-white mr-5px"
+              ></SvgIcon>
+            </template>
+          </Button>
+        </template>
+      </Tabs>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import SvgIcon from '@/components/SvgIcon.vue'
+import { Tabs, TabPane, Button } from 'ant-design-vue'
+import { ref } from 'vue'
+import Information from './Information.vue'
+const activeKey = ref('1')
+</script>
+<style lang="scss">
+.potential-person-info {
+  .ant-tabs-nav::before {
+    border: 0px;
+  }
+  .ant-tabs-content-holder {
+    min-height: 400px;
+    overflow-x: auto;
+  }
+}
+</style>
+<style lang="scss" scoped>
+.avatar-wrapper {
+  position: relative;
+  z-index: 4;
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50%;
+    height: 50%;
+    background-color: #fff;
+    opacity: 1;
+    right: -5px;
+    top: -10px;
+    z-index: 2;
+    @apply rounded-full;
+  }
+  &::after {
+    /* @apply 4px solid [#2FE095]; */
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border: 4px solid #2fe095;
+    border-radius: 50%;
+  }
+}
+</style>
