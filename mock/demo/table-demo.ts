@@ -47,6 +47,7 @@ const demoList = (() => {
       'status|1': ['正常', '禁用', '离职'],
       'status1|1': [1, 2, 3],
       'color|1': ['#F4274E', '#FFD13C', '#2FE095'],
+      progress: '@float(0, 100, 2, 2)',
     })
   }
   return result

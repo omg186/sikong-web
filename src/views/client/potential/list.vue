@@ -127,6 +127,7 @@
     </div>
     <Drawer
       :visible="visibleClient"
+      width="940px"
       size="large"
       :headerStyle="{ display: 'none' }"
       :body-style="{ padding: 0 }"

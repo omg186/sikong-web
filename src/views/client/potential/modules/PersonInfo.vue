@@ -92,7 +92,7 @@
       <Tabs v-model:activeKey="activeKey">
         <TabPane key="1" tab="学员资料"><Information></Information></TabPane>
         <TabPane key="2" tab="沟通&动态"><Communicate /></TabPane>
-        <TabPane key="3" tab="测评&报告">3</TabPane>
+        <TabPane key="3" tab="测评&报告"><Evaluation /></TabPane>
         <template #rightExtra>
           <Button
             type="primary"
@@ -113,8 +113,23 @@
             size="large"
             class="rounded-60 flex items-center"
             v-else-if="activeKey === '2'"
+            @click="visibleRecording = true"
           >
             添加跟进记录
+            <template #icon>
+              <SvgIcon
+                name="add"
+                class="inline-block w-24px h-24px fill-white mr-5px"
+              ></SvgIcon>
+            </template>
+          </Button>
+          <Button
+            type="primary"
+            size="large"
+            class="rounded-60 flex items-center"
+            v-else-if="activeKey === '3'"
+          >
+            预约测评
             <template #icon>
               <SvgIcon
                 name="add"
@@ -125,16 +140,26 @@
         </template>
       </Tabs>
     </div>
+    <!-- 添加更进记录 -->
+    <Modal :visible="visibleRecording" title="添加跟进记录" :footer="null">
+      <AddRecording
+        @onCancel="visibleRecording = false"
+        @onSubmit="visibleRecording = false"
+      ></AddRecording>
+    </Modal>
   </div>
 </template>
 
 <script lang="ts" setup>
 import SvgIcon from '@/components/SvgIcon.vue'
-import { Tabs, TabPane, Button } from 'ant-design-vue'
+import { Tabs, TabPane, Button, Modal } from 'ant-design-vue'
 import { ref } from 'vue'
 import Information from './Information.vue'
 import Communicate from './Communicate.vue'
+import Evaluation from './Evaluation.vue'
+import AddRecording from './AddRecording.vue'
 const activeKey = ref('1')
+const visibleRecording = ref(false)
 </script>
 <style lang="scss">
 .potential-person-info {

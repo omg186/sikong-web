@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="28" height="28"
+    viewBox="0 0 28 28">
+    <g style="mix-blend-mode:passthrough">
+        <g style="opacity:0;mix-blend-mode:passthrough">
+            <rect x="0" y="0" width="28" height="28" rx="0" fill-opacity="1" />
+        </g>
+        <g style="mix-blend-mode:passthrough">
+            <g style="mix-blend-mode:passthrough">
+                <g style="mix-blend-mode:passthrough">
+                    <rect x="4" y="6" width="16" height="17" rx="3" fill-opacity="0" stroke-opacity="1" fill="none"
+                        stroke-width="2" />
+                </g>
+                <g style="mix-blend-mode:passthrough" transform="matrix(0,1,-1,0,12,-6)">
+                    <rect x="9" y="3" width="5" height="2" rx="1" fill-opacity="1" />
+                </g>
+                <g style="mix-blend-mode:passthrough" transform="matrix(-1,0,0,-1,32,26)">
+                    <rect x="16" y="13" width="9" height="2" rx="1" fill-opacity="1" />
+                </g>
+                <g style="mix-blend-mode:passthrough" transform="matrix(-1,0,0,-1,26,34)">
+                    <rect x="13" y="17" width="6" height="2" rx="1" fill-opacity="1" />
+                </g>
+                <g style="mix-blend-mode:passthrough" transform="matrix(0,1,-1,0,20,-14)">
+                    <rect x="17" y="3" width="5" height="2" rx="1" fill-opacity="1" />
+                </g>
+            </g>
+            <g style="mix-blend-mode:passthrough"
+                transform="matrix(0,1,-0.9999999403953552,0,36.00097590684891,-14.0009765625)">
+                <ellipse cx="30.0009765625" cy="16.000280380249023" rx="5" ry="5.000280380249023" fill="#FFFFFF"
+                    fill-opacity="1" />
+            </g>
+            <g style="mix-blend-mode:passthrough"
+                transform="matrix(0,0.9999999403953552,-0.9999998807907104,0,35.99493265212368,-12.005064487457275)">
+                <ellipse cx="28" cy="15.995158195495605" rx="3" ry="3.0002241134643555" fill-opacity="0"
+                    stroke-opacity="1" fill="none" stroke-width="2" />
+            </g>
+            <g style="mix-blend-mode:passthrough"
+                transform="matrix(0.7071067094802856,0.7071067094802856,-0.7071067094802856,0.7071067094802856,18.28635840872448,-10.785232266040111)">
+                <rect x="22.162109375" y="16.68096923828125" width="4" height="2.000000238418579"
+                    rx="1.0000001192092896" fill-opacity="1" />
+            </g>
+        </g>
+    </g>
+</svg>
