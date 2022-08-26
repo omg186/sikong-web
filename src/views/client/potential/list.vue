@@ -162,6 +162,18 @@
         @on-submit="visibleToFormal = false"
       ></ToFormal>
     </Modal>
+    <!-- 分配/调整顾问 -->
+    <Modal
+      v-model:visible="visibleDistribute"
+      width="660px"
+      title="分配/调整顾问"
+      :footer="null"
+    >
+      <Distribute
+        @on-cancel="visibleDistribute = false"
+        @on-submit="visibleDistribute = false"
+      ></Distribute>
+    </Modal>
   </div>
 </template>
 
@@ -188,10 +200,12 @@ import { computed, ref } from 'vue'
 import PersonInfo from './modules/PersonInfo.vue'
 import AddClient from './modules/AddClient.vue'
 import ToFormal from './modules/ToFormal.vue'
+import Distribute from './modules/Distribute.vue'
 const visibleClient = ref(false)
 const visibleInput = ref(false)
 const visibleAddClient = ref(false)
 const visibleToFormal = ref(false)
+const visibleDistribute = ref(true)
 const pagination = computed(
   () =>
     ({
