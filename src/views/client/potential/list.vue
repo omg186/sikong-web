@@ -150,6 +150,18 @@
         @on-submit="visibleAddClient = false"
       ></AddClient>
     </Modal>
+    <!-- 转为正式会员 -->
+    <Modal
+      v-model:visible="visibleToFormal"
+      width="660px"
+      title="转为正式会员"
+      :footer="null"
+    >
+      <ToFormal
+        @on-cancel="visibleToFormal = false"
+        @on-submit="visibleToFormal = false"
+      ></ToFormal>
+    </Modal>
   </div>
 </template>
 
@@ -175,9 +187,11 @@ import { getDemoListApi } from '@/api/select'
 import { computed, ref } from 'vue'
 import PersonInfo from './modules/PersonInfo.vue'
 import AddClient from './modules/AddClient.vue'
+import ToFormal from './modules/ToFormal.vue'
 const visibleClient = ref(false)
 const visibleInput = ref(false)
 const visibleAddClient = ref(false)
+const visibleToFormal = ref(false)
 const pagination = computed(
   () =>
     ({
