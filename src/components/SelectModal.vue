@@ -2,13 +2,15 @@
   <Modal
     width="786px"
     v-model:visible="visible"
-    title="企业培训项目"
+    :title="props.title"
     ok-text="确认"
     cancel-text="取消"
     :destroyOnClose="true"
+    :footer="null"
     @cancel="cancel"
     @ok="onOk"
   >
+    <div><slot></slot></div>
     <div class="grid grid-cols-6 gap-15px">
       <p
         v-for="(item, index) in props.data"
@@ -31,20 +33,32 @@
         {{ item.name }}
       </p>
     </div>
+    <!-- 按钮 -->
+    <div class="flex gap-15px mt-10px">
+      <Button class="btn cancel h-40px w-90px" @click="cancel"> 取消 </Button>
+
+      <Button
+        class="rounded-40px h-40px w-90px bg-primary text-white"
+        s:border="1px solid [#C7F7E3]"
+        type="primary"
+        @click="onOk"
+      >
+        保存
+      </Button>
+    </div>
   </Modal>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, reactive, watch } from 'vue'
-import { Modal } from 'ant-design-vue'
-import { toArray } from 'lodash-es'
-import { SelectItem } from '../useLogin'
+import { Modal, Button } from 'ant-design-vue'
 
 const props = withDefaults(
   defineProps<{
     data?: Array<{ id: number; name: string }>
+    title: string
     visible: boolean
-    selected?: Array<SelectItem>
+    selected?: Array<any>
   }>(),
   {}
 )
@@ -67,11 +81,11 @@ function setDefaultSel(val) {
 }
 const emits = defineEmits<{
   (event: 'update:visible', value: boolean): void
-  (event: 'onOk', value: Map<number, SelectItem>): void
+  (event: 'onOk', value: Map<number, any>): void
 }>()
 const data = reactive({
   visible: false,
-  selected: new Map<number, SelectItem>(),
+  selected: new Map<number, any>(),
 })
 function cancel() {
   emits('update:visible', false)
@@ -79,7 +93,7 @@ function cancel() {
 function onOk() {
   emits('onOk', data.selected)
 }
-function onSelect(item: SelectItem) {
+function onSelect(item: any) {
   if (data.selected.has(item.id)) {
     data.selected.delete(item.id)
   } else {
