@@ -74,6 +74,7 @@
                   name="view-reserve"
                   class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
                   s:hover="fill-[#323736] stroke-[#323736]"
+                  @click="visibleAddEvaluation = true"
                 />
               </Tooltip>
 
@@ -83,6 +84,7 @@
                   name="reserve-edit"
                   class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
                   s:hover="fill-[#323736] stroke-[#323736]"
+                  @click="visibleAddEvaluation = true"
                 />
               </Tooltip>
               <!-- 取消预约 -->
@@ -91,6 +93,7 @@
                   name="reserve-cancel"
                   class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
                   s:hover="fill-[#323736] stroke-[#323736]"
+                  @click="visibleAddEvaluation = true"
                 />
               </Tooltip>
             </div>
@@ -98,6 +101,18 @@
         </template>
       </Table>
     </div>
+    <!-- 预约测评 -->
+    <Modal
+      v-model:visible="visibleAddEvaluation"
+      width="800px"
+      title="预约测评"
+      :footer="null"
+    >
+      <AddEvaluation
+        @on-cancel="visibleAddEvaluation = false"
+        @on-submit="visibleAddEvaluation = false"
+      ></AddEvaluation>
+    </Modal>
   </div>
 </template>
 
@@ -113,14 +128,16 @@ import {
   TableProps,
   Table,
   Tooltip,
+  Modal,
 } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
-import SvgIcon from '../../../../components/SvgIcon.vue'
-
+import SvgIcon from '@/components/SvgIcon.vue'
+import AddEvaluation from './AddEvaluation.vue'
 const bgColor = ['#DAF8E9', '#FCEFDD', '#FCEFDD']
 const textColor = ['#1BC289', '#F3AB51', '#FF7C7C']
 const bgProcessColor = ['#C0F6DD', '#F8D2A4', '#FEDCDE']
+const visibleAddEvaluation = ref(false)
 const pagination = computed(
   () =>
     ({

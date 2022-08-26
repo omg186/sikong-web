@@ -108,6 +108,7 @@
             size="large"
             class="rounded-60 flex items-center"
             v-if="activeKey === '1'"
+            @click="visibleAddClient = true"
           >
             修改
             <template #icon>
@@ -137,6 +138,7 @@
             size="large"
             class="rounded-60 flex items-center"
             v-else-if="activeKey === '3'"
+            @click="visibleAddEvaluation = true"
           >
             预约测评
             <template #icon>
@@ -197,6 +199,19 @@
         @on-submit="visibleAddEvaluation = false"
       ></AddEvaluation>
     </Modal>
+
+    <!-- 新建意向客户 -->
+    <Modal
+      v-model:visible="visibleAddClient"
+      width="660px"
+      title="修改意向客户"
+      :footer="null"
+    >
+      <AddClient
+        @on-cancel="visibleAddClient = false"
+        @on-submit="visibleAddClient = false"
+      ></AddClient>
+    </Modal>
   </div>
 </template>
 
@@ -205,6 +220,7 @@ import SvgIcon from '@/components/SvgIcon.vue'
 import { Tabs, TabPane, Button, Modal, Tooltip } from 'ant-design-vue'
 import { ref } from 'vue'
 import Information from './Information.vue'
+import AddClient from './AddClient.vue'
 import Communicate from './Communicate.vue'
 import Evaluation from './Evaluation.vue'
 import AddRecording from './AddRecording.vue'
@@ -215,6 +231,7 @@ const activeKey = ref('1')
 const visibleAddEvaluation = ref(false)
 const visibleDistribute = ref(false)
 const visibleToFormal = ref(false)
+const visibleAddClient = ref(false)
 const visibleRecording = ref(false)
 </script>
 <style lang="scss">

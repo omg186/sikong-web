@@ -107,8 +107,9 @@
               <i class="absolute left-2px w-1px h-8px bg-[#DBDFDD]"></i>
               <span
                 class="absolute left-[-50%] top-10px transform translate-x-1/4"
-                >{{ t }}</span
               >
+                {{ t }}
+              </span>
             </div>
           </div>
         </div>
