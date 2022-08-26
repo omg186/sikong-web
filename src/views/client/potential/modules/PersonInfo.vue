@@ -30,21 +30,30 @@
           </div>
           <div class="flex fill-[#A5A8B4]">
             <!-- SVG -->
-            <SvgIcon
-              name="add-test"
-              class="w-28px h-28px stroke-[#A5A8B4] cursor-pointer"
-              s:hover="fill-[#363B39] stroke-[#363B39]"
-            />
-            <SvgIcon
-              name="switch"
-              class="w-28px h-28px cursor-pointer"
-              s:hover="fill-[#363B39]"
-            />
-            <SvgIcon
-              name="client"
-              class="w-28px h-28px cursor-pointer"
-              s:hover="fill-[#363B39]"
-            />
+            <Tooltip title="新建预约测评">
+              <SvgIcon
+                name="add-test"
+                class="w-28px h-28px stroke-[#A5A8B4] cursor-pointer"
+                s:hover="fill-[#363B39] stroke-[#363B39]"
+                @click="visibleAddEvaluation = true"
+              />
+            </Tooltip>
+            <Tooltip title="分配调整顾问">
+              <SvgIcon
+                name="switch"
+                class="w-28px h-28px cursor-pointer"
+                s:hover="fill-[#363B39]"
+                @click="visibleDistribute = true"
+              />
+            </Tooltip>
+            <Tooltip title="转为正式客户">
+              <SvgIcon
+                name="client"
+                class="w-28px h-28px cursor-pointer"
+                s:hover="fill-[#363B39]"
+                @click="visibleToFormal = true"
+              />
+            </Tooltip>
           </div>
           <div class="flex flex-col gap-5px text-xs">
             <span>
@@ -151,18 +160,61 @@
         @onSubmit="visibleRecording = false"
       ></AddRecording>
     </Modal>
+
+    <!-- 分配/调整顾问 -->
+    <Modal
+      v-model:visible="visibleDistribute"
+      width="800px"
+      title="分配/调整顾问"
+      :footer="null"
+    >
+      <Distribute
+        @on-cancel="visibleDistribute = false"
+        @on-submit="visibleDistribute = false"
+      ></Distribute>
+    </Modal>
+    <!-- 转为正式会员 -->
+    <Modal
+      v-model:visible="visibleToFormal"
+      width="660px"
+      title="转为正式会员"
+      :footer="null"
+    >
+      <ToFormal
+        @on-cancel="visibleToFormal = false"
+        @on-submit="visibleToFormal = false"
+      ></ToFormal>
+    </Modal>
+    <!-- 预约测评 -->
+    <Modal
+      v-model:visible="visibleAddEvaluation"
+      width="800px"
+      title="预约测评"
+      :footer="null"
+    >
+      <AddEvaluation
+        @on-cancel="visibleAddEvaluation = false"
+        @on-submit="visibleAddEvaluation = false"
+      ></AddEvaluation>
+    </Modal>
   </div>
 </template>
 
 <script lang="ts" setup>
 import SvgIcon from '@/components/SvgIcon.vue'
-import { Tabs, TabPane, Button, Modal } from 'ant-design-vue'
+import { Tabs, TabPane, Button, Modal, Tooltip } from 'ant-design-vue'
 import { ref } from 'vue'
 import Information from './Information.vue'
 import Communicate from './Communicate.vue'
 import Evaluation from './Evaluation.vue'
 import AddRecording from './AddRecording.vue'
+import AddEvaluation from './AddEvaluation.vue'
+import ToFormal from './ToFormal.vue'
+import Distribute from './Distribute.vue'
 const activeKey = ref('1')
+const visibleAddEvaluation = ref(false)
+const visibleDistribute = ref(false)
+const visibleToFormal = ref(false)
 const visibleRecording = ref(false)
 </script>
 <style lang="scss">
