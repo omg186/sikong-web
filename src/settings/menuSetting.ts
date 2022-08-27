@@ -2,14 +2,14 @@ import { Menu } from '@/routers/types'
 
 export const leftMenus: Menu[] = [
   {
-    name: '我的客户',
-    path: '/client',
+    name: '我的测评',
+    path: '/my-evaluation',
     icon: 'sider/0.png',
     iconActive: 'sider/0-active.png',
   },
   {
-    name: '企业管理',
-    path: '/task',
+    name: '我的客户',
+    path: '/client',
     icon: 'sider/1.png',
     iconActive: 'sider/1-active.png',
   },

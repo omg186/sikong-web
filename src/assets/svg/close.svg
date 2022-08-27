@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="18" height="18"
+    viewBox="0 0 18 18">
+    <g style="mix-blend-mode:passthrough">
+        <g style="mix-blend-mode:passthrough">
+            <ellipse cx="9" cy="9" rx="9" ry="9" fill-opacity="1" />
+        </g>
+        <g style="mix-blend-mode:passthrough"
+            transform="matrix(0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,5.8787678264168335,-3.263401607141759)">
+            <rect x="6.878658294677734" y="5.464599609375" width="8" height="2" rx="1" fill="#FFFFFF"
+                fill-opacity="1" />
+        </g>
+        <g style="mix-blend-mode:passthrough"
+            transform="matrix(-0.7071067690849304,0.7071067690849304,-0.7071067690849304,-0.7071067690849304,26.26362566183093,2.8785742436709825)">
+            <rect x="12.535640716552734" y="6.878662109375" width="8" height="2" rx="1" fill="#FFFFFF"
+                fill-opacity="1" />
+        </g>
+    </g>
+</svg>
