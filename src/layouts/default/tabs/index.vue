@@ -19,9 +19,8 @@
         </div>
       </div>
       <div class="flex pr-20px">
-        <div class="ld relative">
+        <div class="ld relative" v-if="messageIcon" @click="onMessageIcon">
           <SvgIcon
-            v-if="messageIcon"
             name="ld"
             class="w-28px h-28px fill-transparent cursor-pointer"
             s:hover=" fill-[#EBFBF6]"
@@ -81,7 +80,7 @@ export default defineComponent({
     const go = useGo()
     // const { getShowQuick, getShowRedo, getShowFold } = useMultipleTabSetting()
     // 获取消息状态
-    const messageStatus = userStore.getMessageStatus
+    const messageStatus = computed(() => userStore.getMessageStatus)
     const messageIcon = computed(
       () => router.currentRoute.value.meta.visibleMessage
     )
@@ -143,6 +142,9 @@ export default defineComponent({
 
       tabStore.closeTabByKey(targetKey, router)
     }
+    function onMessageIcon() {
+      userStore.clickMessageIcon()
+    }
     return {
       getWrapClass,
       handleEdit,
@@ -151,6 +153,7 @@ export default defineComponent({
       getTabsState,
       messageStatus,
       messageIcon,
+      onMessageIcon,
       //   getShowQuick,
       //   getShowRedo,
       //   getShowFold,

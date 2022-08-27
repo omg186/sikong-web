@@ -150,6 +150,16 @@
         @on-submit="visibleAddClient = false"
       ></AddClient>
     </Modal>
+    <!-- 通知消息 -->
+    <Modal
+      :visible="visibleMessageDialog"
+      width="660px"
+      title="通知消息"
+      :footer="null"
+      @update:visible="userStore.clickMessageIcon"
+    >
+      <MessageList></MessageList>
+    </Modal>
   </div>
 </template>
 
@@ -174,10 +184,20 @@ import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import { computed, ref } from 'vue'
 import PersonInfo from './modules/PersonInfo.vue'
+import MessageList from './modules/Message.vue'
 import AddClient from './modules/AddClient.vue'
+import { useUserStore } from '@/store/modules/user'
+
 const visibleClient = ref(false)
 const visibleInput = ref(false)
 const visibleAddClient = ref(false)
+const userStore = useUserStore()
+setTimeout(() => {
+  userStore.setMessageStatus(true)
+}, 1000)
+
+const visibleMessageDialog = computed(() => userStore.getVisibleMessageDialog)
+
 const pagination = computed(
   () =>
     ({

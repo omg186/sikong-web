@@ -23,6 +23,7 @@ interface UserState {
   sessionTimeout?: boolean
   lastUpdateTime: number
   messageStatus: boolean
+  visibleMessageDialog: boolean
 }
 
 export const useUserStore = defineStore({
@@ -40,6 +41,7 @@ export const useUserStore = defineStore({
     lastUpdateTime: 0,
     // message status
     messageStatus: false,
+    visibleMessageDialog: false,
   }),
   getters: {
     getUserInfo(): UserInfo {
@@ -62,6 +64,10 @@ export const useUserStore = defineStore({
     // 获取消息状态
     getMessageStatus(): boolean {
       return this.messageStatus
+    },
+    // 是否显示消息提示框
+    getVisibleMessageDialog(): boolean {
+      return this.visibleMessageDialog
     },
   },
   actions: {
@@ -86,6 +92,9 @@ export const useUserStore = defineStore({
     // 变更消息状态
     setMessageStatus(status: boolean) {
       this.messageStatus = status
+    },
+    clickMessageIcon() {
+      this.visibleMessageDialog = !this.visibleMessageDialog
     },
     resetState() {
       this.userInfo = null
