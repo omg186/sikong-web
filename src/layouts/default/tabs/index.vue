@@ -1,6 +1,6 @@
 <template>
   <div :class="getWrapClass">
-    <div class="flex items-center h-66px">
+    <div class="flex justify-between items-center h-66px">
       <div class="flex divide-x-2">
         <div
           class="tab-item flex-center min-w-166px px-50px items-center cursor-pointer"
@@ -16,6 +16,20 @@
           >
             <close-outlined />
           </i>
+        </div>
+      </div>
+      <div class="flex pr-20px">
+        <div class="ld relative">
+          <SvgIcon
+            v-if="messageIcon"
+            name="ld"
+            class="w-28px h-28px fill-transparent cursor-pointer"
+            s:hover=" fill-[#EBFBF6]"
+          />
+          <i
+            v-if="messageStatus"
+            class="absolute top-1px right-5px w-6px h-6px bg-[#F4274E] rounded-full"
+          ></i>
         </div>
       </div>
     </div>
@@ -43,6 +57,7 @@ import { REDIRECT_NAME } from '@/routers/constant'
 
 import { useRouter } from 'vue-router'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
+import SvgIcon from '../../../components/SvgIcon.vue'
 
 export default defineComponent({
   name: 'MultipleTabs',
@@ -52,7 +67,7 @@ export default defineComponent({
     CloseOutlined,
     Tabs,
     TabPane: Tabs.TabPane,
-    // TabContent,
+    SvgIcon,
   },
   setup() {
     const affixTextList = initAffixTabs()
@@ -65,7 +80,11 @@ export default defineComponent({
     const { prefixCls } = { prefixCls: 'multiple-tabs' }
     const go = useGo()
     // const { getShowQuick, getShowRedo, getShowFold } = useMultipleTabSetting()
-
+    // 获取消息状态
+    const messageStatus = userStore.getMessageStatus
+    const messageIcon = computed(
+      () => router.currentRoute.value.meta.visibleMessage
+    )
     const getTabsState = computed(() => {
       return tabStore.getTabList.filter(item => !item.meta?.hideTab)
     })
@@ -130,6 +149,8 @@ export default defineComponent({
       handleChange,
       activeKeyRef,
       getTabsState,
+      messageStatus,
+      messageIcon,
       //   getShowQuick,
       //   getShowRedo,
       //   getShowFold,

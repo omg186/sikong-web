@@ -22,6 +22,7 @@ interface UserState {
   roleList: RoleEnum[]
   sessionTimeout?: boolean
   lastUpdateTime: number
+  messageStatus: boolean
 }
 
 export const useUserStore = defineStore({
@@ -37,6 +38,8 @@ export const useUserStore = defineStore({
     sessionTimeout: false,
     // Last fetch time
     lastUpdateTime: 0,
+    // message status
+    messageStatus: false,
   }),
   getters: {
     getUserInfo(): UserInfo {
@@ -55,6 +58,10 @@ export const useUserStore = defineStore({
     },
     getLastUpdateTime(): number {
       return this.lastUpdateTime
+    },
+    // 获取消息状态
+    getMessageStatus(): boolean {
+      return this.messageStatus
     },
   },
   actions: {
@@ -75,6 +82,10 @@ export const useUserStore = defineStore({
     },
     setSessionTimeout(flag: boolean) {
       this.sessionTimeout = flag
+    },
+    // 变更消息状态
+    setMessageStatus(status: boolean) {
+      this.messageStatus = status
     },
     resetState() {
       this.userInfo = null

@@ -7,6 +7,8 @@ declare module 'vue-router' {
     orderNo?: number
     // title
     title: string
+    // visible message icon
+    visibleMessage?: boolean
     // dynamic router level.
     dynamicLevel?: number
     // dynamic router real route path (For performance).

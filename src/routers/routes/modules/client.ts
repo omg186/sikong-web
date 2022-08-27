@@ -16,6 +16,7 @@ export const Client: AppRouteRecordRaw = {
       component: () => import('@/views/client/potential/list.vue'),
       meta: {
         title: '意向客户',
+        visibleMessage: true,
       },
     },
     {
