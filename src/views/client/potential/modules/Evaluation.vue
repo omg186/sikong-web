@@ -69,33 +69,46 @@
           </template>
           <template v-if="column.key === 'option'">
             <div class="flex w-full items-center justify-center cursor-pointer">
-              <Tooltip title="查看预约">
-                <SvgIcon
-                  name="view-reserve"
-                  class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
-                  s:hover="fill-[#323736] stroke-[#323736]"
-                  @click="visibleAddEvaluation = true"
-                />
-              </Tooltip>
+              <template v-if="record.status === '正常'">
+                <Tooltip title="查看预约">
+                  <SvgIcon
+                    name="view-reserve"
+                    class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
+                    s:hover="fill-[#323736] stroke-[#323736]"
+                    @click="visibleAddEvaluation = true"
+                  />
+                </Tooltip>
 
-              <!-- reserve-edit -->
-              <Tooltip title="编辑预约">
-                <SvgIcon
-                  name="reserve-edit"
-                  class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
-                  s:hover="fill-[#323736] stroke-[#323736]"
-                  @click="visibleAddEvaluation = true"
-                />
-              </Tooltip>
-              <!-- 取消预约 -->
-              <Tooltip title="取消预约">
-                <SvgIcon
-                  name="reserve-cancel"
-                  class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
-                  s:hover="fill-[#323736] stroke-[#323736]"
-                  @click="visibleAddEvaluation = true"
-                />
-              </Tooltip>
+                <!-- reserve-edit -->
+                <Tooltip title="编辑预约">
+                  <SvgIcon
+                    name="reserve-edit"
+                    class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
+                    s:hover="fill-[#323736] stroke-[#323736]"
+                    @click="visibleAddEvaluation = true"
+                  />
+                </Tooltip>
+                <!-- 取消预约 -->
+                <Tooltip title="取消预约">
+                  <SvgIcon
+                    name="reserve-cancel"
+                    class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
+                    s:hover="fill-[#323736] stroke-[#323736]"
+                    @click="visibleAddEvaluation = true"
+                  />
+                </Tooltip>
+              </template>
+              <template v-else>
+                <!-- 取消预约 -->
+                <Tooltip title="查看报告">
+                  <SvgIcon
+                    name="reserve-cancel"
+                    class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
+                    s:hover="fill-[#323736] stroke-[#323736]"
+                    @click="visibleEvaluationReport = true"
+                  />
+                </Tooltip>
+              </template>
             </div>
           </template>
         </template>
@@ -112,6 +125,18 @@
         @on-cancel="visibleAddEvaluation = false"
         @on-submit="visibleAddEvaluation = false"
       ></AddEvaluation>
+    </Modal>
+    <!-- 查看测评报告 -->
+    <Modal
+      v-model:visible="visibleEvaluationReport"
+      width="1000px"
+      title="查看测评报告"
+      :footer="null"
+    >
+      <EvaluationReport
+        @on-cancel="visibleEvaluationReport = false"
+        @on-submit="visibleEvaluationReport = false"
+      ></EvaluationReport>
     </Modal>
   </div>
 </template>
@@ -134,10 +159,12 @@ import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
 import SvgIcon from '@/components/SvgIcon.vue'
 import AddEvaluation from './AddEvaluation.vue'
+import EvaluationReport from '@/views/evaluation/center/modules/report.vue'
 const bgColor = ['#DAF8E9', '#FCEFDD', '#FCEFDD']
 const textColor = ['#1BC289', '#F3AB51', '#FF7C7C']
 const bgProcessColor = ['#C0F6DD', '#F8D2A4', '#FEDCDE']
 const visibleAddEvaluation = ref(false)
+const visibleEvaluationReport = ref(false)
 const pagination = computed(
   () =>
     ({
