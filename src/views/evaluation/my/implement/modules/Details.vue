@@ -128,7 +128,7 @@
         </template>
       </Table>
       <!-- 按钮 -->
-      <div class="flex gap-15px">
+      <div class="flex gap-15px" v-if="props.status === '开放中'">
         <Button class="btn cancel h-40px w-90px"> 关闭测试 </Button>
 
         <Button

@@ -2,7 +2,7 @@
   <div>
     <Header @click-icon="onJump"></Header>
     <div class="flex items-center ga py-5px pl-30px">
-      <span s:text="sm" class="text-primary">全部</span>
+      <span s:text="sm" class="text-primary pr-30px">全部</span>
       <Form layout="inline">
         <FormItem>
           <Select placeholder="测评类型" class="min-w-178px">
@@ -124,18 +124,10 @@
             <div
               class="flex items-center gap-9px cursor-pointer fill-[#AAA9B0]"
               s:hover="fill-[#393F3B]"
+              @click="visibleDetail2 = true"
             >
               <SvgIcon class="w-18px h-18px" name="edit"></SvgIcon>
               数据回填
-            </div>
-
-            <div
-              class="flex items-center gap-9px cursor-pointer fill-[#E79EB0]"
-              s:hover="fill-[#F43359]"
-              @click="visibleDetail1 = true"
-            >
-              <SvgIcon class="w-18px h-18px" name="close"></SvgIcon>
-              关闭测评(已完成)
             </div>
           </div>
           <div v-else-if="index === 2" class="flex gap-20px justify-center">
@@ -160,7 +152,11 @@
               class="flex items-center gap-9px cursor-pointer fill-[#71EBBB]"
               s:hover="fill-primary"
             >
-              <SvgIcon class="w-18px h-18px" name="action"></SvgIcon>
+              <SvgIcon
+                class="w-18px h-18px"
+                name="action"
+                @click="visibleDetail1 = true"
+              ></SvgIcon>
               执行测评
             </div>
           </div>
@@ -184,6 +180,16 @@
     >
       <Details :status="'已完成'"></Details>
     </Modal>
+    <!-- 数据回填 -->
+    <Modal
+      v-model:visible="visibleDetail2"
+      width="1200px"
+      title="数据回填"
+      :footer="null"
+      :body-style="{ padding: '0' }"
+    >
+      <Data></Data>
+    </Modal>
   </div>
 </template>
 
@@ -206,8 +212,12 @@ import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
 import Header from './modules/Header.vue'
 import Details from './modules/Details.vue'
+import Data from './modules/Data.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const visibleDetail = ref(false)
 const visibleDetail1 = ref(false)
+const visibleDetail2 = ref(false)
 const pagination = computed(
   () =>
     ({
@@ -319,6 +329,6 @@ const columns = ref<TableColumnsType>([
   },
 ])
 function onJump() {
-  this.$router.push('/')
+  router.push({ name: 'MyEvaluationImplementCalendar' })
 }
 </script>

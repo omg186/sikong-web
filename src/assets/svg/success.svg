@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12.020751953125"
+    height="9.1923828125" viewBox="0 0 12.020751953125 9.1923828125">
+    <g style="mix-blend-mode:passthrough" transform="matrix(0.9999999403953552,0,0,0.9999999403953552,0,0)">
+        <g style="mix-blend-mode:passthrough"
+            transform="matrix(0.7071067690849304,0.7071067094802856,-0.7071067094802856,0.7071067094802856,2.1213201212096067,-0.878679312489453)">
+            <rect x="2.1213202476501465" y="2.1213202476501465" width="7.000000476837158" height="3" rx="1.5"
+                fill-opacity="1" />
+        </g>
+        <g style="mix-blend-mode:passthrough"
+            transform="matrix(-0.7071068286895752,0.7071067690849304,-0.7071067094802856,-0.7071067094802856,22.020678220802154,-4.878622909533476)">
+            <rect x="12.020734786987305" y="2.1213202476501465" width="10.000001907348633" height="3" rx="1.5"
+                fill-opacity="1" />
+        </g>
+    </g>
+</svg>

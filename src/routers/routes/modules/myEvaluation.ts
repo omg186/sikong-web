@@ -20,6 +20,19 @@ export const MyEvaluation: AppRouteRecordRaw = {
           component: () => import('@/views/evaluation/my/implement/list.vue'),
           meta: { title: '测评列表' },
         },
+        {
+          path: 'calendar',
+          name: 'MyEvaluationImplementCalendar',
+          component: () =>
+            import('@/views/evaluation/my/implement/calendar.vue'),
+          meta: { title: '测评日历' },
+        },
+        {
+          path: 'agency',
+          name: 'MyEvaluationAgency',
+          component: () => import('@/views/evaluation/my/implement/agency.vue'),
+          meta: { title: '待处理事项', ignoreTab: true },
+        },
       ],
     },
 

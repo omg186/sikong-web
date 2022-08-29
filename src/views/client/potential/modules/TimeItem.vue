@@ -1,9 +1,11 @@
 <template>
   <div
     v-for="(i, index) in props.times.length - 1"
-    class="w-46px h-38px flex justify-center items-center cursor-pointer border-1px text-primary fill-[#CCCCCC]"
+    class="w-46px h-38px flex justify-center items-center cursor-pointer fill-[#CCCCCC]"
+    style="line-height: 1"
     :class="{
-      'evaluation-time-1': props.timeData[index].status === 1,
+      'border-1px text-primary': props.isEdit,
+      'evaluation-time-1': props.timeData[index].status === 1 && props.isEdit,
       'evaluation-time-2': props.timeData[index].status === 2,
       'evaluation-time-3': props.timeData[index].status === 3,
       'evaluation-time-hover': props.selIndex === `${props.rowIndex}.${index}`,
@@ -11,7 +13,7 @@
     @click="onItemClick(props.timeData[index].status, index)"
   >
     <SvgIcon
-      v-if="props.timeData[index].status === 1"
+      v-if="props.timeData[index].status === 1 && props.isEdit"
       name="add"
       class="w-15px h-15px"
     ></SvgIcon>
@@ -24,10 +26,11 @@ const props = withDefaults(
   defineProps<{
     times: Array<any>
     timeData: Array<any>
-    selIndex: String
-    rowIndex: Number
+    selIndex: string
+    rowIndex: number
+    isEdit?: boolean
   }>(),
-  {}
+  { isEdit: true }
 )
 
 // emits
@@ -44,6 +47,9 @@ function rowWidth(index: number) {
 }
 function onItemClick(status, index) {
   //   selIndex = `${type}.${index}`
+  if (!props.isEdit) {
+    return false
+  }
   if (status !== 2) {
     emits('onItemClick', { rowIndex: props.rowIndex, index })
   }
@@ -56,13 +62,13 @@ function onItemClick(status, index) {
     @apply bg-white border-dashed border-[#DBDFDD] rounded-6px;
   }
   &-2 {
-    @apply bg-[#F3F3F3] border-[#F3F3F3] border-solid rounded-0px;
+    @apply bg-[#F3F3F3] border-[#F3F3F3] border-solid rounded-0px border-1px text-primary;
   }
   &-3 {
-    @apply bg-[#F7FEFB] border-[#C7F7E3] border-solid rounded-6px;
+    @apply bg-[#F7FEFB] border-[#C7F7E3] border-solid rounded-6px border-1px text-primary;
   }
   &-hover {
-    @apply bg-primary border-primary border-solid rounded-6px text-white fill-white;
+    @apply border-1px bg-primary border-primary border-solid rounded-6px text-white fill-white;
   }
 }
 </style>

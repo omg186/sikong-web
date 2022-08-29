@@ -102,7 +102,7 @@
                 <!-- 取消预约 -->
                 <Tooltip title="查看报告">
                   <SvgIcon
-                    name="reserve-cancel"
+                    name="look1"
                     class="w-28px h-28px fill-[#ACACB0] stroke-[#ACACB0]"
                     s:hover="fill-[#323736] stroke-[#323736]"
                     @click="visibleEvaluationReport = true"
@@ -129,14 +129,48 @@
     <!-- 查看测评报告 -->
     <Modal
       v-model:visible="visibleEvaluationReport"
-      width="1000px"
+      width="1200px"
       title="查看测评报告"
       :footer="null"
     >
-      <EvaluationReport
-        @on-cancel="visibleEvaluationReport = false"
-        @on-submit="visibleEvaluationReport = false"
-      ></EvaluationReport>
+      <div class="grid grid-cols-[auto,100px] gap-10px">
+        <EvaluationReport
+          @on-cancel="visibleEvaluationReport = false"
+          @on-submit="visibleEvaluationReport = false"
+        ></EvaluationReport>
+        <div class="flex flex-col gap-20px">
+          <Button
+            class="min-w-120px flex items-center gap-5px !bg-[#2A2C2A] border-none rounded-40"
+            s:text="white"
+            type="primary"
+          >
+            导出图片
+            <template #icon>
+              <SvgIcon name="image" class="w-20px h-16px fill-[#999]"></SvgIcon>
+            </template>
+          </Button>
+          <Button
+            class="min-w-120px flex items-center gap-5px !bg-[#2A2C2A] border-none rounded-40"
+            s:text="white"
+            type="primary"
+          >
+            导出PDF
+            <template #icon>
+              <SvgIcon name="pdf" class="w-20px h-16px fill-[#999]"></SvgIcon>
+            </template>
+          </Button>
+          <Button
+            class="min-w-120px flex items-center gap-5px !bg-[#2A2C2A] border-none rounded-40"
+            s:text="white"
+            type="primary"
+          >
+            打印
+            <template #icon>
+              <SvgIcon name="print" class="w-20px h-16px fill-[#999]"></SvgIcon>
+            </template>
+          </Button>
+        </div>
+      </div>
     </Modal>
   </div>
 </template>
@@ -154,6 +188,7 @@ import {
   Table,
   Tooltip,
   Modal,
+  Button,
 } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'

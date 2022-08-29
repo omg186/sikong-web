@@ -2,7 +2,7 @@
   <div class="flex justify-between px-30px py-20px">
     <p s:text="[#2D3E2D]" class="font-bold">我的测评</p>
     <div class="flex gap-x-40px">
-      <span class="relative">
+      <span class="relative cursor-pointer" @click="onJump">
         <span
           class="inline-block absolute right-[-20px] top-[-5px] w-26px h-18px bg-[#F4274E]"
           s:border="rounded-20px rounded-l-15px"
@@ -23,13 +23,19 @@
 </template>
 <script lang="ts" setup>
 import SvgIcon from '@/components/SvgIcon.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const props = withDefaults(
   defineProps<{
-    type?: 'list' | 'rili'
+    type?: 'list' | 'calendar'
   }>(),
   { type: 'list' }
 )
 const emits = defineEmits<{
   (event: 'clickIcon'): void
 }>()
+
+function onJump() {
+  router.push({ name: 'MyEvaluationAgency' })
+}
 </script>

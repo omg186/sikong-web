@@ -35,6 +35,10 @@ export interface ICalendarProps {
    * 是否选中
    */
   isSelected: boolean
+  /**
+   * 是否默认选中日期
+   */
+  isSelectItem: boolean
 }
 export interface Adjust {
   key?: string
