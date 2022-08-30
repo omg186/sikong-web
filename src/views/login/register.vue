@@ -147,7 +147,7 @@ import {
   Checkbox,
   message,
 } from 'ant-design-vue'
-import SelectProject from './modules/SelectProject.vue'
+import SelectProject from './modules/SelectModal.vue'
 import { useRequest } from 'vue-request'
 import { getCompanyProjectList } from '@/api/company'
 import { computed, reactive, ref, toRaw, watchEffect } from 'vue'
