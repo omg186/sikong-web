@@ -27,12 +27,7 @@
           <template v-if="column.key === 'project'">
             <div class="grid grid-cols-2 gap-10px">
               <div
-                v-for="(item, index) in [
-                  '身高标准体重',
-                  '身高',
-                  '坐位体前屈',
-                  '双脚连续跳',
-                ]"
+                v-for="(item, index) in typeList"
                 :key="index"
                 class="flex gap-10px items-center"
               >
@@ -71,7 +66,9 @@
         <TabPane key="1" tab="测评基本信息">
           <Base></Base>
         </TabPane>
-        <TabPane key="2" tab="测评记录单"></TabPane>
+        <TabPane key="2" tab="测评记录单">
+          <Record></Record>
+        </TabPane>
         <TabPane key="3" tab="测评报告样式">
           <Report></Report>
         </TabPane>
@@ -94,9 +91,11 @@ import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import Report from './modules/report.vue'
 import Base from './modules/base.vue'
+import Record from './modules/record.vue'
 
 const isDrawerDetail = ref(false)
 const activeKey = ref('1')
+const typeList = ref(['身高标准体重', '身高', '坐位体前屈', '双脚连续跳'])
 const {
   data: dataSource,
   run,

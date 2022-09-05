@@ -50,6 +50,7 @@ export default defineConfig({
       },
       fontFamily: {
         din: 'D-DIN-Bold, D-DIN',
+        shs: 'Source Han Sans CN-Medium, Source Han Sans CN;',
       },
       background: theme => ({
         1: 'linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%)',
