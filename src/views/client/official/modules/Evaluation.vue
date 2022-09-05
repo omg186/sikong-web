@@ -188,8 +188,8 @@ import {
 } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
-import SvgIcon from '@/components/SvgIcon.vue'
 import ImgIcon from '@/components/ImgIcon.vue'
+import SvgIcon from '@/components/SvgIcon.vue'
 import AddEvaluation from './AddEvaluation.vue'
 import EvaluationReport from '@/views/evaluation/center/modules/report.vue'
 const bgColor = ['#DAF8E9', '#FCEFDD', '#FCEFDD']

@@ -48,6 +48,7 @@ const demoList = (() => {
       'status1|1': [1, 2, 3],
       'color|1': ['#F4274E', '#FFD13C', '#2FE095'],
       progress: '@float(0, 100, 2, 2)',
+      grade: '@integer(1, 4)',
     })
   }
   return result

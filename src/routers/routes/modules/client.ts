@@ -25,6 +25,7 @@ export const Client: AppRouteRecordRaw = {
       component: () => import('@/views/client/official/list.vue'),
       meta: {
         title: '正式客户',
+        visibleMessage: true,
       },
     },
   ],

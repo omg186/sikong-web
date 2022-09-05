@@ -16,11 +16,11 @@
               alt=""
             />
           </div>
-          <!-- 意向客户 -->
+          <!-- 正式客户 -->
           <div
             class="px-11px py-4px max-h-24px bg-[#FFFADF] text-[#F3AB51] text-center text-xs rounded-60"
           >
-            意向客户
+            正式客户
           </div>
         </div>
         <div class="grid grid-cols-2 gap-x-37px gap-y-15px">
@@ -30,14 +30,6 @@
           </div>
           <div class="flex fill-[#A5A8B4]">
             <!-- SVG -->
-            <Tooltip title="新建预约测评">
-              <SvgIcon
-                name="client"
-                class="w-28px h-28px cursor-pointer"
-                s:hover="fill-[#363B39]"
-                @click="visibleAddEvaluation = true"
-              />
-            </Tooltip>
             <Tooltip title="分配调整顾问">
               <SvgIcon
                 name="switch"
@@ -46,14 +38,14 @@
                 @click="visibleDistribute = true"
               />
             </Tooltip>
-            <Tooltip title="转为正式客户">
+            <Tooltip title="新建预约测评">
               <ImgIcon
                 src="add2.png"
                 class="h-28px"
                 width="28px"
                 height="28px"
                 hover-src="add2-hover.png"
-                @click="visibleToFormal = true"
+                @click="visibleAddEvaluation = true"
               ></ImgIcon>
             </Tooltip>
           </div>
@@ -104,6 +96,7 @@
         <TabPane key="1" tab="学员资料"><Information></Information></TabPane>
         <TabPane key="2" tab="沟通&动态"><Communicate /></TabPane>
         <TabPane key="3" tab="测评&报告"><Evaluation /></TabPane>
+        <TabPane key="4" tab="训练计划"><TrainingPlan /></TabPane>
         <template #rightExtra>
           <Button
             type="primary"
@@ -219,7 +212,6 @@
 
 <script lang="ts" setup>
 import SvgIcon from '@/components/SvgIcon.vue'
-import ImgIcon from '@/components/ImgIcon.vue'
 import { Tabs, TabPane, Button, Modal, Tooltip } from 'ant-design-vue'
 import { ref } from 'vue'
 import Information from './Information.vue'
@@ -230,6 +222,8 @@ import AddRecording from './AddRecording.vue'
 import AddEvaluation from './AddEvaluation.vue'
 import ToFormal from './ToFormal.vue'
 import Distribute from './Distribute.vue'
+import ImgIcon from '@/components/ImgIcon.vue'
+import TrainingPlan from './TrainingPlan/index.vue'
 const activeKey = ref('1')
 const visibleAddEvaluation = ref(false)
 const visibleDistribute = ref(false)

@@ -134,6 +134,7 @@
             <div
               class="flex items-center gap-9px cursor-pointer fill-[#A5A8B4] stroke-[#A5A8B4]"
               s:hover="fill-[#2F3430] stroke-[#2F3430]"
+              @click="visibleDetail1 = true"
             >
               <SvgIcon class="w-18px h-18px" name="look"></SvgIcon>
               查看报告
@@ -151,12 +152,9 @@
             <div
               class="flex items-center gap-9px cursor-pointer fill-[#71EBBB]"
               s:hover="fill-primary"
+              @click="visibleDetail1 = true"
             >
-              <SvgIcon
-                class="w-18px h-18px"
-                name="action"
-                @click="visibleDetail1 = true"
-              ></SvgIcon>
+              <SvgIcon class="w-18px h-18px" name="action"></SvgIcon>
               执行测评
             </div>
           </div>
