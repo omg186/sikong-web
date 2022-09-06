@@ -19,8 +19,8 @@
               <span>{{ record.name }}</span>
               <span
                 class="text-primary font-bold cursor-pointer"
-                @click="isDrawerDetail = true"
-                >（幼儿版）
+                @click="onDrawerDetail(record)"
+                >{{ statusList[record.status1 - 1] }}
               </span>
             </div>
           </template>
@@ -59,18 +59,20 @@
       class="custom-class"
       width="1064px"
       :closable="false"
-      title="国民体质测定标准测评（幼儿版）"
+      :title="titleList[status - 1]"
       placement="right"
     >
       <Tabs v-model:activeKey="activeKey">
         <TabPane key="1" tab="测评基本信息">
-          <Base></Base>
+          <Base v-if="status === 1"></Base>
+          <BaseGrade v-if="status === 2"></BaseGrade>
         </TabPane>
         <TabPane key="2" tab="测评记录单">
           <Record></Record>
         </TabPane>
         <TabPane key="3" tab="测评报告样式">
-          <Report></Report>
+          <Report v-if="status === 1"></Report>
+          <ReportGrade v-if="status === 2"></ReportGrade>
         </TabPane>
       </Tabs>
     </Drawer>
@@ -92,7 +94,15 @@ import { getDemoListApi } from '@/api/select'
 import Report from './modules/report.vue'
 import Base from './modules/base.vue'
 import Record from './modules/record.vue'
-
+import ReportGrade from './modules/report-grade.vue'
+import BaseGrade from './modules/base-grade.vue'
+// 幼儿班
+const titleList = ref([
+  '国民体质测定标准测评（幼儿版）',
+  '国家学生体质健康标准测评(1-2年级版)',
+  '粗大动作发展测试-TGMD(3-10岁)',
+])
+const statusList = ref(['(幼儿版)', '(1-2年级版)', '3-10岁'])
 const isDrawerDetail = ref(false)
 const activeKey = ref('1')
 const typeList = ref(['身高标准体重', '身高', '坐位体前屈', '双脚连续跳'])
@@ -128,6 +138,11 @@ const pagination = computed(() => ({
   showQuickJumper: true,
   showSizeChanger: false,
 }))
+const status = ref(1)
+const onDrawerDetail = record => {
+  isDrawerDetail.value = true
+  status.value = record.status1
+}
 const handleTableChange: TableProps['onChange'] = (
   pag: { pageSize: number; current: number }
   // 其它参数

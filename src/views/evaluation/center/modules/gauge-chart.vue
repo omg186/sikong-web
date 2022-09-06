@@ -1,10 +1,6 @@
 <template>
   <div
-    :class="
-      'border-[' +
-      chartsList.processColor +
-      '] border-opacity-25 border-3 h-490px rounded-16px'
-    "
+    :class="`border-[${chartsList.processColor}] border-opacity-25 border-3 h-490px rounded-16px`"
   >
     <div class="px-25px text-[#1F311F] text-xs">
       <div class="flex items-center pt-20px justify-between">
@@ -39,16 +35,21 @@
         </div>
       </div>
 
-      <div class="text-sm font-bold mt-17px mb-12px">相关身体素质和分析</div>
-      <div class="w-119px h-25px bg-[#F5F7FF] text-[#A5A8B4] mb-20px">
-        健康体适能-身体成分
+      <div class="text-sm font-bold mt-17px">相关身体素质和分析</div>
+      <div
+        class="h-25px leading-25px bg-[#F5F7FF] text-[#A5A8B4] mt-5px"
+        v-for="tag in chartsList.tag"
+      >
+        {{ tag }}
       </div>
-      <div class="">
-        项目得分
-        <span class="font-bold">3</span>
-        分，身高<span class="font-bold">117</span>cm，<span class="font-bold"
+      <div class="text-[#6C766E] mt-12px">
+        得分
+        <span class="font-bold text-[#1F311F]">3</span>
+        分，身高<span class="font-bold text-[#1F311F]">117</span>cm，<span
+          class="font-bold text-[#1F311F]"
           >18.5</span
-        >kg-<span class="font-bold">229</span> kg属于正常范围，和上次 正常
+        >kg-<span class="font-bold text-[#1F311F]">229</span>
+        kg属于正常范围，和上次 正常
         结果相比有一定的退步，在接下来时间里，要增加运动和饮食
       </div>
     </div>

@@ -127,7 +127,8 @@
     <Col :span="24">
       <FormItem label="测评项目标准和计算方式">
         <span class="text-[#F3AB51] text-xs flex w-900px"
-          >幼儿版的《国民体质测定标准》一共包含了8个项目，每个项目的标准分都是5分(具体的项目评分标准见测评项目列表)，且每个项目的权重都一样，测评总分为40分</span
+          >学生体质健康标准测评各项目的标准分为100分，且各项目占比的权重不同，1-2年级的重点项目是“坐位体前屈”和“1分钟跳绳”，
+          特别是1分钟跳绳，有20分的加分，测评总分为120分</span
         >
       </FormItem>
     </Col>
@@ -147,9 +148,9 @@
         </template>
       </Table>
     </Col>
-    <FormItem label="测评得分与等级对照表" class="mt-30px">
+    <FormItem label="测评综合得分评价表" class="mt-30px">
       <span class="text-[#F3AB51] text-xs flex w-900px"
-        >幼儿版的体质测定标准分为四个等级，综合标准分数与等级对照如下表</span
+        >1-2年级的体质健康测评也分为四个等级，下表是等级和综合分数的对比</span
       >
     </FormItem>
     <Table
@@ -190,8 +191,8 @@ import {
   TableColumnsType,
 } from 'ant-design-vue'
 const formState = reactive({
-  name: '',
-  type: '',
+  name: '国家学生体质健康标准测评(1-2年级)',
+  type: '身体素质类',
   scope: null,
   desc: '《国民体质测定标准(幼儿版)》运用科学的方法，对3-6周岁的中国幼儿进行个体的形态、机能和身体素质等的测试与评定。所有测评项目，都按性别和年龄分组，3-5岁每0.5岁为一组，6岁为一个组。是目前国内最权威的，针对学龄前儿童的身体素质类测试。',
   startAge: '3岁',
@@ -212,13 +213,18 @@ const columns = ref<TableColumnsType>([
     align: 'center',
   },
   {
-    title: '项目名称',
+    title: '测评项目名称',
     dataIndex: 'projectName',
     align: 'left',
   },
   {
-    title: '标准分',
+    title: '评测项目标准分',
     dataIndex: 'standardScore',
+    align: 'center',
+  },
+  {
+    title: '各项目在测试中的权重',
+    dataIndex: 'weight',
     align: 'center',
   },
   {
@@ -229,44 +235,40 @@ const columns = ref<TableColumnsType>([
 ])
 const data = ref([
   {
-    projectName: '身高标准体重',
-    standardScore: '5分',
-    percentScore: '5分',
+    projectName: '体重指数(BMI)',
+    standardScore: '100分',
+    weight: '15%',
+    percentScore: '15分',
   },
   {
-    projectName: '身高',
-    standardScore: '5分',
-    percentScore: '5分',
+    projectName: '肺活量',
+    standardScore: '100分',
+    weight: '15%',
+    percentScore: '15分',
+  },
+  {
+    projectName: '50米跑',
+    standardScore: '100分',
+    weight: '20%',
+    percentScore: '20分',
   },
   {
     projectName: '坐位体前屈',
-    standardScore: '5分',
-    percentScore: '5分',
+    standardScore: '100分',
+    weight: '30%',
+    percentScore: '30分',
   },
   {
-    projectName: '双脚连续跳',
-    standardScore: '5分',
-    percentScore: '5分',
+    projectName: '1分钟跳绳',
+    standardScore: '100分',
+    weight: '20%',
+    percentScore: '20分',
   },
   {
-    projectName: '十米折返跑',
-    standardScore: '5分',
-    percentScore: '5分',
-  },
-  {
-    projectName: '走平衡木',
-    standardScore: '5分',
-    percentScore: '5分',
-  },
-  {
-    projectName: '立定跳远',
-    standardScore: '5分',
-    percentScore: '5分',
-  },
-  {
-    projectName: '网球掷远',
-    standardScore: '5分',
-    percentScore: '5分',
+    projectName: '加分项（1分钟跳绳）',
+    standardScore: '',
+    weight: '',
+    percentScore: '20分',
   },
 ])
 const columnsScore = ref<TableColumnsType>([
@@ -285,20 +287,20 @@ const columnsScore = ref<TableColumnsType>([
 ])
 const dataScore = ref([
   {
-    level: '一级(优秀)',
-    score: '>31',
+    level: '优秀',
+    score: '>=90',
   },
   {
-    level: '二级(良好)',
-    score: '28-31',
+    level: '良好',
+    score: '80.0-89.9',
   },
   {
-    level: '三级(合格)',
-    score: '20-27',
+    level: '合格',
+    score: '60.0-79.9',
   },
   {
-    level: '四级(不及格)',
-    score: '<20',
+    level: '不及格',
+    score: '<=59.9',
   },
 ])
 </script>
