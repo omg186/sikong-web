@@ -101,7 +101,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import SvgIcon from '@/components/SvgIcon.vue'
 import TimeLineItem from '@/components/TimeLine/TimeLineItem.vue'
 import TimeLineTitle from '@/components/TimeLine/TimeLineTitle.vue'
 </script>

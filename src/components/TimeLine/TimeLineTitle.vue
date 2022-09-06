@@ -11,6 +11,9 @@
       </div>
       <span class="font-bold">{{ props.contents }}</span>
     </div>
+    <div class="pl-24px">
+      <slot></slot>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>

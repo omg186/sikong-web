@@ -23,12 +23,12 @@ export default defineConfig({
     require('windicss/plugin/aspect-ratio'),
   ],
   theme: {
+    fontSize: {
+      xs: ['12px', '1.3'],
+      sm: ['14px', '14px'],
+      base: ['16px', '16px'],
+    },
     extend: {
-      fontSize: {
-        xs: '12px',
-        sm: '14px',
-        base: '16px',
-      },
       borderRadius: {
         60: '60px',
         40: '40px',

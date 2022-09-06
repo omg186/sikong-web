@@ -133,7 +133,7 @@
             size="large"
             class="rounded-60 flex items-center"
             v-else-if="activeKey === '3'"
-            @click="visibleAddEvaluation = true"
+            @click="visibleConfirm = true"
           >
             预约测评
             <template #icon>
@@ -207,6 +207,18 @@
         @on-submit="visibleAddClient = false"
       ></AddClient>
     </Modal>
+    <!-- 执行人预约确认 -->
+    <Modal
+      v-model:visible="visibleConfirm"
+      width="660px"
+      title="执行人预约确认"
+      :footer="null"
+    >
+      <Confirm
+        @on-cancel="visibleConfirm = false"
+        @on-submit="visibleConfirm = false"
+      ></Confirm>
+    </Modal>
   </div>
 </template>
 
@@ -224,7 +236,9 @@ import ToFormal from './ToFormal.vue'
 import Distribute from './Distribute.vue'
 import ImgIcon from '@/components/ImgIcon.vue'
 import TrainingPlan from './TrainingPlan/index.vue'
+import Confirm from './Confirm.vue'
 const activeKey = ref('1')
+const visibleConfirm = ref(false)
 const visibleAddEvaluation = ref(false)
 const visibleDistribute = ref(false)
 const visibleToFormal = ref(false)
