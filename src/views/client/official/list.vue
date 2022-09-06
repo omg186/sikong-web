@@ -72,7 +72,8 @@
         </transition-group>
         <!-- 添加训练计划 -->
         <p
-          class="underline underline-primary underline-offset-2 mb-0 text-primary text-xs"
+          class="underline underline-primary underline-offset-2 mb-0 text-primary text-xs cursor-pointer"
+          @click="visibleAddPlan = true"
         >
           添加训练计划
         </p>
@@ -209,6 +210,15 @@
     >
       <MessageList></MessageList>
     </Modal>
+    <!-- 添加训练计划 -->
+    <Modal
+      v-model:visible="visibleAddPlan"
+      width="660px"
+      title="添加训练计划"
+      :footer="null"
+    >
+      <AddPlan></AddPlan>
+    </Modal>
   </div>
 </template>
 
@@ -236,12 +246,14 @@ import { computed, ref } from 'vue'
 import PersonInfo from './modules/PersonInfo.vue'
 import MessageList from './modules/Message.vue'
 import AddClient from './modules/AddClient.vue'
+import AddPlan from './modules/TrainingPlan/Add.vue'
 import { useUserStore } from '@/store/modules/user'
 const textContents = ['优秀', '良好', '合格', '不及格']
 const borderColor = ['#DBF8EB', '#D9E8FF', '#FDEEDC', '#FFF1F2']
 const textColor = ['#2FE095', '#62A1FF', '#F3AB51', '#FF7C7C']
 const bgProcessColor = ['#C0F5DD', '#A1C7FF', '#F9D3A4', '#FFDCDF']
 const visibleClient = ref(false)
+const visibleAddPlan = ref(false)
 const visibleInput = ref(false)
 const visibleAddClient = ref(false)
 const userStore = useUserStore()

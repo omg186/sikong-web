@@ -111,10 +111,16 @@
         <template v-if="column.key === 'option'">
           <div class="flex items-center justify-center gap-10px">
             <span
-              class="underline underline-offset-2 underline-primary text-primary"
+              class="underline underline-offset-2 underline-primary text-primary cursor-pointer"
+              v-if="record.option === '添加计划'"
+              @click="visibleAddPlan = true"
+              >{{ record.option }}</span
             >
-              {{ record.option }}
-            </span>
+            <span
+              class="underline underline-offset-2 underline-primary text-primary cursor-pointer"
+              v-else
+              >{{ record.option }}</span
+            >
           </div>
         </template>
       </template>
@@ -276,13 +282,15 @@
               {{ week.process || 0 }}/{{ week.count || 0 }}
             </span>
             <span
-              class="underline"
+              class="underline cursor-pointer"
               s:underline="primary offset-2"
               s:text="xs primary"
               s:font="400"
               v-if="week.status === '添加计划'"
-              >{{ week.status }}</span
+              @click="visibleAddPlan = true"
             >
+              {{ week.status }}
+            </span>
             <span s:text="xs [#C8C8C8]" s:font="400" v-else>
               {{ week.status }}
             </span>
@@ -290,14 +298,26 @@
         </div>
       </div>
     </div>
+
+    <!-- 添加训练计划 -->
+    <Modal
+      v-model:visible="visibleAddPlan"
+      width="660px"
+      title="添加训练计划"
+      :footer="null"
+    >
+      <AddPlan></AddPlan>
+    </Modal>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { getDemoListApi } from '@/api/select'
+import AddPlan from './Add.vue'
 import {
   TableColumnsType,
   TablePaginationConfig,
+  Modal,
   TableProps,
   Table,
   message,
@@ -320,6 +340,7 @@ interface WeekDate {
   status?: string
 }
 const activeWeekIndex = ref(0)
+const visibleAddPlan = ref(false)
 const weekDate = ref<Array<WeekDate>>([
   {
     name: '周日',
