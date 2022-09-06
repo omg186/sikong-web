@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="36" height="36"
+    viewBox="0 0 36 36">
+    <g style="mix-blend-mode:passthrough">
+        <g style="opacity:0.7599999904632568;mix-blend-mode:passthrough">
+            <ellipse cx="18" cy="18" rx="18" ry="18" fill-opacity="1" />
+        </g>
+        <g style="mix-blend-mode:passthrough" transform="matrix(0,1,-1,0,34.7734375,-18.7734375)">
+            <path
+                d="M30.0002375,17.33009C28.6565175,19.1811,29.9788275,21.775,32.266127499999996,21.775L41.2807375,21.775C43.5680375,21.775,44.8903375,19.1811,43.5466375,17.33009L39.0393375,11.12126C37.921237500000004,9.581150000000001,35.6255975,9.581150000000001,34.5075575,11.12126L30.0002375,17.33009Z"
+                fill="#FFFFFF" fill-opacity="1" />
+        </g>
+    </g>
+</svg>

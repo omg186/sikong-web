@@ -52,11 +52,12 @@
             <TextItem title="创建人" contents="张艳玲(猫猫)"></TextItem>
             <div class="flex justify-between cursor-pointer">
               <TextItem title="创建时间" contents="2022.6.28"></TextItem>
-              <div class="flex" s:text="xs [#A9ACA4]">
-                <SvgIcon
-                  name="modify"
-                  class="w-24px h-17px fill-[#A9ACA4]"
-                ></SvgIcon>
+              <div
+                class="flex fill-[#A9ACA4]"
+                s:text="xs [#A9ACA4]"
+                s:hover="text-black fill-black"
+              >
+                <SvgIcon name="modify" class="w-24px h-17px"></SvgIcon>
                 <span>修改</span>
               </div>
             </div>
@@ -86,11 +87,12 @@
             <TextItem title="创建人" contents="张艳玲(猫猫)"></TextItem>
             <div class="flex justify-between cursor-pointer">
               <TextItem title="创建时间" contents="2022.6.28"></TextItem>
-              <div class="flex" s:text="xs [#A9ACA4]">
-                <SvgIcon
-                  name="modify"
-                  class="w-24px h-17px fill-[#A9ACA4]"
-                ></SvgIcon>
+              <div
+                class="flex fill-[#A9ACA4]"
+                s:text="xs [#A9ACA4]"
+                s:hover="text-black fill-black"
+              >
+                <SvgIcon name="modify" class="w-24px h-17px"></SvgIcon>
                 <span>修改</span>
               </div>
             </div>
@@ -132,7 +134,13 @@
       </div>
     </div>
     <div class="grid grid-cols-[172px,auto] gap-x-20px mt-20px">
-      <div class="h-98px" s:border="rounded-8px 3px solid [#C1F6DF]"></div>
+      <div class="relative h-98px" s:border="rounded-8px 3px solid [#C1F6DF]">
+        <SvgIcon
+          name="play"
+          class="inline-block w-36px h-36px fill-black cursor-pointer absolute top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%]"
+          s:active="fill-[#707070]"
+        ></SvgIcon>
+      </div>
       <div class="flex flex-col justify-center gap-y-10px">
         <span s:font="bold">对应课程：立定跳远基础训练课-掌握关键技术动作</span>
         <span s:text="xs [#999999]">时长: 12分30秒 完成度: 100% </span>
