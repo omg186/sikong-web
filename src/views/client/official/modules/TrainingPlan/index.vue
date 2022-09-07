@@ -129,8 +129,8 @@
           </template>
         </template>
       </Table>
-      <div class="flex gap-x-17px pt-30px">
-        <p class="mb-0 font-bold" s:text="sm">当前训练计划</p>
+      <div class="flex gap-x-17px pt-30px items-center">
+        <p class="font-bold" s:text="sm">当前训练计划</p>
         <div class="grid grid-cols-[24px,auto,24px] gap-8px fill-[#A5A8B4]">
           <span
             class="flex items-center justify-center h-24px rounded-10px cursor-pointer bg-[#EFFFF7] fill-primary"
@@ -304,7 +304,7 @@
       </div>
     </div>
     <div v-show="visibleDetail">
-      <Detail></Detail>
+      <Detail @back="visibleDetail = false"></Detail>
     </div>
     <!-- 添加训练计划 -->
     <Modal
