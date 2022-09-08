@@ -66,6 +66,7 @@
         <TabPane key="1" tab="测评基本信息">
           <Base v-if="status === 1"></Base>
           <BaseGrade v-if="status === 2"></BaseGrade>
+          <BaseAge v-if="status === 3"></BaseAge>
         </TabPane>
         <TabPane key="2" tab="测评记录单">
           <Record></Record>
@@ -96,6 +97,7 @@ import Base from './modules/base.vue'
 import Record from './modules/record.vue'
 import ReportGrade from './modules/report-grade.vue'
 import BaseGrade from './modules/base-grade.vue'
+import BaseAge from './modules/base-age.vue'
 // 幼儿班
 const titleList = ref([
   '国民体质测定标准测评（幼儿版）',
