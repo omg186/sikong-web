@@ -5,7 +5,7 @@ export const MyEvaluation: AppRouteRecordRaw = {
   path: '/my-evaluation',
   name: 'MyEvaluation',
   component: LAYOUT,
-  redirect: '/my-evaluation/implement/list',
+  redirect: '/my-evaluation/implement',
   meta: { title: '测评' },
   children: [
     {
@@ -13,12 +13,13 @@ export const MyEvaluation: AppRouteRecordRaw = {
       name: 'MyEvaluationImplement',
       component: () => import('@/views/evaluation/my/implement/index.vue'),
       meta: { title: '测评执行管理' },
+      redirect: '/my-evaluation/implement/list',
       children: [
         {
           path: 'list',
           name: 'MyEvaluationImplementList',
           component: () => import('@/views/evaluation/my/implement/list.vue'),
-          meta: { title: '测评列表' },
+          meta: { title: '测评执行管理' },
         },
         {
           path: 'calendar',
@@ -40,7 +41,16 @@ export const MyEvaluation: AppRouteRecordRaw = {
       path: 'booking',
       name: 'MyEvaluationBooking',
       component: () => import('@/views/evaluation/my/booking/index.vue'),
+      redirect: '/my-evaluation/booking/list',
       meta: { title: '测评预约管理' },
+      children: [
+        {
+          path: 'list',
+          name: 'MyEvaluationBookingList',
+          component: () => import('@/views/evaluation/my/booking/list.vue'),
+          meta: { title: '我的预约', visibleMessage: true },
+        },
+      ],
     },
   ],
 }

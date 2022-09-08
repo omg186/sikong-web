@@ -13,6 +13,7 @@
         待处理
       </span>
       <SvgIcon
+        v-if="props.visibleType"
         :name="props.type"
         class="w-20px h-21px stroke-[#2F3231] fill-#2F3231] cursor-pointer"
         s:hover="fill-primary stroke-primary"
@@ -28,8 +29,9 @@ const router = useRouter()
 const props = withDefaults(
   defineProps<{
     type?: 'list' | 'calendar'
+    visibleType?: boolean
   }>(),
-  { type: 'list' }
+  { type: 'list', visibleType: true }
 )
 const emits = defineEmits<{
   (event: 'clickIcon'): void

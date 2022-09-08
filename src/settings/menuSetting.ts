@@ -14,8 +14,8 @@ export const leftMenus: Menu[] = [
     iconActive: 'sider/1-active.png',
   },
   {
-    name: '企业管理',
-    path: '/task',
+    name: '配置管理',
+    path: '/config',
     icon: 'sider/2.png',
     iconActive: 'sider/2-active.png',
   },

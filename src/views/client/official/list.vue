@@ -171,7 +171,11 @@
                 </ImgIcon
               ></Tooltip>
               <Tooltip title="训练方案">
-                <ImgIcon :src="'word.png'" hover-src="word-hover.png">
+                <ImgIcon
+                  :src="'word.png'"
+                  hover-src="word-hover.png"
+                  @click="onClient"
+                >
                 </ImgIcon>
               </Tooltip>
             </div>

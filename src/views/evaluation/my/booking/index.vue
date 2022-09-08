@@ -1,3 +1,3 @@
 <template>
-  <div>测评预约</div>
+  <router-view />
 </template>
