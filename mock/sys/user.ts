@@ -32,7 +32,7 @@ export function createFakeUserList() {
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=339449197&s=640',
       desc: 'tester',
       token: 'fakeToken2',
-      homePath: '/task',
+      homePath: '/config',
       roles: [
         {
           roleName: 'Tester',
