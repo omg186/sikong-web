@@ -56,19 +56,16 @@
           </template>
         </template>
       </Table>
-
-      <div class="flex items-center mt-30px justify-end">
-        <!-- <div> -->
-        <span>助理签字区</span>
-        <div
-          class="bg-[#F4F4F4] w-160px h-40px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
-        ></div>
-        <span class="ml-40px mr-18px">主考签字区</span>
-        <div
-          class="bg-[#F4F4F4] w-160px h-40px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
-        ></div>
-        <!-- </div> -->
-      </div>
+    </div>
+    <div class="flex items-center mt-30px justify-end">
+      <span>助理签字区</span>
+      <div
+        class="bg-[#F4F4F4] w-160px h-40px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
+      ></div>
+      <span class="ml-40px mr-18px">主考签字区</span>
+      <div
+        class="bg-[#F4F4F4] w-160px h-40px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
+      ></div>
     </div>
   </div>
 </template>
