@@ -69,7 +69,7 @@
           <BaseAge v-if="status === 3"></BaseAge>
         </TabPane>
         <TabPane key="2" tab="测评记录单">
-          <Record></Record>
+          <Record :title-name="titleList[status - 1]"></Record>
         </TabPane>
         <TabPane key="3" tab="测评报告样式">
           <Report v-if="status === 1"></Report>

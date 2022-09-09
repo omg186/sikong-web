@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="text-[24px] text-[#1f311f] font-bold">
-        国民体质测定标准测评(幼儿版)
+        {{ props.titleName }}
       </div>
     </div>
     <div v-for="(title, index) in typeList">
@@ -24,7 +24,10 @@
         :pagination="false"
       >
         <template #bodyCell="{ column, text, record }">
-          <div class="bg-[#F4F4F4] w-66px h20px ml-50px" v-if="index !== 2">
+          <div
+            class="bg-[#F4F4F4] w-66px h-28px ml-50px rounded-4px"
+            v-if="index !== 2"
+          >
             <span> &nbsp;</span>
           </div>
           <template v-if="index === 2">
@@ -45,7 +48,7 @@
               >{{ text }}</Checkbox
             >
             <div
-              class="bg-[#F4F4F4] w-66px h20px ml-50px text-right pr-6px"
+              class="bg-[#F4F4F4] w-66px h-28px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
               v-else
             >
               {{ text }}
@@ -53,6 +56,19 @@
           </template>
         </template>
       </Table>
+
+      <div class="flex items-center mt-30px justify-end">
+        <!-- <div> -->
+        <span>助理签字区</span>
+        <div
+          class="bg-[#F4F4F4] w-160px h-40px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
+        ></div>
+        <span class="ml-40px mr-18px">主考签字区</span>
+        <div
+          class="bg-[#F4F4F4] w-160px h-40px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
+        ></div>
+        <!-- </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +81,12 @@ const typeList = ref([
   '测试场地和考官信息',
   '测评项目测评记录',
 ])
+const props = defineProps({
+  titleName: {
+    type: String,
+    default: '',
+  },
+})
 const columns = ref<TableColumnsType[]>([
   [
     {
