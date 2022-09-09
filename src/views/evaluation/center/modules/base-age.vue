@@ -175,6 +175,7 @@
       size="small"
       class="border-1 border-[#DBDFDD] rounded-8px"
       bordered
+      :pagination="false"
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'level'">
@@ -205,6 +206,30 @@
               <span class="font-bold text-xs"> {{ record.projectName }}</span>
             </template>
             <span v-else class="text-[#6C766E] text-xs">{{ text }}</span>
+          </template>
+        </Table>
+      </Col>
+    </Row>
+    <Col :span="24">
+      <FormItem label="粗大动作发展商评价表">
+        <span class="text-[#F3AB51] text-xs flex"
+          >将测试者两项子测试的标准分相加获得TGMD标准分总和，通过查询下表就能获得在整体的粗大动作发展方面的百分位和发展商，
+          发展商是整个测评最关键的指标，能够判断测试者在粗大动作发展方向的速度，值越大，发展速度越快</span
+        >
+      </FormItem>
+    </Col>
+    <Row>
+      <Col :span="24">
+        <Table
+          :columns="columns[3]"
+          :data-source="data[3]"
+          size="small"
+          class="border-1 border-[#DBDFDD] rounded-8px"
+          :pagination="false"
+          bordered
+        >
+          <template #bodyCell="{ column, record, index, text }">
+            <span class="text-[#6C766E] text-xs">{{ text }}</span>
           </template>
         </Table>
       </Col>
@@ -310,6 +335,23 @@ const columns = ref<TableColumnsType[]>([
     {
       title: '物体控制子测试(男)原始分',
       dataIndex: 'percentboy',
+      align: 'center',
+    },
+  ],
+  [
+    {
+      title: '粗大动作发展百分位',
+      dataIndex: 'projectName',
+      align: 'center',
+    },
+    {
+      title: '子测试标准分的和',
+      dataIndex: 'originalData',
+      align: 'center',
+    },
+    {
+      title: '粗大动作综合发展商',
+      dataIndex: 'percent',
       align: 'center',
     },
   ],
@@ -458,15 +500,100 @@ const data = ref([
     },
     {
       projectName: '5-9',
-      originalData: '32',
-      percentboy: '32',
-      percent: '32',
+      originalData: '35',
+      percentboy: '35',
+      percent: '35',
     },
     {
-      projectName: '5-3',
-      originalData: '32',
-      percentboy: '32',
-      percent: '32',
+      projectName: '6-0',
+      originalData: '36-37',
+      percentboy: '36-37',
+      percent: '36-37',
+    },
+    {
+      projectName: '6-3',
+      originalData: '38',
+      percentboy: '38',
+      percent: '38',
+    },
+    {
+      projectName: '6-6',
+      originalData: '39',
+      percentboy: '39',
+      percent: '39',
+    },
+    {
+      projectName: '6-3',
+      originalData: '40',
+      percentboy: '40',
+      percent: '40',
+    },
+  ],
+  [
+    {
+      projectName: '12',
+      originalData: '14',
+      percent: '82',
+    },
+    {
+      projectName: '8',
+      originalData: '13',
+      percent: '79',
+    },
+    {
+      projectName: '5',
+      originalData: '12',
+      percent: '76',
+    },
+    {
+      projectName: '3',
+      originalData: '11',
+      percent: '73',
+    },
+    {
+      projectName: '2',
+      originalData: '10',
+      percent: '70',
+    },
+    {
+      projectName: '1',
+      originalData: '9',
+      percent: '67',
+    },
+    {
+      projectName: '<1',
+      originalData: '8',
+      percent: '64',
+    },
+    {
+      projectName: '<1',
+      originalData: '7',
+      percent: '61',
+    },
+    {
+      projectName: '<1',
+      originalData: '6',
+      percent: '58',
+    },
+    {
+      projectName: '<1',
+      originalData: '5',
+      percent: '55',
+    },
+    {
+      projectName: '<1',
+      originalData: '4',
+      percent: '52',
+    },
+    {
+      projectName: '<1',
+      originalData: '3',
+      percent: '49',
+    },
+    {
+      projectName: '<1',
+      originalData: '2',
+      percent: '46',
     },
   ],
 ])
