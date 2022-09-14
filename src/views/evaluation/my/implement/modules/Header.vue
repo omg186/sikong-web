@@ -12,18 +12,22 @@
         </span>
         待处理
       </span>
-      <SvgIcon
+      <ImgIcon
         v-if="props.visibleType"
-        :name="props.type"
-        class="w-20px h-21px stroke-[#2F3231] fill-#2F3231] cursor-pointer"
-        s:hover="fill-primary stroke-primary"
+        :src="'calendar.png'"
+        hover-src="calendar-hover.png"
         @click="emits('clickIcon')"
-      ></SvgIcon>
+        width="19px"
+        height="22px"
+      >
+      </ImgIcon>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import SvgIcon from '@/components/SvgIcon.vue'
+import ImgIcon from '@/components/ImgIcon.vue'
+
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const props = withDefaults(

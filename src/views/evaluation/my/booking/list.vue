@@ -83,16 +83,15 @@
     >
       <template #bodyCell="{ column, record, index }">
         <template v-if="column.key === 'name'">
-          <div
-            class="flex gap-10px items-center justify-center cursor-pointer"
-            s:text="primary"
-          >
-            <span>{{ record.name }}</span>
+          <div class="cursor-pointer" s:text="primary">
+            <span class="font-bold font-shsb"> {{ record.name }}</span>
           </div>
         </template>
         <template v-if="column.key === 'name1'">
           <div class="flex items-center justify-center" s:text="primary">
-            <span>{{ record.name1 }}</span>
+            <span class="font-400 font-shsb text-[#2FE095]">{{
+              record.name1
+            }}</span>
           </div>
         </template>
 
@@ -232,7 +231,7 @@ const columns = ref<TableColumnsType>([
   {
     title: '受试人',
     dataIndex: 'name1',
-    key: 'dept',
+    key: 'name1',
     align: 'center',
   },
   {

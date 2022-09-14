@@ -136,7 +136,13 @@
               s:hover="fill-[#2F3430] stroke-[#2F3430]"
               @click="visibleDetail1 = true"
             >
-              <SvgIcon class="w-18px h-18px" name="look"></SvgIcon>
+              <ImgIcon
+                :src="'view-record.png'"
+                hover-src="view-record-hover.png"
+                width="16px"
+                height="16px"
+              >
+              </ImgIcon>
               查看报告
             </div>
           </div>
@@ -212,6 +218,7 @@ import Header from './modules/Header.vue'
 import Details from './modules/Details.vue'
 import Data from './modules/Data.vue'
 import { useRouter } from 'vue-router'
+import ImgIcon from '@/components/ImgIcon.vue'
 const router = useRouter()
 const visibleDetail = ref(false)
 const visibleDetail1 = ref(false)
