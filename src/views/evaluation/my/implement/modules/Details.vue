@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-30px">
+  <div>
     <div class="grid grid-cols-[58px,auto,200px] gap-x-10px items-center">
       <Portrait
         class="w-58px h-58px"
@@ -11,7 +11,7 @@
 
       <div class="flex flex-col gap-y-5px">
         <p class="mb-0px font-bold" s:text="[#1F311F] 16px">Thomas(托托)</p>
-        <p class="mb-0px" s:text="xs [#6C766E]">执行人</p>
+        <p class="mb-0px" s:text="xs [#6Cmb-10px766E]">执行人</p>
       </div>
       <div
         class="text-primary font-bold"
@@ -26,19 +26,19 @@
     </div>
     <div class="flex pt-27px gap-x-30px" s:text="xs">
       <div>
-        <p class="mb-2px" s:text="[#6C766E]">测评地点</p>
+        <p class="mb-10px" s:text="[#6C766E]">测评地点</p>
         <p class="font-bold" s:text="[#1F311F]">教室01</p>
       </div>
       <div>
-        <p class="mb-2px" s:text="[#6C766E]">测评状态</p>
+        <p class="mb-10px" s:text="[#6C766E]">测评状态</p>
         <p class="font-bold" s:text="[#1F311F]">开放中</p>
       </div>
       <div>
-        <p class="mb-2px" s:text="[#6C766E]">测评时间</p>
+        <p class="mb-10px" s:text="[#6C766E]">测评时间</p>
         <p class="font-bold" s:text="[#1F311F]">2022.3.22 星期三 15:00-16:00</p>
       </div>
       <div>
-        <p class="mb-2px" s:text="[#6C766E]">测评状态</p>
+        <p class="mb-10px" s:text="[#6C766E]">测评状态</p>
         <p class="font-bold" s:text="[#1F311F]">国家体质测评标准测评(幼儿版)</p>
       </div>
     </div>
@@ -103,15 +103,15 @@
               v-else-if="props.status === '已完成' && index > 1"
               class="flex flex-col justify-center items-center"
             >
+              <span s:text="[#F4274E]"> 数据丢失</span>
               <Button
-                class="rounded-40px h-26px w-56px bg-primary text-white"
+                class="rounded-40px h-26px w-56px bg-primary text-white mt-8px"
                 s:border="1px solid [#C7F7E3]"
                 s:text="xs"
                 type="primary"
               >
                 补充
               </Button>
-              <span s:text="[#F4274E]"> 数据丢失</span>
             </div>
           </template>
           <template v-if="column.key === 'name4'">
