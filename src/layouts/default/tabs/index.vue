@@ -26,15 +26,21 @@
           </i> -->
         </div>
       </div>
-      <div class="flex pr-20px">
-        <div class="ld relative" v-if="messageIcon" @click="onMessageIcon">
+      <div class="flex pr-20px" ref="messageIconRef">
+        <div
+          class="ld relative"
+          v-if="messageIcon"
+          @mouseenter="isHover = true"
+          @mouseleave="isHover = false"
+          @click="onMessageIcon"
+        >
           <SvgIcon
             name="ld"
             class="w-28px h-28px fill-transparent cursor-pointer"
-            s:hover=" fill-[#EBFBF6]"
+            s:hover="fill-[#EBFBF6]"
           />
           <i
-            v-if="messageStatus"
+            v-if="messageStatus && !isHover"
             class="absolute top-1px right-5px w-6px h-6px bg-[#F4274E] rounded-full"
           ></i>
         </div>
@@ -65,8 +71,8 @@ import { REDIRECT_NAME } from '@/routers/constant'
 
 import { useRouter } from 'vue-router'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
-import SvgIcon from '../../../components/SvgIcon.vue'
-
+import SvgIcon from '@/components/SvgIcon.vue'
+import { useElementHover } from '@vueuse/core'
 export default defineComponent({
   name: 'MultipleTabs',
   components: {
@@ -81,7 +87,10 @@ export default defineComponent({
   setup() {
     const affixTextList = initAffixTabs()
     const activeKeyRef = ref('')
+    const messageIconRef = ref(null)
 
+    const isHover = useElementHover(messageIconRef)
+    console.log(isHover.value)
     useTabsDrag(affixTextList)
     const tabStore = useMultipleTabStore()
     const userStore = useUserStore()
@@ -164,6 +173,7 @@ export default defineComponent({
       messageStatus,
       messageIcon,
       onMessageIcon,
+      isHover,
       //   getShowQuick,
       //   getShowRedo,
       //   getShowFold,
