@@ -170,6 +170,7 @@ const columns = ref<TableColumnsType>([
     dataIndex: 'date',
     key: 'date',
     align: 'center',
+    width: '30%',
   },
   {
     title: '操作',

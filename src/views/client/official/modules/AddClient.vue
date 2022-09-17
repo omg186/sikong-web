@@ -502,9 +502,9 @@ import { ref } from 'vue'
 import Tag from '@/components/Tag.vue'
 import { getCompanyProjectList } from '@/api/company'
 import { useRequest } from 'vue-request'
-import Exercise from './Exercise.vu
+import Exercise from './Exercise.vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
-import OkButton from '@/components/Button/OkButton.vue'e'
+import OkButton from '@/components/Button/OkButton.vue'
 const contact = ref([1])
 const visibleExercise = ref(false)
 const formData = ref({

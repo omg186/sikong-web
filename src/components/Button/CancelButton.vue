@@ -5,6 +5,7 @@
     s:text="primary sm"
     s:font="400"
     s:bg="[#F7FEFB]"
+    s:hover="bg-white border-3px border-[#E5FFF2]"
   >
     <slot></slot>
   </button>
