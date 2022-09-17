@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-next-prev">
     <div class="grid grid-cols-[58px,auto,200px] gap-x-10px items-center">
       <Portrait
         class="w-58px h-58px"
@@ -161,7 +161,7 @@ const pagination = computed(
       total: dataSource.value?.total || 0,
       current: current.value,
       pageSize: pageSize.value,
-      showQuickJumper: true,
+      showQuickJumper: false,
       showSizeChanger: false,
     } as TablePaginationConfig)
 )
@@ -249,3 +249,4 @@ const columns = ref<TableColumnsType>([
   },
 ])
 </script>
+<style lang="scss"></style>
