@@ -6,6 +6,9 @@
     :confirm-loading="confirmLoading"
     destroyOnClose
   >
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <Form
       class="w-full h-full"
       layout="vertical"

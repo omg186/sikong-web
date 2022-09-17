@@ -117,6 +117,9 @@
     width="459px"
     :footer="null"
   >
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <AddDept
       :is-edit="isDeptEdit"
       :code="deptCode"
@@ -125,6 +128,9 @@
     />
   </Modal>
   <Modal title="删除部门" v-model:visible="isModalDeptDel" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md" class="pt-2opx">确定要删除部门-“中海店”吗？</h3>
     <div s:text="[#F3AB51] xs" class="pt-10px">
       当前“中海店”部门中，有 7 个员工账户和 1 个相关校区，删除操作会将
@@ -149,6 +155,9 @@
     </div>
   </Modal>
   <Modal title="员工调岗" v-model:visible="isModalTransfer" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md" class="pt-2opx">将员工"都林(大熊)"调岗到</h3>
     <Form class="sikong-form2 pt-18px">
       <FormItem v-bind="validateInfos.deptCode">
@@ -182,6 +191,9 @@
   </Modal>
   <!-- 账户禁用 -->
   <Modal title="账户员工禁用" v-model:visible="isModalDisable" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md" class="pt-2opx">确定要禁用“李海(大鱼)”的账户吗？</h3>
     <div s:text="[#F3AB51] xs" class="pt-10px">
       禁用“李海(大鱼)”的账户，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续禁用该账户吗？
@@ -206,6 +218,9 @@
   </Modal>
   <!-- 离职 -->
   <Modal title="账户员工离职" v-model:visible="isModalLeave" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md " class="pt-2opx">确定要离职“李海(大鱼)”吗？</h3>
     <div s:text="[#F3AB51] xs" class="pt-10px">
       离职“李海(大鱼)”，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续离职该账户吗？

@@ -193,6 +193,13 @@
       :footer="null"
     >
       <Details :status="'开放中'"></Details>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <Modal
       v-model:visible="visibleDetail1"
@@ -201,6 +208,13 @@
       :footer="null"
     >
       <Details :status="'已完成'"></Details>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <!-- 数据回填 -->
     <Modal
@@ -211,6 +225,13 @@
       :body-style="{ padding: '0' }"
     >
       <Data></Data>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
   </div>
 </template>

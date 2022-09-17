@@ -346,6 +346,13 @@
       </div>
     </div>
     <Modal v-model:visible="visibleConfirm" title="已完成(8/8)" :footer="null">
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <p class="pt-20px font-bold text-sm">
         本次受试者的测评数据已经回填完毕，点击“确定”，系统将
         自动设置本次测评状态为完成，并生成报告

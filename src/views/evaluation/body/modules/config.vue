@@ -5,6 +5,9 @@
     :footer="null"
     @cancel="updateVisible()"
   >
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <Form
       class="sikong-form2"
       :model="formData"

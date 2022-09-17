@@ -159,6 +159,13 @@
       width="800px"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddRoom
         :is-edit="isRootEdit"
         @on-cancel="isModalRoot = false"
@@ -172,6 +179,13 @@
       width="400px"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <h3 s:text="black md" class="pt-2opx">
         确定要删除校区-“白河狸朝阳校区”吗？
       </h3>

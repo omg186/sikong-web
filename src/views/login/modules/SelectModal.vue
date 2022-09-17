@@ -9,6 +9,13 @@
     @cancel="cancel"
     @ok="onOk"
   >
+    <template #closeIcon>
+      <ImgIcon
+        class="flex w-full h-full justify-center items-center"
+        src="close.png"
+        hover-src="close.png"
+      ></ImgIcon>
+    </template>
     <div class="grid grid-cols-6 gap-15px">
       <p
         v-for="(item, index) in props.data"

@@ -478,6 +478,13 @@
         @on-cancel="visibleExercise = false"
         @on-submit="onSubmitExercise"
       ></Exercise>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
   </div>
 </template>

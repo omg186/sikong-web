@@ -235,6 +235,13 @@
         @on-cancel="visibleAddClient = false"
         @on-submit="visibleAddClient = false"
       ></AddClient>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <!-- 通知消息 -->
     <Modal
@@ -245,6 +252,13 @@
       @update:visible="userStore.clickMessageIcon"
     >
       <MessageList></MessageList>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <!-- 添加训练计划 -->
     <Modal
@@ -254,6 +268,13 @@
       :footer="null"
     >
       <AddPlan></AddPlan>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
   </div>
 </template>

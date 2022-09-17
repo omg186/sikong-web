@@ -118,6 +118,13 @@
     </div>
     <!-- 修改账号 -->
     <Modal title="修改账号" v-model:visible="isModalAccount" :footer="null">
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <h3 s:text="black md" class="pt-2opx">原员工手机账户：13924156728</h3>
       <Form
         class="sikong-form2 pt-18px"
@@ -162,6 +169,13 @@
     </Modal>
     <!-- 重置密码 -->
     <Modal title="重置密码" v-model:visible="isModalReset" :footer="null">
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <h3 s:text="black md" class="pt-2opx">
         您确定要重置"张玲燕(猫猫)"的登录密码吗？
       </h3>

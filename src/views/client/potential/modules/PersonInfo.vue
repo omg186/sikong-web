@@ -159,6 +159,13 @@
       title="添加跟进记录"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddRecording
         @onCancel="visibleRecording = false"
         @onSubmit="visibleRecording = false"
@@ -172,6 +179,13 @@
       title="分配/调整顾问"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <Distribute
         @on-cancel="visibleDistribute = false"
         @on-submit="visibleDistribute = false"
@@ -184,6 +198,13 @@
       title="转为正式会员"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <ToFormal
         @on-cancel="visibleToFormal = false"
         @on-submit="visibleToFormal = false"
@@ -196,6 +217,13 @@
       title="预约测评"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddEvaluation
         @on-cancel="visibleAddEvaluation = false"
         @on-submit="visibleAddEvaluation = false"
@@ -209,6 +237,13 @@
       title="修改意向客户"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddClient
         @on-cancel="visibleAddClient = false"
         @on-submit="visibleAddClient = false"

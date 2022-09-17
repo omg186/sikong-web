@@ -123,6 +123,13 @@
       title="预约测评"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddEvaluation
         @on-cancel="visibleAddEvaluation = false"
         @on-submit="visibleAddEvaluation = false"
@@ -135,6 +142,13 @@
       title="查看测评报告"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <div class="grid grid-cols-[auto,100px] gap-10px">
         <EvaluationReport
           @on-cancel="visibleEvaluationReport = false"
