@@ -434,18 +434,9 @@
       </FormItem>
       <!-- 按钮 -->
       <div class="flex gap-15px">
-        <Button class="btn cancel h-40px w-90px" @click="onCancel">
-          取消
-        </Button>
+        <CancelButton @click="onCancel"> 取消 </CancelButton>
 
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="onSubmit"
-        >
-          保存
-        </Button>
+        <OkButton @click="onSubmit"> 保存 </OkButton>
       </div>
     </Form>
     <SelectProject
@@ -478,6 +469,13 @@
         @on-cancel="visibleExercise = false"
         @on-submit="onSubmitExercise"
       ></Exercise>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
   </div>
 </template>
@@ -504,7 +502,9 @@ import { ref } from 'vue'
 import Tag from '@/components/Tag.vue'
 import { getCompanyProjectList } from '@/api/company'
 import { useRequest } from 'vue-request'
-import Exercise from './Exercise.vue'
+import Exercise from './Exercise.vu
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'e'
 const contact = ref([1])
 const visibleExercise = ref(false)
 const formData = ref({

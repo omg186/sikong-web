@@ -117,6 +117,9 @@
     width="459px"
     :footer="null"
   >
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <AddDept
       :is-edit="isDeptEdit"
       :code="deptCode"
@@ -125,30 +128,23 @@
     />
   </Modal>
   <Modal title="删除部门" v-model:visible="isModalDeptDel" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md" class="pt-2opx">确定要删除部门-“中海店”吗？</h3>
     <div s:text="[#F3AB51] xs" class="pt-10px">
       当前“中海店”部门中，有 7 个员工账户和 1 个相关校区，删除操作会将
       相关员工账户转移到“北京白河狸科技公司”下，是否依然执行此操作？
     </div>
     <div class="flex gap-10px pt-30px">
-      <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="isModalDeptDel = false"
-      >
-        取消
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="isModalDeptDel = false"
-      >
-        保存
-      </Button>
+      <CancelButton @click="isModalDeptDel = false"> 取消 </CancelButton>
+      <OkButton @click="isModalDeptDel = false"> 保存 </OkButton>
     </div>
   </Modal>
   <Modal title="员工调岗" v-model:visible="isModalTransfer" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md" class="pt-2opx">将员工"都林(大熊)"调岗到</h3>
     <Form class="sikong-form2 pt-18px">
       <FormItem v-bind="validateInfos.deptCode">
@@ -162,70 +158,37 @@
         </Select>
       </FormItem>
       <div class="flex gap-10px pt-30px">
-        <Button
-          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-          s:border="1px solid [#C7F7E3]"
-          @click="isModalTransfer = false"
-        >
-          取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="onTransferSubmit"
-        >
-          保存
-        </Button>
+        <CancelButton @click="isModalTransfer = false"> 取消 </CancelButton>
+        <OkButton @click="onTransferSubmit"> 保存 </OkButton>
       </div>
     </Form>
   </Modal>
   <!-- 账户禁用 -->
   <Modal title="账户员工禁用" v-model:visible="isModalDisable" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md" class="pt-2opx">确定要禁用“李海(大鱼)”的账户吗？</h3>
     <div s:text="[#F3AB51] xs" class="pt-10px">
       禁用“李海(大鱼)”的账户，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续禁用该账户吗？
     </div>
     <div class="flex gap-10px pt-40px">
-      <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="isModalDisable = false"
-      >
-        取消
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onDisableSubmit"
-      >
-        确定
-      </Button>
+      <CancelButton @click="isModalDisable = false"> 取消 </CancelButton>
+      <OkButton @click="onDisableSubmit"> 确定 </OkButton>
     </div>
   </Modal>
   <!-- 离职 -->
   <Modal title="账户员工离职" v-model:visible="isModalLeave" :footer="null">
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <h3 s:text="black md " class="pt-2opx">确定要离职“李海(大鱼)”吗？</h3>
     <div s:text="[#F3AB51] xs" class="pt-10px">
       离职“李海(大鱼)”，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续离职该账户吗？
     </div>
     <div class="flex gap-10px pt-40px">
-      <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="isModalLeave = false"
-      >
-        取消
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onLeaveSubmit"
-      >
-        确定
-      </Button>
+      <CancelButton @click="isModalLeave = false"> 取消 </CancelButton>
+      <OkButton @click="onLeaveSubmit"> 确定 </OkButton>
     </div>
   </Modal>
   <AddStaff ref="addStaffRef" :footer="null" />
@@ -253,6 +216,8 @@ import AddStaff from './modules/add-staff.vue'
 import { useRoute } from 'vue-router'
 import { GetTreeParams } from '@/api/model/org-model'
 import { useRouteQueryObject } from '@/hooks/web/use-page'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 // import Table from './modules/table.vue'
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.getUserInfo)

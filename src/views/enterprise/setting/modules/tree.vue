@@ -94,6 +94,13 @@
       width="800px"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddRoom
         :is-edit="false"
         :code="rootCode"

@@ -93,16 +93,9 @@
     </Row>
     <!-- 按钮 -->
     <div class="flex gap-15px pt-20px">
-      <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
+      <CancelButton @click="onCancel"> 取消 </CancelButton>
 
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit"
-      >
-        保存
-      </Button>
+      <OkButton @click="onSubmit"> 保存 </OkButton>
     </div>
   </Form>
 </template>
@@ -124,6 +117,8 @@ import {
 } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { computed, ref } from 'vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const weekData = [
   { label: '周日', value: 0 },
   { label: '周一', value: 1 },

@@ -171,6 +171,13 @@
       title="新建意向客户"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddClient
         @on-cancel="visibleAddClient = false"
         @on-submit="visibleAddClient = false"
@@ -184,6 +191,13 @@
       :footer="null"
       @update:visible="userStore.clickMessageIcon"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <MessageList></MessageList>
     </Modal>
   </div>

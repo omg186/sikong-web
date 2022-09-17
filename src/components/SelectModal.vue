@@ -35,16 +35,9 @@
     </div>
     <!-- 按钮 -->
     <div class="flex gap-15px mt-10px">
-      <Button class="btn cancel h-40px w-90px" @click="cancel"> 取消 </Button>
+      <CancelButton @click="cancel"> 取消 </CancelButton>
 
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onOk"
-      >
-        保存
-      </Button>
+      <OkButton @click="onOk"> 保存 </OkButton>
     </div>
   </Modal>
 </template>
@@ -52,6 +45,8 @@
 <script lang="ts" setup>
 import { onMounted, reactive, watch } from 'vue'
 import { Modal, Button } from 'ant-design-vue'
+import CancelButton from './Button/CancelButton.vue'
+import OkButton from './Button/OkButton.vue'
 
 const props = withDefaults(
   defineProps<{

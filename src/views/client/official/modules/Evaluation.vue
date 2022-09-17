@@ -127,6 +127,13 @@
         @on-cancel="visibleAddEvaluation = false"
         @on-submit="visibleAddEvaluation = false"
       ></AddEvaluation>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <!-- 查看测评报告 -->
     <Modal
@@ -173,6 +180,13 @@
           </Button>
         </div>
       </div>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
   </div>
 </template>

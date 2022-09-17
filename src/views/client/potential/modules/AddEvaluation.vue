@@ -132,18 +132,9 @@
       </FormItem>
       <!-- 按钮 -->
       <div class="flex gap-15px mt-20px">
-        <Button class="btn cancel h-40px w-90px" @click="onCancel">
-          取消
-        </Button>
+        <CancelButton @click="onCancel"> 取消 </CancelButton>
 
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="onSubmit"
-        >
-          保存
-        </Button>
+        <OkButton @click="onSubmit"> 保存 </OkButton>
       </div>
     </Form>
   </div>
@@ -167,6 +158,8 @@ import {
 import SvgIcon from '@/components/SvgIcon.vue'
 import { ref } from 'vue'
 import TimeItem from './TimeItem.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 // 营业时间 time 10:00
 const time = [
   '10:00',

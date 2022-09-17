@@ -18,16 +18,9 @@
     </FormItem>
     <!-- 按钮 -->
     <div class="flex gap-15px">
-      <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
+      <CancelButton @click="onCancel"> 取消 </CancelButton>
 
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit"
-      >
-        保存
-      </Button>
+      <OkButton @click="onSubmit"> 保存 </OkButton>
     </div>
   </Form>
 </template>
@@ -43,6 +36,8 @@ import {
   Button,
 } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 
 // emits
 const emits = defineEmits(['onSubmit', 'onCancel'])

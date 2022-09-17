@@ -156,6 +156,13 @@
         @onCancel="visibleRecording = false"
         @onSubmit="visibleRecording = false"
       ></AddRecording>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
 
     <!-- 分配/调整顾问 -->
@@ -169,6 +176,13 @@
         @on-cancel="visibleDistribute = false"
         @on-submit="visibleDistribute = false"
       ></Distribute>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <!-- 转为正式会员 -->
     <Modal
@@ -181,6 +195,13 @@
         @on-cancel="visibleToFormal = false"
         @on-submit="visibleToFormal = false"
       ></ToFormal>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <!-- 预约测评 -->
     <Modal
@@ -193,6 +214,13 @@
         @on-cancel="visibleAddEvaluation = false"
         @on-submit="visibleAddEvaluation = false"
       ></AddEvaluation>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
 
     <!-- 新建意向客户 -->
@@ -202,6 +230,13 @@
       title="修改意向客户"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddClient
         @on-cancel="visibleAddClient = false"
         @on-submit="visibleAddClient = false"
@@ -218,6 +253,13 @@
         @on-cancel="visibleConfirm = false"
         @on-submit="visibleConfirm = false"
       ></Confirm>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
   </div>
 </template>

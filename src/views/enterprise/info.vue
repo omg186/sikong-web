@@ -227,15 +227,8 @@
     <Row>
       <FormItem>
         <Space>
-          <Button class="rounded-40 h-[40px] w-[90px]" type="primary" ghost
-            >取消</Button
-          >
-          <Button
-            html-type="submit"
-            class="rounded-40 h-[40px] w-[140px]"
-            type="primary"
-            >下一步 组织架构</Button
-          >
+          <CancelButton>取消 </CancelButton>
+          <OkButton>下一步 组织架构</OkButton>
         </Space>
       </FormItem>
     </Row>
@@ -274,6 +267,8 @@ import provinceData from 'china-division/dist/provinces.json'
 import cities from 'china-division/dist/cities.json'
 import areas from 'china-division/dist/areas.json'
 import streets from 'china-division/dist/streets.json'
+import OkButton from '@/components/Button/OkButton.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
 const data = reactive({
   isSelect: false,
   isDisabled: false,

@@ -145,6 +145,13 @@
       title="执行人预约确认"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <Confirm
         @on-cancel="visibleConfirm = false"
         @on-submit="visibleConfirm = false"
@@ -158,6 +165,13 @@
       title="预约测评"
       :footer="null"
     >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
       <AddEvaluation
         @on-cancel="visibleAddEvaluation = false"
         @on-submit="visibleAddEvaluation = false"

@@ -5,6 +5,9 @@
     :footer="null"
     @cancel="updateVisible()"
   >
+    <template #closeIcon>
+      <ImgIcon src="close.png" hover-src="close.png"></ImgIcon>
+    </template>
     <Form
       class="sikong-form2"
       :model="formData"
@@ -60,22 +63,10 @@
         </FormItem>
       </FormItem>
       <div class="flex gap-10px pt-30px">
-        <Button
-          class="btn bg-[#F7FEFB] rounded-40px h-40px w-90px"
-          s:border="1px solid [#C7F7E3]"
-          s:text="primary"
-          @click="emits('update:visible', false)"
-        >
+        <CancelButton @click="emits('update:visible', false)">
           取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="emits('update:visible', false)"
-        >
-          确定
-        </Button>
+        </CancelButton>
+        <OkButton @click="emits('update:visible', false)"> 确定 </OkButton>
       </div>
       <div s:text="[#F3AB51] xs" class="mt-25px">
         建议不要在测评使用过程中变更身体素质的测评项目和权重，这样会导致前
@@ -102,6 +93,8 @@ import { PropType, ref, watch } from 'vue'
 import SvgIcon from '../../../../components/SvgIcon.vue'
 import { ItemDto } from '../interface'
 import { cloneDeep } from 'lodash-es'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const props = defineProps({
   title: {
     type: String,
