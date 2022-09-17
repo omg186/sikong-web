@@ -131,12 +131,7 @@
               class="flex gap-10px items-center cursor-pointer"
               @click="onClient"
             >
-              <span
-                class="w-30px h-30px shadow-light-500 rounded-40 overflow-hidden"
-                s:border="2 solid warm-gray-50"
-              >
-                <img :src="record.avatar" />
-              </span>
+              <Portrait class="w-30px h-30px" :url="record.avatar" />
               <span>{{ record.name }}</span>
             </div>
           </template>
@@ -203,6 +198,7 @@ import {
   Input,
   Modal,
 } from 'ant-design-vue'
+import Portrait from '@/components/Portrait.vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'

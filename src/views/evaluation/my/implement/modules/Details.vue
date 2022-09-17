@@ -1,9 +1,14 @@
 <template>
   <div class="pt-30px">
     <div class="grid grid-cols-[58px,auto,200px] gap-x-10px items-center">
-      <div class="rounded-full overflow-hidden">
-        <img src="@/assets/images/avatar-girl.png" />
-      </div>
+      <Portrait
+        class="w-58px h-58px"
+        url="avatar-girl.png"
+        :isLocalUrl="true"
+        :border="false"
+        :shadow="false"
+      ></Portrait>
+
       <div class="flex flex-col gap-y-5px">
         <p class="mb-0px font-bold" s:text="[#1F311F] 16px">Thomas(托托)</p>
         <p class="mb-0px" s:text="xs [#6C766E]">执行人</p>
@@ -52,12 +57,12 @@
             <div
               class="flex flex-col gap-10px items-center justify-center cursor-pointer"
             >
-              <span
-                class="w-40px h-40px shadow-light-500 rounded-40 overflow-hidden"
-                s:border="2 solid warm-gray-50"
-              >
-                <img :src="record.avatar" />
-              </span>
+              <Portrait
+                class="w-40px h-40px"
+                :url="record.avatar"
+                :border="false"
+                :shadow="false"
+              ></Portrait>
               <span class="font-bold" s:text="[#2D3A2F]">
                 {{ record.name }}
               </span>
@@ -67,12 +72,7 @@
             <div
               class="flex gap-10px items-center justify-center cursor-pointer"
             >
-              <span
-                class="w-30px h-30px shadow-light-500 rounded-40 overflow-hidden"
-                s:border="2 solid warm-gray-50"
-              >
-                <img :src="record.avatar" />
-              </span>
+              <Portrait class="w-30px h-30px" :url="record.avatar"></Portrait>
               <span>
                 {{ record.name }}
               </span>
@@ -153,6 +153,7 @@ import {
 } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
+import Portrait from '@/components/Portrait.vue'
 const props = withDefaults(defineProps<{ status: '已完成' | '开放中' }>(), {})
 const pagination = computed(
   () =>
