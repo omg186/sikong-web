@@ -6,7 +6,7 @@
           <p>已完成(2/8)</p>
           <Input
             key="2"
-            class="w-full box-border rounded-60 fill-gray-400 stroke-[#A5A8B4] hover:fill-primary active:fill-primary focus:fill-primary focus-within:fill-primary"
+            class="w-full box-border rounded-60 fill-gray-400 stroke-[#A5A8B4] hover:fill-primary active:fill-primary focus:fill-primary focus-within:fill-primary serach-icon"
             placeholder="记录单编号"
           >
             <template #prefix>
@@ -34,7 +34,7 @@
               s:border="2px solid white"
               style="box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1)"
             />
-            <span>李睿曦</span>
+            <span class="text-xs text-[#2D3A2F] font-400">李睿曦</span>
             <span class="min-w-20px">
               <SvgIcon
                 v-if="person === 'waring'"
@@ -62,17 +62,19 @@
               s:border="2px solid white"
               style="box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1)"
             />
-            <span>李睿曦</span>
+            <span class="text-xs">李睿曦</span>
           </div>
           <div class="flex items-center">
             <RadioGroup v-model:value="status">
-              <Radio :value="0">正常</Radio>
-              <Radio :value="1">缺席</Radio>
-              <Radio :value="2">数据丢失</Radio>
+              <Radio :value="0" class="text-xs">正常</Radio>
+              <Radio :value="1" class="check-bg-red text-xs">缺席</Radio>
+              <Radio :value="2" class="check-bg-red text-xs">数据丢失</Radio>
             </RadioGroup>
           </div>
         </div>
-        <div class="flex flex-col gap-y-10px p-15px">
+        <div
+          class="flex flex-col gap-y-10px p-15px text-xs text-[#2D3A2F] font-400"
+        >
           <div class="grid grid-cols-6 gap-x-20px font-bold" s:text=" center">
             <span>测评项目名称</span>
             <span>测评状态</span>
@@ -90,11 +92,10 @@
             <span></span>
             <span></span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>kg</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-52px" :disabled="disabled" />
+                <span>kg</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-primary">优秀</span>
             <span v-else>-</span>
@@ -108,11 +109,10 @@
             <span></span>
             <span></span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>cm</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-48px" :disabled="disabled" />
+                <span>cm</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-primary">优秀</span>
             <span v-else>-</span>
@@ -126,13 +126,10 @@
             <span></span>
             <span></span>
             <span>
-              <InputNumber
-                class="w-full"
-                type="text"
-                :controls="false"
-                :disabled="disabled"
-              >
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-66px" :disabled="disabled" />
+                <!-- <span></span> -->
+              </span>
             </span>
             <span v-if="!disabled" class="text-primary">优秀</span>
             <span v-else>-</span>
@@ -142,29 +139,27 @@
             s:text=" center"
           >
             <span>双脚连续跳</span>
+            <span class="checkbox-no-pr">
+              <Checkbox :disabled="disabled" class="text-xs font-400"
+                >无法测试</Checkbox
+              >
+            </span>
+            <span class="gray-input">
+              <input type="text" class="!w-56px" :disabled="disabled" />
+              <span>s</span>
+            </span>
+            <span> </span>
             <span>
-              <Checkbox :disabled="disabled">无法测试</Checkbox>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
-            </span>
-            <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
-            </span>
-            <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-[#62A1FF]">良好</span>
             <span v-else>-</span>
@@ -174,29 +169,28 @@
             s:text=" center"
           >
             <span>坐位体前屈</span>
-            <span>
-              <Checkbox :disabled="disabled">无法测试</Checkbox>
+            <span class="checkbox-no-pr">
+              <Checkbox :disabled="disabled" class="text-xs font-400"
+                >无法测试</Checkbox
+              >
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>cm</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-48px" :disabled="disabled" />
+                <span>cm</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>cm</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-48px" :disabled="disabled" />
+                <span>cm</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>cm</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-48px" :disabled="disabled" />
+                <span>cm</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-primary">优秀</span>
             <span v-else>-</span>
@@ -206,29 +200,28 @@
             s:text=" center"
           >
             <span>10米折返跑</span>
-            <span>
-              <Checkbox :disabled="disabled">无法测试</Checkbox>
+            <span class="checkbox-no-pr">
+              <Checkbox :disabled="disabled" class="text-xs font-400"
+                >无法测试</Checkbox
+              >
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-primary">优秀</span>
             <span v-else>-</span>
@@ -238,29 +231,28 @@
             s:text=" center"
           >
             <span>走平衡木</span>
-            <span>
-              <Checkbox :disabled="disabled">无法测试</Checkbox>
+            <span class="checkbox-no-pr">
+              <Checkbox :disabled="disabled" class="text-xs font-400"
+                >无法测试</Checkbox
+              >
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>s</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>s</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-[#F3AB51]">合格</span>
             <span v-else>-</span>
@@ -270,29 +262,28 @@
             s:text=" center"
           >
             <span>立定跳远</span>
-            <span>
-              <Checkbox :disabled="disabled">无法测试</Checkbox>
+            <span class="checkbox-no-pr">
+              <Checkbox :disabled="disabled" class="text-xs font-400"
+                >无法测试</Checkbox
+              >
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>cm</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-48px" :disabled="disabled" />
+                <span>cm</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>cm</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-48px" :disabled="disabled" />
+                <span>cm</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>cm</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-48px" :disabled="disabled" />
+                <span>cm</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-primary">优秀</span>
             <span v-else>-</span>
@@ -302,29 +293,28 @@
             s:text=" center"
           >
             <span>网球掷远</span>
-            <span>
-              <Checkbox :disabled="disabled">无法测试</Checkbox>
+            <span class="checkbox-no-pr">
+              <Checkbox :disabled="disabled" class="text-xs font-400"
+                >无法测试</Checkbox
+              >
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>m</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>m</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>m</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>m</span>
+              </span>
             </span>
             <span>
-              <InputNumber type="text" :controls="false" :disabled="disabled">
-                <template #addonAfter>
-                  <span>m</span>
-                </template>
-              </InputNumber>
+              <span class="gray-input">
+                <input type="text" class="!w-56px" :disabled="disabled" />
+                <span>m</span>
+              </span>
             </span>
             <span v-if="!disabled" class="text-[#62A1FF]">良好</span>
             <span v-else>-</span>
@@ -413,3 +403,23 @@ function onChangeIndex(index: number) {
   selIndex.value = index
 }
 </script>
+<style lang="less">
+.serach-icon {
+  input.ant-input {
+    padding-left: 8px;
+  }
+}
+.check-bg-red {
+  .ant-radio-checked .ant-radio-inner {
+    border-color: #f4274e;
+  }
+  .ant-radio-inner::after {
+    background-color: #f4274e;
+  }
+}
+.checkbox-no-pr {
+  .ant-checkbox + span {
+    padding-right: 0;
+  }
+}
+</style>

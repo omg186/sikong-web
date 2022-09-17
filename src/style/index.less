@@ -104,3 +104,20 @@
     opacity: 0;
     transform: translateY(-8%);
 }
+
+.gray-input {
+    @apply h-28px border-0 bg-[#F4F4F4] pr-14px rounded-6px text-right flex justify-end items-center text-xs font-400 text-[#83867E];
+
+    input {
+        @apply w-60px h-28px border-0 bg-[#F4F4F4] rounded-l-6px text-righttext-xs font-400 text-[#83867E];
+    }
+
+    input[type='text']:focus {
+        outline: none;
+        -webkit-box-shadow: 0 0 0 1000px #ffffff00 inset;
+    }
+
+    span {
+        @apply text-xs font-400 text-[#83867E];
+    }
+}

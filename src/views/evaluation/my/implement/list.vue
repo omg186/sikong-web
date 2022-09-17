@@ -205,7 +205,7 @@
     <!-- 数据回填 -->
     <Modal
       v-model:visible="visibleDetail2"
-      width="1200px"
+      width="740px"
       title="数据回填"
       :footer="null"
       :body-style="{ padding: '0' }"
