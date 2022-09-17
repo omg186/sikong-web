@@ -7,22 +7,23 @@
     s:bg="primary"
     s:hover="bg-[#14DC87]"
   >
-    <slot></slot>
+    <slot name="icon"> </slot>
+    <span><slot></slot></span>
   </button>
 </template>
 
 <script lang="ts" setup></script>
 <style lang="scss" scoped>
 .ok-button {
-  @apply relative;
-  &::before {
+  @apply relative flex items-center gap-x-5px;
+  &::after {
     content: '';
     @apply box-content absolute w-full h-full left-[-3px] top-[-3px] rounded-40;
     display: block;
-    border: 3px solid #ddfff0;
+    border: 3px solid transparent;
   }
   &:hover {
-    &::before {
+    &::after {
       border: 3px solid #ddfff0;
     }
   }

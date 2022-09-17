@@ -98,51 +98,33 @@
         <TabPane key="3" tab="测评&报告"><Evaluation /></TabPane>
         <TabPane key="4" tab="训练计划"><TrainingPlan /></TabPane>
         <template #rightExtra>
-          <Button
-            type="primary"
-            size="large"
-            class="rounded-60 flex items-center"
-            v-if="activeKey === '1'"
-            @click="visibleAddClient = true"
-          >
+          <OkButton v-if="activeKey === '1'" @click="visibleAddClient = true">
             修改
             <template #icon>
               <SvgIcon
                 name="modify1"
-                class="inline-block w-18px h-12px fill-white mr-5px"
+                class="w-18px h-12px fill-white"
               ></SvgIcon>
             </template>
-          </Button>
-          <Button
-            type="primary"
-            size="large"
-            class="rounded-60 flex items-center"
+          </OkButton>
+          <OkButton
             v-else-if="activeKey === '2'"
             @click="visibleRecording = true"
           >
             添加跟进记录
             <template #icon>
-              <SvgIcon
-                name="add"
-                class="inline-block w-24px h-24px fill-white mr-5px"
-              ></SvgIcon>
+              <SvgIcon name="add" class="w-24px h-24px fill-white"></SvgIcon>
             </template>
-          </Button>
-          <Button
-            type="primary"
-            size="large"
-            class="rounded-60 flex items-center"
+          </OkButton>
+          <OkButton
             v-else-if="activeKey === '3'"
             @click="visibleConfirm = true"
           >
             预约测评
             <template #icon>
-              <SvgIcon
-                name="add"
-                class="inline-block w-24px h-24px fill-white mr-5px"
-              ></SvgIcon>
+              <SvgIcon name="add" class="w-24px h-24px fill-white"></SvgIcon>
             </template>
-          </Button>
+          </OkButton>
         </template>
       </Tabs>
     </div>
@@ -279,6 +261,7 @@ import Distribute from './Distribute.vue'
 import ImgIcon from '@/components/ImgIcon.vue'
 import TrainingPlan from './TrainingPlan/index.vue'
 import Confirm from './Confirm.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const activeKey = ref('1')
 const visibleConfirm = ref(false)
 const visibleAddEvaluation = ref(false)

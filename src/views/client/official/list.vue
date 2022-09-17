@@ -109,19 +109,12 @@
         >
           添加训练计划
         </p>
-        <Button
-          type="primary"
-          class="h-40px rounded-40 text-white"
-          @click="visibleAddClient = true"
-        >
+        <OkButton @click="visibleAddClient = true">
           <template #icon>
-            <SvgIcon
-              class="w-18px h-18px inline-block fill-white"
-              name="add"
-            ></SvgIcon>
+            <SvgIcon class="w-18px h-20px fill-white" name="add"></SvgIcon>
           </template>
           新建正式客户
-        </Button>
+        </OkButton>
       </div>
     </div>
     <div class="potential-table">
@@ -305,6 +298,7 @@ import MessageList from './modules/Message.vue'
 import AddClient from './modules/AddClient.vue'
 import AddPlan from './modules/TrainingPlan/Add.vue'
 import { useUserStore } from '@/store/modules/user'
+import OkButton from '@/components/Button/OkButton.vue'
 const textContents = ['优秀', '良好', '合格', '不及格']
 const borderColor = ['#DBF8EB', '#D9E8FF', '#FDEEDC', '#FFF1F2']
 const textColor = ['#2FE095', '#62A1FF', '#F3AB51', '#FF7C7C']

@@ -107,11 +107,7 @@
             </template>
           </Input>
         </transition-group>
-        <Button
-          type="primary"
-          class="h-40px rounded-40 text-white"
-          @click="visibleAddClient = true"
-        >
+        <OkButton @click="visibleAddClient = true">
           <template #icon>
             <SvgIcon
               class="w-18px h-18px inline-block fill-white"
@@ -119,7 +115,7 @@
             ></SvgIcon>
           </template>
           新建意向客户
-        </Button>
+        </OkButton>
       </div>
     </div>
     <div class="potential-table">
@@ -229,6 +225,7 @@ import MessageList from './modules/Message.vue'
 import AddClient from './modules/AddClient.vue'
 import { useUserStore } from '@/store/modules/user'
 import ImgIcon from '@/components/ImgIcon.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 
 const visibleClient = ref(false)
 const visibleInput = ref(false)
