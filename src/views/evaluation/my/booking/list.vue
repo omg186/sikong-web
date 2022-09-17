@@ -88,20 +88,12 @@
           </FormItem>
         </Form>
       </div>
-      <Button
-        type="primary"
-        size="large"
-        class="rounded-60 flex items-center"
-        @click="visibleAddEvaluation = true"
-      >
+      <OkButton @click="visibleAddEvaluation = true">
         预约测评
         <template #icon>
-          <SvgIcon
-            name="add"
-            class="inline-block w-24px h-24px fill-white mr-5px"
-          ></SvgIcon>
+          <SvgIcon name="add" class="w-18px h-18px fill-white"></SvgIcon>
         </template>
-      </Button>
+      </OkButton>
     </div>
     <Table
       class="sikong-table flex-1 pt-20px"
@@ -206,6 +198,7 @@ import { usePagination } from 'vue-request'
 
 import Header from '../implement/modules/Header.vue'
 import { useRouter } from 'vue-router'
+import OkButton from '@/components/Button/OkButton.vue'
 const router = useRouter()
 const visibleConfirm = ref(false)
 const visibleAddEvaluation = ref(false)

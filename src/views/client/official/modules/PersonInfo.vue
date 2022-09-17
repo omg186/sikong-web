@@ -113,7 +113,7 @@
           >
             添加跟进记录
             <template #icon>
-              <SvgIcon name="add" class="w-24px h-24px fill-white"></SvgIcon>
+              <SvgIcon name="add" class="w-18px h-18px fill-white"></SvgIcon>
             </template>
           </OkButton>
           <OkButton
@@ -122,7 +122,7 @@
           >
             预约测评
             <template #icon>
-              <SvgIcon name="add" class="w-24px h-24px fill-white"></SvgIcon>
+              <SvgIcon name="add" class="w-18px h-18px fill-white"></SvgIcon>
             </template>
           </OkButton>
         </template>

@@ -111,7 +111,7 @@
         </p>
         <OkButton @click="visibleAddClient = true">
           <template #icon>
-            <SvgIcon class="w-18px h-20px fill-white" name="add"></SvgIcon>
+            <SvgIcon class="w-18px h-18px fill-white" name="add"></SvgIcon>
           </template>
           新建正式客户
         </OkButton>

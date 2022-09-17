@@ -105,13 +105,7 @@
         <TabPane key="2" tab="沟通&动态"><Communicate /></TabPane>
         <TabPane key="3" tab="测评&报告"><Evaluation /></TabPane>
         <template #rightExtra>
-          <Button
-            type="primary"
-            size="large"
-            class="rounded-60 flex items-center"
-            v-if="activeKey === '1'"
-            @click="visibleAddClient = true"
-          >
+          <OkButton v-if="activeKey === '1'" @click="visibleAddClient = true">
             修改
             <template #icon>
               <SvgIcon
@@ -119,11 +113,8 @@
                 class="inline-block w-18px h-12px fill-white mr-5px"
               ></SvgIcon>
             </template>
-          </Button>
-          <Button
-            type="primary"
-            size="large"
-            class="rounded-60 flex items-center"
+          </OkButton>
+          <OkButton
             v-else-if="activeKey === '2'"
             @click="visibleRecording = true"
           >
@@ -131,14 +122,11 @@
             <template #icon>
               <SvgIcon
                 name="add"
-                class="inline-block w-24px h-24px fill-white mr-5px"
+                class="inline-block w-18px h-18px fill-white mr-5px"
               ></SvgIcon>
             </template>
-          </Button>
-          <Button
-            type="primary"
-            size="large"
-            class="rounded-60 flex items-center"
+          </OkButton>
+          <OkButton
             v-else-if="activeKey === '3'"
             @click="visibleAddEvaluation = true"
           >
@@ -146,10 +134,10 @@
             <template #icon>
               <SvgIcon
                 name="add"
-                class="inline-block w-24px h-24px fill-white mr-5px"
+                class="inline-block w-18px h-18px fill-white mr-5px"
               ></SvgIcon>
             </template>
-          </Button>
+          </OkButton>
         </template>
       </Tabs>
     </div>
@@ -265,6 +253,7 @@ import AddRecording from './AddRecording.vue'
 import AddEvaluation from './AddEvaluation.vue'
 import ToFormal from './ToFormal.vue'
 import Distribute from './Distribute.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const activeKey = ref('1')
 const visibleAddEvaluation = ref(false)
 const visibleDistribute = ref(false)
