@@ -10,7 +10,13 @@
             placeholder="记录单编号"
           >
             <template #prefix>
-              <SvgIcon class="w-18px h-20px" name="search"></SvgIcon>
+              <ImgIcon
+                width="18px"
+                class="w-[18px] h-20px"
+                :src="'serach.png'"
+                hover-src="serach-hover.png"
+              >
+              </ImgIcon>
             </template>
           </Input>
         </div>
@@ -383,6 +389,8 @@ import {
 } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { computed, ref, unref } from 'vue'
+import ImgIcon from '@/components/ImgIcon.vue'
+
 const personData: Array<'waring' | 'success' | ''> = [
   'success',
   'success',

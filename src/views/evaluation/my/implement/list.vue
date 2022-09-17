@@ -61,7 +61,13 @@
             placeholder="输入组织者姓名"
           >
             <template #prefix>
-              <SvgIcon class="w-18px h-20px" name="search"></SvgIcon>
+              <ImgIcon
+                width="18px"
+                :src="'serach.png'"
+                class="w-18px h-20px"
+                hover-src="serach-hover.png"
+              >
+              </ImgIcon>
             </template>
           </Input>
         </FormItem>

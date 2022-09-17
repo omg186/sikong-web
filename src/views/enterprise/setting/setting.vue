@@ -11,7 +11,14 @@
             placeholder="校区、场地、教室"
           >
             <template #prefix>
-              <SvgIcon class="w-[28px] h-28px" name="search"></SvgIcon>
+              <ImgIcon
+                width="28px"
+                height="28px"
+                class="w-[28px] h-28px"
+                :src="'serach.png'"
+                hover-src="serach-hover.png"
+              >
+              </ImgIcon>
             </template>
           </Input>
           <Popover placement="bottom" trigger="hover">
@@ -209,6 +216,7 @@ import { GetTreeParams } from '@/api/model/org-model'
 import { useRouter } from 'vue-router'
 import Header from '@/components/Header/Header.vue'
 import AddCampus from './modules/add-campus.vue'
+import ImgIcon from '@/components/ImgIcon.vue'
 
 const router = useRouter()
 const routerData = ref()

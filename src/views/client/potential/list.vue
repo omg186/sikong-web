@@ -80,14 +80,16 @@
           enter-active-class="animate__fadeInRight"
           leave-active-class="animate__fadeOutLeft"
         >
-          <SvgIcon
+          <ImgIcon
             key="1"
-            class="w-18px h-20px fill-[#A5A8B4] cursor-pointer"
-            name="search"
+            width="18px"
             v-if="!visibleInput"
             @mouseenter="visibleInput = true"
+            class="w-18px h-20px fill-[#A5A8B4] cursor-pointer"
+            :src="'serach.png'"
+            hover-src="serach-hover.png"
           >
-          </SvgIcon>
+          </ImgIcon>
           <Input
             key="2"
             v-if="visibleInput"
@@ -96,7 +98,12 @@
             @blur="visibleInput = false"
           >
             <template #prefix>
-              <SvgIcon class="w-18px h-20px" name="search"></SvgIcon>
+              <ImgIcon
+                class="w-18px h-20px"
+                :src="'serach.png'"
+                hover-src="serach-hover.png"
+              >
+              </ImgIcon>
             </template>
           </Input>
         </transition-group>
@@ -207,6 +214,7 @@ import PersonInfo from './modules/PersonInfo.vue'
 import MessageList from './modules/Message.vue'
 import AddClient from './modules/AddClient.vue'
 import { useUserStore } from '@/store/modules/user'
+import ImgIcon from '@/components/ImgIcon.vue'
 
 const visibleClient = ref(false)
 const visibleInput = ref(false)

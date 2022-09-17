@@ -74,14 +74,17 @@
           enter-active-class="animate__fadeInRight"
           leave-active-class="animate__fadeOutLeft"
         >
-          <SvgIcon
+          <ImgIcon
             key="1"
+            width="18px"
             class="w-18px h-20px fill-[#A5A8B4] cursor-pointer"
-            name="search"
+            :src="'serach.png'"
+            hover-src="serach-hover.png"
             v-if="!visibleInput"
             @mouseenter="visibleInput = true"
           >
-          </SvgIcon>
+          </ImgIcon>
+
           <Input
             key="2"
             v-if="visibleInput"
@@ -90,7 +93,12 @@
             @blur="visibleInput = false"
           >
             <template #prefix>
-              <SvgIcon class="w-18px h-20px" name="search"></SvgIcon>
+              <ImgIcon
+                :src="'serach.png'"
+                class="w-18px h-20px"
+                hover-src="serach-hover.png"
+              >
+              </ImgIcon>
             </template>
           </Input>
         </transition-group>
