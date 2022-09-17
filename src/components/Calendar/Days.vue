@@ -45,6 +45,14 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .calendar-component-days {
+  &-item:hover {
+    > span {
+      color: #2fe095;
+      font-weight: bold;
+    }
+    border: solid 4px #e5fff2;
+    border-radius: 23px;
+  }
   &-item {
     color: #83867e;
     border-radius: 16px;

@@ -28,7 +28,7 @@
             s:border="b solid [#F3F4F4]"
           >
             <div
-              class="min-w-222px text-center"
+              class="min-w-222px text-center font-bold"
               v-for="room in roomList"
               :key="room"
             >
@@ -50,7 +50,7 @@
           </div>
 
           <div
-            class="absolute left-0 top-0"
+            class="absolute left-0 top-0 rounded-8px"
             v-for="(data, index) in dataList"
             :style="{
               width: data.w + 'px',
@@ -62,7 +62,7 @@
             :key="index"
           >
             <div
-              class="box-border w-full h-full grid grid-cols-[10px,auto,60px] items-center bg-white p-4px"
+              class="box-border w-full h-full grid grid-cols-[12px,auto,60px] items-center bg-white p-4px pl-0 rounded-8px"
             >
               <div
                 class="h-full w-3px rounded-40"
@@ -74,7 +74,7 @@
                 }"
                 style="box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.05)"
               ></div>
-              <div class="grid gap-y-5px h-full">
+              <div class="grid gap-y-5px h-full pt-6px">
                 <div class="flex self-start gap-x-7px items-center">
                   <img
                     src="@/assets/images/avatar-boy.png"
@@ -83,12 +83,12 @@
                   />
                   <span class="font-bold" s:text="sm">Thomas</span>
                 </div>
-                <div s:text="[#6C766E] xs" class="self-end">
+                <div s:text="[#6C766E] xs" class="self-end pb-6px">
                   当前参与人数：7人
                 </div>
               </div>
               <div
-                class="w-56px h-26px flex self-start items-center justify-center rounded-40 text-xs text-center"
+                class="w-56px h-26px flex self-start items-center justify-center rounded-40 text-xs text-center mt-6px"
                 :class="{
                   'bg-[#E7FFF2] text-[#2FE095]': data.status === '开放中',
                   'bg-[#FFFAEC] text-[#FFBB00]': data.status === '执行中',
