@@ -1,7 +1,7 @@
 <template>
   <div :class="getWrapClass">
     <div class="flex justify-between items-center h-66px">
-      <div class="flex divide-x-2">
+      <div class="flex divide-x-1 divide-[#F4F4F4]">
         <div
           class="tab-item flex-center min-w-166px px-50px items-center cursor-pointer"
           :class="activeKeyRef === (item.fullPath || item.path) ? 'active' : ''"
@@ -10,12 +10,20 @@
           @click="handleChange(item.fullPath || item.path)"
         >
           <span>{{ item.meta.title }}</span>
-          <i
+          <ImgIcon
+            @click.stop="handleEdit(item.fullPath || item.path)"
+            v-if="!(item && item.meta && item.meta.affix)"
+            :src="'close.png'"
+            class="close-icon"
+            hover-src="close-hover.png"
+          >
+          </ImgIcon>
+          <!-- <i
             @click.stop="handleEdit(item.fullPath || item.path)"
             v-if="!(item && item.meta && item.meta.affix)"
           >
-            <close-outlined />
-          </i>
+            <close-outlined style="color: #b7b9c2" />
+          </i> -->
         </div>
       </div>
       <div class="flex pr-20px">
@@ -36,6 +44,7 @@
 </template>
 <script lang="ts">
 import { RouteLocationNormalized, RouteMeta, useRoute } from 'vue-router'
+import ImgIcon from '@/components/ImgIcon.vue'
 
 import { defineComponent, computed, unref, ref, watchEffect } from 'vue'
 
@@ -67,6 +76,7 @@ export default defineComponent({
     Tabs,
     TabPane: Tabs.TabPane,
     SvgIcon,
+    ImgIcon,
   },
   setup() {
     const affixTextList = initAffixTabs()
@@ -166,7 +176,7 @@ export default defineComponent({
   .tab-item {
     color: #83867e;
     position: relative;
-    i {
+    .close-icon {
       width: 24px;
       height: 24px;
       @apply w-24px h-24px absolute right-15px text-[#83867e] flex-center items-center rounded-8px;
