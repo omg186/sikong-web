@@ -9,7 +9,10 @@
     <Form layout="vertical">
       <!-- 调整客户状态 -->
       <FormItem label="分配/调整顾问" prop="status">
-        <Select placeholder="请分配/调整顾问" class="min-w-118px">
+        <Select placeholder="请分配/调整顾问" class="select-icon min-w-118px">
+          <template #suffixIcon>
+            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
+          </template>
           <SelectOption value="0">调整客户状态</SelectOption>
           <SelectOption value="1">意向</SelectOption>
           <SelectOption value="2">正式</SelectOption>
@@ -53,6 +56,7 @@
 <script lang="ts" setup>
 import { getDemoListApi } from '@/api/select'
 import TextItem from '@/components/TextItem.vue'
+import SvgIcon from '@/components/SvgIcon.vue'
 
 import {
   Form,

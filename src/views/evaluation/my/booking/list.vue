@@ -6,7 +6,13 @@
         <span s:text="sm" class="text-primary pr-20px">全部</span>
         <Form layout="inline">
           <FormItem>
-            <Select placeholder="预约状态" class="min-w-178px">
+            <Select placeholder="预约状态" class="select-icon min-w-178px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">性别</SelectOption>
               <SelectOption value="1">男</SelectOption>
               <SelectOption value="2">女</SelectOption>
@@ -14,7 +20,13 @@
           </FormItem>
           <!-- 客户来源 -->
           <FormItem>
-            <Select placeholder="预约类型" class="min-w-48px">
+            <Select placeholder="预约类型" class="select-icon min-w-48px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">客户来源</SelectOption>
               <SelectOption value="1">网络</SelectOption>
               <SelectOption value="2">电话</SelectOption>
@@ -24,7 +36,13 @@
           </FormItem>
           <!-- 客户状态 -->
           <FormItem>
-            <Select placeholder="测评类型" class="min-w-118px">
+            <Select placeholder="测评类型" class="select-icon min-w-118px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">客户状态</SelectOption>
               <SelectOption value="1">意向</SelectOption>
               <SelectOption value="2">正式</SelectOption>
@@ -32,7 +50,13 @@
             </Select>
           </FormItem>
           <FormItem>
-            <Select placeholder="申请人" class="min-w-118px">
+            <Select placeholder="申请人" class="select-icon min-w-118px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">客户状态</SelectOption>
               <SelectOption value="1">意向</SelectOption>
               <SelectOption value="2">正式</SelectOption>
@@ -141,6 +165,7 @@ import { getDemoListApi } from '@/api/select'
 import Confirm from './modules/Confirm.vue'
 import AddEvaluation from './modules/AddEvaluation.vue'
 import ImgIcon from '@/components/ImgIcon.vue'
+import SvgIcon from '@/components/SvgIcon.vue'
 import {
   Form,
   FormItem,

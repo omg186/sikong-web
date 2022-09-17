@@ -5,7 +5,10 @@
 
       <!-- 测试类型 -->
       <FormItem>
-        <Select placeholder="选择测试类型" class="min-w-180px">
+        <Select placeholder="选择测试类型" class="select-icon min-w-180px">
+          <template #suffixIcon>
+            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
+          </template>
           <SelectOption value="0">客户来源</SelectOption>
           <SelectOption value="1">网络</SelectOption>
           <SelectOption value="2">电话</SelectOption>
@@ -15,7 +18,10 @@
       </FormItem>
       <!-- 全部状态 -->
       <FormItem>
-        <Select placeholder="选择状态" class="min-w-180px">
+        <Select placeholder="选择状态" class="select-icon min-w-180px">
+          <template #suffixIcon>
+            <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
+          </template>
           <SelectOption value="0">全部状态</SelectOption>
           <SelectOption value="1">意向</SelectOption>
           <SelectOption value="2">正式</SelectOption>

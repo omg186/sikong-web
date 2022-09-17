@@ -24,7 +24,13 @@
         <!-- 性别 -->
         <Col :span="12">
           <FormItem label="性别">
-            <Select placeholder="请选择性别" class="min-w-118px">
+            <Select placeholder="请选择性别" class="select-icon min-w-118px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="1">男</SelectOption>
               <SelectOption value="2">女</SelectOption>
             </Select>
@@ -41,13 +47,27 @@
             <!-- 请选择班级 -->
             <Col :span="8">
               <FormItem label=" ">
-                <Select placeholder="请选择班级"> </Select>
+                <Select placeholder="请选择班级" class="select-icon">
+                  <template #suffixIcon>
+                    <SvgIcon
+                      name="down"
+                      class="w-full h-full fill-[#A5A8B4]"
+                    ></SvgIcon>
+                  </template>
+                </Select>
               </FormItem>
             </Col>
             <!-- 请选择教育阶段、年级 -->
             <Col :span="8">
               <FormItem label=" ">
-                <Select placeholder="请选择教育阶段、年级"> </Select>
+                <Select placeholder="请选择教育阶段、年级" class="select-icon">
+                  <template #suffixIcon>
+                    <SvgIcon
+                      name="down"
+                      class="w-full h-full fill-[#A5A8B4]"
+                    ></SvgIcon>
+                  </template>
+                </Select>
               </FormItem>
             </Col>
           </Row>
@@ -144,7 +164,14 @@
         <Col :span="12">
           <!-- 客户来源 -->
           <FormItem label="客户来源">
-            <Select placeholder="请选择渠道"> </Select>
+            <Select placeholder="请选择渠道" class="select-icon">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
+            </Select>
           </FormItem>
         </Col>
         <Col :span="12">
@@ -158,14 +185,28 @@
         <Col :span="12">
           <!-- 客户来源 -->
           <FormItem label="专属顾问">
-            <Select placeholder="请选择专属顾问"> </Select>
+            <Select placeholder="请选择专属顾问" class="select-icon">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
+            </Select>
           </FormItem>
         </Col>
 
         <Col :span="12">
           <!-- 客户来源 -->
           <FormItem label="客户状态">
-            <Select placeholder="请选择客户状态"> </Select>
+            <Select placeholder="请选择客户状态" class="select-icon">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
+            </Select>
           </FormItem>
         </Col>
       </Row>
@@ -216,10 +257,24 @@
           </div>
           <div class="min-h-70px p-15px bg-white">
             <FormItem>
-              <Select placeholder="请选择运动频度"></Select>
+              <Select placeholder="请选择运动频度" class="select-icon">
+                <template #suffixIcon>
+                  <SvgIcon
+                    name="down"
+                    class="w-full h-full fill-[#A5A8B4]"
+                  ></SvgIcon>
+                </template>
+              </Select>
             </FormItem>
             <FormItem>
-              <Select placeholder="请选择时间长度"></Select>
+              <Select placeholder="请选择时间长度" class="select-icon">
+                <template #suffixIcon>
+                  <SvgIcon
+                    name="down"
+                    class="w-full h-full fill-[#A5A8B4]"
+                  ></SvgIcon>
+                </template>
+              </Select>
             </FormItem>
           </div>
         </div>
@@ -247,10 +302,24 @@
           </div>
           <div class="min-h-70px p-15px bg-white">
             <FormItem>
-              <Select placeholder="请选择运动频度"></Select>
+              <Select placeholder="请选择运动频度" class="select-icon">
+                <template #suffixIcon>
+                  <SvgIcon
+                    name="down"
+                    class="w-full h-full fill-[#A5A8B4]"
+                  ></SvgIcon>
+                </template>
+              </Select>
             </FormItem>
             <FormItem>
-              <Select placeholder="请选择时间长度"></Select>
+              <Select placeholder="请选择时间长度" class="select-icon">
+                <template #suffixIcon>
+                  <SvgIcon
+                    name="down"
+                    class="w-full h-full fill-[#A5A8B4]"
+                  ></SvgIcon>
+                </template>
+              </Select>
             </FormItem>
           </div>
         </div>
@@ -275,10 +344,24 @@
           </div>
           <div class="min-h-70px p-15px bg-white">
             <FormItem>
-              <Select placeholder="请选择运动频度"></Select>
+              <Select placeholder="请选择运动频度" class="select-icon">
+                <template #suffixIcon>
+                  <SvgIcon
+                    name="down"
+                    class="w-full h-full fill-[#A5A8B4]"
+                  ></SvgIcon>
+                </template>
+              </Select>
             </FormItem>
             <FormItem>
-              <Select placeholder="请选择时间长度"></Select>
+              <Select placeholder="请选择时间长度" class="select-icon">
+                <template #suffixIcon>
+                  <SvgIcon
+                    name="down"
+                    class="w-full h-full fill-[#A5A8B4]"
+                  ></SvgIcon>
+                </template>
+              </Select>
             </FormItem>
           </div>
         </div>

@@ -23,7 +23,16 @@
         <!-- 测评项目 -->
         <Col :span="12">
           <FormItem label="测评项目">
-            <Select placeholder="请选择测评项目" class="min-w-118px">
+            <Select
+              placeholder="请选择测评项目"
+              class="select-icon min-w-118px"
+            >
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="1">男</SelectOption>
               <SelectOption value="2">女</SelectOption>
             </Select>

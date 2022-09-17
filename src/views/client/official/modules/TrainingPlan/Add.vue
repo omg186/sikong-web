@@ -16,7 +16,17 @@
       <Col :span="12">
         <!-- 计划执行人 -->
         <FormItem label="计划执行人">
-          <Select placeholder="计划执行人" mode="multiple" class="min-w-118px">
+          <Select
+            placeholder="计划执行人"
+            mode="multiple"
+            class="select-icon min-w-118px"
+          >
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
             <SelectOption value="0">计划执行人</SelectOption>
             <SelectOption value="1">意向</SelectOption>
             <SelectOption value="2">正式</SelectOption>
@@ -33,7 +43,14 @@
       <Col :span="12">
         <!-- 训练频度 -->
         <FormItem label="训练频度">
-          <Select placeholder="训练频度" class="min-w-118px">
+          <Select placeholder="训练频度" class="select-icon min-w-118px">
+            <template #suffixIcon>
+              <SvgIcon
+                name="down"
+                class="w-full h-full fill-[#A5A8B4]"
+              ></SvgIcon>
+            </template>
+            <SelectOption value="0">计划执行人</SelectOption>
             <SelectOption value="0">训练频度</SelectOption>
             <SelectOption value="1">意向</SelectOption>
             <SelectOption value="2">正式</SelectOption>
@@ -105,6 +122,7 @@ import {
   Button,
   TableColumnsType,
 } from 'ant-design-vue'
+import SvgIcon from '@/components/SvgIcon.vue'
 import { computed, ref } from 'vue'
 const weekData = [
   { label: '周日', value: 0 },

@@ -6,7 +6,10 @@
     </FormItem>
     <!-- 调整客户状态 -->
     <FormItem label="调整客户状态" prop="status">
-      <Select placeholder="调整客户状态" class="min-w-118px">
+      <Select placeholder="调整客户状态" class="select-icon min-w-118px">
+        <template #suffixIcon>
+          <SvgIcon name="down" class="w-full h-full fill-[#A5A8B4]"></SvgIcon>
+        </template>
         <SelectOption value="0">调整客户状态</SelectOption>
         <SelectOption value="1">意向</SelectOption>
         <SelectOption value="2">正式</SelectOption>
@@ -39,6 +42,8 @@ import {
   SelectOption,
   Button,
 } from 'ant-design-vue'
+import SvgIcon from '@/components/SvgIcon.vue'
+
 // emits
 const emits = defineEmits(['onSubmit', 'onCancel'])
 // 取消 按钮
