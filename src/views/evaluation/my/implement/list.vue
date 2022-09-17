@@ -85,12 +85,6 @@
       <template #bodyCell="{ column, record, index }">
         <template v-if="column.key === 'name'">
           <div class="flex gap-10px items-center justify-center cursor-pointer">
-            <span
-              class="w-30px h-30px shadow-light-500 rounded-40 overflow-hidden"
-              s:border="2 solid warm-gray-50"
-            >
-              <img :src="record.avatar" />
-            </span>
             <span>{{ record.name }}</span>
           </div>
         </template>
@@ -144,7 +138,7 @@
           </div>
         </template>
         <template v-if="column.key === 'option'">
-          <div v-if="index === 1" class="flex gap-20px justify-center">
+          <div v-if="index === 1" class="flex gap-20px justify-end">
             <div
               class="flex items-center gap-9px cursor-pointer fill-[#AAA9B0]"
               s:hover="fill-[#393F3B]"
@@ -154,7 +148,7 @@
               数据回填
             </div>
           </div>
-          <div v-else-if="index === 2" class="flex gap-20px justify-center">
+          <div v-else-if="index === 2" class="flex gap-20px justify-end">
             <div
               class="flex items-center gap-9px cursor-pointer fill-[#A5A8B4] stroke-[#A5A8B4]"
               s:hover="fill-[#2F3430] stroke-[#2F3430]"
@@ -170,7 +164,7 @@
               查看报告
             </div>
           </div>
-          <div v-else class="flex gap-20px justify-center">
+          <div v-else class="flex gap-20px justify-end">
             <div
               class="flex items-center gap-9px cursor-pointer fill-[#E79EB0]"
               s:hover="fill-[#F43359]"
