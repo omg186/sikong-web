@@ -323,29 +323,9 @@
       </Row>
       <FormItem class="flex gap-10px py-16px">
         <Space>
-          <Button
-            class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-            s:border="1px solid [#C7F7E3]"
-            @click="visible = false"
-          >
-            取消
-          </Button>
-          <Button
-            class="rounded-40px h-40px w-137px bg-primary text-white"
-            s:border="1px solid [#C7F7E3]"
-            type="primary"
-            html-type="submit"
-          >
-            保存并继续添加
-          </Button>
-          <Button
-            class="rounded-40px h-40px w-90px bg-primary text-white"
-            s:border="1px solid [#C7F7E3]"
-            type="primary"
-            html-type="submit"
-          >
-            确定
-          </Button>
+          <CancelButton @click="visible = false"> 取消 </CancelButton>
+          <OkButton> 保存并继续添加 </OkButton>
+          <OkButton> 确定 </OkButton>
         </Space>
       </FormItem>
     </Form>
@@ -378,6 +358,8 @@ import {
   DatePicker,
 } from 'ant-design-vue'
 import { nextTick } from 'vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const confirmLoading = ref<boolean>(false)
 const imageUrl = ref<string>('')
 const isEdit = ref<boolean>(false)

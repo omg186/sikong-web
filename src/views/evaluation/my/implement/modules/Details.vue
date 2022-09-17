@@ -129,15 +129,9 @@
       </Table>
       <!-- 按钮 -->
       <div class="flex gap-15px" v-if="props.status === '开放中'">
-        <Button class="btn cancel h-40px w-90px"> 关闭测试 </Button>
+        <CancelButton> 关闭测试 </CancelButton>
 
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-        >
-          执行测试
-        </Button>
+        <OkButton> 执行测试 </OkButton>
       </div>
     </div>
   </div>
@@ -154,6 +148,8 @@ import {
 import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
 import Portrait from '@/components/Portrait.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '../../../../../components/Button/OkButton.vue'
 const props = withDefaults(defineProps<{ status: '已完成' | '开放中' }>(), {})
 const pagination = computed(
   () =>

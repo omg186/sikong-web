@@ -228,16 +228,9 @@
       </Col>
     </Row>
     <div class="flex gap-10px pt-30px">
-      <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
+      <CancelButton @click="onCancel"> 取消 </CancelButton>
 
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit(false)"
-      >
-        保存
-      </Button>
+      <OkButton @click="onSubmit(false)"> 保存 </OkButton>
     </div>
   </Form>
 </template>
@@ -265,6 +258,8 @@ import { ref, watchEffect } from 'vue'
 import { RoomDto } from './interface'
 import { useRequest } from 'vue-request'
 import { getOptionsListApi } from '@/api/select'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const roomTypeOptions = [
   { label: '室内场地', value: 1 },
   { label: '室外场地', value: 2 },

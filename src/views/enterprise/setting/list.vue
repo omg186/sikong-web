@@ -195,21 +195,8 @@
         然执行此操作？
       </div>
       <div class="flex gap-10px pt-30px">
-        <Button
-          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-          s:border="1px solid [#C7F7E3]"
-          @click="isModalDel = false"
-        >
-          取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="isModalDel = false"
-        >
-          保存
-        </Button>
+        <CancelButton @click="isModalDel = false"> 取消 </CancelButton>
+        <OkButton @click="isModalDel = false"> 保存 </OkButton>
       </div>
     </Modal>
   </div>
@@ -233,6 +220,8 @@ import { getDemoListApi } from '@/api/select'
 import AddRoom from './modules/add-room.vue'
 import { CarouselRef } from 'ant-design-vue/lib/carousel'
 import CalendarShow from '@/components/Calendar/CalendarShow.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 
 const isCampusEdit = ref(false)
 const isModalCampus = ref(false)

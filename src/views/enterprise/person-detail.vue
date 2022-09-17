@@ -100,21 +100,10 @@
       </div>
     </div>
     <div class="flex gap-10px pt-30px" s:text="sm">
-      <Button
-        class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-        s:border="1px solid [#C7F7E3]"
-        @click="back"
-      >
-        返回
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onAddStaff({ realName: '张玲燕（猫猫）' })"
-      >
+      <CancelButton @click="back"> 返回 </CancelButton>
+      <OkButton @click="onAddStaff({ realName: '张玲燕（猫猫）' })">
         编辑
-      </Button>
+      </OkButton>
     </div>
     <!-- 修改账号 -->
     <Modal title="修改账号" v-model:visible="isModalAccount" :footer="null">
@@ -149,21 +138,8 @@
           <span s:text="[#F3AB51] xs">密码以短信的形式下发至新手机号码</span>
         </FormItem>
         <div class="flex gap-10px">
-          <Button
-            class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-            s:border="1px solid [#C7F7E3]"
-            @click="isModalAccount = false"
-          >
-            取消
-          </Button>
-          <Button
-            class="rounded-40px h-40px w-90px bg-primary text-white"
-            s:border="1px solid [#C7F7E3]"
-            type="primary"
-            html-type="submit"
-          >
-            保存
-          </Button>
+          <CancelButton @click="isModalAccount = false"> 取消 </CancelButton>
+          <OkButton> 保存 </OkButton>
         </div>
       </Form>
     </Modal>
@@ -183,21 +159,8 @@
         >重置密码将以短信下发至"张玲燕(猫猫)"手机号，是否继续执行重置密码？</span
       >
       <div class="flex gap-10px pt-30px">
-        <Button
-          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-          s:border="1px solid [#C7F7E3]"
-          @click="isModalReset = false"
-        >
-          取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="onModifyPassword"
-        >
-          确定
-        </Button>
+        <CancelButton @click="isModalReset = false"> 取消 </CancelButton>
+        <OkButton @click="onModifyPassword"> 确定 </OkButton>
       </div>
     </Modal>
     <!-- 修改员工 -->
@@ -216,6 +179,8 @@ import AddStaff from './modules/add-staff.vue'
 //checkPhoneNumber
 import { checkPhoneNumber } from '@/utils/antd/form'
 import { getCurrentInstance, ref } from 'vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const { ctx } = getCurrentInstance() as any
 const { routeQuery } = useRouteQueryObject('org')
 const router = useRouter()

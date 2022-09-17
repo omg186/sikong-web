@@ -39,7 +39,6 @@ const transform: AxiosTransform = {
     res: AxiosResponse<Result>,
     options: RequestOptions
   ) => {
-    // console.log(options, 'ootions------------');
     // const { t } = useI18n()
     const { isTransformResponse, isReturnNativeResponse } = options
     // 是否返回原生响应头 比如：需要获取响应头时使用该属性

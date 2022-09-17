@@ -39,16 +39,9 @@
     </Table>
     <!-- 按钮 -->
     <div class="flex gap-15px mt-20px">
-      <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
+      <CancelButton @click="onCancel"> 取消 </CancelButton>
 
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit"
-      >
-        保存
-      </Button>
+      <OkButton @click="onSubmit"> 保存 </OkButton>
     </div>
   </div>
 </template>
@@ -71,6 +64,8 @@ import {
 } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 
 const {
   data: dataSource,

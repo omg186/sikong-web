@@ -110,21 +110,8 @@
         相关员工账户转移到“北京白河狸科技公司”下，是否依然执行此操作？
       </div>
       <div class="flex gap-10px pt-30px">
-        <Button
-          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-          s:border="1px solid [#C7F7E3]"
-          @click="isModalDeptDel = false"
-        >
-          取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="isModalDeptDel = false"
-        >
-          保存
-        </Button>
+        <CancelButton @click="isModalDeptDel = false"> 取消 </CancelButton>
+        <OkButton @click="isModalDeptDel = false"> 保存 </OkButton>
       </div>
     </Modal>
     <Modal title="员工调岗" v-model:visible="isModalTransfer" :footer="null">
@@ -148,21 +135,8 @@
           </Select>
         </FormItem>
         <div class="flex gap-10px pt-30px">
-          <Button
-            class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-            s:border="1px solid [#C7F7E3]"
-            @click="isModalTransfer = false"
-          >
-            取消
-          </Button>
-          <Button
-            class="rounded-40px h-40px w-90px bg-primary text-white"
-            s:border="1px solid [#C7F7E3]"
-            type="primary"
-            @click="onTransferSubmit"
-          >
-            保存
-          </Button>
+          <CancelButton @click="isModalTransfer = false"> 取消 </CancelButton>
+          <OkButton @click="onTransferSubmit"> 保存 </OkButton>
         </div>
       </Form>
     </Modal>
@@ -182,21 +156,8 @@
         禁用“李海(大鱼)”的账户，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续禁用该账户吗？
       </div>
       <div class="flex gap-10px pt-40px">
-        <Button
-          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-          s:border="1px solid [#C7F7E3]"
-          @click="isModalDisable = false"
-        >
-          取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="onDisableSubmit"
-        >
-          确定
-        </Button>
+        <CancelButton @click="isModalDisable = false"> 取消 </CancelButton>
+        <OkButton @click="onDisableSubmit"> 确定 </OkButton>
       </div>
     </Modal>
     <!-- 离职 -->
@@ -213,21 +174,8 @@
         离职“李海(大鱼)”，该账户不能登录系统，将无法正常为该账户下的客户和会员提供服务。您要继续离职该账户吗？
       </div>
       <div class="flex gap-10px pt-40px">
-        <Button
-          class="rounded-40px h-40px w-90px bg-[#F7FEFB] text-primary"
-          s:border="1px solid [#C7F7E3]"
-          @click="isModalLeave = false"
-        >
-          取消
-        </Button>
-        <Button
-          class="rounded-40px h-40px w-90px bg-primary text-white"
-          s:border="1px solid [#C7F7E3]"
-          type="primary"
-          @click="onLeaveSubmit"
-        >
-          确定
-        </Button>
+        <CancelButton @click="isModalLeave = false"> 取消 </CancelButton>
+        <OkButton @click="onLeaveSubmit"> 确定 </OkButton>
       </div>
     </Modal>
   </div>
@@ -259,6 +207,8 @@ import { useRouter } from 'vue-router'
 import Header from '@/components/Header/Header.vue'
 import AddCampus from './modules/add-campus.vue'
 import ImgIcon from '@/components/ImgIcon.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 
 const router = useRouter()
 const routerData = ref()

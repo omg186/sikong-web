@@ -367,16 +367,9 @@
       <CalendarSetting></CalendarSetting>
     </div>
     <div class="flex gap-10px pt-30px">
-      <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
+      <CancelButton @click="onCancel"> 取消 </CancelButton>
 
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit(false)"
-      >
-        保存
-      </Button>
+      <OkButton @click="onSubmit(false)"> 保存 </OkButton>
     </div>
   </Form>
 </template>
@@ -417,6 +410,8 @@ import streets from 'china-division/dist/streets.json'
 import SvgIcon from '@/components/SvgIcon.vue'
 import dayjs, { Dayjs } from 'dayjs'
 import CalendarSetting from '../../../../components/Calendar/CalendarSetting.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const stepsActive = ref(2)
 const dateTme = '2020-01-01'
 const weeksTime = ref<Array<[Dayjs, Dayjs]>>([

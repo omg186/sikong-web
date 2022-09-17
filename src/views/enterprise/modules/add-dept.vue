@@ -19,24 +19,11 @@
       </Select>
     </FormItem>
     <div class="flex gap-10px pt-30px">
-      <Button class="btn cancel h-40px w-90px" @click="onCancel"> 取消 </Button>
-      <Button
-        v-if="!props.isEdit"
-        class="rounded-40px h-40px w-137px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit(true)"
-      >
+      <CancelButton @click="onCancel"> 取消 </CancelButton>
+      <OkButton v-if="!props.isEdit" @click="onSubmit(true)">
         保持并继续添加
-      </Button>
-      <Button
-        class="rounded-40px h-40px w-90px bg-primary text-white"
-        s:border="1px solid [#C7F7E3]"
-        type="primary"
-        @click="onSubmit(false)"
-      >
-        保存
-      </Button>
+      </OkButton>
+      <OkButton @click="onSubmit(false)"> 保存 </OkButton>
     </div>
   </Form>
 </template>
@@ -52,6 +39,8 @@ import {
 } from 'ant-design-vue'
 import { ref, watchEffect } from 'vue'
 import { DeptFormData } from './interface'
+import CancelButton from '@/components/Button/CancelButton.vue'
+import OkButton from '@/components/Button/OkButton.vue'
 const props = defineProps({
   isEdit: {
     type: Boolean,
