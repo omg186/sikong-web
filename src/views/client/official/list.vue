@@ -5,7 +5,13 @@
         <span s:text="sm" class="text-primary">全部</span>
         <Form layout="inline">
           <FormItem>
-            <Select placeholder="选择校区" class="min-w-200px">
+            <Select placeholder="选择校区" class="select-icon min-w-200px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">性别</SelectOption>
               <SelectOption value="1">男</SelectOption>
               <SelectOption value="2">女</SelectOption>
@@ -13,7 +19,13 @@
           </FormItem>
           <!-- 客户来源 -->
           <FormItem>
-            <Select placeholder="选择年级" class="min-w-118px">
+            <Select placeholder="选择年级" class="select-icon min-w-118px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">客户来源</SelectOption>
               <SelectOption value="1">网络</SelectOption>
               <SelectOption value="2">电话</SelectOption>
@@ -23,7 +35,13 @@
           </FormItem>
           <!-- 客户状态 -->
           <FormItem>
-            <Select placeholder="选择班级" class="min-w-118px">
+            <Select placeholder="选择班级" class="select-icon min-w-118px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">客户状态</SelectOption>
               <SelectOption value="1">意向</SelectOption>
               <SelectOption value="2">正式</SelectOption>
@@ -32,7 +50,13 @@
           </FormItem>
           <!-- 所属顾问 -->
           <FormItem>
-            <Select placeholder="性别" class="min-w-118px">
+            <Select placeholder="性别" class="select-icon min-w-118px">
+              <template #suffixIcon>
+                <SvgIcon
+                  name="down"
+                  class="w-full h-full fill-[#A5A8B4]"
+                ></SvgIcon>
+              </template>
               <SelectOption value="0">所属顾问</SelectOption>
               <SelectOption value="1">顾问1</SelectOption>
               <SelectOption value="2">顾问2</SelectOption>
