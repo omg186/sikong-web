@@ -11,7 +11,7 @@
       </div>
     </div>
     <Table
-      class="sikong-table flex-1"
+      class="sikong-table flex-1 inline-table"
       :dataSource="listData"
       :columns="columns"
       :pagination="pagination"
@@ -19,15 +19,21 @@
       @change="handleTableChange"
       :scroll="{ x: 1000, y: 800 }"
     >
+      <template #headerCell="{ title, column }">
+        <template v-if="column.key === 'name'">
+          <span class="pl-30px">{{ title }}</span>
+        </template>
+      </template>
+
       <template #bodyCell="{ column, record, index }">
         <template v-if="column.key === 'name'">
           <div
-            class="relative flex items-center cursor-pointer pl-10px"
+            class="relative flex items-center cursor-pointer pl-30px"
             style="line-height: 1"
             s:text="[#2D3A2F]"
           >
             <i
-              class="absolute w-6px h-6px bg-[#F4274E] rounded-full left-[-5px]"
+              class="absolute w-6px h-6px bg-[#F4274E] rounded-full left-[10px]"
             >
             </i>
             <span>张玲燕(猫猫)提交了申请，希望加入</span>
@@ -182,3 +188,16 @@ const columns = ref<TableColumnsType>([
   },
 ])
 </script>
+<style lang="less">
+.inline-table {
+  .ant-table-tbody {
+    .ant-table-cell {
+      font-family: 'Source Han Sans CN-Regular';
+      color: #2d3a2f;
+      font-size: 12px;
+      font-weight: 400;
+      border-bottom: 1px solid #f9f9f9;
+    }
+  }
+}
+</style>

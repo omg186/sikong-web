@@ -336,17 +336,17 @@
           hover-src="close.png"
         ></ImgIcon>
       </template>
-      <p class="pt-20px font-bold text-sm">
+      <p class="pt-22px pl-16px font-bold text-sm pb-15px">
         本次受试者的测评数据已经回填完毕，点击“确定”，系统将
         自动设置本次测评状态为完成，并生成报告
       </p>
-      <div s:text="xs" class="flex gap-x-10px">
+      <div s:text="xs" class="flex gap-x-10px pl-16px text-[#2D3A2F] font-400">
         <p><span>李睿曦</span><span class="text-[#F4274E]">（缺席）</span></p>
         <p>
           <span>李睿曦</span><span class="text-[#F4274E]">（数据丢失）</span>
         </p>
       </div>
-      <div class="flex gap-15px justify-start pt-20px">
+      <div class="flex gap-15px justify-start pt-30px pl-16px">
         <CancelButton @click="visibleConfirm = false"> 取消 </CancelButton>
 
         <OkButton @click="visibleConfirm = false"> 提交 </OkButton>
