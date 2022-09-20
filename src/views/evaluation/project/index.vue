@@ -16,29 +16,12 @@
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'name'">
             <div>
-              <span class="text-primary font-bold cursor-pointer">{{
-                record.name
-              }}</span>
-            </div>
-          </template>
-          <template v-if="column.key === 'project'">
-            <div class="grid grid-cols-2 gap-10px">
-              <div
-                v-for="(item, index) in [
-                  '身高标准体重',
-                  '身高',
-                  '坐位体前屈',
-                  '双脚连续跳',
-                ]"
-                :key="index"
-                class="flex gap-10px items-center"
+              <span
+                class="font-bold cursor-pointer"
+                @click="isDrawerDetail = true"
               >
-                <span
-                  class="w-20px h-20px flex-shrink-0 flex justify-center items-center bg-[#F9F9F9] rounded-6px text-xs"
-                  >{{ index + 1 }}</span
-                >
-                <span>{{ item }}</span>
-              </div>
+                {{ record.name }}
+              </span>
             </div>
           </template>
           <template v-if="column.key === 'status'">
@@ -61,11 +44,13 @@
       class="custom-class"
       width="1064px"
       :closable="false"
-      title="国民体质测定标准测评（幼儿版）"
+      title="坐位体前屈"
       placement="right"
     >
       <Tabs v-model:activeKey="activeKey">
-        <TabPane key="1" tab="测评基本信息"></TabPane>
+        <TabPane key="1" tab="测评基本信息">
+          <BaseInfo></BaseInfo>
+        </TabPane>
         <TabPane key="2" tab="测评记录单"></TabPane>
         <TabPane key="3" tab="测评报告样式"> </TabPane>
       </Tabs>
@@ -86,9 +71,10 @@ import {
 import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
+import BaseInfo from './modules/BaseInfo.vue'
 
 const isDrawerDetail = ref(false)
-const activeKey = ref('3')
+const activeKey = ref('1')
 const {
   data: dataSource,
   run,
