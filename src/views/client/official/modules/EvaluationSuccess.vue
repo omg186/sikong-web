@@ -14,14 +14,19 @@
         <p class="mb-0px" s:text="xs [#6Cmb-10px766E]">执行人</p>
       </div>
       <div
-        class="text-primary font-bold"
-        :class="{
-          'text-primary': props.status === '开放中',
-          'text-[#A5A8B4]': props.status === '已完成',
-        }"
-        s:text="right 16px "
+        class="flex gap-x-15px items-center font-bold"
+        s:text="primary right 16px"
       >
-        测评状态 - {{ props.status }}
+        <span> 测评状态 - 预约成功</span>
+        <!-- 取消预约 -->
+        <Tooltip title="取消预约">
+          <ImgIcon
+            width="23px"
+            height="23px"
+            :src="'reserve-cancel.png'"
+            hover-src="reserve-cancel-hover.png"
+          />
+        </Tooltip>
       </div>
     </div>
     <div class="flex pt-27px gap-x-30px" s:text="xs">
@@ -53,21 +58,6 @@
         @change="handleTableChange"
       >
         <template #bodyCell="{ column, record, index }">
-          <template v-if="column.key === 'name'">
-            <div
-              class="flex flex-col gap-10px items-center justify-center cursor-pointer"
-            >
-              <Portrait
-                class="w-40px h-40px"
-                :url="record.avatar"
-                :border="false"
-                :shadow="false"
-              ></Portrait>
-              <span class="font-bold" s:text="[#2D3A2F]">
-                {{ record.name }}
-              </span>
-            </div>
-          </template>
           <template v-if="column.key === 'name1'">
             <div
               class="flex gap-10px items-center justify-center cursor-pointer"
@@ -82,7 +72,6 @@
             <div class="flex flex-col gap-10px items-center cursor-pointer">
               <span class="w-150px" s:text="left"> 1001102435435389 </span>
               <span
-                v-if="props.status === '开放中'"
                 class="w-150px underline underline-primary"
                 s:text="primary left"
               >
@@ -91,47 +80,37 @@
             </div>
           </template>
           <template v-if="column.key === 'name3'">
-            <div v-if="props.status === '开放中'">未开始</div>
-            <div v-else-if="props.status === '已完成' && index === 0">完成</div>
-            <div
-              v-else-if="props.status === '已完成' && index === 1"
-              s:text="[#F4274E]"
-            >
-              缺席
-            </div>
-            <div
-              v-else-if="props.status === '已完成' && index > 1"
-              class="flex flex-col justify-center items-center"
-            >
-              <span s:text="[#F4274E]"> 数据丢失</span>
-              <Button
-                class="rounded-40px h-26px w-56px bg-primary text-white mt-8px"
-                s:border="1px solid [#C7F7E3]"
-                s:text="xs"
-                type="primary"
-              >
-                补充
-              </Button>
-            </div>
+            <div>未开始</div>
           </template>
           <template v-if="column.key === 'name4'">
-            <div v-if="props.status === '开放中'">-</div>
-            <div v-else>
-              <span
-                class="w-150px underline underline-primary"
-                s:text="primary left"
-              >
-                下载报告
-              </span>
-            </div>
+            <div>-</div>
           </template>
         </template>
       </Table>
       <!-- 按钮 -->
-      <div class="flex gap-15px" v-if="props.status === '开放中'">
-        <CancelButton> 关闭测试 </CancelButton>
-
-        <OkButton> 执行测试 </OkButton>
+      <div
+        class="underline underline-primary underline-offset-2"
+        s:text="primary xs"
+      >
+        什么是测评记录单？
+      </div>
+      <div
+        class="w-300px min-h-90px bg-[#FDFDFD] mt-22px p-15px"
+        s:border="1px solid #F9F9F9"
+        s:text="xs"
+      >
+        <div class="flex justify-between">
+          <span s:text="[#1F311F]">测评记录单</span>
+          <span
+            class="underline underline-primary underline-offset-2"
+            s:text="primary xs"
+            >预览
+          </span>
+        </div>
+        <div class="w-228px mt-10px" s:text="[#83867E]" s:font="400">
+          每位受试者都有一份唯一编号的用于记录
+          成绩的记录单。测评前请在右侧列表处下载
+        </div>
       </div>
     </div>
   </div>
@@ -144,13 +123,13 @@ import {
   TableProps,
   Table,
   Button,
+  Tooltip,
 } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 import { usePagination } from 'vue-request'
 import Portrait from '@/components/Portrait.vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '../../../../../components/Button/OkButton.vue'
-const props = withDefaults(defineProps<{ status: '已完成' | '开放中' }>(), {})
 const pagination = computed(
   () =>
     ({
@@ -202,23 +181,6 @@ const {
 )
 const listData = computed(() => dataSource.value?.items || [])
 const columns = ref<TableColumnsType>([
-  {
-    title: '申请人',
-    dataIndex: 'name',
-    align: 'center',
-    key: 'name',
-    customCell: (customCell, index, column) => {
-      console.log('index', index, column)
-      //   if (index == 0) {
-      //     return {
-      //       rowSpan: 2,
-      //     }
-      //   }
-      return {
-        rowSpan: index % 2 === 0 ? 2 : 0,
-      }
-    },
-  },
   {
     title: '受试者',
     dataIndex: 'name1',

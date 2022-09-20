@@ -194,7 +194,7 @@
     >
       <AddEvaluation
         @on-cancel="visibleAddEvaluation = false"
-        @on-submit="visibleAddEvaluation = false"
+        @on-submit="onAddEvaluation"
       ></AddEvaluation>
       <template #closeIcon>
         <ImgIcon
@@ -223,6 +223,27 @@
         @on-cancel="visibleAddClient = false"
         @on-submit="visibleAddClient = false"
       ></AddClient>
+    </Modal>
+    <!-- 预约成功 -->
+    <Modal
+      v-model:visible="visibleEvaluationSuccess"
+      class="modal-none-header"
+      width="1000px"
+      title="预约成功"
+      :footer="null"
+    >
+      <EvaluationSuccess1
+        titleName="国民体质测定标准测评（幼儿版）"
+        @on-cancel="visibleEvaluationSuccess = false"
+        @on-submit="visibleEvaluationSuccess = false"
+      ></EvaluationSuccess1>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
     </Modal>
     <!-- 执行人预约确认 -->
     <Modal
@@ -262,13 +283,19 @@ import ImgIcon from '@/components/ImgIcon.vue'
 import TrainingPlan from './TrainingPlan/index.vue'
 import Confirm from './Confirm.vue'
 import OkButton from '@/components/Button/OkButton.vue'
+import EvaluationSuccess1 from './EvaluationSuccess1.vue'
 const activeKey = ref('1')
 const visibleConfirm = ref(false)
 const visibleAddEvaluation = ref(false)
+const visibleEvaluationSuccess = ref(false)
 const visibleDistribute = ref(false)
 const visibleToFormal = ref(false)
 const visibleAddClient = ref(false)
 const visibleRecording = ref(false)
+function onAddEvaluation() {
+  visibleAddEvaluation.value = false
+  visibleEvaluationSuccess.value = true
+}
 </script>
 <style lang="scss">
 .potential-person-info {

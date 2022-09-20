@@ -97,7 +97,7 @@
                   <ImgIcon
                     :src="'reserve-cancel.png'"
                     hover-src="reserve-cancel-hover.png"
-                    @click="visibleAddEvaluation = true"
+                    @click="visibleSuccessEvaluation = true"
                   />
                 </Tooltip>
               </template>
@@ -127,6 +127,25 @@
         @on-cancel="visibleAddEvaluation = false"
         @on-submit="visibleAddEvaluation = false"
       ></AddEvaluation>
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
+    </Modal>
+    <!-- 预约测评 -->
+    <Modal
+      v-model:visible="visibleSuccessEvaluation"
+      width="800px"
+      title="预约成功"
+      :footer="null"
+    >
+      <EvaluationSuccess
+        @on-cancel="visibleSuccessEvaluation = false"
+        @on-submit="visibleSuccessEvaluation = false"
+      ></EvaluationSuccess>
       <template #closeIcon>
         <ImgIcon
           class="flex w-full h-full justify-center items-center"
@@ -212,11 +231,13 @@ import ImgIcon from '@/components/ImgIcon.vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import AddEvaluation from './AddEvaluation.vue'
 import EvaluationReport from '@/views/evaluation/center/modules/report.vue'
+import EvaluationSuccess from './EvaluationSuccess.vue'
 const bgColor = ['#DAF8E9', '#FCEFDD', '#FCEFDD']
 const textColor = ['#1BC289', '#F3AB51', '#FF7C7C']
 const bgProcessColor = ['#C0F6DD', '#F8D2A4', '#FEDCDE']
 const visibleAddEvaluation = ref(false)
 const visibleEvaluationReport = ref(false)
+const visibleSuccessEvaluation = ref(false)
 const pagination = computed(
   () =>
     ({
