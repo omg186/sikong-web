@@ -51,8 +51,10 @@
         <TabPane key="1" tab="测评基本信息">
           <BaseInfo></BaseInfo>
         </TabPane>
-        <TabPane key="2" tab="测评记录单"></TabPane>
-        <TabPane key="3" tab="测评报告样式"> </TabPane>
+        <TabPane key="2" tab="测评相关信息">
+          <Evaluation></Evaluation>
+        </TabPane>
+        <TabPane key="3" tab="推荐练习" disabled> </TabPane>
       </Tabs>
     </Drawer>
   </div>
@@ -72,6 +74,7 @@ import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import BaseInfo from './modules/BaseInfo.vue'
+import Evaluation from './modules/Evaluation.vue'
 
 const isDrawerDetail = ref(false)
 const activeKey = ref('1')
