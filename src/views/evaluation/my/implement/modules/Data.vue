@@ -140,15 +140,14 @@
           >
             <span>双脚连续跳</span>
             <span class="checkbox-no-pr">
-              <Checkbox :disabled="disabled" class="text-xs font-400"
-                >无法测试</Checkbox
-              >
+              <Checkbox :disabled="disabled" class="text-xs font-400">
+                无法测试
+              </Checkbox>
             </span>
             <span class="gray-input">
               <input type="text" class="!w-56px" :disabled="disabled" />
               <span>s</span>
             </span>
-            <span> </span>
             <span>
               <span class="gray-input">
                 <input type="text" class="!w-56px" :disabled="disabled" />

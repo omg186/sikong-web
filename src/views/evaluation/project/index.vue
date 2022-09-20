@@ -13,12 +13,20 @@
         @change="handleTableChange"
         :scroll="{ x: 1000, y: 800 }"
       >
-        <template #bodyCell="{ column, record }">
+        <template #bodyCell="{ column, record, index }">
           <template v-if="column.key === 'name'">
             <div>
               <span
                 class="font-bold cursor-pointer"
                 @click="isDrawerDetail = true"
+                v-if="index % 2 === 0"
+              >
+                {{ record.name }}
+              </span>
+              <span
+                class="font-bold cursor-pointer"
+                @click="isDrawerRunDetail = true"
+                v-if="index % 2 !== 0"
               >
                 {{ record.name }}
               </span>
@@ -57,6 +65,24 @@
         <TabPane key="3" tab="推荐练习" disabled> </TabPane>
       </Tabs>
     </Drawer>
+    <Drawer
+      v-model:visible="isDrawerRunDetail"
+      class="custom-class"
+      width="1064px"
+      :closable="false"
+      title="跑步"
+      placement="right"
+    >
+      <Tabs v-model:activeKey="activeKey">
+        <TabPane key="1" tab="测评基本信息">
+          <Run></Run>
+        </TabPane>
+        <TabPane key="2" tab="测评相关信息">
+          <RunEvaluation></RunEvaluation>
+        </TabPane>
+        <TabPane key="3" tab="推荐练习" disabled> </TabPane>
+      </Tabs>
+    </Drawer>
   </div>
 </template>
 <script lang="ts" setup>
@@ -75,8 +101,11 @@ import { usePagination } from 'vue-request'
 import { getDemoListApi } from '@/api/select'
 import BaseInfo from './modules/BaseInfo.vue'
 import Evaluation from './modules/Evaluation.vue'
+import Run from './modules/Run.vue'
+import RunEvaluation from './modules/RunEvaluation.vue'
 
 const isDrawerDetail = ref(false)
+const isDrawerRunDetail = ref(false)
 const activeKey = ref('1')
 const {
   data: dataSource,

@@ -78,6 +78,59 @@
             </CheckboxGroup>
           </FormItem>
         </Col>
+        <Col :span="12">
+          <FormItem
+            label="过程得分项数量"
+            class="flex-reverse-end"
+            :rules="[{ required: true, message: '过程得分项数量' }]"
+          >
+            <Input type="text" placeholder="过程得分项数量" />
+          </FormItem>
+        </Col>
+        <Col :span="24">
+          <p s:text="14px" class="pb-10px">
+            得分项说明
+            <span
+              class="text-[#ff4d4f]"
+              style="font-family: SimSun, sans-serif"
+            >
+              *
+            </span>
+          </p>
+
+          <Row :gutter="[20, 10]">
+            <Col :span="12">
+              <FormItem class="flex-reverse-end" :no-style="true">
+                <Input type="text" placeholder="跳跃时手臂弯曲至与腰部水平">
+                  <template #addonBefore> 1 </template>
+                </Input>
+              </FormItem>
+            </Col>
+            <Col :span="12">
+              <FormItem label=" " :no-style="true" class="flex-reverse-end">
+                <Input type="text" placeholder="跳跃时手臂弯曲至与腰部水平">
+                  <template #addonBefore> 2 </template>
+                </Input>
+              </FormItem>
+            </Col>
+
+            <Col :span="12">
+              <FormItem label="" class="flex-reverse-end">
+                <Input type="text" placeholder="跳跃时手臂弯曲至与腰部水平">
+                  <template #addonBefore> 3 </template>
+                </Input>
+              </FormItem>
+            </Col>
+
+            <Col :span="12">
+              <FormItem label="" class="flex-reverse-end">
+                <Input type="text" placeholder="跳跃时手臂弯曲至与腰部水平">
+                  <template #addonBefore> 4 </template>
+                </Input>
+              </FormItem>
+            </Col>
+          </Row>
+        </Col>
         <Col :span="24">
           <FormItem
             label="项目描述"
@@ -128,7 +181,7 @@
         </Col>
         <Col :span="24">
           <FormItem
-            label="测试标准"
+            label="测试要求"
             class="flex-reverse-end"
             :rules="[{ required: true, message: '测试标准' }]"
           >
