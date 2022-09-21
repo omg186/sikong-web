@@ -48,10 +48,10 @@
             </div>
           </div>
           <div
-            class="h-570px w-full rounded-16px bg-light-50 mt-10px p-10px flex"
+            class="h-570px w-full rounded-16px bg-light-50 mt-10px p-10px flex justify-between"
           >
             <RadarChart class="w-500px"></RadarChart>
-            <div class="ml-56px">
+            <div class="mr-10px">
               <div
                 class="w-352px h-310px r-shadow rounded-16px pt-40px relative pl-32px"
               >
@@ -153,23 +153,25 @@
                   class="w-300px h-142px rounded-16px border-1 border-[#F8F8F8] flex p-15px leading-[22px] text-xs"
                 >
                   <div class="text-center r-border">
-                    <div class="text-[#1F311F] font-bold w-126px text-sm">
+                    <div
+                      class="text-[#1F311F] font-bold w-126px h-25px text-sm"
+                    >
                       综合分数
                     </div>
-                    <div class="text-[#2EE094]">>31分</div>
-                    <div class="text-[#2EE094]">28-31分</div>
-                    <div class="text-[#2EE094]">20-27分</div>
-                    <div class="text-[#2EE094]">&lt;20分</div>
+                    <div class="text-[#2EE094] mt-2px">>31分</div>
+                    <div class="text-[#2EE094] mt-2px">28-31分</div>
+                    <div class="text-[#2EE094] mt-2px">20-27分</div>
+                    <div class="text-[#2EE094] mt-2px">&lt;20分</div>
                   </div>
 
-                  <div class="pl-57px text-center">
+                  <div class="pl-57px text-center text-[##2D3A2F]">
                     <div class="text-[#1F311F] font-bold h-25px text-sm">
                       等级
                     </div>
                     <div>一级优秀</div>
-                    <div>二级 良好</div>
-                    <div>三级 合格</div>
-                    <div>四级 不合格</div>
+                    <div class="mt-2px">二级 良好</div>
+                    <div class="mt-2px">三级 合格</div>
+                    <div class="mt-2px">四级 不合格</div>
                   </div>
                 </div>
               </div>
@@ -178,7 +180,7 @@
         </div>
       </div>
     </div>
-    <div class="r-bg-gray px-20px">
+    <div class="r-bg-gray px-20px pb-66px">
       <div class="h-full rounded-16px bg-light-50 px-20px pt-25px pb-61px">
         <h1 class="text-[18px] text-[#1F311F] mb-27px">身体素质单项发展分析</h1>
         <div class="w-full h-full grid grid-cols-3 gap-30px">
@@ -187,8 +189,13 @@
           </div>
         </div>
       </div>
-      <div class="mt-68px pb-113px text-[#2D3A2F] text-xs">
-        《国民体质测定标准(幼儿版)》运用科学的方法，对3-6周岁的中国幼儿进行个体的形态、机能和身体素质等的测试与评定。所有测评项目，都按性别和年龄分组，3-5岁每0.5岁为一组，6岁为一个组。是目前国内最权威的，针对学龄前儿童的身体素质类测试。
+      <div
+        class="mt-20px text-[#2D3A2F] text-xs bg-[#fff] h-118px rounded-15px"
+      >
+        <p class="text-xs pt-22px pl-19px pr-40px">
+          <p class="font-bold">《国民体质测定标准(幼儿版)》注解：</p>
+          运用科学的方法，对3-6周岁的中国幼儿进行个体的形态、机能和身体素质等的测试与评定。所有测评项目，都按性别和年龄分组，3-5岁每0.5岁为一组，6岁为一个组。是目前国内最权威的，针对学龄前儿童的身体素质类测试。
+        </p>
       </div>
     </div>
 

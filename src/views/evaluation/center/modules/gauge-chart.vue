@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`!border-[${chartsList.processColor}] !border-opacity-25 border-3 h-490px rounded-16px`"
+    :class="`border-3 h-490px rounded-16px border-[${chartsList.processColor}] !border-opacity-25 `"
   >
     <div class="px-25px text-[#1F311F] text-xs">
       <div class="flex items-center pt-20px justify-between">

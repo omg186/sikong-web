@@ -56,19 +56,24 @@
     </div>
     <Drawer
       v-model:visible="isDrawerDetail"
-      class="custom-class"
+      class="custom-drawer"
       width="1064px"
       :closable="false"
       :title="titleList[status - 1]"
+      :headerStyle="{ background: '#FBFCFB' }"
+      :bodyStyle="{ padding: 0 }"
       placement="right"
     >
-      <Tabs v-model:activeKey="activeKey">
+      <Tabs
+        v-model:activeKey="activeKey"
+        :tabBarStyle="{ paddingLeft: '30px' }"
+      >
         <TabPane key="1" tab="测评基本信息">
           <Base v-if="status === 1"></Base>
           <BaseGrade v-if="status === 2"></BaseGrade>
           <BaseAge v-if="status === 3"></BaseAge>
         </TabPane>
-        <TabPane key="2" tab="测评记录单">
+        <TabPane key="2" tab="测评记录单" class="px-30px pb-70px">
           <Record :title-name="titleList[status - 1]"></Record>
         </TabPane>
         <TabPane key="3" tab="测评报告样式">
@@ -227,6 +232,13 @@ const columns = ref<TableColumnsType>([
 
   .ant-carousel .slick-slide h3 {
     color: #fff;
+  }
+}
+.custom-drawer {
+  .ant-drawer-content-wrapper {
+    .ant-drawer-content {
+      border-radius: 15px;
+    }
   }
 }
 </style>
