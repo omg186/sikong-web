@@ -42,10 +42,10 @@
           <template v-if="column.key === 'status'">
             <div class="flex items-center justify-center gap-10px">
               <div
-                class="ml-[20px] h-[20px] aspect-square flex justify-center items-center bg-[#C7F7E3] rounded-full animate-pulse"
+                class="ml-[18px] h-[18px] aspect-square flex justify-center items-center bg-[#C7F7E3] rounded-full animate-pulse"
               >
                 <div
-                  class="h-[10px] aspect-square bg-[#2FE095] rounded-full"
+                  class="h-[12px] aspect-square bg-[#2FE095] rounded-full"
                 ></div>
               </div>
               使用中

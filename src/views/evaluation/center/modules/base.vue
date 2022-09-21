@@ -8,7 +8,12 @@
   >
     <Row :gutter="10">
       <Col :span="10">
-        <FormItem label="测评名称" name="name" :wrapper-col="{ span: 12 }">
+        <FormItem
+          class="flex-reverse-end"
+          label="测评名称"
+          name="name"
+          :wrapper-col="{ span: 12 }"
+        >
           <Input
             v-model:value="formState.name"
             placeholder="请输入测评名称"
@@ -17,7 +22,12 @@
         </FormItem>
       </Col>
       <Col :span="14">
-        <FormItem label="测评类型" name="type" :wrapper-col="{ span: 12 }">
+        <FormItem
+          class="flex-reverse-end"
+          label="测评类型"
+          name="type"
+          :wrapper-col="{ span: 12 }"
+        >
           <Input
             v-model:value="formState.type"
             placeholder="请输入测评类型"
@@ -28,8 +38,13 @@
     </Row>
     <Row>
       <Col :span="10">
-        <FormItem label="适用范围" name="type" :wrapper-col="{ span: 12 }">
-          <RadioGroup
+        <FormItem
+          class="flex-reverse-end"
+          label="适用范围"
+          name="scope"
+          :wrapper-col="{ span: 12 }"
+        >
+          <CheckboxGroup
             class="w-285px"
             v-model:value="formState.scope"
             name="checkboxgroup"
@@ -116,7 +131,7 @@
       </Col>
     </Row>
     <Col :span="24">
-      <FormItem label="测评描述" name="name">
+      <FormItem class="flex-reverse-end" label="测评描述" name="name">
         <Textarea
           :rows="5"
           v-model:value="formState.desc"
@@ -126,7 +141,7 @@
     </Col>
     <Col :span="24">
       <FormItem label="测评项目标准和计算方式">
-        <span class="text-[#F3AB51] text-xs flex w-900px"
+        <span class="text-[#F3AB51] text-xs flex w-900px font-400"
           >幼儿版的《国民体质测定标准》一共包含了8个项目，每个项目的标准分都是5分(具体的项目评分标准见测评项目列表)，且每个项目的权重都一样，测评总分为40分</span
         >
       </FormItem>
@@ -137,8 +152,8 @@
         :data-source="data"
         size="small"
         class="border-1 border-[#DBDFDD] rounded-8px"
-        row-class-name="table-noborder"
         :pagination="false"
+        bordered
       >
         <template #bodyCell="{ column, index }">
           <template v-if="column.key === 'sortIndex'">
@@ -148,7 +163,7 @@
       </Table>
     </Col>
     <FormItem label="测评得分与等级对照表" class="mt-30px">
-      <span class="text-[#F3AB51] text-xs flex w-900px"
+      <span class="text-[#F3AB51] text-xs flex w-900px font-400"
         >幼儿版的体质测定标准分为四个等级，综合标准分数与等级对照如下表</span
       >
     </FormItem>
@@ -157,7 +172,7 @@
       :data-source="dataScore"
       size="small"
       class="border-1 border-[#DBDFDD] rounded-8px"
-      row-class-name="table-noborder"
+      bordered
       :pagination="false"
     >
       <template #bodyCell="{ column, record }">
@@ -167,7 +182,7 @@
       </template>
     </Table>
     <!-- <FormItem label="" class="mt-30px"> -->
-    <span class="text-[#F3AB51] text-xs flex w-900px mt-30px"
+    <span class="text-[#F3AB51] text-xs flex w-900px mt-30px font-400 mb-34px"
       >以上数据源自《国家学生体质健康标准(2014年版)》</span
     >
     <!-- </FormItem> -->
@@ -181,7 +196,7 @@ import {
   FormItem,
   Col,
   Row,
-  Space,
+  CheckboxGroup,
   Input,
   RadioGroup,
   Select,
