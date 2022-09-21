@@ -40,7 +40,7 @@
           <template v-if="column.key === 'name'">
             <img
               src="@/assets/images/avatar-girl.png"
-              class="inline-block w-30px h-30px mr-14px"
+              class="inline-block w-30px h-30px mr-14px rounded-full"
             />
             <RouterLink
               :to="{

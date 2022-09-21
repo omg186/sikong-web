@@ -1,7 +1,7 @@
 <template>
   <div
     class="calendar-show grid grid-cols-[130px,480px,200px]"
-    s:border="rounded-[8px] [1px] solid [#c3cac6]"
+    s:border="rounded-[8px] 1px solid [#C3CAC6] opacity-20"
   >
     <div class="pt-20px pl-20px">
       <p s:text="[26px]" class="font-din font-bold">
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div class="border-l border-r">
+    <div class="border-l border-r" s:border="opacity-20">
       <Calendar
         v-model:selectDate="selectDate"
         :adjustData="adjustData"

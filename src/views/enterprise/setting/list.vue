@@ -111,11 +111,11 @@
             <div>
               <img
                 src="@/assets/images/avatar-girl.png"
-                class="inline-block w-30px h-30px mr-14px"
+                class="inline-block w-30px h-30px mr-14px rounded-full"
               />
               <RouterLink
                 :to="{
-                  name: 'EnterpriseOrgPersonDetail',
+                  name: 'EnterpriseSettingDetail',
                   params: { id: record.key },
                   query: getRouteQueryFull(),
                 }"
@@ -208,8 +208,8 @@ import {
   Table,
   TableColumnsType,
   Form,
-  Carousel,
   TableProps,
+  Carousel,
 } from 'ant-design-vue'
 import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import SvgIcon from '@/components/SvgIcon.vue'
