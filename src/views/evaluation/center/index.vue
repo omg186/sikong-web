@@ -74,7 +74,11 @@
           <BaseAge v-if="status === 3"></BaseAge>
         </TabPane>
         <TabPane key="2" tab="测评记录单" class="px-30px pb-70px">
-          <Record :title-name="titleList[status - 1]"></Record>
+          <RecordAge
+            v-if="status === 3"
+            :title-name="titleList[status - 1]"
+          ></RecordAge>
+          <Record v-else :title-name="titleList[status - 1]"></Record>
         </TabPane>
         <TabPane key="3" tab="测评报告样式">
           <Report v-if="status === 1"></Report>
@@ -105,6 +109,7 @@ import ReportGrade from './modules/report-grade.vue'
 import BaseGrade from './modules/base-grade.vue'
 import BaseAge from './modules/base-age.vue'
 import ReportAge from './modules/report-age.vue'
+import RecordAge from './modules/record-age.vue'
 // 幼儿班
 const titleList = ref([
   '国民体质测定标准测评（幼儿版）',
