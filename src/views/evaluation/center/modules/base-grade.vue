@@ -1,14 +1,19 @@
 <template>
   <Form
-    class="pt-[35px] ml-[30px] w-687px h-full"
+    class="pt-[30px] ml-[30px] w-687px h-full"
     layout="vertical"
     ref="formRef"
     :model="formState"
     :rules="validateRules"
   >
-    <Row :gutter="10">
+    <Row :gutter="40">
       <Col :span="10">
-        <FormItem label="测评名称" name="name" :wrapper-col="{ span: 12 }">
+        <FormItem
+          class="flex-reverse-end"
+          label="测评名称"
+          name="name"
+          :wrapper-col="{ span: 12 }"
+        >
           <Input
             v-model:value="formState.name"
             placeholder="请输入测评名称"
@@ -17,7 +22,12 @@
         </FormItem>
       </Col>
       <Col :span="14">
-        <FormItem label="测评类型" name="type" :wrapper-col="{ span: 12 }">
+        <FormItem
+          class="flex-reverse-end"
+          label="测评类型"
+          name="type"
+          :wrapper-col="{ span: 12 }"
+        >
           <Input
             v-model:value="formState.type"
             placeholder="请输入测评类型"
@@ -28,8 +38,13 @@
     </Row>
     <Row>
       <Col :span="10">
-        <FormItem label="适用范围" name="type" :wrapper-col="{ span: 12 }">
-          <RadioGroup
+        <FormItem
+          class="flex-reverse-end"
+          label="适用范围"
+          name="type"
+          :wrapper-col="{ span: 12 }"
+        >
+          <CheckboxGroup
             class="w-285px"
             v-model:value="formState.scope"
             name="checkboxgroup"
@@ -37,7 +52,7 @@
           />
         </FormItem>
       </Col>
-      <Col :span="3" class="pt-[30px]">
+      <Col :span="3" class="pt-[30px] pl-10px">
         <FormItem>
           <Select
             v-model:value="formState.startAge"
@@ -54,11 +69,11 @@
           </Select>
         </FormItem>
       </Col>
-      <Col :span="3" class="pt-[30px] mr-10px">
+      <Col :span="3" class="pt-[30px] ml-10px">
         <FormItem>
           <Select
             v-model:value="formState.startMonth"
-            style="width: 90px"
+            style="width: 80px"
             :options="[
               { value: '0个月' },
               { value: '1个月' },
@@ -116,7 +131,7 @@
       </Col>
     </Row>
     <Col :span="24">
-      <FormItem label="测评描述" name="name">
+      <FormItem class="flex-reverse-end" label="测评描述" name="name">
         <Textarea
           :rows="5"
           v-model:value="formState.desc"
@@ -126,7 +141,7 @@
     </Col>
     <Col :span="24">
       <FormItem label="测评项目标准和计算方式">
-        <span class="text-[#F3AB51] text-xs flex w-900px"
+        <span class="text-[#F3AB51] text-xs flex font-400 w-900px"
           >学生体质健康标准测评各项目的标准分为100分，且各项目占比的权重不同，1-2年级的重点项目是“坐位体前屈”和“1分钟跳绳”，
           特别是1分钟跳绳，有20分的加分，测评总分为120分</span
         >
@@ -138,7 +153,7 @@
         :data-source="data"
         size="small"
         class="border-1 border-[#DBDFDD] rounded-8px"
-        row-class-name="table-noborder"
+        bordered
         :pagination="false"
       >
         <template #bodyCell="{ column, index }">
@@ -158,7 +173,7 @@
       :data-source="dataScore"
       size="small"
       class="border-1 border-[#DBDFDD] rounded-8px"
-      row-class-name="table-noborder"
+      bordered
       :pagination="false"
     >
       <template #bodyCell="{ column, record }">
@@ -168,7 +183,7 @@
       </template>
     </Table>
     <!-- <FormItem label="" class="mt-30px"> -->
-    <span class="text-[#F3AB51] text-xs flex w-900px mt-30px"
+    <span class="text-[#F3AB51] text-xs flex font-400 w-900px mt-30px"
       >以上数据源自《国家学生体质健康标准(2014年版)》</span
     >
     <!-- </FormItem> -->
@@ -184,7 +199,7 @@ import {
   Row,
   Space,
   Input,
-  RadioGroup,
+  CheckboxGroup,
   Select,
   Textarea,
   Table,

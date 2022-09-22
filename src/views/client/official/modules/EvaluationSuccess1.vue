@@ -2,7 +2,7 @@
   <div class="record-body">
     <div class="flex items-center">
       <div class="w-317px">
-        <div class="text-[#83867E] font-xs">测评卷编号</div>
+        <div class="text-[#83867E] text-xs">测评卷编号</div>
         <div class="text-[#343C37] font-medium font-shs font-sm">
           2014214567650
         </div>
@@ -32,7 +32,7 @@
           </div>
           <template v-if="index === 2">
             <span
-              class="text-[#A9ACA4] text-xs"
+              class="text-[#A9ACA4] text-xs font-400"
               v-if="column.dataIndex === 'matter'"
               >{{ text }}</span
             >
@@ -58,7 +58,7 @@
       </Table>
     </div>
     <div class="flex items-center mt-30px justify-end">
-      <span>助理签字区</span>
+      <span class="text-[#2D3A2F] text-xs">助理签字区</span>
       <div
         class="bg-[#F4F4F4] w-160px h-40px ml-50px text-right pr-6px rounded-4px flex items-center justify-end"
       ></div>

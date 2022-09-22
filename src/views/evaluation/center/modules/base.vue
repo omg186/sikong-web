@@ -1,12 +1,12 @@
 <template>
   <Form
-    class="pt-[35px] ml-[30px] w-687px h-full"
+    class="pt-[30px] ml-[30px] w-687px h-full"
     layout="vertical"
     ref="formRef"
     :model="formState"
     :rules="validateRules"
   >
-    <Row :gutter="10">
+    <Row :gutter="40">
       <Col :span="10">
         <FormItem
           class="flex-reverse-end"
@@ -52,7 +52,7 @@
           />
         </FormItem>
       </Col>
-      <Col :span="3" class="pt-[30px]">
+      <Col :span="3" class="pt-[30px] pl-10px">
         <FormItem>
           <Select
             v-model:value="formState.startAge"
@@ -69,11 +69,11 @@
           </Select>
         </FormItem>
       </Col>
-      <Col :span="3" class="pt-[30px] mr-10px">
+      <Col :span="3" class="pt-[30px] ml-10px">
         <FormItem>
           <Select
             v-model:value="formState.startMonth"
-            style="width: 90px"
+            style="width: 80px"
             :options="[
               { value: '0个月' },
               { value: '1个月' },
@@ -179,13 +179,14 @@
         <template v-if="column.key === 'level'">
           <span class="font-bold"> {{ record.level }} </span>
         </template>
+        <template v-else>
+          <span class="text-[#6C766E] text-xs">{{ record.score }}</span>
+        </template>
       </template>
     </Table>
-    <!-- <FormItem label="" class="mt-30px"> -->
     <span class="text-[#F3AB51] text-xs flex w-900px mt-30px font-400 mb-34px"
       >以上数据源自《国家学生体质健康标准(2014年版)》</span
     >
-    <!-- </FormItem> -->
   </Form>
 </template>
 
@@ -198,7 +199,6 @@ import {
   Row,
   CheckboxGroup,
   Input,
-  RadioGroup,
   Select,
   Textarea,
   Table,
