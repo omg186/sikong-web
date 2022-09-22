@@ -44,7 +44,7 @@
           name="type"
           :wrapper-col="{ span: 12 }"
         >
-          <RadioGroup
+          <CheckboxGroup
             class="w-285px"
             v-model:value="formState.scope"
             name="checkboxgroup"
@@ -179,11 +179,41 @@
         移动测评得到27分，表示其身体移动的发展水平在在75%分位上。注意：物体控制子测试需要分性别比对。</span
       >
     </FormItem>
-    <Tabs v-model:activeKey="activeKey">
+    <div
+      class="flex w-570px h-32px overflow-hidden mb-30px"
+      s:border="rounded-40 1px solid [#EDEFED]"
+    >
+      <div
+        class="flex items-center justify-center w-190px cursor-pointer"
+        s:text="[#83867E] xs"
+        :class="{ 'bg-[#525A64] !text-white rounded-40': activeKey === 1 }"
+        @click="activeKey = 1"
+      >
+        身体移动子测试评价表
+      </div>
+
+      <div
+        class="flex items-center justify-center w-190px cursor-pointer"
+        s:text="[#83867E] xs"
+        :class="{ 'bg-[#525A64] !text-white rounded-40': activeKey === 2 }"
+        @click="activeKey = 2"
+      >
+        物体控制子测试女生版评价表
+      </div>
+      <div
+        class="flex items-center justify-center w-190px cursor-pointer"
+        s:text="[#83867E] xs"
+        :class="{ 'bg-[#525A64] !text-white rounded-40': activeKey === 3 }"
+        @click="activeKey = 3"
+      >
+        物体控制子测试男生版评价表
+      </div>
+    </div>
+    <!-- <Tabs v-model:activeKey="activeKey">
       <TabPane key="1" tab="身体移动子测试评价表"></TabPane>
       <TabPane key="2" tab="物体控制子测试女生版评价表"></TabPane>
       <TabPane key="3" tab="物体控制子测试男生版评价表"></TabPane>
-    </Tabs>
+    </Tabs> -->
     <Table
       :columns="columnsScore"
       :data-source="listData"
@@ -264,7 +294,7 @@ import {
   Row,
   Space,
   Input,
-  RadioGroup,
+  CheckboxGroup,
   Select,
   Textarea,
   Table,
@@ -283,7 +313,7 @@ const formState = reactive({
   startMonth: '0个月',
   endMonth: '11个月',
 })
-const activeKey = ref('1')
+const activeKey = ref(1)
 
 const validateRules = reactive({
   name: [{ required: true, message: '请输入测评名称' }],
