@@ -9,12 +9,12 @@
           <img
             v-if="list.upTrend"
             src="@/assets/images/evaluation/no.png"
-            class="h-17.36px pl-5px"
+            class="h-18px ml-5px"
           />
           <img
             v-else
             src="@/assets/images/evaluation/yes.png"
-            class="h-17.36px pl-5px"
+            class="h-13px ml-5px"
           />
         </div>
       </div>
@@ -74,7 +74,10 @@
               class="bg-[#F3AB51] rounded-l-4px flex justify-center items-center"
             >
               <div>
-                <img src="@/assets/images/evaluation/no-white.png" class="" />
+                <img
+                  src="@/assets/images/evaluation/no-white.png"
+                  class="h-11px"
+                />
               </div>
             </div>
             <div

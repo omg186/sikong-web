@@ -72,14 +72,14 @@
                     <div
                       class="w-48px h-44px bg-[#F7FEFB] text-center flex justify-center items-center rounded-10px"
                     >
-                      <img src="@/assets/images/evaluation/up.png" alt="" />
+                      <img src="@/assets/images/evaluation/up.png" alt="" class="h-17px"/>
                     </div>
                     <div
                       class="text-[#2EE094] flex items-center font-bold r-border w-50px ml-11px"
                     >
                       2项目
                     </div>
-                    <div class="pl-15px">
+                    <div class="pl-15px text-xs flex grid">
                       <div>身高</div>
                       <div>双脚连续跳</div>
                     </div>
@@ -98,14 +98,14 @@
                     <div
                       class="w-48px h-63px bg-[#FFF8FA] text-center flex justify-center items-center rounded-10px"
                     >
-                      <img src="@/assets/images/evaluation/down.png" alt="" />
+                      <img src="@/assets/images/evaluation/down.png" alt="" class="h-17px"/>
                     </div>
                     <div
                       class="text-[#F4274E] flex items-center font-bold r-border w-50px ml-11px"
                     >
                       2项目
                     </div>
-                    <div class="pl-15px">
+                    <div class="pl-15px text-xs  flex grid">
                       <div>身高</div>
                       <div>双脚连续跳</div>
                       <div>双脚连续跳</div>
@@ -125,14 +125,14 @@
                     <div
                       class="w-48px h-63px bg-[#FBFBFF] text-center flex justify-center items-center rounded-10px"
                     >
-                      <img src="@/assets/images/evaluation/keep.png" alt="" />
+                      <img src="@/assets/images/evaluation/keep.png" alt="" class="h-8px"/>
                     </div>
                     <div
                       class="text-[#A5A8B4] flex items-center font-bold r-border w-50px ml-11px"
                     >
                       3项目
                     </div>
-                    <div class="pl-15px">
+                    <div class="pl-15px text-xs flex grid">
                       <div>坐位体前屈</div>
                       <div>十米折返跑</div>
                       <div>网球掷远</div>
@@ -226,6 +226,7 @@ const physicalQuality = ref([
     value: '18.1kg(偏瘦)',
     unit: '公斤',
     processColor: '#2EE094',
+    processRgbColor: 'rgba(46, 224, 148, 0.25)',
     score: '3',
     lastValue: '18.9kg',
     lastScore: '5',
@@ -236,6 +237,7 @@ const physicalQuality = ref([
     value: '117.3cm',
     unit: '厘米',
     processColor: '#AFA8FF',
+    processRgbColor: 'rgba(175,168,255, 0.25)',
     score: '4',
     lastValue: '103cm',
     lastScore: '2',
@@ -246,6 +248,7 @@ const physicalQuality = ref([
     value: '117.3cm',
     unit: '厘米',
     processColor: '#AFA8FF',
+    processRgbColor: 'rgba(175,168,255, 0.25)',
     score: '4',
     lastValue: '103cm',
     lastScore: '2',
@@ -255,6 +258,7 @@ const physicalQuality = ref([
     title: '走平衡木',
     value: '8.6s',
     unit: '秒',
+    processRgbColor: 'rgba(243,171,81, 0.25)',
     processColor: '#F3AB51',
     score: '2',
     lastValue: '5.9s',

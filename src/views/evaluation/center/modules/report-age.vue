@@ -44,10 +44,10 @@
             </div>
           </div>
           <div
-            class="h-570px w-full rounded-16px bg-light-50 mt-10px p-10px flex"
+            class="h-570px w-full rounded-16px bg-light-50 mt-10px p-10px flex justify-between"
           >
             <RadarChartAge class="w-500px"></RadarChartAge>
-            <div class="ml-56px">
+            <div class="mr-20px">
               <div class="w-352px h-243px r-shadow rounded-16px">
                 <div
                   class="w-352px h-56px text-[#1F311F] font-500 flex items-center justify-between px-20px py-16px bg-[#EDEEF2] rounded-t-16px"
@@ -98,7 +98,7 @@
                       <div>
                         <img
                           src="@/assets/images/evaluation/ranking.png"
-                          class="pl-15px"
+                          class="ml-15px w-19px h-18px"
                         />
                       </div>
                     </div>
@@ -154,7 +154,7 @@
                       <div>
                         <img
                           src="@/assets/images/evaluation/ranking.png"
-                          class="pl-15px"
+                          class="ml-15px w-19px h-18px"
                         />
                       </div>
                     </div>

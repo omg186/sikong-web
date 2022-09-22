@@ -51,10 +51,10 @@
             </div>
           </div>
           <div
-            class="h-570px w-full rounded-16px bg-light-50 mt-10px p-10px flex"
+            class="h-570px w-full rounded-16px bg-light-50 mt-10px p-10px flex justify-between"
           >
             <RadarChartGrade class="w-500px"></RadarChartGrade>
-            <div class="ml-56px">
+            <div class="mr-10px">
               <div
                 class="w-352px h-310px r-shadow rounded-16px pt-40px relative pl-32px"
               >
@@ -75,14 +75,18 @@
                     <div
                       class="w-48px h-44px bg-[#F7FEFB] text-center flex justify-center items-center rounded-10px"
                     >
-                      <img src="@/assets/images/evaluation/up.png" alt="" />
+                      <img
+                        src="@/assets/images/evaluation/up.png"
+                        alt=""
+                        class="h-17px"
+                      />
                     </div>
                     <div
                       class="text-[#2EE094] flex items-center font-bold r-border w-50px ml-11px"
                     >
                       2项目
                     </div>
-                    <div class="pl-15px text-xs">
+                    <div class="pl-15px text-xs flex grid">
                       <div>体重指数BMI</div>
                       <div>坐位体前屈</div>
                     </div>
@@ -101,7 +105,11 @@
                     <div
                       class="w-48px h-63px bg-[#FFF8FA] text-center flex justify-center items-center rounded-10px"
                     >
-                      <img src="@/assets/images/evaluation/down.png" alt="" />
+                      <img
+                        src="@/assets/images/evaluation/down.png"
+                        alt=""
+                        class="h-17px"
+                      />
                     </div>
                     <div
                       class="text-[#F4274E] flex items-center font-bold r-border w-50px ml-11px"
@@ -124,14 +132,18 @@
                     <div
                       class="w-48px h-63px bg-[#FBFBFF] text-center flex justify-center items-center rounded-10px"
                     >
-                      <img src="@/assets/images/evaluation/keep.png" alt="" />
+                      <img
+                        src="@/assets/images/evaluation/keep.png"
+                        alt=""
+                        class="h-8px"
+                      />
                     </div>
                     <div
                       class="text-[#A5A8B4] flex items-center font-bold r-border w-50px ml-11px"
                     >
                       3项目
                     </div>
-                    <div class="pl-15px text-xs">
+                    <div class="pl-15px text-xs flex grid">
                       <div>肺活量</div>
                       <div>50米跑</div>
                       <div>1分钟跳绳</div>
@@ -218,6 +230,7 @@ const physicalQuality = ref([
     value: '18.1kg(偏瘦)',
     unit: '公斤',
     processColor: '#2EE094',
+    processRgbColor: 'rgba(46, 224, 148, 0.25)',
     score: '90',
     lastValue: '18.9s',
     lastScore: '80',
@@ -229,6 +242,7 @@ const physicalQuality = ref([
     value: '117.3cm',
     unit: '厘米',
     processColor: '#AFA8FF',
+    processRgbColor: 'rgba(175,168,255, 0.25)',
     score: '80',
     lastValue: '108cm',
     lastScore: '70',
@@ -240,6 +254,7 @@ const physicalQuality = ref([
     value: '8.6s',
     unit: '秒',
     processColor: '#F3AB51',
+    processRgbColor: 'rgba(243,171,81, 0.25)',
     score: '30',
     lastValue: '5.9s',
     lastScore: '3',
@@ -250,6 +265,7 @@ const physicalQuality = ref([
     title: '座位体前屈',
     value: '58cm',
     unit: '厘米',
+    processRgbColor: 'rgba(255,124,124, 0.25)',
     processColor: '#FF7C7C',
     score: '20',
     lastValue: '59cm',
@@ -261,6 +277,7 @@ const physicalQuality = ref([
     title: '1分钟跳绳',
     value: '13.2m',
     unit: '米',
+    processRgbColor: 'rgba(98,161,255, 0.25)',
     processColor: '#62A1FF',
     score: '100',
     lastValue: '9.9m',
