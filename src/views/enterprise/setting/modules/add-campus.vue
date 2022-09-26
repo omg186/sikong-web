@@ -409,7 +409,7 @@ import areas from 'china-division/dist/areas.json'
 import streets from 'china-division/dist/streets.json'
 import SvgIcon from '@/components/SvgIcon.vue'
 import dayjs, { Dayjs } from 'dayjs'
-import CalendarSetting from '../../../../components/Calendar/CalendarSetting.vue'
+import CalendarSetting from '@/components/Calendar/CalendarSetting.vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
 const stepsActive = ref(2)
