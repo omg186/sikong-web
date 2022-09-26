@@ -117,11 +117,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouteQueryObject } from '@/hooks/web/use-page'
 import { useRouter } from 'vue-router'
 import SvgIcon from '@/components/SvgIcon.vue'
 // antd-vue
-import { Carousel } from 'ant-design-vue'
+import { Carousel, Modal } from 'ant-design-vue'
 
 // import AddStaff from './modules/add-staff.vue'
 //checkPhoneNumber
@@ -131,7 +130,6 @@ import CalendarShow from '@/components/Calendar/CalendarShow.vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
 import AddRoom from './modules/add-room.vue'
-const { routeQuery } = useRouteQueryObject('org')
 
 const refCarousel = ref<CarouselRef>()
 const router = useRouter()

@@ -182,20 +182,15 @@
 </template>
 <script lang="ts" setup>
 import {
-  Avatar,
   Input,
   Popover,
   Modal,
-  Button,
-  Table,
-  TableColumnsType,
   Form,
   FormItem,
   Select,
   SelectOption,
 } from 'ant-design-vue'
-import { useUserStore } from '@/store/modules/user'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import Tree from './modules/tree.vue'
 import AddRoom from './modules/add-room.vue'
 import SvgIcon from '@/components/SvgIcon.vue'

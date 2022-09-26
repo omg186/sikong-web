@@ -160,25 +160,19 @@
 </template>
 <script lang="ts" setup>
 import {
-  Avatar,
   Input,
   Popover,
   Modal,
-  Button,
-  Table,
-  TableColumnsType,
   Form,
   FormItem,
   Select,
   SelectOption,
 } from 'ant-design-vue'
-import { useUserStore } from '@/store/modules/user'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import Tree from './modules/tree.vue'
 import AddDept from './modules/add-dept.vue'
 import SvgIcon from '../../components/SvgIcon.vue'
 import AddStaff from './modules/add-staff.vue'
-import KeepRouterView from '@/components/KeepRouterView.vue'
 import { GetTreeParams } from '@/api/model/org-model'
 // import Table from './modules/table.vue'
 // useRouter
@@ -199,10 +193,6 @@ const deptCode = ref('')
 // 账户禁用
 const isModalDisable = ref(false)
 // 账户禁用click
-const onDisable = (id: number) => {
-  console.log('禁用')
-  isModalDisable.value = true
-}
 // 账户禁用submit
 const onDisableSubmit = () => {
   console.log('禁用账户')
@@ -211,10 +201,6 @@ const onDisableSubmit = () => {
 // 账户离职
 const isModalLeave = ref(false)
 // 账户离职click
-const onLeave = (id: number) => {
-  console.log('离职')
-  isModalLeave.value = true
-}
 // 账户离职submit
 const onLeaveSubmit = () => {
   console.log('离职账户')
@@ -255,9 +241,6 @@ const onTransferSubmit = () => {
   })
 }
 // 员工调岗click
-const onTransfer = (id: number) => {
-  isModalTransfer.value = true
-}
 
 function onDeptAdd(value: string) {
   console.log(value)
