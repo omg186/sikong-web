@@ -127,6 +127,10 @@
             </ImgIcon
           ></Tooltip>
         </template>
+
+        <template v-if="column.key === 'status1'">
+          <span>申请中</span>
+        </template>
       </template>
     </Table>
 
@@ -282,6 +286,12 @@ const columns = ref<TableColumnsType>([
     title: '预约的测评时间',
     dataIndex: 'name4',
     key: 'name4',
+    align: 'center',
+  },
+  {
+    title: '预约状态',
+    dataIndex: 'status1',
+    key: 'status1',
     align: 'center',
   },
   {

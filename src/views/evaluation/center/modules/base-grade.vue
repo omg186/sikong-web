@@ -183,7 +183,7 @@
       </template>
     </Table>
     <!-- <FormItem label="" class="mt-30px"> -->
-    <span class="text-[#F3AB51] text-xs flex font-400 w-900px mt-30px"
+    <span class="text-[#F3AB51] text-xs flex font-400 w-900px my-30px"
       >以上数据源自《国家学生体质健康标准(2014年版)》</span
     >
     <!-- </FormItem> -->

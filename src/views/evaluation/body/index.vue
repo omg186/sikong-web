@@ -3,10 +3,9 @@
     <div class="evaluation-body-table w-full flex-1 flex flex-col p-30px pb-0">
       <h3 class="flex-shrink-0 mb-30px">测评项目</h3>
       <Table
-        class="sikong-table flex-1"
+        class="sikong-table sikong-pagination flex-1"
         :dataSource="listData"
         :columns="columns"
-        :pagination="false"
         :scroll="{ x: 1000, y: 800 }"
       >
         <template #bodyCell="{ column, record, index }">
@@ -67,7 +66,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Table, TableColumnsType, Form, Switch } from 'ant-design-vue'
+import { Table, TableColumnsType, Pagination } from 'ant-design-vue'
 import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import BodyConfig from './modules/config.vue'
 import { useRequest } from 'vue-request'
@@ -249,7 +248,33 @@ const { data: selectData } = useRequest(
   },
   { manual: false }
 )
-function onSwitchClick(value, column) {
+// function itemRender(opt: {
+//   page: number
+//   type: 'prev' | 'next' | 'page' | 'jump-prev' | 'jump-next'
+//   originalElement: any
+// }): any {
+//   console.log(' 222', opt)
+//   if (opt.type === 'page') {
+//     // opt.originalElement = null
+//     // opt.originalElement.children = undefined
+//     opt.originalElement.el = null
+//     //   //   originalElement.data.class = originalElement.data.class + ' red'
+//     return opt.originalElement
+//   } else if (opt.type === 'next' || opt.type === 'prev') {
+//     // opt.originalElement.children = undefined
+//     opt.originalElement.appContext = '下一页'
+//     // originalElement.data.class = originalElement.data.class + ' red'
+//     return opt.originalElement
+//   }
+//   // return opt.originalElement
+// }
+function onSwitchClick(
+  value: {
+    checked: boolean
+    item: { name?: string; value?: number; id?: string }[]
+  },
+  column: { title: string }
+) {
   // listData[index].checked = !listData[index].checked
   // value.checked = !value.checked
   console.log('column', column)

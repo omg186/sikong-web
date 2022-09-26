@@ -367,11 +367,11 @@
         </div>
       </div>
       <FormItem label="有无喜欢的运动项目">
-        <RadioGroup>
-          <Radio value="1">有</Radio>
-          <Radio value="1">无</Radio>
+        <RadioGroup v-model:value="formData.exercise">
+          <Radio :value="1">有</Radio>
+          <Radio :value="0">无</Radio>
         </RadioGroup>
-        <div class="flex gap-20px mt-20px">
+        <div class="flex gap-20px mt-20px" v-show="formData.exercise === 1">
           <Tag contents="网球"></Tag>
           <Tag contents="游泳"></Tag>
           <Tag contents="徒步"></Tag>
@@ -384,11 +384,11 @@
       </FormItem>
 
       <FormItem label="父母运动习惯">
-        <RadioGroup>
-          <Radio value="1">有</Radio>
-          <Radio value="1">无</Radio>
+        <RadioGroup v-model:value="formData.habit">
+          <Radio :value="1">有</Radio>
+          <Radio :value="0">无</Radio>
         </RadioGroup>
-        <div class="flex gap-20px mt-20px">
+        <div class="flex gap-20px mt-20px" v-show="formData.habit === 1">
           <Tag contents="网球"></Tag>
           <Tag contents="游泳"></Tag>
           <Tag contents="徒步"></Tag>
@@ -514,6 +514,8 @@ const formData = ref({
   projectSelectName: '',
   traitSelect: [],
   traitSelectName: '',
+  habit: -1,
+  exercise: -1,
 })
 const isSelect = ref(false)
 const isTrait = ref(false)

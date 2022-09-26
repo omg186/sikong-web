@@ -1,7 +1,7 @@
 <template>
   <Modal
     v-model:visible="visible"
-    title="添加员工"
+    :title="title"
     width="660px"
     :confirm-loading="confirmLoading"
     destroyOnClose
@@ -366,6 +366,13 @@ const isEdit = ref<boolean>(false)
 const fileList = ref([])
 let visible = ref<boolean>(false)
 const formRef = ref<FormInstance>()
+defineProps({
+  title: {
+    type: String,
+    required: false,
+    default: '添加员工',
+  },
+})
 const show = record => {
   // formRef.value.resetFields() //重置
   if (Object.keys(record).length > 0) {

@@ -184,7 +184,7 @@
         </template>
       </template>
     </Table>
-    <span class="text-[#F3AB51] text-xs flex w-900px mt-30px font-400 mb-34px"
+    <span class="text-[#F3AB51] text-xs flex w-900px mt-30px font-400 my-34px"
       >以上数据源自《国家学生体质健康标准(2014年版)》</span
     >
   </Form>

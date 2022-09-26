@@ -164,7 +164,7 @@
       </div>
     </Modal>
     <!-- 修改员工 -->
-    <AddStaff ref="addStaff" :footer="null" />
+    <AddStaff ref="addStaff" :footer="null" title="员工详细信息"/>
   </div>
 </template>
 

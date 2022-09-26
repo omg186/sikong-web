@@ -91,9 +91,28 @@
       <div class="flex pb-40px"><CalendarShow></CalendarShow></div>
       <div class="flex gap-x-10px">
         <CancelButton>取消</CancelButton>
-        <OkButton>编辑</OkButton>
+        <OkButton @click="onRoom(true)">编辑</OkButton>
       </div>
     </div>
+    <Modal
+      v-model:visible="isModalRoot"
+      :title="isRootEdit ? '编辑教室/场地' : '添加教室/场地'"
+      width="800px"
+      :footer="null"
+    >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
+      <AddRoom
+        :is-edit="isRootEdit"
+        @on-cancel="isModalRoot = false"
+        @on-ok="onRootOk"
+      />
+    </Modal>
   </div>
 </template>
 
@@ -119,6 +138,7 @@ import { CarouselRef } from 'ant-design-vue/lib/carousel'
 import CalendarShow from '@/components/Calendar/CalendarShow.vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
+import AddRoom from './modules/add-room.vue'
 const { ctx } = getCurrentInstance() as any
 const { routeQuery } = useRouteQueryObject('org')
 
@@ -136,6 +156,16 @@ function onModifyPassword() {
   //   title: '提示',
   //   content: '密码重置成功',
   // })
+}
+const isModalRoot = ref(false)
+const isRootEdit = ref(false)
+// 添加/修改场地click
+const onRoom = (isEdit: boolean) => {
+  isModalRoot.value = true
+  isRootEdit.value = isEdit
+}
+function onRootOk() {
+  isModalRoot.value = false
 }
 // onModifyAccount
 const onModifyAccount = values => {

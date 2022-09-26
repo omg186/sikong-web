@@ -210,7 +210,7 @@
         </button>
         <button
           class="w-72px h-32px rounded-40px bg-[#525A64] border-none text-white hover:bg-[#3C4652] hover:text-white"
-          v-show="stepsActive <= 3"
+          v-show="stepsActive < 2"
           @click="stepsActive++"
         >
           下一步
