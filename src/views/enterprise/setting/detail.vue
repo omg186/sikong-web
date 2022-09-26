@@ -121,42 +121,21 @@ import { useRouteQueryObject } from '@/hooks/web/use-page'
 import { useRouter } from 'vue-router'
 import SvgIcon from '@/components/SvgIcon.vue'
 // antd-vue
-import {
-  Checkbox,
-  Modal,
-  Form,
-  FormItem,
-  Input,
-  Carousel,
-} from 'ant-design-vue'
+import { Carousel } from 'ant-design-vue'
 
 // import AddStaff from './modules/add-staff.vue'
 //checkPhoneNumber
-import { checkPhoneNumber } from '@/utils/antd/form'
-import { getCurrentInstance, ref } from 'vue'
+import { ref } from 'vue'
 import { CarouselRef } from 'ant-design-vue/lib/carousel'
 import CalendarShow from '@/components/Calendar/CalendarShow.vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
 import AddRoom from './modules/add-room.vue'
-const { ctx } = getCurrentInstance() as any
 const { routeQuery } = useRouteQueryObject('org')
 
 const refCarousel = ref<CarouselRef>()
 const router = useRouter()
-const isModalReset = ref(false)
 // 修改账号
-const isModalAccount = ref(false)
-const modifyAccountForm = ref({
-  phone: '',
-})
-function onModifyPassword() {
-  isModalReset.value = false
-  // Modal.success({
-  //   title: '提示',
-  //   content: '密码重置成功',
-  // })
-}
 const isModalRoot = ref(false)
 const isRootEdit = ref(false)
 // 添加/修改场地click
@@ -168,16 +147,9 @@ function onRootOk() {
   isModalRoot.value = false
 }
 // onModifyAccount
-const onModifyAccount = values => {
-  console.log('Success:', values)
-  isModalAccount.value = false
-}
 // 返回页面
 const back = () => {
   router.back()
-}
-function onAddStaff(record) {
-  ctx.$refs.addStaff.show(record)
 }
 function goToCarouse(index: number) {
   refCarousel.value?.goTo(index)

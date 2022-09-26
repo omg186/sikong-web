@@ -164,7 +164,7 @@
       </div>
     </Modal>
     <!-- 修改员工 -->
-    <AddStaff ref="addStaff" :footer="null" title="员工详细信息"/>
+    <AddStaff ref="addStaff" :footer="null" title="员工详细信息" />
   </div>
 </template>
 
@@ -178,10 +178,11 @@ import { Checkbox, Modal, Form, FormItem, Input } from 'ant-design-vue'
 import AddStaff from './modules/add-staff.vue'
 //checkPhoneNumber
 import { checkPhoneNumber } from '@/utils/antd/form'
-import { getCurrentInstance, ref } from 'vue'
+import { ref } from 'vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
-const { ctx } = getCurrentInstance() as any
+
+const addStaffRef = ref(null)
 const { routeQuery } = useRouteQueryObject('org')
 const router = useRouter()
 const isModalReset = ref(false)
@@ -207,6 +208,6 @@ const back = () => {
   router.back()
 }
 function onAddStaff(record) {
-  ctx.$refs.addStaff.show(record)
+  addStaffRef.value.show(record)
 }
 </script>

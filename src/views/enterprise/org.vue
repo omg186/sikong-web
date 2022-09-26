@@ -195,9 +195,6 @@
 </template>
 <script lang="ts" setup>
 import {
-  Avatar,
-  Input,
-  Popover,
   Modal,
   Button,
   Table,
@@ -207,27 +204,20 @@ import {
   Select,
   SelectOption,
 } from 'ant-design-vue'
-import { useUserStore } from '@/store/modules/user'
-import { computed, reactive, ref, watchEffect } from 'vue'
-import { getCurrentInstance } from '@vue/runtime-core'
+import { reactive, ref, watchEffect } from 'vue'
 import AddDept from './modules/add-dept.vue'
 import SvgIcon from '../../components/SvgIcon.vue'
 import AddStaff from './modules/add-staff.vue'
-import { useRoute } from 'vue-router'
 import { GetTreeParams } from '@/api/model/org-model'
 import { useRouteQueryObject } from '@/hooks/web/use-page'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
 // import Table from './modules/table.vue'
-const userStore = useUserStore()
-const userInfo = computed(() => userStore.getUserInfo)
 const isModalDept = ref(false)
 const isModalDeptDel = ref(false)
 const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
-const isModalStaff = ref(false)
 const deptCode = ref('')
-// const { ctx } = getCurrentInstance() as any
 const addStaffRef = ref(null)
 const { routeQuery, getRouteQueryFull } =
   useRouteQueryObject<GetTreeParams>('org')
@@ -243,7 +233,7 @@ watchEffect(() => {
 // 账户禁用
 const isModalDisable = ref(false)
 // 账户禁用click
-const onDisable = (id: number) => {
+const onDisable = (id: any) => {
   console.log('禁用')
   isModalDisable.value = true
 }
@@ -255,7 +245,7 @@ const onDisableSubmit = () => {
 // 账户离职
 const isModalLeave = ref(false)
 // 账户离职click
-const onLeave = (id: number) => {
+const onLeave = (id: any) => {
   console.log('离职')
   isModalLeave.value = true
 }
@@ -378,25 +368,16 @@ const columns = ref<TableColumnsType>([
   },
 ])
 // 员工调岗click
-const onTransfer = (id: number) => {
+const onTransfer = (id: any) => {
   isModalTransfer.value = true
 }
 
-function onDeptAdd(value: string) {
-  console.log(value)
-  isDeptEdit.value = false
-  isModalDept.value = true
-  deptModalTitle.value = '添加部门'
-}
 function onDeptEdit(value: string) {
   console.log(value)
   deptCode.value = value
   isDeptEdit.value = true
   isModalDept.value = true
   deptModalTitle.value = '修改部门'
-}
-function onDeptDel() {
-  isModalDeptDel.value = true
 }
 function onDeptOk(value, isContinue) {
   console.log(value)
