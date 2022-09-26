@@ -10,7 +10,7 @@
           <div
             class="flex fill-primary cursor-pointer text-primary"
             s:hover="text-[#14DC87] underline-[#14DC87]"
-            @click="onDeptEdit('2')"
+            @click="isModalCampus = true"
           >
             <SvgIcon class="w-[24px] h-17px" name="modify"></SvgIcon>
             <span
@@ -199,6 +199,25 @@
         <OkButton @click="isModalDel = false"> 保存 </OkButton>
       </div>
     </Modal>
+    <Modal
+      v-model:visible="isModalCampus"
+      :title="'编辑校区'"
+      width="800px"
+      :footer="null"
+    >
+      <template #closeIcon>
+        <ImgIcon
+          class="flex w-full h-full justify-center items-center"
+          src="close.png"
+          hover-src="close.png"
+        ></ImgIcon>
+      </template>
+      <AddCampus
+        :is-edit="true"
+        @on-cancel="isModalCampus = false"
+        @on-ok="isModalCampus = false"
+      />
+    </Modal>
   </div>
 </template>
 <script lang="ts" setup>
@@ -222,7 +241,7 @@ import { CarouselRef } from 'ant-design-vue/lib/carousel'
 import CalendarShow from '@/components/Calendar/CalendarShow.vue'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
-
+import AddCampus from './modules/add-campus.vue'
 const isCampusEdit = ref(false)
 const isModalCampus = ref(false)
 const campusModalTitle = ref('添加新校区')

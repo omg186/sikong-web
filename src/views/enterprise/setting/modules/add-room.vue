@@ -226,6 +226,197 @@
           </RadioGroup>
         </FormItem>
       </Col>
+      <Col :span="24" v-if="formData.isCalendar === 2">
+        <Col class="flex justify-between py-30px text-[#83867E] fill-[#83867E]">
+          <div class="flex-1 flex items-center gap-6px">
+            <span :class="stepsActive === 0 ? 'text-primary' : ''"
+              >日历描述</span
+            >
+            <SvgIcon class="w-25px h-15px" name="lizhi2" />
+            <span :class="stepsActive === 1 ? 'text-primary' : ''"
+              >设置工作周</span
+            >
+            <SvgIcon class="w-25px h-15px" name="lizhi2" />
+            <span :class="stepsActive === 2 ? 'text-primary' : ''"
+              >设置特殊日</span
+            >
+          </div>
+          <div class="flex gap-10px">
+            <button
+              class="w-72px h-32px rounded-40px bg-[#525A64] border-none text-white hover:bg-[#3C4652] hover:text-white"
+              v-show="stepsActive > 0"
+              @click="stepsActive--"
+            >
+              上一步
+            </button>
+            <button
+              class="w-72px h-32px rounded-40px bg-[#525A64] border-none text-white hover:bg-[#3C4652] hover:text-white"
+              v-show="stepsActive <= 3"
+              @click="stepsActive++"
+            >
+              下一步
+            </button>
+          </div>
+        </Col>
+        <!-- 日历描述 -->
+        <div
+          class="border-1 border-[#C3CAC6] border-opacity-20 rounded-20px px-30px pb-20px pt-26px"
+          v-show="stepsActive === 0"
+        >
+          <Row :gutter="20">
+            <Col :span="12">
+              <FormItem
+                class="flex-reverse-end"
+                label="校区日历有效期"
+                v-bind="validateInfos.startTime"
+              >
+                <DatePicker
+                  show-time
+                  v-model:value="formData.startTime"
+                  placeholder="日历开始时间"
+                  class="w-full"
+                ></DatePicker>
+              </FormItem>
+            </Col>
+            <Col :span="12">
+              <FormItem
+                class="flex-reverse-end"
+                label=""
+                v-bind="validateInfos.endTime"
+              >
+                <DatePicker
+                  class="mt-[30px] w-full"
+                  show-time
+                  v-model:value="formData.endTime"
+                  placeholder="日历结束时间"
+                ></DatePicker> </FormItem
+            ></Col>
+            <Col :span="24">
+              <FormItem
+                class="flex-reverse-end"
+                label="校区日历名称"
+                v-bind="validateInfos.calendarName"
+              >
+                <Input
+                  v-model:value="formData.calendarName"
+                  placeholder="请输入校区日历名称"
+                ></Input>
+              </FormItem>
+            </Col>
+            <Col :span="24">
+              <FormItem
+                class="flex-reverse-end"
+                label="校区日历模板"
+                v-bind="validateInfos.calendarTemplate"
+              >
+                <Select
+                  v-model:value="formData.calendarTemplate"
+                  :options="[
+                    { value: '校区日历模板1' },
+                    { value: '校区日历模板2' },
+                  ]"
+                  class="select-icon"
+                  placeholder="请选择校区日历模板"
+                >
+                  <template #suffixIcon>
+                    <SvgIcon
+                      name="down"
+                      class="w-[12px] h-full fill-[#A5A8B4]"
+                    ></SvgIcon>
+                  </template>
+                </Select>
+              </FormItem>
+            </Col>
+          </Row>
+        </div>
+        <!-- 设置工作周 -->
+        <div v-show="stepsActive === 1">
+          <div
+            class="border-1 border-[#C3CAC6] rounded-20px border-opacity-20 mb-20px"
+          >
+            <div class="grid grid-cols-[212px,auto] text-xs">
+              <div class="flex flex-col font-bold">
+                <div class="grid grid-cols-[85px,127px] text-center border-r">
+                  <span class="border-r py-20px">星期</span>
+                  <span class="border-r py-20px">是否经营日</span>
+                </div>
+                <div
+                  v-for="week in weeks"
+                  :key="week.label"
+                  class="grid grid-cols-[85px,127px] text-center border-r"
+                >
+                  <span class="min-w-85px border-r py-10px">{{
+                    week.label
+                  }}</span>
+                  <RadioGroup
+                    class="flex-1 py-10px"
+                    v-model:value="week.isWork"
+                  >
+                    <Radio class="text-sm font-normal" :value="true">
+                      是
+                    </Radio>
+                    <Radio class="text-sm font-normal" :value="false">
+                      否
+                    </Radio>
+                  </RadioGroup>
+                </div>
+              </div>
+              <div class="flex flex-col gap-10px font-bold p-20px">
+                <span>周日的运营时间段设置</span>
+                <div
+                  class="flex w-full justify-end fill-[#A5A8B4] stroke-[#A6A9B5] cursor-pointer"
+                  @click="addWorkTime"
+                >
+                  <SvgIcon name="add" class="w-18px h-18px"></SvgIcon>
+                </div>
+                <Form layout="vertical">
+                  <FormItem v-for="(item, index) in weeksTime">
+                    <TimeRangePicker
+                      v-model:value="weeksTime[index]"
+                      style="width: 90%"
+                      format="H:mm A"
+                      :use12Hours="false"
+                      :minute-step="15"
+                    >
+                    </TimeRangePicker>
+                    <MinusCircleOutlined
+                      class="ml-20px cursor-pointer"
+                      @click="removeWeeksTime(index)"
+                    />
+                  </FormItem>
+                </Form>
+              </div>
+            </div>
+          </div>
+
+          <Alert type="warning" closable>
+            <template #message>
+              <ul class="text-[#F3AB51] text-xs">
+                <li>
+                  <span
+                    class="inline-block w-5px h-5px bg-[#F3AB51] rounded-full mr-5px"
+                  ></span>
+                  设置工作周，是完成校区日历建立的第一步；是管理邀约、课程的基础；
+                </li>
+                <li>
+                  <span
+                    class="inline-block w-5px h-5px bg-[#F3AB51] rounded-full mr-5px"
+                  >
+                  </span>
+                  请在工作周中设置出每周的运营日，以及每个运营日的运营时间；
+                </li>
+              </ul>
+            </template>
+          </Alert>
+        </div>
+        <!-- 设置特殊日 -->
+        <div
+          class="border-1 border-[#C3CAC6] rounded-20px border-opacity-20"
+          v-show="stepsActive === 2"
+        >
+          <CalendarSetting></CalendarSetting>
+        </div>
+      </Col>
     </Row>
     <div class="flex gap-10px pt-30px">
       <CancelButton @click="onCancel"> 取消 </CancelButton>
@@ -251,15 +442,25 @@ import {
   UploadChangeParam,
   Row,
   Col,
+  TimeRangePicker,
+  DatePicker,
+  Radio,
+  Alert,
 } from 'ant-design-vue'
 
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue'
+import {
+  PlusOutlined,
+  LoadingOutlined,
+  MinusCircleOutlined,
+} from '@ant-design/icons-vue'
 import { ref, watchEffect } from 'vue'
 import { RoomDto } from './interface'
 import { useRequest } from 'vue-request'
 import { getOptionsListApi } from '@/api/select'
 import CancelButton from '@/components/Button/CancelButton.vue'
 import OkButton from '@/components/Button/OkButton.vue'
+import CalendarSetting from '@/components/Calendar/CalendarSetting.vue'
+import dayjs, { Dayjs } from 'dayjs'
 const roomTypeOptions = [
   { label: '室内场地', value: 1 },
   { label: '室外场地', value: 2 },
@@ -268,6 +469,25 @@ const calendarTypeOptions = [
   { label: '使用校区经营日历', value: 1 },
   { label: '使用独立经营日历', value: 2 },
 ]
+const weeks = ref([
+  {
+    value: 0,
+    label: '星期日',
+    isWork: false,
+  },
+  { value: 1, label: '星期一', isWork: true },
+  { value: 2, label: '星期二', isWork: true },
+  { value: 3, label: '星期三', isWork: true },
+  { value: 4, label: '星期四', isWork: true },
+  { value: 5, label: '星期五', isWork: true },
+  { value: 6, label: '星期六', isWork: false },
+])
+const stepsActive = ref(2)
+
+const dateTme = '2020-01-01'
+const weeksTime = ref<Array<[Dayjs, Dayjs]>>([
+  [dayjs(`${dateTme} 7:00`, 'H:mm'), dayjs(`${dateTme} 13:00`, 'H:mm')],
+])
 const props = defineProps({
   isEdit: {
     type: Boolean,
@@ -287,6 +507,10 @@ const formData = ref<RoomDto>({
   isPillar: undefined,
   floorHeight: undefined,
   isCalendar: undefined,
+  calendarTemplate: undefined,
+  calendarName: '',
+  endTime: '',
+  startTime: '',
 })
 const loadingFile = ref<boolean>(false)
 const imageUrl = ref('')
@@ -329,6 +553,15 @@ watchEffect(() => {
     resetFields()
   }
 })
+function addWorkTime() {
+  weeksTime.value.push([
+    dayjs(`${dateTme} 7:00`, 'H:mm'),
+    dayjs(`${dateTme} 13:00`, 'H:mm'),
+  ])
+}
+function removeWeeksTime(index: number) {
+  weeksTime.value.splice(index, 1)
+}
 function onCancel() {
   resetFields()
   emits('onCancel')

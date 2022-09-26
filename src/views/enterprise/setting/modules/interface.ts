@@ -2,6 +2,10 @@ import { UploadFile } from 'ant-design-vue'
 
 export interface RoomDto {
   fileList?: UploadFile[]
+  calendarTemplate?: Array<any>
+  endTime?: string
+  startTime?: string
+  calendarName?: string
   roomName?: string
   // 所属校区
   schoolId?: string
