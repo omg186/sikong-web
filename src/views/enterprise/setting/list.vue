@@ -39,21 +39,21 @@
             autoplay
           >
             <div class="!align-top">
-              <div class="flex gap-15px">
+              <div class="flex gap-15px" @click="isVisibleViewImg = true">
                 <div class="w-172px h-98px rounded-8px bg-blue-300">1</div>
                 <div class="w-172px h-98px rounded-8px bg-blue-500">1</div>
                 <div class="w-172px h-98px rounded-8px bg-blue-700">1</div>
               </div>
             </div>
             <div class="!align-top">
-              <div class="flex gap-15px">
+              <div class="flex gap-15px" @click="isVisibleViewImg = true">
                 <div class="w-172px h-98px rounded-8px bg-red-300">2</div>
                 <div class="w-172px h-98px rounded-8px bg-red-500">2</div>
                 <div class="w-172px h-98px rounded-8px bg-red-700">2</div>
               </div>
             </div>
             <div class="!align-top">
-              <div class="flex gap-15px">
+              <div class="flex gap-15px" @click="isVisibleViewImg = true">
                 <div class="w-172px h-98px rounded-8px bg-orange-300">3</div>
                 <div class="w-172px h-98px rounded-8px bg-orange-500">3</div>
                 <div class="w-172px h-98px rounded-8px bg-orange-700">3</div>
@@ -219,6 +219,8 @@
       />
     </Modal>
   </div>
+  <!-- 查看大图 -->
+  <ViewImg v-model:visible="isVisibleViewImg" :list="imgList"></ViewImg>
 </template>
 <script lang="ts" setup>
 import {
@@ -232,6 +234,7 @@ import {
 } from 'ant-design-vue'
 import { computed, onMounted, reactive, ref, unref, watch } from 'vue'
 import SvgIcon from '@/components/SvgIcon.vue'
+import ViewImg from '@/components/ViewImg.vue'
 import { GetTreeParams } from '@/api/model/org-model'
 import { useRouteQueryObject } from '@/hooks/web/use-page'
 import { usePagination } from 'vue-request'
@@ -250,6 +253,8 @@ const deptCode = ref('')
 const isModalRoot = ref(false)
 const isRootEdit = ref(false)
 const isModalDel = ref(false)
+const isVisibleViewImg = ref(false)
+const imgList = ref(['1', '2', '3', '4'])
 const refCarousel = ref<CarouselRef>()
 const {
   data: dataSource,
