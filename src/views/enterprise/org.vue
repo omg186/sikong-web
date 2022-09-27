@@ -60,26 +60,19 @@
           </template>
           <template v-if="column.key === 'status'">
             <div class="flex items-center justify-center">
-              <span v-if="record.status === '正常'" class="text-green-500">
-                正常
-              </span>
-              <span
-                v-else-if="record.status === '禁用'"
-                class="flex items-center fill-[#F3AB51] stroke-[#F3AB51] text-[#F3AB51]"
+              <div
+                class="flex justify-center items-center fill-[#F3AB51] stroke-[#F3AB51]"
               >
-                <SvgIcon
-                  name="jinyong1"
-                  class="w-18px h-18px mr-10px"
-                ></SvgIcon>
-                禁用
-              </span>
-              <span
-                v-else-if="record.status === '离职'"
-                class="flex items-center fill-[#F4274E] text-[#F4274E]"
-              >
-                <SvgIcon name="lizhi2" class="w-18px h-18px mr-10px"></SvgIcon>
-                <span>离职</span>
-              </span>
+                <ImgIcon
+                  width="18px"
+                  height="18px"
+                  :src="statusIcon[record.status].icon"
+                  :hover-src="statusIcon[record.status].icon"
+                ></ImgIcon>
+                <div class="h-24px ml-5px">
+                  {{ statusIcon[record.status].title }}
+                </div>
+              </div>
             </div>
           </template>
           <template v-if="column.key === 'option'">
@@ -89,21 +82,36 @@
                 s:hover="fill-[#525A64] stroke-[#525A64]"
                 @click="onTransfer(record.id)"
               >
-                <SvgIcon class="w-[18px] h-18px" name="tiao"></SvgIcon>
+                <ImgIcon
+                  width="15px"
+                  height="18px"
+                  src="transfer.png"
+                  hover-src="transfer-hover.png"
+                ></ImgIcon>
               </div>
               <div
                 class="fill-[#C2C5CD] stroke-[#C2C5CD] cursor-pointer"
                 s:hover="fill-[#525A64] stroke-[#525A64]"
                 @click="onDisable(record.id)"
               >
-                <SvgIcon class="w-[18px] h-18px" name="jinyong1"></SvgIcon>
+                <ImgIcon
+                  width="18px"
+                  height="18px"
+                  src="disabled.png"
+                  hover-src="disabled-hover.png"
+                ></ImgIcon>
               </div>
               <div
                 class="fill-[#C2C5CD] stroke-[#C2C5CD] cursor-pointer"
                 s:hover="fill-[#525A64] stroke-[#525A64]"
                 @click="onLeave(record.id)"
               >
-                <SvgIcon class="w-[18px] h-18px" name="lizhi2"></SvgIcon>
+                <ImgIcon
+                  width="18px"
+                  height="18px"
+                  src="dimission.png"
+                  hover-src="dimission-hover.png"
+                ></ImgIcon>
               </div>
             </div>
           </template>
@@ -219,6 +227,11 @@ const isDeptEdit = ref(false)
 const isModalTransfer = ref(false)
 const deptCode = ref('')
 const addStaffRef = ref(null)
+const statusIcon = ref([
+  { icon: 'normal.png', title: '正常' },
+  { icon: 'forbidden.png', title: '禁用' },
+  { icon: 'dimission-yellow.png', title: '正常' },
+])
 const { routeQuery, getRouteQueryFull } =
   useRouteQueryObject<GetTreeParams>('org')
 // const routeData = computed(() => routeQuery as unknown as GetTreeParams)
@@ -234,7 +247,7 @@ watchEffect(() => {
 const isModalDisable = ref(false)
 // 账户禁用click
 const onDisable = (id: any) => {
-  console.log('禁用')
+  console.log(1)
   isModalDisable.value = true
 }
 // 账户禁用submit
@@ -246,7 +259,7 @@ const onDisableSubmit = () => {
 const isModalLeave = ref(false)
 // 账户离职click
 const onLeave = (id: any) => {
-  console.log('离职')
+  console.log(2)
   isModalLeave.value = true
 }
 // 账户离职submit
@@ -284,7 +297,7 @@ const data = reactive({
       job: '产品总监',
       dept: '前端创新组',
       account: '13924156728',
-      status: '正常',
+      status: 0,
       isAdmin: true,
     },
     {
@@ -293,7 +306,7 @@ const data = reactive({
       job: '产品总监',
       dept: '前端创新组',
       account: '13924156728',
-      status: '正常',
+      status: 0,
       isAdmin: true,
     },
     {
@@ -302,7 +315,7 @@ const data = reactive({
       job: '产品总监',
       dept: '前端创新组',
       account: '13924156728',
-      status: '正常',
+      status: 0,
       isAdmin: false,
     },
     {
@@ -311,7 +324,7 @@ const data = reactive({
       job: '产品总监',
       dept: '前端创新组',
       account: '13924156728',
-      status: '离职',
+      status: 2,
       isAdmin: false,
     },
     {
@@ -320,7 +333,7 @@ const data = reactive({
       job: '产品总监',
       dept: '前端创新组',
       account: '13924156728',
-      status: '禁用',
+      status: 1,
       isAdmin: false,
     },
   ],
