@@ -6,6 +6,7 @@
     ok-text="确认"
     cancel-text="取消"
     :destroyOnClose="true"
+    :footer="null"
     @cancel="cancel"
     @ok="onOk"
   >
@@ -21,12 +22,12 @@
         v-for="(item, index) in props.data"
         :key="index"
         s:text="sm [#83867E]"
-        class="w-110px h-40px flex-center items-center cursor-pointer"
+        class="w-110px h-40px mb-0px flex-center items-center cursor-pointer"
         s:border="1px rounded-8px dashed"
         @click="onSelect(item)"
         :class="
           data.selected.has(item.id)
-            ? 'border-[#C7F7E3] !text-primary'
+            ? 'border-[#C7F7E3] !text-primary !border-solid'
             : 'border-[#DBDFDD] '
         "
       >
@@ -38,6 +39,10 @@
         {{ item.name }}
       </p>
     </div>
+    <div class="flex gap-x-10px justify-end">
+      <CancelButton @click="cancel">取消</CancelButton>
+      <OkButton @click="onOk">确定</OkButton>
+    </div>
   </Modal>
 </template>
 
@@ -45,6 +50,8 @@
 import { onMounted, reactive, watch } from 'vue'
 import { Modal } from 'ant-design-vue'
 import { SelectItem } from '../useLogin'
+import OkButton from '@/components/Button/OkButton.vue'
+import CancelButton from '@/components/Button/CancelButton.vue'
 
 const props = withDefaults(
   defineProps<{

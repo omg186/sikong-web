@@ -11,12 +11,13 @@
     </div>
     <div class="bg-white pl-17px pr-50px">
       <p class="flex justify-between pt-41px">
-        <img src="@/assets/images/logo2.png" />
+        <img src="@/assets/images/logo2.png" class="w-222px max-h-65px" />
         <span s:text="sm">
           已有账号，
           <router-link
             to="/login"
             s:text="primary underline underline-offset-4"
+            s:font="bold"
             s:hover="text-primary underline underline-offset-4"
           >
             直接登录
