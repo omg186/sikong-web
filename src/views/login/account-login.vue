@@ -53,10 +53,11 @@
         </button> -->
       </div>
     </Form>
-    <div
-      class="flex justify-center text-[#E3E4E2] font-medium mt-[36px] hover:text-[#C3CAC6] active:text-[#83867E]"
-    >
-      <router-link to="/" class="custom-rule custom-rule m-1 text-12px">
+    <div class="flex justify-center font-medium mt-[36px]">
+      <router-link
+        to="/"
+        class="custom-rule custom-rule m-1 text-16px text-[#E3E4E2] hover:text-[#C3CAC6] active:text-[#83867E]"
+      >
         忘记密码
       </router-link>
     </div>
