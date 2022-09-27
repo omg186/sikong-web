@@ -86,6 +86,9 @@ const activeIndex = computed(() => {
 
 <style lang="scss" scoped>
 .login-layout {
+  background-image: url('@/assets/images/login/login-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
   .login-form-title {
     .active-line {
       // @apply flex;
