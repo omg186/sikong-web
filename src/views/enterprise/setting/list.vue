@@ -12,9 +12,14 @@
             s:hover="text-[#14DC87] underline-[#14DC87]"
             @click="isModalCampus = true"
           >
-            <SvgIcon class="w-[24px] h-17px" name="modify"></SvgIcon>
+            <ImgIcon
+              width="15px"
+              height="15px"
+              src="edit-green.png"
+              hover-src="edit-green.png"
+            ></ImgIcon>
             <span
-              class="underline-current underline underline-2px underline-offset-2"
+              class="underline-current underline underline-2px underline-offset-2 ml-5px"
             >
               编辑校区信息
             </span>
@@ -137,14 +142,24 @@
                 s:hover="fill-[#525A64]"
                 @click="onRoom(true, record.id)"
               >
-                <SvgIcon class="w-[15px] h-15px" name="modify1"></SvgIcon>
+                <ImgIcon
+                  width="15px"
+                  height="15px"
+                  src="edit.png"
+                  hover-src="edit-hover.png"
+                ></ImgIcon>
               </div>
               <div
                 class="fill-[#C2C5CD] cursor-pointer"
                 s:hover="fill-[#525A64] "
                 @click="onDisable(record.id)"
               >
-                <SvgIcon class="w-[18px] h-18px" name="del"></SvgIcon>
+                <ImgIcon
+                  width="15px"
+                  height="15px"
+                  src="delete.png"
+                  hover-src="delete-hover.png"
+                ></ImgIcon>
               </div>
             </div>
           </template>

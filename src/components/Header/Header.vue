@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-100px w-full flex-shrink-0 flex items-center gap-20px px-20px bg-black"
+    class="h-100px w-full flex-shrink-0 flex items-center gap-20px px-20px bg-org"
   >
     <img
       style="background-color: #87d068"
@@ -22,3 +22,9 @@ const userStore = useUserStore()
 const userInfo = computed(() => userStore.getUserInfo)
 const route = useRoute()
 </script>
+<style lang="less">
+.bg-org {
+  background: url('@/assets/images/org-bg.pic.jpg') no-repeat;
+  background-size: 100%;
+}
+</style>
