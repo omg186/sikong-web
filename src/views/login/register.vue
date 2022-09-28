@@ -1,19 +1,23 @@
 <template>
   <div
-    class="grid grid-cols-2 grid-cols-[644px,minmax(900px,auto)] min-h-500px h-full"
+    class="grid grid-cols-2 grid-cols-[0.5fr,minmax(460px,1fr)] min-h-500px h-full"
   >
     <!-- <div class="grid grid-cols-2 min-h-500px"> -->
-    <div class="aspect-1080/644">
-      <img src="@/assets/images/person2.png" />
+    <div class="flex justify-start">
+      <img
+        src="@/assets/images/person2.png"
+        class="max-h-2160px object-cover"
+      />
     </div>
     <div class="bg-white pl-17px pr-50px">
       <p class="flex justify-between pt-41px">
-        <img src="@/assets/images/logo2.png" />
+        <img src="@/assets/images/logo2.png" class="w-222px max-h-65px" />
         <span s:text="sm">
           已有账号，
           <router-link
             to="/login"
             s:text="primary underline underline-offset-4"
+            s:font="bold"
             s:hover="text-primary underline underline-offset-4"
           >
             直接登录

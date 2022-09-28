@@ -45,16 +45,17 @@
           <span
             class="underline underline-primary underline-offset-2px cursor-pointer"
             s:text="primary"
+            v-if="index % 2 !== 0"
             @click="visibleConfirm = true"
           >
             我去处理
           </span>
           <span
-            class="underline underline-primary underline-offset-2px cursor-pointer"
-            s:text="primary"
+            class="cursor-pointer"
+            v-if="index % 2 === 0"
             @click="visibleConfirm1 = true"
           >
-            我去处理
+            已处理
           </span>
         </template>
       </template>

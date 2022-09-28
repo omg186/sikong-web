@@ -53,20 +53,19 @@
         </button> -->
       </div>
     </Form>
-    <div
-      class="flex justify-center text-[#E3E4E2] font-medium mt-[36px] hover:text-[#C3CAC6] active:text-[#83867E]"
-    >
-      <router-link to="/" class="custom-rule custom-rule m-1">
+    <div class="flex justify-center font-medium mt-[36px]">
+      <router-link
+        to="/"
+        class="custom-rule custom-rule m-1 text-16px text-[#E3E4E2] hover:text-[#C3CAC6] active:text-[#83867E]"
+      >
         忘记密码
       </router-link>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import Schema from 'async-validator'
 import { reactive, toRaw } from 'vue'
-import { Button, Form, FormItem, InputPassword, Input } from 'ant-design-vue'
-import { useApiLogin } from './useLogin'
+import { Button, Form, FormItem, Input } from 'ant-design-vue'
 import { useRequest } from 'vue-request'
 import { useUserStore } from '@/store/modules/user'
 // import { Button } from '@/components/Button'
