@@ -8,7 +8,7 @@
       ></Input>
     </FormItem>
 
-    <FormItem v-bind="validateInfos.deptCode">
+    <FormItem v-bind="validateInfos.deptCode" v-show="isEdit">
       <Select
         placeholder="请选择所属部门"
         v-model:value="formData.deptCode"

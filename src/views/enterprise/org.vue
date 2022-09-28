@@ -144,7 +144,7 @@
       当前“中海店”部门中，有 7 个员工账户和 1 个相关校区，删除操作会将
       相关员工账户转移到“北京白河狸科技公司”下，是否依然执行此操作？
     </div>
-    <div class="flex gap-10px pt-30px">
+    <div class="flex gap-10px pt-80px">
       <CancelButton @click="isModalDeptDel = false"> 取消 </CancelButton>
       <OkButton @click="isModalDeptDel = false"> 保存 </OkButton>
     </div>
