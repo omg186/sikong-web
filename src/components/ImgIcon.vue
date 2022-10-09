@@ -16,6 +16,8 @@ const props = withDefaults(
     hoverSrc?: string
     width?: string
     height?: string
+    activeWidth?: string
+    activeHeight?: string
   }>(),
   {
     width: '20px',
@@ -26,14 +28,20 @@ const props = withDefaults(
 const target = ref()
 const isHovered = useElementHover(target)
 const styles = computed(() => {
+  let w = props.width
+  let h = props.height
+  let url = props.src
+  if (unref(isHovered)) {
+    w = props.activeWidth || props.width
+    h = props.activeHeight || props.height
+    url = props.hoverSrc || props.src
+  }
   return {
-    width: props.width,
-    height: props.height,
+    width: w,
+    height: h,
     // backgroundImage: `url(../../assets/images/view-reserve.png)`,
     backgroundSize: 'cover',
-    backgroundImage: unref(isHovered)
-      ? `url(${getAssetsFile(props.hoverSrc)})`
-      : `url(${getAssetsFile(props.src)})`,
+    backgroundImage: `url(${getAssetsFile(url)})`,
   }
 })
 </script>

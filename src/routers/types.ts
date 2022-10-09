@@ -29,6 +29,7 @@ export interface Menu {
   name: string
 
   icon?: string
+  iconHover?: string
   iconActive?: string
   path: string
 

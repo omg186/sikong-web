@@ -1,14 +1,16 @@
 <template>
-  <div class="menus-view flex justify-center flex-col items-center pt-22px">
-    <h3 s:text="size-24px #1F311F bold">{{ menus?.name }}</h3>
-    <ul class="flex flex-col gap-10px ml-11px mr-9px mt-37px">
+  <div class="menus-view flex flex-col">
+    <h3 s:text="24px [#1F311F] bold" class="pl-20px pt-22px">
+      {{ menus?.name }}
+    </h3>
+    <ul class="flex flex-col gap-10px mx-10px mt-37px">
       <li s:text="sm" v-for="(menu, index) in menus?.children" :key="index">
         <router-link
           :to="menu.path"
-          class="menu-item min-w-180px h-46px flex items-center pl-25px rounded-sm cursor-pointer text-[##2D3A2F]"
+          class="menu-item h-46px flex items-center pl-15px rounded-sm cursor-pointer text-[#2D3A2F] text-14px font-medium"
         >
           <i
-            class="block w-10px h-10px rounded-full mr-10px"
+            class="block w-10px h-10px rounded-full mr-6px"
             s:border="2px solid [#A5A8B4]"
           >
           </i>
