@@ -75,38 +75,37 @@
       <div class="flex items-center gap-27px">
         <!-- 搜索按钮 -->
 
-        <transition-group
+        <!-- <transition-group
           name="search-transition"
           enter-active-class="animate__fadeInRight"
           leave-active-class="animate__fadeOutLeft"
+        > -->
+        <ImgIcon
+          key="1"
+          width="18px"
+          @click="mouseSearchIcon"
+          class="search-icon w-18px h-20px fill-[#A5A8B4] cursor-pointer"
+          :src="'serach.png'"
+          hover-src="serach-hover.png"
         >
-          <ImgIcon
-            key="1"
-            width="18px"
-            v-if="!visibleInput"
-            @mouseenter="visibleInput = true"
-            class="w-18px h-20px fill-[#A5A8B4] cursor-pointer"
-            :src="'serach.png'"
-            hover-src="serach-hover.png"
-          >
-          </ImgIcon>
-          <Input
-            key="2"
-            v-if="visibleInput"
-            class="w-200px box-border h-40px rounded-60 fill-gray-400 stroke-[#A5A8B4] hover:fill-primary active:fill-primary focus:fill-primary focus-within:fill-primary"
-            placeholder="客户姓名/昵称/电话"
-            @blur="visibleInput = false"
-          >
-            <template #prefix>
-              <ImgIcon
-                class="w-18px h-20px"
-                :src="'serach.png'"
-                hover-src="serach-hover.png"
-              >
-              </ImgIcon>
-            </template>
-          </Input>
-        </transition-group>
+        </ImgIcon>
+        <Input
+          key="2"
+          class="search-input box-border h-40px rounded-60 fill-gray-400 stroke-[#A5A8B4] hover:fill-primary active:fill-primary focus:fill-primary focus-within:fill-primary"
+          placeholder="客户姓名/昵称/电话"
+          @keydown="onSearch"
+          @blur="onSearchBlur"
+        >
+          <template #prefix>
+            <ImgIcon
+              class="w-18px h-20px"
+              :src="'serach.png'"
+              hover-src="serach-hover.png"
+            >
+            </ImgIcon>
+          </template>
+        </Input>
+        <!-- </transition-group> -->
         <OkButton @click="visibleAddClient = true">
           <template #icon>
             <SvgIcon
@@ -226,7 +225,7 @@ import AddClient from './modules/AddClient.vue'
 import { useUserStore } from '@/store/modules/user'
 import ImgIcon from '@/components/ImgIcon.vue'
 import OkButton from '@/components/Button/OkButton.vue'
-
+import { gsap } from 'gsap'
 const visibleClient = ref(false)
 const visibleInput = ref(false)
 const visibleAddClient = ref(false)
@@ -360,4 +359,40 @@ const columns = ref<TableColumnsType>([
 function onClient() {
   visibleClient.value = true
 }
+function onSearch() {
+  console.log('搜索')
+  // visibleInput.value = true
+}
+function onSearchBlur(event: MouseEvent) {
+  let tl = gsap.timeline()
+  tl.to('.search-input', { width: '0px', opacity: 0, display: 'none' })
+  tl.to('.search-icon', { opacity: 1, display: 'block' })
+}
+function mouseSearchIcon(event: Event) {
+  console.log(event.target)
+  let tl = gsap.timeline()
+  // tl.to(event.target, { x: '-180px' })
+  tl.to('.search-icon', { opacity: 0, display: 'none' }, 0)
+  tl.fromTo(
+    '.search-input',
+    {
+      opacity: 0,
+      display: 'none',
+      width: 0,
+    },
+    {
+      opacity: 1,
+      display: 'flex',
+      width: 200,
+    }
+  )
+}
 </script>
+
+<style lang="scss" scoped>
+.search-input {
+  display: none;
+  width: 0px;
+  opacity: 0;
+}
+</style>
